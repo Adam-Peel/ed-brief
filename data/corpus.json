@@ -1,8 +1,36 @@
 {
  "schema": 1,
- "generated": "2026-08-21T12:51:08Z",
+ "generated": "2026-08-21T13:50:50Z",
  "retention_days": 14,
  "items": [
+  {
+   "id": "88a91699559a0d3a",
+   "title": "Compulsory GCSE resits in England harm teenagers' mental wellbeing, study finds",
+   "url": "https://www.theguardian.com/education/2026/aug/19/gcse-resits-england-harm-teenagers-mental-wellbeing-ucl",
+   "summary": "UCL researchers warn repeated exam attempts may dent students' confidence and raise risk of dropping out Forcing teenagers who fail GCSEs into multiple resits has a negative impact on their mental health, according to research to be published as pupils receive their grades on Thursday. The study by academics at University College London (UCL) compared the mental wellbeing of students in England, Wales and Northern Ireland who failed to reach a grade 4 or equivalent in maths or English GCSEs – and found that only those in England, where resits are mandatory, showed significantly lower…",
+   "source": {
+    "id": "guardian-schools",
+    "name": "Guardian Schools"
+   },
+   "published": "2026-08-19T18:34:59Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 6.25,
+   "rank_score": 6.25,
+   "tier": "worth",
+   "tags": [
+    "pol-gcse-spec",
+    "prof-wellbeing"
+   ],
+   "why": "",
+   "image_url": "https://i.guim.co.uk/img/media/c1256eb9c79dfc707400041ecd2ef8ca3e222f10/107_0_1937_1551/master/1937.jpg?width=700&quality=85&auto=format&fit=max&s=97225519afd73d912a3ff50d9bacc80c",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 15.62,
+    "deterministic_norm": 6.25,
+    "llm": null
+   }
+  },
   {
    "id": "50f3bb4fdee8b09a",
    "title": "The Guardian view on GCSE results: much to celebrate, much to reform | Editorial",
@@ -23,6 +51,7 @@
     "pol-gcse-spec"
    ],
    "why": "GCSE reform discussion affects all secondary teachers entering profession",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 15.23,
@@ -49,6 +78,7 @@
     "pol-gcse-spec"
    ],
    "why": "GCSE results trends shape assessment context history teachers enter",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 9.65,
@@ -75,6 +105,7 @@
     "pol-gcse-spec"
    ],
    "why": "Gender gap trends in GCSE outcomes relevant to understanding cohort context",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 9.61,
@@ -101,6 +132,7 @@
     "pol-gcse-spec"
    ],
    "why": "GCSE policy reform affects all secondary teachers generically",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 9.74,
@@ -127,6 +159,7 @@
     "pol-gcse-spec"
    ],
    "why": "GCSE resit policy affects all secondary teachers but not history-specific",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 9.7,
@@ -153,6 +186,7 @@
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 10.59,
@@ -173,12 +207,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 4.16,
-   "rank_score": 4.15,
+   "rank_score": 4.14,
    "tier": "rest",
    "tags": [
     "prof-routes-into-teaching"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 10.4,
@@ -199,12 +234,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 4.16,
-   "rank_score": 4.15,
+   "rank_score": 4.14,
    "tier": "rest",
    "tags": [
     "prof-routes-into-teaching"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 10.4,
@@ -225,13 +261,14 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 3.92,
-   "rank_score": 3.91,
+   "rank_score": 3.9,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec",
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 9.8,
@@ -258,6 +295,7 @@
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 9.62,
@@ -284,6 +322,7 @@
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 9.61,
@@ -310,36 +349,11 @@
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 9.58,
     "deterministic_norm": 3.83,
-    "llm": null
-   }
-  },
-  {
-   "id": "5c111d14cd0818ce",
-   "title": "Ofsted wins first successful prosecution of illegal children's home provider",
-   "url": "https://www.gov.uk/government/news/ofsted-wins-first-successful-prosecution-of-illegal-childrens-home-provider",
-   "summary": "A company and its directors have been convicted and sentenced for operating unregistered children's homes in Kent following a criminal prosecution brought by Ofsted.",
-   "source": {
-    "id": "ofsted",
-    "name": "Ofsted (gov.uk)"
-   },
-   "published": "2026-08-05T08:15:43Z",
-   "first_seen": "2026-08-21T10:32:47Z",
-   "expires": "2026-09-04T10:32:47Z",
-   "relevance": 3.81,
-   "rank_score": 3.8,
-   "tier": "rest",
-   "tags": [
-    "pol-ofsted"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 9.53,
-    "deterministic_norm": 3.81,
     "llm": null
    }
   },
@@ -353,97 +367,20 @@
     "name": "Ofsted (gov.uk)"
    },
    "published": "2026-07-14T12:13:48Z",
-   "first_seen": "2026-08-21T10:55:21Z",
-   "expires": "2026-09-04T10:55:21Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
    "relevance": 3.8,
-   "rank_score": 3.79,
+   "rank_score": 3.8,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 9.5,
     "deterministic_norm": 3.8,
-    "llm": null
-   }
-  },
-  {
-   "id": "bff79fa74fadd1b5",
-   "title": "Ofsted outlines plans to tackle sharp growth in unregistered children’s homes",
-   "url": "https://www.gov.uk/government/news/ofsted-outlines-plans-to-tackle-sharp-growth-in-unregistered-childrens-homes",
-   "summary": "Ofsted has today outlined a change in its approach to tackling unregistered children’s homes, designed to stop unsafe and unlawful placements and to address issues of sufficiency in the children’s social care system.",
-   "source": {
-    "id": "ofsted",
-    "name": "Ofsted (gov.uk)"
-   },
-   "published": "2026-07-14T08:48:29Z",
-   "first_seen": "2026-08-21T10:55:21Z",
-   "expires": "2026-09-04T10:55:21Z",
-   "relevance": 3.8,
-   "rank_score": 3.79,
-   "tier": "rest",
-   "tags": [
-    "pol-ofsted"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 9.5,
-    "deterministic_norm": 3.8,
-    "llm": null
-   }
-  },
-  {
-   "id": "f8acd0adfe293916",
-   "title": "Ofsted consults on strengthening children's social care inspections",
-   "url": "https://www.gov.uk/government/news/ofsted-consults-on-strengthening-childrens-social-care-inspections",
-   "summary": "Children, young people and their families will be placed at the heart of social care inspections under plans announced today, as Ofsted launches a public consultation on reforming 2 key inspection frameworks.",
-   "source": {
-    "id": "ofsted",
-    "name": "Ofsted (gov.uk)"
-   },
-   "published": "2026-07-07T11:00:05Z",
-   "first_seen": "2026-08-21T10:55:21Z",
-   "expires": "2026-09-04T10:55:21Z",
-   "relevance": 3.8,
-   "rank_score": 3.79,
-   "tier": "rest",
-   "tags": [
-    "pol-ofsted"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 9.5,
-    "deterministic_norm": 3.8,
-    "llm": null
-   }
-  },
-  {
-   "id": "88a91699559a0d3a",
-   "title": "Compulsory GCSE resits in England harm teenagers’ mental wellbeing, study finds",
-   "url": "https://www.theguardian.com/education/2026/aug/19/gcse-resits-england-harm-teenagers-mental-wellbeing-ucl",
-   "summary": "UCL researchers warn repeated exam attempts may dent students’ confidence and raise risk of dropping out Forcing teenagers who fail GCSEs into multiple resits has a negative impact on their mental health, according to research to be published as pupils receive their grades on Thursday. The study by academics at University College London (UCL) compared the mental wellbeing of students in England, Wales and Northern Ireland who failed to reach a grade 4 or equivalent in maths or English GCSEs – and found that only those in England, where resits are mandatory, showed significantly lower…",
-   "source": {
-    "id": "guardian-schools",
-    "name": "Guardian Schools"
-   },
-   "published": "2026-08-19T18:34:59Z",
-   "first_seen": "2026-08-21T10:07:49Z",
-   "expires": "2026-09-04T10:07:49Z",
-   "relevance": 3.71,
-   "rank_score": 3.69,
-   "tier": "rest",
-   "tags": [
-    "pol-gcse-spec"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 9.28,
-    "deterministic_norm": 3.71,
     "llm": null
    }
   },
@@ -460,12 +397,13 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.2,
-   "rank_score": 3.19,
+   "rank_score": 3.18,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 8.0,
@@ -486,12 +424,13 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.2,
-   "rank_score": 3.19,
+   "rank_score": 3.18,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 8.0,
@@ -512,12 +451,13 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.19,
-   "rank_score": 3.18,
+   "rank_score": 3.17,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 7.98,
@@ -538,12 +478,13 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.19,
-   "rank_score": 3.18,
+   "rank_score": 3.17,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 7.97,
@@ -564,12 +505,13 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.19,
-   "rank_score": 3.18,
+   "rank_score": 3.17,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 7.97,
@@ -590,12 +532,13 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.12,
-   "rank_score": 3.11,
+   "rank_score": 3.1,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 7.8,
@@ -616,13 +559,14 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 2.97,
-   "rank_score": 2.96,
+   "rank_score": 2.95,
    "tier": "rest",
    "tags": [
     "prof-adaptive-teaching",
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 7.42,
@@ -643,12 +587,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 2.6,
-   "rank_score": 2.59,
+   "rank_score": 2.58,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 6.5,
@@ -669,38 +614,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 2.6,
-   "rank_score": 2.59,
+   "rank_score": 2.58,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
    ],
    "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 6.5,
-    "deterministic_norm": 2.6,
-    "llm": null
-   }
-  },
-  {
-   "id": "2166a819f513c44b",
-   "title": "Changing our approach to unregistered children's homes",
-   "url": "https://www.gov.uk/government/speeches/changing-our-approach-to-unregistered-childrens-homes",
-   "summary": "Yvette Stanley, National Director, Regulation and Social Care, on Ofsted’s latest work to prevent children being placed in unregistered homes.",
-   "source": {
-    "id": "ofsted",
-    "name": "Ofsted (gov.uk)"
-   },
-   "published": "2026-07-02T11:07:00Z",
-   "first_seen": "2026-08-21T10:55:21Z",
-   "expires": "2026-09-04T10:55:21Z",
-   "relevance": 2.6,
-   "rank_score": 2.59,
-   "tier": "rest",
-   "tags": [
-    "pol-ofsted"
-   ],
-   "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 6.5,
@@ -727,6 +647,7 @@
     "prof-sen"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 6.45,
@@ -747,12 +668,13 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 2.46,
-   "rank_score": 2.45,
+   "rank_score": 2.44,
    "tier": "rest",
    "tags": [
     "prof-behaviour"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 6.14,
@@ -773,12 +695,13 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 2.44,
-   "rank_score": 2.43,
+   "rank_score": 2.42,
    "tier": "noise",
    "tags": [
     "ped-ai"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 6.11,
@@ -799,12 +722,13 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 2.32,
-   "rank_score": 2.31,
+   "rank_score": 2.3,
    "tier": "noise",
    "tags": [
     "prof-sen"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 5.79,
@@ -825,12 +749,13 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 1.99,
-   "rank_score": 1.98,
+   "rank_score": 1.97,
    "tier": "noise",
    "tags": [
     "cog-cognitive-load"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 4.96,
@@ -851,12 +776,13 @@
    "first_seen": "2026-08-21T12:38:28Z",
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 1.96,
-   "rank_score": 1.96,
+   "rank_score": 1.95,
    "tier": "noise",
    "tags": [
     "prof-sen"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 4.9,
@@ -877,12 +803,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.92,
-   "rank_score": 1.91,
+   "rank_score": 1.9,
    "tier": "noise",
    "tags": [
     "ped-disciplinary-literacy"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 4.8,
@@ -903,12 +830,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.92,
-   "rank_score": 1.91,
+   "rank_score": 1.9,
    "tier": "noise",
    "tags": [
     "ped-disciplinary-literacy"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 4.8,
@@ -929,12 +857,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.8,
-   "rank_score": 1.79,
+   "rank_score": 1.78,
    "tier": "noise",
    "tags": [
     "prof-sen"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 4.5,
@@ -955,12 +884,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.8,
-   "rank_score": 1.79,
+   "rank_score": 1.78,
    "tier": "noise",
    "tags": [
     "prof-sen"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 4.5,
@@ -981,12 +911,13 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 1.79,
-   "rank_score": 1.78,
+   "rank_score": 1.77,
    "tier": "noise",
    "tags": [
     "prof-behaviour"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 4.48,
@@ -1013,10 +944,117 @@
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 3.99,
     "deterministic_norm": 1.6,
+    "llm": null
+   }
+  },
+  {
+   "id": "5c111d14cd0818ce",
+   "title": "Ofsted wins first successful prosecution of illegal children's home provider",
+   "url": "https://www.gov.uk/government/news/ofsted-wins-first-successful-prosecution-of-illegal-childrens-home-provider",
+   "summary": "A company and its directors have been convicted and sentenced for operating unregistered children's homes in Kent following a criminal prosecution brought by Ofsted.",
+   "source": {
+    "id": "ofsted",
+    "name": "Ofsted (gov.uk)"
+   },
+   "published": "2026-08-05T08:15:43Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 1.41,
+   "rank_score": 1.41,
+   "tier": "noise",
+   "tags": [
+    "pol-ofsted"
+   ],
+   "why": "",
+   "image_url": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 3.53,
+    "deterministic_norm": 1.41,
+    "llm": null
+   }
+  },
+  {
+   "id": "bff79fa74fadd1b5",
+   "title": "Ofsted outlines plans to tackle sharp growth in unregistered children's homes",
+   "url": "https://www.gov.uk/government/news/ofsted-outlines-plans-to-tackle-sharp-growth-in-unregistered-childrens-homes",
+   "summary": "Ofsted has today outlined a change in its approach to tackling unregistered children's homes, designed to stop unsafe and unlawful placements and to address issues of sufficiency in the children's social care system.",
+   "source": {
+    "id": "ofsted",
+    "name": "Ofsted (gov.uk)"
+   },
+   "published": "2026-07-14T08:48:29Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 1.4,
+   "rank_score": 1.4,
+   "tier": "noise",
+   "tags": [
+    "pol-ofsted"
+   ],
+   "why": "",
+   "image_url": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 3.5,
+    "deterministic_norm": 1.4,
+    "llm": null
+   }
+  },
+  {
+   "id": "f8acd0adfe293916",
+   "title": "Ofsted consults on strengthening children's social care inspections",
+   "url": "https://www.gov.uk/government/news/ofsted-consults-on-strengthening-childrens-social-care-inspections",
+   "summary": "Children, young people and their families will be placed at the heart of social care inspections under plans announced today, as Ofsted launches a public consultation on reforming 2 key inspection frameworks.",
+   "source": {
+    "id": "ofsted",
+    "name": "Ofsted (gov.uk)"
+   },
+   "published": "2026-07-07T11:00:05Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 1.4,
+   "rank_score": 1.4,
+   "tier": "noise",
+   "tags": [
+    "pol-ofsted"
+   ],
+   "why": "",
+   "image_url": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 3.5,
+    "deterministic_norm": 1.4,
+    "llm": null
+   }
+  },
+  {
+   "id": "256aaa2539bf1077",
+   "title": "Hot sex and cold jelly: how a wobbly dessert ignited Georgian bedrooms",
+   "url": "https://www.historyextra.com/membership/scandalous-after-dark-secrets-of-jelly-shops/",
+   "summary": "By day, London's Georgian jelly shops served elegant desserts to respectable customers. By night, some became notorious meeting places for prostitutes, pimps and clients",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-21T13:20:57Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 1.39,
+   "rank_score": 1.39,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://images.immediate.co.uk/production/volatile/sites/7/2026/08/GettyImages-961399214-07fa2ca-e1787243307655.jpg",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 3.49,
+    "deterministic_norm": 1.39,
     "llm": null
    }
   },
@@ -1033,12 +1071,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.4,
-   "rank_score": 1.39,
+   "rank_score": 1.38,
    "tier": "noise",
    "tags": [
     "pol-ofsted"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 3.5,
@@ -1059,12 +1098,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.24,
-   "rank_score": 1.23,
+   "rank_score": 1.22,
    "tier": "noise",
    "tags": [
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 3.1,
@@ -1085,16 +1125,42 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.24,
-   "rank_score": 1.23,
+   "rank_score": 1.22,
    "tier": "noise",
    "tags": [
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 3.1,
     "deterministic_norm": 1.24,
+    "llm": null
+   }
+  },
+  {
+   "id": "5bc976bd96f08510",
+   "title": "I asked 13 college grads for dorm essentials that stood the test of time",
+   "url": "https://www.theguardian.com/thefilter-us/2026/aug/21/best-dorm-room-essentials-college",
+   "summary": "I asked 13 people about the things they have carried from college into adulthood –and found their modern day equivalents 21 things tweens want for back-to-school season, according to tweens Sign up for the Filter US newsletter, your weekly guide to buying fewer, better things One of the highlights of the summer before college was trotting off to my local Linens N Things to outfit my new home, a triple dorm room in the Little Building at Emerson College in Boston. Armed with a list of must-haves and strongly suggested essentials, I filled a shopping cart with a lot of stuff I'd use immediately…",
+   "source": {
+    "id": "guardian-education",
+    "name": "Guardian Education"
+   },
+   "published": "2026-08-21T13:15:35Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 1.19,
+   "rank_score": 1.19,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://i.guim.co.uk/img/media/11779a97e2989634cd9c377af1985100d2bab487/1_0_2999_2400/master/2999.jpg?width=700&quality=85&auto=format&fit=max&s=d5d08561f0fbfe3930f687f788177ebc",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 2.98,
+    "deterministic_norm": 1.19,
     "llm": null
    }
   },
@@ -1111,10 +1177,11 @@
    "first_seen": "2026-08-21T12:38:28Z",
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 1.2,
-   "rank_score": 1.2,
+   "rank_score": 1.19,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.99,
@@ -1135,12 +1202,13 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 1.19,
-   "rank_score": 1.18,
+   "rank_score": 1.17,
    "tier": "noise",
    "tags": [
     "pol-gcse-spec"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.98,
@@ -1161,10 +1229,11 @@
    "first_seen": "2026-08-21T12:38:28Z",
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 1.12,
-   "rank_score": 1.12,
+   "rank_score": 1.11,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.8,
@@ -1185,12 +1254,13 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.06,
-   "rank_score": 1.05,
+   "rank_score": 1.04,
    "tier": "noise",
    "tags": [
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.65,
@@ -1211,12 +1281,13 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.05,
-   "rank_score": 1.04,
+   "rank_score": 1.03,
    "tier": "noise",
    "tags": [
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.63,
@@ -1237,12 +1308,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.04,
-   "rank_score": 1.03,
+   "rank_score": 1.02,
    "tier": "noise",
    "tags": [
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.6,
@@ -1263,12 +1335,13 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.01,
-   "rank_score": 1.0,
+   "rank_score": 0.99,
    "tier": "noise",
    "tags": [
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.53,
@@ -1289,12 +1362,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.0,
-   "rank_score": 0.99,
+   "rank_score": 0.98,
    "tier": "noise",
    "tags": [
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.5,
@@ -1315,12 +1389,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.0,
-   "rank_score": 0.99,
+   "rank_score": 0.98,
    "tier": "noise",
    "tags": [
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.5,
@@ -1341,12 +1416,13 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.0,
-   "rank_score": 0.99,
+   "rank_score": 0.98,
    "tier": "noise",
    "tags": [
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.5,
@@ -1371,6 +1447,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.38,
@@ -1395,6 +1472,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.05,
@@ -1415,12 +1493,13 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.8,
-   "rank_score": 0.79,
+   "rank_score": 0.78,
    "tier": "noise",
    "tags": [
     "context-sector"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 2.0,
@@ -1445,6 +1524,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.93,
@@ -1465,10 +1545,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.75,
-   "rank_score": 0.74,
+   "rank_score": 0.73,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.87,
@@ -1489,10 +1570,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.71,
-   "rank_score": 0.7,
+   "rank_score": 0.69,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.77,
@@ -1513,10 +1595,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.61,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.51,
@@ -1537,10 +1620,11 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.59,
+   "rank_score": 0.58,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.5,
@@ -1561,10 +1645,11 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.59,
+   "rank_score": 0.58,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.5,
@@ -1585,10 +1670,11 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.59,
+   "rank_score": 0.58,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.5,
@@ -1609,10 +1695,11 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.59,
+   "rank_score": 0.58,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.5,
@@ -1633,10 +1720,11 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.59,
+   "rank_score": 0.58,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.5,
@@ -1657,10 +1745,11 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.59,
+   "rank_score": 0.58,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.5,
@@ -1681,10 +1770,11 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.59,
+   "rank_score": 0.58,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.5,
@@ -1705,10 +1795,11 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 0.6,
-   "rank_score": 0.59,
+   "rank_score": 0.58,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.5,
@@ -1729,10 +1820,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.6,
-   "rank_score": 0.59,
+   "rank_score": 0.58,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.5,
@@ -1753,10 +1845,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.6,
-   "rank_score": 0.59,
+   "rank_score": 0.58,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.5,
@@ -1781,6 +1874,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.38,
@@ -1805,6 +1899,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.38,
@@ -1825,10 +1920,11 @@
    "first_seen": "2026-08-21T12:38:28Z",
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 0.5,
-   "rank_score": 0.5,
+   "rank_score": 0.49,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.25,
@@ -1849,10 +1945,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.51,
-   "rank_score": 0.5,
+   "rank_score": 0.49,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.27,
@@ -1879,6 +1976,7 @@
     "ped-ai"
    ],
    "why": "Academic plagiarism dispute irrelevant to secondary history teaching",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 3.14,
@@ -1903,6 +2001,7 @@
    "tier": "noise",
    "tags": [],
    "why": "Political commentary unrelated to history teaching or ITT",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 2.99,
@@ -1923,10 +2022,11 @@
    "first_seen": "2026-08-21T12:38:28Z",
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 0.45,
-   "rank_score": 0.45,
+   "rank_score": 0.44,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.11,
@@ -1947,10 +2047,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.44,
-   "rank_score": 0.43,
+   "rank_score": 0.42,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.1,
@@ -1975,6 +2076,7 @@
    "tier": "noise",
    "tags": [],
    "why": "Indian school infrastructure irrelevant to English secondary history ITT",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 2.68,
@@ -1995,10 +2097,11 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.43,
-   "rank_score": 0.42,
+   "rank_score": 0.41,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.07,
@@ -2019,14 +2122,115 @@
    "first_seen": "2026-08-21T12:38:28Z",
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 0.41,
-   "rank_score": 0.41,
+   "rank_score": 0.4,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.03,
     "deterministic_norm": 0.41,
+    "llm": null
+   }
+  },
+  {
+   "id": "8e23259549a416a8",
+   "title": "British Academy elects Cambridge historians to Fellowship",
+   "url": "https://www.hist.cam.ac.uk/news/british-academy-elects-cambridge-historians",
+   "summary": "Tuesday, 21 July 2026 British Academy elects Cambridge historians to Fellowship News Two Faculty of History colleagues among new Fellows of the UK's prestigious national academy for the humanities and social sciences. Professor John Arnold and Professor Mia Bay have been elected as Fellows of the British Academy in recognition of their outstanding achievements. They are among 92 distinguished scholars to be elected to the Fellowship for 2026, in fields ranging from the history of race, to bringing human insight into the study and development of AI. Professor John Arnold (King's College) was…",
+   "source": {
+    "id": "cambridge-history",
+    "name": "Cambridge Faculty of History"
+   },
+   "published": "2026-07-21T07:08:34Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 0.4,
+   "rank_score": 0.4,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.hist.cam.ac.uk/sites/default/files/styles/responsive_standard/public/2026-07/professor_john_arnold_and_professor_mia_bay.png?itok=i1wtTcVI",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 1.0,
+    "deterministic_norm": 0.4,
+    "llm": null
+   }
+  },
+  {
+   "id": "011de7a88987dfd2",
+   "title": "Dr Freddy Foks",
+   "url": "https://www.hist.cam.ac.uk/people/dr-freddy-foks",
+   "summary": "Dr Freddy Foks mkp32 Fri, 17/07/2026 - 08:50 Temporary Assistant Professor in Modern British History wfpf2@cam.ac.uk Foks Person type Teaching officers Dr",
+   "source": {
+    "id": "cambridge-history",
+    "name": "Cambridge Faculty of History"
+   },
+   "published": "2026-07-17T08:50:24Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 0.4,
+   "rank_score": 0.4,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 1.0,
+    "deterministic_norm": 0.4,
+    "llm": null
+   }
+  },
+  {
+   "id": "8a28478e3c534bf4",
+   "title": "An Introduction to Post-War Public Art",
+   "url": "https://heritagecalling.com/2026/07/16/an-introduction-to-post-war-public-art/",
+   "summary": "Learn how Britain's post-war reconstruction programme built art into public spaces and emerging new towns.",
+   "source": {
+    "id": "heritage-calling",
+    "name": "Heritage Calling (Historic England)"
+   },
+   "published": "2026-07-16T06:00:00Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 0.4,
+   "rank_score": 0.4,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 1.0,
+    "deterministic_norm": 0.4,
+    "llm": null
+   }
+  },
+  {
+   "id": "505692fa2a2a365c",
+   "title": "Andrés Fernando Jácome",
+   "url": "https://www.hist.cam.ac.uk/people/andres-fernando-jacome",
+   "summary": "Andrés Fernando Jácome afj29 Mon, 13/07/2026 - 10:01 Andrés is a PhD student jointly supervised by Professor Mary Laven and Professor Regina Grafe. His research explores the Portuguese and New Christian diaspora around the port-city of Cartagena de Indias (in modern-day Colombia) during the late sixteenth and seventeenth centuries. His research draws attention to how this group adapted to local cultural and economic contexts and formed both regional and transnational networks of trust and trade. Using civil and ecclesiastical trial records, debt records, inventories and testaments, this…",
+   "source": {
+    "id": "cambridge-history",
+    "name": "Cambridge Faculty of History"
+   },
+   "published": "2026-07-13T10:01:06Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 0.4,
+   "rank_score": 0.4,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.hist.cam.ac.uk/sites/default/files/styles/square/public/2026-07/andresjacome.jpg?itok=E3k8Vh1e",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 1.0,
+    "deterministic_norm": 0.4,
     "llm": null
    }
   },
@@ -2043,10 +2247,11 @@
    "first_seen": "2026-08-21T12:38:28Z",
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 0.4,
-   "rank_score": 0.4,
+   "rank_score": 0.39,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.01,
@@ -2067,10 +2272,11 @@
    "first_seen": "2026-08-21T12:38:28Z",
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 0.4,
-   "rank_score": 0.4,
+   "rank_score": 0.39,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.0,
@@ -2091,10 +2297,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.41,
-   "rank_score": 0.4,
+   "rank_score": 0.39,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.01,
@@ -2115,10 +2322,11 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.4,
-   "rank_score": 0.39,
+   "rank_score": 0.38,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.0,
@@ -2143,6 +2351,7 @@
    "tier": "noise",
    "tags": [],
    "why": "Ancient Greek content enrichment unrelated to ITT pedagogy or curriculum",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 2.42,
@@ -2167,6 +2376,7 @@
    "tier": "noise",
    "tags": [],
    "why": "Social media commentary unrelated to history teaching or curriculum",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 2.44,
@@ -2187,10 +2397,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.34,
-   "rank_score": 0.33,
+   "rank_score": 0.32,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.85,
@@ -2211,10 +2422,11 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.33,
-   "rank_score": 0.32,
+   "rank_score": 0.31,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.82,
@@ -2235,10 +2447,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.32,
-   "rank_score": 0.31,
+   "rank_score": 0.3,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.8,
@@ -2263,6 +2476,7 @@
    "tier": "noise",
    "tags": [],
    "why": "Royal history content enrichment unrelated to ITT pedagogy or assessment",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 1.9,
@@ -2283,10 +2497,11 @@
    "first_seen": "2026-08-21T12:51:08Z",
    "expires": "2026-09-04T12:51:08Z",
    "relevance": 0.29,
-   "rank_score": 0.29,
+   "rank_score": 0.28,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.72,
@@ -2307,10 +2522,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.29,
-   "rank_score": 0.28,
+   "rank_score": 0.27,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.72,
@@ -2337,6 +2553,7 @@
     "ped-ai"
    ],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.7,
@@ -2357,10 +2574,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.26,
-   "rank_score": 0.25,
+   "rank_score": 0.24,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.65,
@@ -2381,10 +2599,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.25,
-   "rank_score": 0.24,
+   "rank_score": 0.23,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.63,
@@ -2405,10 +2624,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.24,
-   "rank_score": 0.23,
+   "rank_score": 0.22,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.61,
@@ -2429,10 +2649,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.23,
-   "rank_score": 0.22,
+   "rank_score": 0.21,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.57,
@@ -2453,10 +2674,11 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.22,
-   "rank_score": 0.21,
+   "rank_score": 0.2,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.56,
@@ -2477,10 +2699,11 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.14,
-   "rank_score": 0.13,
+   "rank_score": 0.12,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.35,
@@ -2501,10 +2724,11 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.08,
-   "rank_score": 0.07,
+   "rank_score": 0.06,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.21,
@@ -2525,10 +2749,11 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.06,
-   "rank_score": 0.05,
+   "rank_score": 0.04,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.16,
@@ -2549,14 +2774,65 @@
    "first_seen": "2026-08-21T12:51:08Z",
    "expires": "2026-09-04T12:51:08Z",
    "relevance": 0.04,
-   "rank_score": 0.04,
+   "rank_score": 0.03,
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.1,
     "deterministic_norm": 0.04,
+    "llm": null
+   }
+  },
+  {
+   "id": "769005185439f40f",
+   "title": "EABHAL (7 Oct 2026)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/eabhal-p1059531",
+   "summary": "Djanogly Theatre Wednesday 7 October | 7.30pm 2 hours including interval TIckets: £19 - £23 Eabhal have made a significant impact on the Scottish music scene with their vibrant and energetic folk music. The band earned a prestigious Folk Band of the Year nomination in the MG ALBA Scots Trad Music Awards 2022 amongst multiple other awards and nominations over the past 10 years. Current members are Kaitlin Ross (vocals), Megan MacDonald (accordion), Nicky Kirk (guitar), Robbie Greig (fiddle), and Ewan Duncan (pipes & whistle).",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-07-14T10:43:14Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FEabhal_623996499.jpg&action=ProductMain",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "051510fe764539d3",
+   "title": "Secret and Sacred Libraries from East Midlands Parishes (8 Oct 2026 - 28 Feb 2027)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/secret-and-sacred-libraries-from-east-midlands-parishes-p1059551",
+   "summary": "Lakeside Arts | Weston Gallery Thursday 8 October – Sunday 28 February Open Tuesday-Sunday | 12noon-4pm | Closed Mondays Tickets: Free admission Launch event: Thursday 8 October, 5-7pm Step into the sacred libraries of the East Midlands parish priests through books that they owned and annotated across the centuries. Amongst the Bibles and theological texts are more surprising books, on poetry, history, politics, games, and the social duties that governed everyday life. Through their pages we can glimpse the intense local concerns and a broader intellectual curiosity that extended far beyond…",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-07-14T10:24:22Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FSacred_and_Secret_696405498.jpg&action=ProductMain",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
     "llm": null
    }
   },
@@ -2577,6 +2853,7 @@
    "tier": "noise",
    "tags": [],
    "why": "History quiz entertainment irrelevant to ITT or classroom practice",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": -5.61,
@@ -2601,6 +2878,7 @@
    "tier": "noise",
    "tags": [],
    "why": "History crossword puzzle irrelevant to ITT or teaching practice",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": -1.61,
@@ -2625,6 +2903,7 @@
    "tier": "noise",
    "tags": [],
    "why": "Daily quiz entertainment unrelated to ITT or secondary history teaching",
+   "image_url": "",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": -1.66,
@@ -2649,6 +2928,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": -2.16,
@@ -2673,6 +2953,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": -4.24,
@@ -2697,6 +2978,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": -4.28,
@@ -2721,6 +3003,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": -1.38,
@@ -2745,6 +3028,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.03,
@@ -2769,6 +3053,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.03,
@@ -2793,6 +3078,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.02,
@@ -2817,6 +3103,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
@@ -2841,6 +3128,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": -4.0,
@@ -2865,6 +3153,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
@@ -2889,6 +3178,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
@@ -2913,6 +3203,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
@@ -2937,6 +3228,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
@@ -2961,6 +3253,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
@@ -2985,6 +3278,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
@@ -3009,6 +3303,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
@@ -3033,6 +3328,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
@@ -3057,9 +3353,35 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "ab8c6cc07ae67ba2",
+   "title": "Sophia Jaffer",
+   "url": "https://www.hist.cam.ac.uk/people/sophia-jaffer",
+   "summary": "Sophia Jaffer srj45 Mon, 13/07/2026 - 10:00 I am a first-year PhD Candidate in History, supervised by Dr. Michael Joseph. My work is focused on intergenerational memory construction and place-making among British Ugandan Asians from 1972 to the present day. Within this, I consider histories of diaspora and migration and the boundaries of the 'refugee', as well as immigration and race relations in 1970s Britain. I specialise in oral history, conducting interviews with Ugandan Asians in Britain. Before coming to Cambridge, I completed a BA in History at the University of Exeter in 2022, and an…",
+   "source": {
+    "id": "cambridge-history",
+    "name": "Cambridge Faculty of History"
+   },
+   "published": "2026-07-13T10:00:34Z",
+   "first_seen": "2026-08-21T13:50:50Z",
+   "expires": "2026-09-04T13:50:50Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.hist.cam.ac.uk/sites/default/files/styles/square/public/2026-07/img_5046.jpeg?itok=QCnSyhUo",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": -4.0,
     "deterministic_norm": 0.0,
     "llm": null
    }
@@ -3081,6 +3403,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
@@ -3105,6 +3428,7 @@
    "tier": "noise",
    "tags": [],
    "why": "",
+   "image_url": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,

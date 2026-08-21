@@ -84,6 +84,7 @@ def score_new_items(
                 relevance=relevance,
                 tags=item.tags,
                 why=why,
+                image_url=item.image_url,
                 deterministic_raw=item.deterministic_raw,
                 deterministic_norm=norm,
                 llm_score=llm_score,

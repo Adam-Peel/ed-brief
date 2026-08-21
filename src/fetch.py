@@ -19,6 +19,8 @@ USER_AGENT = (
 TIMEOUT = 25
 _TAG_RE = re.compile(r"<[^>]+>")
 _WS_RE = re.compile(r"\s+")
+_IMG_SRC_RE = re.compile(r'<img[^>]+src=["\']([^"\']+)["\']', re.IGNORECASE)
+_AVATAR_HOSTS = ("gravatar.com",)  # WordPress/Jetpack author avatars, not article images
 
 
 @dataclass
@@ -35,6 +37,8 @@ class Item:
     source_name: str
     published: datetime
     source_weight: float = 0.0
+
+    image_url: str = ""
 
     # Filled in during ingestion: score.py then, optionally, llm.py.
     tags: list[str] = field(default_factory=list)
@@ -53,12 +57,28 @@ class Item:
         return self.title.lower(), self.summary.lower()
 
 
+_SMART_QUOTES = str.maketrans({
+    "‘": "'", "’": "'",  # curly single quotes/apostrophe
+    "“": '"', "”": '"',  # curly double quotes
+})
+
+
 def clean_text(raw: str | None, limit: int = 600) -> str:
-    """Strip markup and entities out of a feed summary."""
+    """Strip markup and entities out of a feed summary.
+
+    Also normalises curly quotes to straight ones -- found the hard way:
+    scoring.yml terms like "teachers' standards" or "children's home" use a
+    plain ASCII apostrophe, but plenty of real feeds (professionally
+    typeset copy, mostly) use a proper U+2019 curly apostrophe instead, and
+    word-boundary term matching treats those as different characters
+    entirely. Normalising once here, at ingest, means every term in
+    scoring.yml only ever needs the one straight-quote spelling.
+    """
     if not raw:
         return ""
     text = _TAG_RE.sub(" ", raw)
     text = html.unescape(text)
+    text = text.translate(_SMART_QUOTES)
     text = _WS_RE.sub(" ", text).strip()
     if len(text) > limit:
         cut = text[:limit].rsplit(" ", 1)[0]
@@ -76,6 +96,56 @@ def _parse_date(entry) -> datetime:
             except (ValueError, OverflowError, TypeError):
                 continue
     return datetime.now(timezone.utc)
+
+
+def _is_real_image(url: str) -> bool:
+    return bool(url) and not any(host in url for host in _AVATAR_HOSTS)
+
+
+def _extract_image(entry) -> str:
+    """Best-effort article image, since different feeds represent this
+    completely differently -- checked in the order each is likely to be a
+    genuine, appropriately-sized article image rather than noise:
+
+    1. media:thumbnail -- explicitly a thumbnail when present.
+    2. media:content -- may list several sizes of the same photo (Guardian)
+       or, on some WordPress/Jetpack feeds, the author's Gravatar avatar
+       ahead of the real photo (Nottingham Hidden History Team) -- avatar
+       hosts are filtered out, and the largest remaining width wins.
+    3. An enclosure link with an image MIME type.
+    4. A regex pull of the first <img src> in the raw (pre-clean_text) HTML
+       body, for feeds with no structured image data at all.
+
+    Returns "" rather than guessing when nothing usable is found -- a
+    missing thumbnail is normal and every consumer treats it as optional.
+    """
+    for thumb in entry.get("media_thumbnail", []):
+        url = thumb.get("url", "")
+        if _is_real_image(url):
+            return url
+
+    candidates = [c for c in entry.get("media_content", []) if _is_real_image(c.get("url", ""))]
+    if candidates:
+        def width(c):
+            try:
+                return int(c.get("width", 0))
+            except (TypeError, ValueError):
+                return 0
+        return max(candidates, key=width)["url"]
+
+    for link in entry.get("links", []):
+        if link.get("rel") == "enclosure" and link.get("type", "").startswith("image/"):
+            if _is_real_image(link.get("href", "")):
+                return link["href"]
+
+    raw_html = entry.get("summary") or entry.get("description") or ""
+    if not raw_html and entry.get("content"):
+        raw_html = entry["content"][0].get("value", "")
+    match = _IMG_SRC_RE.search(raw_html)
+    if match and _is_real_image(match.group(1)):
+        return match.group(1)
+
+    return ""
 
 
 def _make_uid(url: str, title: str) -> str:
@@ -125,6 +195,7 @@ def parse_feed(
                 source_name=feed_cfg["name"],
                 published=published,
                 source_weight=float(feed_cfg.get("weight", 0.0)),
+                image_url=_extract_image(entry),
             )
         )
 

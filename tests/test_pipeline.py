@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src import llm  # noqa: E402
 from src.build import build_meta, load_config, score_new_items  # noqa: E402
 from src.corpus import CorpusItem, drop_expired, publishable, recompute_rank  # noqa: E402
-from src.fetch import Item, parse_feed  # noqa: E402
+from src.fetch import Item, clean_text, parse_feed  # noqa: E402
 from src.score import Scorer, blend_relevance  # noqa: E402
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -227,6 +227,27 @@ def main() -> int:
           f"floor={floor} published_ids={[i.id for i in published]}")
     check(len(all_items) == 2,
           "the item below publish_floor is untouched in the original (corpus-bound) list")
+
+    section("Curly-quote normalisation")
+    # Found the hard way: a real feed title used a curly U+2019 apostrophe
+    # ("children’s homes") and silently failed to match the
+    # ASCII-apostrophe "children's home" mute term.
+    straight = clean_text("Ofsted outlines plans for unregistered children's homes")
+    curly = clean_text("Ofsted outlines plans for unregistered children’s homes")
+    check(straight == curly,
+          "a curly apostrophe and a straight one clean to the same text",
+          f"straight={straight!r} curly={curly!r}")
+    # clean_text() is what actually runs on a title on the way in from a real
+    # feed (see parse_feed) -- constructing the Item straight from raw curly
+    # text, bypassing clean_text, would test something the real pipeline
+    # never does.
+    ofsted_muted = scorer.score_item(Item(
+        uid="q1", title=clean_text("Ofsted outlines plans for unregistered children’s homes"),
+        summary="", url="u", source_id="ofsted", source_name="Ofsted", published=now,
+    ))
+    check(any("ofsted-non-schools" in r for r in ofsted_muted.reasons),
+          "the ofsted-non-schools mute fires even with a curly apostrophe in the source title",
+          str(ofsted_muted.reasons))
 
     section("Pre-1066 mute")
     ancient = scorer.score_item(Item(

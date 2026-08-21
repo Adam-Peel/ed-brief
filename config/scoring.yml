@@ -400,6 +400,21 @@ topics:
       - inclusion
       - send reform
 
+  - tag: prof-wellbeing   # NEW — add to Tag Index
+    weight: 4.0
+    new: true
+    description: >-
+      Professional practice -- pupil mental health and wellbeing, and how
+      policy (exam pressure, resits) affects it. Added 2026-08-21: no
+      existing tag covered this despite being directly practice-relevant.
+    terms:
+      - mental wellbeing
+      - mental health
+      - pupil wellbeing
+      - student wellbeing
+      - exam stress
+      - anxiety in schools
+
   # --- Technology -----------------------------------------------------------
 
   - tag: ped-ai   # NEW — add to Tag Index
@@ -517,3 +532,25 @@ mutes:
       - alexander the great
       - sparta
       - pharaoh
+
+  - name: ofsted-non-schools
+    weight: -6.0
+    terms:
+      # Ofsted's remit spans far more than school inspection -- children's
+      # social care, unregistered/illegal children's homes, fostering,
+      # adoption. A story about that remit matches pol-ofsted's terms (the
+      # word "Ofsted" alone) just as strongly as a genuine school-inspection
+      # story, even though it's not about what happens in a classroom.
+      # Weighted to cancel almost all of pol-ofsted's title-matched
+      # contribution (~8.0 at the +5.0 weight and 1.6x title multiplier), not
+      # just soften it -- these are consistently near-zero relevance to a
+      # secondary trainee, not merely "less relevant." Added 2026-08-21 after
+      # four social-care Ofsted stories all outscored a genuinely relevant
+      # GCSE-and-mental-health story; see the same distinction, generalised
+      # beyond just Ofsted, in the LLM RUBRIC in llm.py.
+      - children's home
+      - children's social care
+      - unregistered children's home
+      - fostering
+      - adoption agency
+      - social care inspection

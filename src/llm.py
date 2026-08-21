@@ -55,6 +55,24 @@ site -- a cinema night, a concert, a market -- is not a history story and
 gets no premium at all, even though it will likely mention the site by
 name. The test is what the story is ABOUT, not which building it namedrops.
 
+Distinguish DIRECT relevance from INCIDENTAL relevance. A story is directly \
+relevant if what it's actually ABOUT would change their classroom, their \
+curriculum, or their career -- a study on how compulsory GCSE resits affect \
+pupil mental health is directly relevant even though it's not framed as \
+"teaching" news, because it tells them something true about the pupils they \
+will teach. A story is only incidentally relevant if it merely mentions an \
+organisation or topic they care about without being about the part of that \
+organisation's work that touches secondary schools. Ofsted and the DfE in \
+particular cover far more than secondary schools -- Ofsted also regulates \
+children's social care (children's homes, fostering, adoption) and early \
+years; the DfE covers early years and higher education policy too. A press \
+release about Ofsted prosecuting an illegal children's home, or Ofsted's \
+annual report as a general administrative document, is not about school \
+inspection just because "Ofsted" is in the headline -- score these as you \
+would any other social-care story, near the bottom of the scale, not as if \
+they were about the inspection framework this reader will actually walk \
+into.
+
 They care much less about higher education, early years, further education \
 colleges, and school sport. They teach in ENGLAND, so Scottish and Welsh \
 policy is background only.

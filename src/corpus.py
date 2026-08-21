@@ -45,6 +45,7 @@ class CorpusItem:
     relevance: float
     tags: list[str] = field(default_factory=list)
     why: str = ""
+    image_url: str = ""
     deterministic_raw: float = 0.0
     deterministic_norm: float = 0.0
     llm_score: float | None = None
@@ -67,6 +68,7 @@ class CorpusItem:
             "tier": self.tier,
             "tags": self.tags,
             "why": self.why,
+            "image_url": self.image_url,
             "scoring": {
                 "mode": self.mode,
                 "deterministic_raw": round(self.deterministic_raw, 2),
@@ -93,6 +95,7 @@ class CorpusItem:
             relevance=float(d.get("relevance", 0.0)),
             tags=list(d.get("tags", [])),
             why=d.get("why", ""),
+            image_url=d.get("image_url", ""),
             deterministic_raw=float(scoring.get("deterministic_raw", 0.0)),
             deterministic_norm=float(scoring.get("deterministic_norm", 0.0)),
             llm_score=float(llm_score) if llm_score is not None else None,

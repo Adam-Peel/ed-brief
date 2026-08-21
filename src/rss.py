@@ -40,6 +40,14 @@ def _cdata(text: str) -> str:
 def _item_xml(item: CorpusItem) -> str:
     mode_label = "LLM-ranked" if item.mode == "llm" else "keyword-ranked"
     body_parts = []
+    # An <img> as the first thing in the description, not just the
+    # media:thumbnail element below: some readers (this is what prompted
+    # adding image support in the first place) only look for markup inside
+    # the description itself, not the Media RSS namespace, for a thumbnail.
+    # Belt and braces -- readers that support media:thumbnail get a proper
+    # typed thumbnail; readers that don't still see an image.
+    if item.image_url:
+        body_parts.append(f'<p><img src="{html.escape(item.image_url)}" alt="" /></p>')
     if item.why:
         body_parts.append(f"<p><strong>Why this matters:</strong> {html.escape(item.why)}</p>")
     if item.summary:
@@ -60,6 +68,7 @@ def _item_xml(item: CorpusItem) -> str:
     description_html = _cdata("".join(body_parts))
 
     categories = "".join(f"<category>{escape(tag)}</category>" for tag in item.tags)
+    thumbnail = f'<media:thumbnail url={quoteattr(item.image_url)} />' if item.image_url else ""
 
     return (
         "<item>"
@@ -69,6 +78,7 @@ def _item_xml(item: CorpusItem) -> str:
         f"<pubDate>{format_datetime(item.published)}</pubDate>"
         f"<description><![CDATA[{description_html}]]></description>"
         f"{categories}"
+        f"{thumbnail}"
         f"<source url={quoteattr(item.url)}>{escape(item.source_name)}</source>"
         "</item>"
     )
@@ -88,7 +98,8 @@ def render_feed(items: list[CorpusItem], cfg: dict, now: datetime) -> str:
 
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" '
+        'xmlns:media="http://search.yahoo.com/mrss/">\n'
         "<channel>"
         "<title>ed-brief</title>"
         f"<link>{escape(site_url)}</link>"
