@@ -34,217 +34,138 @@ HISTORY teaching. They are currently {reader_stage}.
 Score against this fixed rubric only. Do not rank or compare stories \
 against each other -- judge each one in isolation, on its own merits.
 
-Group what they care about into three bands, each with its own score \
-range. Within a band, every category is equally weighted -- don't infer \
-that one category outranks another from where it happens to appear below.
+Score each story on FOUR SEPARATE dimensions, then the final score is \
+their sum -- score each dimension independently. A story that feels \
+generally important should not inflate SUBJECT just because it matters; \
+that belongs in SUBSTANCE instead. This split exists specifically so one \
+strong dimension (e.g. "this affects lots of pupils") can't single-\
+handedly carry a story that's weak on the others (e.g. not actually about \
+history, or not new information).
 
-CORE (7-10) -- the direct substance of their subject and their training:
-- History as a school subject: curriculum, GCSE and A-level specs, exam \
-board choices, spec changes, option withdrawals, entry numbers -- Ofqual \
-and the awarding bodies (AQA, Edexcel, OCR, WJEC) matter here as much as \
-Ofsted does. This includes genuinely GLOBAL and non-British history: \
-Empire and its legacy, migration, the Cold War, Russia, China, the USA, \
-apartheid South Africa, and comparable options are standard GCSE/A-level \
-content and a growing part of the curriculum -- this is history taught IN \
-England, not only history OF England. Don't discount a story for being \
-set outside Britain.
-- National curriculum and qualifications reform, whether or not it names \
-history: the Francis Review, EBacc and Progress 8, KS3 and GCSE content \
-and structure, accountability measures that shape which subjects get \
-timetable and option-block space. EBacc and Progress 8 specifically are \
-the mechanisms that decide how many pupils take GCSE history -- a story \
-about accountability measures is a history story even when it never says \
-so, and this applies to reform not yet named here too: judge by whether \
-it reshapes what gets taught system-wide, not by whether it matches one \
-of these examples.
-- New historical research or scholarship on a period they might actually \
-teach: not just teaching methodology, but new findings, interpretations, \
-or discoveries. Real standing value for a history teacher's own subject \
-knowledge, not just narrow classroom-practice tips -- score 7-8. The same \
-quality of history writing on a period they would NOT teach (see PERIOD \
-below) scores 4-5 instead: good history journalism, but not this reader's \
-subject. This also covers primary-source releases -- The National \
-Archives' periodic records openings, digitisation projects, newly \
-available collections -- lesson material in its own right, not just \
-secondary literature about it. The Historical Association and Teaching \
-History are exactly this reader's trade press.
-- Contested history and curriculum politics as they play out IN schools: \
-empire and decolonisation in the curriculum, Holocaust education, \
-political-impartiality guidance, textbook and exam-board controversies. \
-Don't file this as generic culture-war news -- if it's about what gets \
-taught, or how, it's a history-teaching story.
-- Heritage and museum education: a history-specific teaching resource or \
-schools programme from a museum or heritage body, Nottinghamshire or \
-national. Distinct from the Nottinghamshire-heritage-as-news premium \
-below -- this is usable teaching material, not background local interest. \
-Anniversaries and commemorations belong here too: schools plan assemblies, \
-trips, and units around them.
-- Routes into teaching and the profession's own institutions: ITT, PGCE, \
-bursaries, QTS, recruitment -- read subject-specific where the story is: \
-history's bursary position and competition for posts are not the same as \
-physics's, so don't flatten "recruitment" into one generic signal. Also \
-covers ITT providers themselves: accreditation, inspection, or \
-placement-supply problems at a provider are exactly this reader's route \
-in, not background sector news. Includes the ITT-phase content of the \
-ITTECF (the Initial Teacher Training and Early Career Framework -- a \
-single framework since September 2025 covering ITT and induction as two \
-distinct phases within it); the ITT phase applies to them now, since \
-they're about to enter it.
-- The shape of the secondary job market they're entering: falling \
-secondary pupil rolls and a contracting market for new teacher posts over \
-the coming years. For someone entering in 2026 this may be the single \
-most consequential structural fact about their next decade -- score it as \
-a career story even when it never mentions history specifically.
+SUBJECT (0-4): how directly is this about history as a school subject, or \
+this reader's own training and career, as opposed to secondary education \
+generally?
+  4 = history curriculum, GCSE/A-level specs and exam boards (AQA, \
+Edexcel, OCR, WJEC), new historical scholarship or primary-source \
+releases (The National Archives' periodic openings, digitisation, newly \
+available collections count as much as academic papers) on a period they \
+might teach, contested history and curriculum politics (empire and \
+decolonisation in the curriculum, Holocaust education, political-\
+impartiality guidance -- not generic culture-war news, but what gets \
+taught and how), a history-specific teaching resource or museum/heritage \
+schools programme, and history-specific ITT/CPD -- including a source \
+that IS a history-teacher-training blog or department, even when an \
+individual post's own wording reads as generic practice advice (see the \
+source note below). Also 4: national curriculum/qualifications reform \
+and accountability measures (the Francis Review, EBacc, Progress 8, KS3/ \
+GCSE content and structure) that shape which subjects get timetable and \
+option-block space, ITT providers themselves (accreditation, inspection, \
+placement supply), and the structural shape of the secondary job market \
+they're entering (falling rolls, a contracting market for new posts) -- \
+these all determine whether and how much history gets taught, or whether \
+this reader has a career to enter, even when they never name history \
+specifically. Global/non-British history (Empire, the Cold War, Russia, \
+China, apartheid) scores here too, at full value -- this is history \
+taught IN England, not only history OF England.
+  3 = real secondary-teaching professional substance that isn't subject- \
+specific: SEND and inclusion (the substance of classroom inclusion, not \
+just the word "SEND" appearing in a council notice or a community event \
+badged SEND-friendly), Ofsted inspection, safeguarding and statutory \
+duties (KCSIE, attendance/behaviour guidance with legal force), AI in \
+schools, workload/pay/pensions/industrial action, school funding and MAT/ \
+academisation stories that describe an actual staffing or curriculum \
+consequence (a routine administrative or financial-oversight bulletin \
+that merely mentions a trust or funding is NOT this -- see the 1 band \
+below), classroom practice broadly (retrieval practice and cognitive \
+load, but equally behaviour management, questioning, modelling, adaptive \
+teaching, oracy, disciplinary literacy, formative assessment), and the \
+induction/early-career phase of the ITTECF (relevant background, since \
+they haven't reached it yet).
+  2 = a story about a pupil-affecting policy (resit rules, uniform cost, \
+attendance enforcement, exam-day logistics) that describes a real effect \
+on pupils generally, without touching what or how much gets taught -- \
+this reader teaches those pupils, so it's not irrelevant, but it isn't \
+about their subject or their specific training either.
+  1 = education-adjacent but weak ties to secondary teaching: higher \
+education, early years, further education, school sport; a routine \
+administrative/financial-oversight bulletin that only namedrops a trust \
+or funding; Ofsted/DfE stories that are actually about children's social \
+care or early years, not school inspection (these bodies cover far more \
+than secondary schools, and a story is not about the part of their work \
+that touches this reader just because their name is in the headline); \
+disconnected ancient-world or prehistory journalism with no England link, \
+no local angle, and no curriculum framing (see the period note below); \
+Scottish/Welsh policy.
+  0 = not education-relevant at all.
 
-PROFESSIONAL CONTEXT (5-8) -- shapes the job, not the subject itself:
-- Classroom practice broadly, not just "cognitive science" narrowly: \
-retrieval and spaced practice, cognitive load and working memory, but \
-equally behaviour management, questioning, modelling, adaptive teaching \
-and differentiation, oracy, disciplinary literacy, formative assessment \
-and marking.
-- SEND and inclusion: EHCPs, the SEND reform agenda, disadvantage and the \
-attainment gap in the classroom. Daily classroom reality, not a niche \
-interest -- but the word "SEND" appearing in a story (a council notice, a \
-community event badged SEND-friendly) doesn't make it one: score for \
-whether the story is actually about classroom inclusion, not for the \
-label.
-- Ofsted inspection, since it shapes what they will walk into -- but see \
-DIRECT vs INCIDENTAL relevance below before scoring anything Ofsted-branded.
-- Safeguarding and statutory duties: KCSIE updates (revised most \
-Septembers), attendance and behaviour guidance with legal force.
-- AI in schools: generative AI in the classroom or in marking, academic \
-integrity and plagiarism, edtech. Sharp for history specifically, since \
-source analysis and independent coursework are exactly where AI misuse \
-shows up.
-- Workload, retention, pay, pensions, the STRB, and industrial action -- \
-material to someone actually deciding whether to enter or stay in the \
-profession.
-- School funding, budgets, multi-academy trusts, and academisation: when \
-budgets tighten, humanities staffing and option-block space are what gets \
-cut first. A trust restructuring its humanities provision, or a funding \
-story with real staffing consequences, is a career story. But be as \
-strict here as with Ofsted below: a routine accountability notice, \
-financial-oversight letter, or administrative bulletin about a trust is \
-NOT this category just because it mentions a trust or funding -- score \
-those near the bottom, same as any other administrative document, unless \
-the story itself describes an actual staffing, curriculum, or \
-option-block consequence.
-- The induction/early-career phase of the ITTECF, mentoring, and the \
-first-year workload picture: relevant background, but they haven't \
-reached this phase yet, so it sits here rather than in CORE.
+Period note for SUBJECT: the secondary history curriculum runs roughly \
+1066 to the present, but this is a TIME rule, not a hard cutoff or a \
+geography one -- the KS3 programme of study includes a local-history \
+study and a thematic study that can predate 1066, several GCSE thematic \
+papers run from c1000, and OCR offers Ancient History at GCSE/A-level. \
+Score pre-1066 content at full SUBJECT value when it's local (see \
+LOCALITY below), tied to a named thematic study or exam-board option, or \
+explicitly framed around teaching -- otherwise it scores 1, per the band \
+above.
 
-ADJACENT (4-6) -- real interest, but capped below the bands above:
-- Pupil wellbeing and mental health as shaped by school policy or \
-research -- see the separate paragraph below for scoring within this band.
-- The Nottinghamshire premium, covering BOTH local history/heritage AND \
-local schools/education context (MATs, ITT providers, the local job \
-market) -- see the separate paragraph below.
+Source note: `source` is not a reputation shortcut -- don't score a story \
+up for coming from a trusted outlet, that's handled separately and \
+deterministically elsewhere in this pipeline, and doing it here too \
+double-counts it. But a source's own declared identity IS legitimate \
+evidence of subject-specificity, which is a different thing: a post from \
+a named history-teacher-training blog or a university history department \
+is evidence its content is history- and training-specific even when its \
+own wording doesn't say so.
 
-They care much less about higher education, early years, further \
-education colleges, and school sport -- below all three bands. They teach \
-in ENGLAND, so Scottish and Welsh policy is background only.
+SUBSTANCE (0-3): is this genuinely NEW, or is it commentary, narrative, \
+or explanation of already-established facts?
+  3 = a primary discovery, finding, or reform EVENT actually happening -- \
+new archival or archaeological findings, a genuinely new historical \
+interpretation, an exam board confirming a real spec change, a policy \
+actually being enacted, not just studied or proposed.
+  2 = solid reporting or analysis of a real, specific development that \
+isn't itself new information -- a study's results being reported \
+(distinct from being the study itself), a genuine consultation or \
+proposal not yet enacted, an analysis piece with real evidence behind it. \
+A story about research showing that a policy harms pupil wellbeing sits \
+here, not at 3: the finding is real, but the story is reporting ON \
+research, not presenting a reform event or a discovery itself.
+  1 = narrative, explainer, or summary journalism about facts that are \
+already well established -- well-written and still worth reading, but \
+not telling this reader, or the field, anything new.
+  0 = trivia, puzzles, listicles, or no real content.
 
-PUPIL WELLBEING AS A CATEGORY, not a single story: any research or \
-reporting on how an exam, assessment, curriculum design, or school policy \
-affects pupils' mental health, wellbeing, motivation, behaviour, or \
-academic outcomes belongs here, whatever the specific angle -- resits, \
-homework load, marking practices, attendance policy, screening checks, \
-uniform rules, whatever. Treat these as one type of story and score the \
-type consistently, not just whichever specific angle is in front of you. \
-As with the Nottinghamshire premium below, the 5-7 range is a cap on \
-wellbeing AS THE REASON, not on the story: score 5-7 when wellbeing is \
-the only substance, higher toward 7 when it's squarely about \
-secondary-age pupils' academic experience (e.g. exam-linked stress), \
-lower toward 5 when it's more general wellbeing news not tied to a \
-specific school-age policy -- but if the story is ALSO substantively \
-about qualifications or assessment reform (see that CORE bullet above), \
-score it on that basis instead. A story about how compulsory resits harm \
-pupil wellbeing is both a wellbeing story and a resit-policy story; score \
-it as the latter.
+ACTIONABILITY (0-2): could this reader actually DO something with it -- \
+use it as a lesson hook or resource, cite it in planning, change a \
+practice because of it?
+  2 = directly usable: a primary source, a teaching resource, a case \
+study concrete enough to build a lesson around, a practice change they \
+could make tomorrow.
+  1 = informs their thinking or context, but nothing to directly act on.
+  0 = no practical application for this reader.
 
-NOTTINGHAMSHIRE PREMIUM: a genuine regional interest, not a generic "local \
-news" bump, with two facets. First, local HISTORY, heritage, or \
-archaeology: a story ITSELF about Nottinghamshire's history, heritage, or \
-archaeology scores noticeably higher than an equivalent story about \
-somewhere else, even though it isn't curriculum news and doesn't need to \
-connect to teaching at all. Second, local SCHOOLS and career context: a \
-story about a Nottinghamshire school, multi-academy trust, ITT provider, \
-or the local teaching job market gets the same kind of bump, for the same \
-reason -- this is where they'll actually work. Both facets share one cap, \
-on locality as the REASON for the score, not on the story itself: never \
-score above 6 for being local alone -- a Nottinghamshire story can still \
-exceed 6 on other grounds (significant new scholarship, a genuine \
-curriculum link, a real funding or staffing story under the school-funding \
-category above), the same as any other story would, just not for being \
-local. Be strict about the history facet specifically: a modern event \
-that merely takes place AT a historic Nottinghamshire site -- a cinema \
-night, a concert, a market -- is not a history story and gets no premium, \
-however prominently it names the site. The test is what the story is \
-ABOUT, not which building it namedrops. The history facet is exempt from \
-the pre-1066 guidance below -- Nottinghamshire's prehistoric and Roman \
-sites are exactly what a local history study can legitimately cover.
+LOCALITY (0-1): the Nottinghamshire premium -- deliberately small and \
+structurally capped, so it can nudge a borderline story up but never \
+carry one on its own. Award 1 when the story is ITSELF about \
+Nottinghamshire's history, heritage, or archaeology, OR about a \
+Nottinghamshire school, multi-academy trust, ITT provider, or the local \
+teaching job market. A story framed as covering a wider region (e.g. "the \
+East Midlands") that is substantively about Nottinghamshire content still \
+counts -- don't withhold this point on a technicality of exact wording. \
+Be strict about the history facet specifically: a modern event that \
+merely takes place AT a historic Nottinghamshire site -- a cinema night, \
+a concert, a market -- gets 0 here, however prominently it names the \
+site; score what the story is ABOUT, not which building it namedrops.
 
-DIRECT vs INCIDENTAL relevance: Ofsted and the DfE cover far more than \
-secondary schools -- Ofsted also regulates children's social care \
-(children's homes, fostering, adoption) and early years; the DfE covers \
-early years and higher education too. A press release about Ofsted \
-prosecuting an illegal children's home, or Ofsted's annual report as a \
-general administrative document, is not a school-inspection story just \
-because "Ofsted" is in the headline -- score it as you would any other \
-social-care story, near the bottom, not as if it touched the inspection \
-framework this reader will actually walk into. The test throughout this \
-whole rubric is what a story is ABOUT, not which name it namedrops.
+This is a rolling 14-day digest, not a same-day alert -- score SUBSTANCE \
+for lasting value, not literal urgency.
 
-PERIOD (a TIME rule, not a geography one -- see the global-history note \
-above): the secondary history curriculum in England runs roughly 1066 to \
-the present, but this is not a hard cutoff. The KS3 programme of study \
-explicitly includes a local-history study (which can predate 1066) and a \
-thematic study "that consolidates and extends pupils' chronological \
-knowledge from before 1066"; several GCSE thematic papers run from c1000 \
-or earlier; OCR offers Ancient History at GCSE and A-level; and KS2 \
-Romans/Anglo-Saxons/Vikings is the prior knowledge a Year 7 teacher builds \
-on. So: the further a story sits from what a KS3-GCSE class actually \
-studies, the lower it scores -- but don't apply a flat pre-1066 penalty. \
-Score pre-1066 content on its own merits, same as any other period, when \
-it is local (see the Nottinghamshire premium above), connects to a named \
-thematic study or exam-board option, or is explicitly framed around \
-teaching or curriculum. Reserve a low score (0-2) for what this guidance \
-actually targets: disconnected ancient-world or prehistory journalism with \
-no link to England, no local angle, and no curriculum framing -- \
-interesting history writing, but not this reader's subject.
-
-The `source` field in each story below is for your own disambiguation \
-only (e.g. telling a specialist history publication apart from a general \
-news outlet) -- do not weight a story up or down for which source it came \
-from. Source reputation is already handled separately, deterministically, \
-elsewhere in this pipeline; factor it in here too and it gets \
-double-counted.
-
-Score each story 0-10 against these anchors:
-
-  0  = irrelevant to this reader
-  2  = distantly related to education but outside this reader's remit \
-(e.g. early years, HE, another subject)
-  5  = useful to any teacher generally, not specific to this reader
-  6  = solid interest to this reader specifically, short of CORE-band or \
-ITT-direct
-  8  = directly relevant to secondary history, ITT, or this reader's own \
-subject knowledge/career
-  10 = essential reading for this reader -- either because it is \
-specifically about their subject, their route in, or their region, or \
-because it changes the system they are about to enter (a curriculum \
-overhaul, an inspection-framework rewrite, a system-wide funding or pay \
-shock)
-
-This is a rolling 14-day digest, not a same-day alert -- score for lasting \
-relevance to this reader, not literal urgency.
-
-For each story below, return a relevance score from 0 to 10, and a single \
-short clause (under 25 words, no full stop) saying why it matters to them \
-specifically -- or, for a low score, why it doesn't.
+For each story below, return all four dimension scores and a single \
+short clause (under 25 words, no full stop) saying why it matters to \
+them specifically -- or, for a low total, why it doesn't.
 
 Return ONLY a JSON array, no prose, no code fence:
-[{{"id": "...", "score": 0-10, "why": "..."}}]
+[{{"id": "...", "subject": 0-4, "substance": 0-3, "actionability": 0-2, "locality": 0-1, "why": "..."}}]
 
 Stories:
 {payload}"""
@@ -344,10 +265,23 @@ def _score_batch(
         # or stale id from the model should be ignored, not stored.
         if not item_id or item_id not in valid_ids:
             continue
+        # Additive, 2026-08-21: the model returns four independent
+        # dimensions (see RUBRIC) instead of one holistic 0-10 judgement,
+        # and the final score is their sum -- computed here, not asked of
+        # the model directly, so a single dominant dimension (e.g. "this
+        # affects lots of pupils") can't inflate the total by leaking into
+        # a dimension it doesn't belong in. Each is clamped to its own
+        # range independently; a missing field defaults to 0 rather than
+        # failing the whole verdict, same tolerance as the old single-score
+        # parsing had for a missing "score" key.
         try:
-            score = max(0.0, min(10.0, float(verdict.get("score", 0))))
+            subject = max(0.0, min(4.0, float(verdict.get("subject", 0))))
+            substance = max(0.0, min(3.0, float(verdict.get("substance", 0))))
+            actionability = max(0.0, min(2.0, float(verdict.get("actionability", 0))))
+            locality = max(0.0, min(1.0, float(verdict.get("locality", 0))))
         except (TypeError, ValueError):
             continue
+        score = subject + substance + actionability + locality
         # Raised from 160, 2026-08-21: the rubric asks for "under 25 words",
         # which averages 150-170 characters -- 160 was clipping the longest
         # ones mid-word. 220 gives real headroom above that average.
