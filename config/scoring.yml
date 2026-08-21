@@ -50,37 +50,81 @@ deterministic_scale_max: 25.0
 # items the LLM pass didn't reach.
 llm_weight: 0.8
 
-# How many new items go into a single LLM call before the ingest step chunks
-# into another batch. Every new item eventually gets scored regardless of
-# batch size -- this only controls how many judgements happen in one call.
+# Two-stage pipeline, 2026-08-21: stage 1 (src/classify.py) triages every new
+# item into a TYPE (and discards IRRELEVANT ones, unscored); stage 2
+# (src/llm.py) sends each surviving item to a batch grouped by its own type,
+# scored against universals plus that type's own Likert scale. Replaces the
+# single-pass 16-item bank this superseded -- that bank asked every article
+# the same 16 questions regardless of what kind of story it was (a classroom-
+# practice study answering "curriculum reform" questions it was never about);
+# typing first means each article only answers questions that actually apply
+# to it.
 #
-# Lowered 45 -> 25 -> 15, 2026-08-21 (two separate cuts, same day). The
-# second cut is a bigger jump for a bigger reason: the rubric moved from
-# one holistic 0-10 judgement per story to a 16-item Likert bank (see
-# RUBRIC in llm.py), each item scored independently -- 15 items x 16
-# judgements is already 240 per batch, and consistency across a batch
-# matters more as the per-item judgement gets more granular, not less.
-# Smaller batches cost more API calls per run (still pence/month -- see
-# the README cost note) in exchange for steadier scoring. max_tokens=12000
-# in llm.py already gives plenty of headroom either way, so this isn't
-# about truncation risk.
-llm_batch_size: 15
+# Classify batches larger than score batches: the classify prompt and its
+# output are small (a type, a confidence, one locality number), so more fit
+# in one call without the consistency risk a large *scoring* batch has.
+llm_classify_batch_size: 40
+llm_score_batch_size: 20
 
-# Model for the LLM ranking pass. This is a nuanced-classification task
-# ("is this actually relevant"), not deep multi-step reasoning, so cost
-# scales with model choice far more than judgement quality does at this
-# task size -- Sonnet over Haiku is chosen for judgement, not because Haiku
-# was failing. BRIEF_LLM_MODEL env var overrides this for local testing.
+# Generous, not tuned to typical usage -- adaptive thinking spends part of
+# this budget before a single verdict token is written, and a truncated JSON
+# array has no closing bracket, so _extract_json raises and the WHOLE batch
+# falls back to deterministic. Raising the ceiling doesn't cost anything
+# unless it's actually used: billing is by tokens generated, not by
+# max_tokens itself.
+llm_max_tokens: 12000
+
+# Model for the LLM classification and scoring passes. This is a nuanced-
+# classification task ("is this actually relevant"), not deep multi-step
+# reasoning, so cost scales with model choice far more than judgement
+# quality does at this task size -- Sonnet over Haiku is chosen for
+# judgement, not because Haiku was failing. BRIEF_LLM_MODEL env var
+# overrides this for local testing.
 llm_model: claude-sonnet-5
 
-# Where the reader actually is right now, dropped into the LLM rubric
-# (src/llm.py's RUBRIC) as {reader_stage}. A config value, not hardcoded in
-# the prompt string, because it WILL go stale -- and the reader's priorities
-# genuinely shift when it does: once training starts, induction/mentoring/
-# the ITTECF outrank bursaries and "routes in" news; once they're a working
-# teacher, ITT news itself becomes background noise. Update this, not the
-# code, when that happens.
+# Where the reader actually is right now, dropped into both the classifier
+# and scorer prompts (src/classify.py, src/llm.py) as {reader_stage}. A
+# config value, not hardcoded in the prompt strings, because it WILL go
+# stale -- and the reader's priorities genuinely shift when it does: once
+# training starts, induction/mentoring/the ITTECF outrank bursaries and
+# "routes in" news; once they're a working teacher, ITT news itself becomes
+# background noise. Update this, not the code, when that happens.
 llm_reader_stage: "at the point of entering initial teacher training"
+
+# Stage-2 assembly: relevance = (0.6 * type_score + 0.4 * universals) * 2.5,
+# or universals alone for SECTOR/OTHER (no type scale, type_score is None).
+# Placeholders, not a calibrated result -- see src/llm.py for the same
+# caveat on the type-scale weights, which are also all placeholders (each
+# type scale is a plain mean of its own items, no per-item weighting yet).
+weights:
+  type_score: 0.6
+  universals: 0.4
+  u1_consequence: 0.6
+  u2_discovery: 0.4
+
+# The Nottinghamshire premium lives here now, not in relevance at all --
+# see corpus.recompute_rank(). locality (0-4, from src/classify.py) is
+# never summed into relevance; it's a tag plus a build-time floor on
+# rank_score. floor_min_score is the locality threshold that qualifies;
+# floor_percentile is computed fresh from THIS build's rank_score
+# distribution, not a fixed number -- an absolute floor (this project
+# tried 6.0 first) means whatever that number is relative to a *quiet*
+# fortnight can let local stories outrank real curriculum/career news on
+# a *strong* one. A percentile floor moves with the corpus instead: on a
+# weak fortnight the 85th percentile is a low bar and the floor barely
+# matters; on a strong one it's a high bar, so a local item still has to
+# be genuinely near the top of what this build actually contains.
+locality:
+  floor_percentile: 85
+  floor_min_score: 3
+
+# Fixed rendering order for docs/index.html's type sections (src/site.py).
+# IRRELEVANT is never here -- those items are discarded at classify time
+# and never reach the site at all. An empty section still renders its
+# heading and a zero count: CURRICULUM being empty on a given run is
+# information (nothing curriculum-relevant happened this fortnight), not
+# a bug to hide.
+section_order: [CURRICULUM, HISTORY, PUPILS, PEDAGOGY, CAREER, SECTOR]
 
 tiers:
   # Fixed thresholds on the FROZEN relevance scale (0-10), not the raw

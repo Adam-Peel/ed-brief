@@ -29,6 +29,23 @@ TIER_LABELS = {
 }
 TIER_ORDER = ["lead", "worth", "rest", "noise"]
 
+# Section grouping is by TYPE now (src/classify.py), not tier -- tier stays
+# as a filter (the chips below), type is what organises the page. SECTOR is
+# rendered collapsed-to-a-count by default and also catches OTHER, which
+# has no section of its own in scoring.yml's section_order: both are the
+# "no dedicated Likert scale, universals only" types, so folding OTHER into
+# the same background bucket is more honest than inventing an eighth
+# heading nothing asked for.
+SECTION_LABELS = {
+    "CURRICULUM": "Curriculum & qualifications",
+    "HISTORY": "History content & resources",
+    "PUPILS": "Pupils & adolescence",
+    "PEDAGOGY": "Pedagogy & cognitive science",
+    "CAREER": "Career, conditions & accountability",
+    "SECTOR": "Sector background",
+}
+DEFAULT_SECTION_ORDER = ["CURRICULUM", "HISTORY", "PUPILS", "PEDAGOGY", "CAREER", "SECTOR"]
+
 PAGE_TEMPLATE = """<!doctype html>
 <html lang="en">
 <head>
@@ -174,6 +191,23 @@ h2 {
 h2[data-tier="lead"] { color: var(--lead); }
 h2[data-tier="worth"] { color: var(--worth); }
 h2[data-tier="noise"] { opacity: .65; }
+/* Nottinghamshire is cross-cutting -- items appear here AND in their own
+   type section above, so it gets the accent colour to read as "also
+   shown elsewhere", not as a competing primary category. */
+h2[data-section="NOTTS"] { color: var(--accent); }
+/* Sector background collapses to a count by default (native <details>,
+   same pattern as the tag/source filter groups) -- its h2 lives inside a
+   <summary>, so it needs its own selector rather than the bare h2 rule. */
+.section-group { margin-top: 32px; }
+.section-group summary { list-style: none; cursor: pointer; }
+.section-group summary::-webkit-details-marker { display: none; }
+.section-group summary h2 {
+  margin: 0 0 10px; display: flex; align-items: center; gap: 6px;
+}
+.section-group summary h2::before {
+  content: "▸"; font-size: .7rem; transition: transform .12s;
+}
+.section-group[open] summary h2::before { transform: rotate(90deg); }
 article {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -304,6 +338,13 @@ details summary { cursor: pointer; }
 const ITEMS = __ITEMS_JSON__;
 const TIER_LABELS = __TIER_LABELS_JSON__;
 const TIER_ORDER = ["lead", "worth", "rest", "noise"];
+// Page organisation is by TYPE now (src/classify.py), not tier -- tier
+// stays a filter (the chips above), type is what the headings below group
+// by. SECTION_ORDER excludes OTHER on purpose (see the Python-side
+// SECTION_LABELS comment); it's folded into the SECTOR bucket at render
+// time instead of getting its own heading.
+const SECTION_ORDER = __SECTION_ORDER_JSON__;
+const SECTION_LABELS = __SECTION_LABELS_JSON__;
 
 const ReadStore = (() => {
   const KEY = "ed-brief:read";
@@ -448,12 +489,13 @@ function card(item) {
   const tags = item.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("");
   const read = ReadStore.isRead(item.id);
   const modeLabel = item.mode === "llm" ? "LLM-ranked" : "keyword-ranked";
+  const typeLabel = SECTION_LABELS[item.type] || item.type;
   return `<article data-tier="${esc(item.tier)}" class="${read ? "is-read" : ""}">
     <h3>
-      <span class="score" data-tier="${esc(item.tier)}" title="Rank score: relevance minus a small age decay -- this is what the list is sorted by.">${esc(item.score.toFixed(1))}</span>
+      <span class="score" data-tier="${esc(item.tier)}" title="Rank score: relevance minus a small age decay (plus the Nottinghamshire floor, if it applies) -- this is what the list is sorted by.">${esc(item.score.toFixed(1))}</span>
       <a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a>
     </h3>
-    <div class="meta">${esc(item.source_name)} &middot; ${esc(item.when)} &middot; <span class="mode">${modeLabel}</span></div>
+    <div class="meta">${esc(item.source_name)} &middot; ${esc(item.when)} &middot; <span class="mode">${modeLabel}</span> &middot; ${esc(typeLabel)}</div>
     ${item.why ? `<p class="why">${esc(item.why)}</p>` : ""}
     ${item.summary ? `<p class="summary">${esc(item.summary)}</p>` : ""}
     <div class="row-bottom">
@@ -474,11 +516,39 @@ function render() {
   readToggle.textContent = state.showRead ? "Hide read" : `Show read (${hiddenRead})`;
 
   let out = "";
-  for (const tier of TIER_ORDER) {
-    const group = visible.filter(i => i.tier === tier);
-    if (!group.length) continue;
-    out += `<h2 data-tier="${tier}">${TIER_LABELS[tier]} <span style="font-weight:400;opacity:.6">(${group.length})</span></h2>`;
-    out += group.map(card).join("");
+  // Sections are by TYPE, in the fixed order the config gives, not by
+  // tier -- tier is a filter now (the chips above), not a grouping. An
+  // empty section still renders its heading and a zero count: CURRICULUM
+  // being empty this run is information ("nothing curriculum-relevant
+  // happened this fortnight"), not something to hide. That rule only
+  // applies once there's at least one visible item anywhere, though --
+  // with zero matches at all, showing seven "(0)" headings next to the
+  // "Nothing matches" message would just be noise.
+  if (visible.length > 0) {
+    for (const sectionType of SECTION_ORDER) {
+      // SECTOR also catches OTHER -- see the SECTION_LABELS comment above.
+      const group = sectionType === "SECTOR"
+        ? visible.filter(i => i.type === "SECTOR" || i.type === "OTHER")
+        : visible.filter(i => i.type === sectionType);
+      const label = SECTION_LABELS[sectionType] || sectionType;
+      const countBadge = `<span style="font-weight:400;opacity:.6">(${group.length})</span>`;
+      if (sectionType === "SECTOR") {
+        // Collapsed to a count by default, expandable -- native <details>,
+        // same pattern as the tag/source filter groups above.
+        out += `<details class="section-group"><summary><h2>${label} ${countBadge}</h2></summary>`;
+        out += group.map(card).join("");
+        out += `</details>`;
+      } else {
+        out += `<h2 data-section="${sectionType}">${label} ${countBadge}</h2>`;
+        out += group.map(card).join("");
+      }
+    }
+    // Nottinghamshire: cross-cutting, not a type -- every visible item
+    // with locality >= 3 shown here IN ADDITION to its own type section
+    // above, not instead of it.
+    const local = visible.filter(i => i.locality >= 3);
+    out += `<h2 data-section="NOTTS">Nottinghamshire <span style="font-weight:400;opacity:.6">(${local.length})</span></h2>`;
+    out += local.map(card).join("");
   }
   list.innerHTML = out;
   empty.hidden = visible.length > 0;
@@ -595,6 +665,8 @@ def _payload(items: list[CorpusItem]) -> list[dict]:
             "source_name": item.source_name,
             "when": item.published.strftime("%-d %b, %H:%M"),
             "tier": item.tier,
+            "type": item.item_type,
+            "locality": item.locality,
             "tags": item.tags,
             "why": item.why,
             "mode": item.mode,
@@ -629,6 +701,7 @@ def _render_page(
     subtitle: str,
     meta: dict,
     generated_label: str,
+    section_order: list[str],
     footer_extra: str = "",
 ) -> str:
     tags = sorted({t for i in items for t in i.tags})
@@ -657,6 +730,8 @@ def _render_page(
         "__SOURCE_COUNT__": str(len(sources)),
         "__ITEMS_JSON__": json.dumps(_payload(items), ensure_ascii=False),
         "__TIER_LABELS_JSON__": json.dumps(TIER_LABELS),
+        "__SECTION_ORDER_JSON__": json.dumps(section_order),
+        "__SECTION_LABELS_JSON__": json.dumps(SECTION_LABELS),
         "__SCORING_LINE__": html.escape(meta.get("scoring", {}).get("status", "unknown")),
         "__GENERATED__": generated_label,
         "__RETENTION_DAYS__": str(meta.get("retention_days", 14)),
@@ -673,13 +748,14 @@ def write_site(
     meta: dict,
     root: Path,
     now: datetime,
-    topics_cfg: list[dict],
+    cfg: dict,
 ) -> None:
     docs_dir = root / "docs"
     docs_briefs = docs_dir / "briefs"
     docs_dir.mkdir(parents=True, exist_ok=True)
     docs_briefs.mkdir(parents=True, exist_ok=True)
 
+    section_order = cfg.get("section_order", DEFAULT_SECTION_ORDER)
     generated_label = now.strftime("%-d %b %Y at %H:%M UTC")
     sources_count = len({i.source_name for i in live})
 
@@ -694,6 +770,7 @@ def write_site(
         ),
         meta=meta,
         generated_label=generated_label,
+        section_order=section_order,
     )
     (docs_dir / "index.html").write_text(index_page, encoding="utf-8")
     (docs_dir / ".nojekyll").write_text("", encoding="utf-8")
@@ -714,6 +791,7 @@ def write_site(
         ),
         meta=meta,
         generated_label=generated_label,
+        section_order=section_order,
         footer_extra=(
             "<p>This is a snapshot of items first seen today. See the "
             '<a href="../">live list</a> for current state, including this '
@@ -723,7 +801,7 @@ def write_site(
     (docs_briefs / f"{iso}.html").write_text(dated_page, encoding="utf-8")
 
     _write_archive_index(root, docs_dir)
-    _write_tags_page(live, topics_cfg, docs_dir)
+    _write_tags_page(live, cfg.get("topics", []), docs_dir)
 
 
 def _write_archive_index(root: Path, docs_dir: Path) -> None:

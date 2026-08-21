@@ -94,81 +94,256 @@ class _FakeAnthropicClient:
         self.messages = _FakeMessages(texts, prefix_thinking_block=prefix_thinking_block)
 
 
-def main() -> int:
-    section("Acceptance criterion 6: LLM malformed JSON and omitted ids fall back cleanly")
+def _with_fake_client(texts, run, *, prefix_thinking_block=False):
+    """Monkeypatch anthropic.Anthropic for the duration of `run()`, feeding
+    it canned response texts in order, then restore it -- shared by every
+    two-stage pipeline test below so each one only has to state what
+    responses it wants, not the setup/teardown around getting them there."""
     import os
 
-    from src import llm as llm_mod
+    import anthropic
 
-    fixture_items, cfg = None, None
-    with tempfile.TemporaryDirectory() as tmp:
-        # Two items, batch size 1, so each gets its own API call: the first
-        # call returns unparseable text (total batch failure), the second
-        # returns valid JSON that omits the requested id (partial failure).
-        from src.fetch import Item
-        from datetime import datetime, timezone
-
-        item_a = Item(uid="a1", title="A", summary="", url="ua", source_id="s", source_name="S",
-                      published=datetime.now(timezone.utc))
-        item_b = Item(uid="b2", title="B", summary="", url="ub", source_id="s", source_name="S",
-                      published=datetime.now(timezone.utc))
-        cfg = {"llm_batch_size": 1}
-
-        os.environ["ANTHROPIC_API_KEY"] = "test-key-not-real"
+    os.environ["ANTHROPIC_API_KEY"] = "test-key-not-real"
+    original_cls = anthropic.Anthropic
+    try:
+        anthropic.Anthropic = lambda *a, **kw: _FakeAnthropicClient(
+            texts, prefix_thinking_block=prefix_thinking_block
+        )
         try:
-            import anthropic
-
-            original_cls = anthropic.Anthropic
-            anthropic.Anthropic = lambda *a, **kw: _FakeAnthropicClient(
-                ["not json at all", '[{"id": "zzz-not-requested", "score": 7, "why": "ok"}]']
-            )
-            try:
-                verdicts, status = llm_mod.rerank_new_items([item_a, item_b], cfg)
-            finally:
-                anthropic.Anthropic = original_cls
+            return run()
         finally:
-            del os.environ["ANTHROPIC_API_KEY"]
+            anthropic.Anthropic = original_cls
+    finally:
+        del os.environ["ANTHROPIC_API_KEY"]
 
-        check(verdicts == {}, "neither item gets a verdict: one batch was malformed, "
-              "the other omitted the requested id", str(verdicts))
-        check("degraded" in status or "failed" in status,
-              "the status message reflects the degradation", status)
+
+def main() -> int:
+    import os
+
+    from datetime import datetime, timedelta, timezone
+
+    from src import classify as classify_mod
+    from src import llm as llm_mod
+    from src.corpus import CorpusItem, recompute_rank
+    from src.fetch import Item
+
+    now = datetime.now(timezone.utc)
+
+    def item(uid, title="T"):
+        return Item(uid=uid, title=title, summary="", url=f"u{uid}", source_id="s",
+                    source_name="S", published=now)
+
+    section("Acceptance criterion 6: LLM malformed JSON and omitted ids fall back cleanly")
+    # Two items, both classified OTHER (universals only, no type scale) so
+    # the fake response shape doesn't need a type-specific "s" array. Batch
+    # size 1, so each gets its own API call: the first call returns
+    # unparseable text (total batch failure), the second returns valid JSON
+    # that omits the requested id (partial failure).
+    item_a, item_b = item("a1"), item("b2")
+    classify_ab = {
+        "a1": {"type": "OTHER", "locality": 0, "confidence": "high"},
+        "b2": {"type": "OTHER", "locality": 0, "confidence": "high"},
+    }
+    cfg = {"llm_score_batch_size": 1}
+    verdicts, status = _with_fake_client(
+        ["not json at all", '[{"id": "zzz-not-requested", "u": [4, 4], "s": [], "why": "ok"}]'],
+        lambda: llm_mod.rerank_new_items([item_a, item_b], classify_ab, cfg),
+    )
+    check(verdicts == {}, "neither item gets a verdict: one batch was malformed, "
+          "the other omitted the requested id", str(verdicts))
+    check("degraded" in status or "failed" in status,
+          "the status message reflects the degradation", status)
 
     section("Regression: a leading thinking block must not break text extraction")
+    # Production bug (21 Aug 2026): Sonnet 5 runs adaptive thinking by
+    # default, so response.content[0] is a ThinkingBlock with no .text --
+    # indexing [0] instead of searching for type=="text" raised
+    # AttributeError on every batch, silently dropping to deterministic
+    # scoring. This reproduces that exact response shape.
+    item_c = item("c3")
+    classify_c = {"c3": {"type": "OTHER", "locality": 0, "confidence": "high"}}
+    cfg = {"llm_score_batch_size": 1}
+    verdicts, status = _with_fake_client(
+        ['[{"id": "c3", "u": [4, 4], "s": [], "why": "directly relevant"}]'],
+        lambda: llm_mod.rerank_new_items([item_c], classify_c, cfg),
+        prefix_thinking_block=True,
+    )
+    # universals = 0.6*4 + 0.4*4 = 4.0; relevance = 4.0 * 2.5 = 10.0
+    check(verdicts.get("c3", (None, None))[0] == 10.0,
+          "the verdict behind a leading thinking block is still extracted", str(verdicts))
+    check("failed" not in status and "AttributeError" not in status,
+          "no AttributeError surfaces in the status message", status)
+
+    section("Two-stage pipeline: a classification error routes to OTHER, never discards")
+    item_x = item("x1")
+    results, status = _with_fake_client(
+        ["not json at all"],
+        lambda: classify_mod.classify_items([item_x], {"llm_classify_batch_size": 10}),
+    )
+    check(results.get("x1", {}).get("type") == "OTHER",
+          "a failed classify batch routes its items to OTHER, not IRRELEVANT", str(results))
+    check("x1" in results, "the item still gets an entry -- classify never silently drops one")
+
+    section("Two-stage pipeline: an explicit IRRELEVANT verdict discards from stage 2")
+    item_y = item("y1")
+    classify_y = {"y1": {"type": "IRRELEVANT", "locality": 0, "confidence": "high"}}
+    # No responses queued at all: if the item were sent to stage 2 despite
+    # being IRRELEVANT, the fake client's iterator would raise
+    # StopIteration, failing loudly rather than silently passing.
+    verdicts, status = _with_fake_client(
+        [], lambda: llm_mod.rerank_new_items([item_y], classify_y, {"llm_score_batch_size": 10}),
+    )
+    check(verdicts == {}, "an IRRELEVANT item gets no verdict -- never sent to stage 2", str(verdicts))
+    check("irrelevant" in status.lower() and "discarded" in status.lower(),
+          "the status names the discard", status)
+
+    section("Two-stage pipeline: SECTOR/OTHER score on universals alone and still rank")
+    item_z = item("z1")
+    classify_z = {"z1": {"type": "SECTOR", "locality": 0, "confidence": "high"}}
+    verdicts, status = _with_fake_client(
+        ['[{"id": "z1", "u": [4, 2], "s": [], "why": "test"}]'],
+        lambda: llm_mod.rerank_new_items([item_z], classify_z, {"llm_score_batch_size": 10}),
+    )
+    # universals = 0.6*4 + 0.4*2 = 3.2; relevance = 3.2 * 2.5 = 8.0
+    check(abs(verdicts.get("z1", (0.0, ""))[0] - 8.0) < 1e-9,
+          "a SECTOR item's relevance comes purely from universals, matching the documented formula",
+          str(verdicts))
+
+    section("Two-stage pipeline: one type's scoring failure leaves other types fully scored")
+    item_cur, item_hist = item("cur1"), item("hist1")
+    classify_ch = {
+        "cur1": {"type": "CURRICULUM", "locality": 0, "confidence": "high"},
+        "hist1": {"type": "HISTORY", "locality": 0, "confidence": "high"},
+    }
+    verdicts, status = _with_fake_client(
+        [
+            "not json at all",  # CURRICULUM's one batch (grouped/sent first)
+            '[{"id": "hist1", "u": [4, 4], "s": [4, 4, 4, 4], "why": "ok"}]',  # HISTORY's
+        ],
+        lambda: llm_mod.rerank_new_items([item_cur, item_hist], classify_ch, {"llm_score_batch_size": 10}),
+    )
+    check("cur1" not in verdicts and "hist1" in verdicts,
+          "CURRICULUM's malformed batch doesn't stop HISTORY from being fully scored", str(verdicts))
+
+    section("Two-stage pipeline: truncated JSON in one batch degrades that batch only")
+    item_p, item_q = item("p1"), item("q1")
+    classify_pq = {
+        "p1": {"type": "SECTOR", "locality": 0, "confidence": "high"},
+        "q1": {"type": "SECTOR", "locality": 0, "confidence": "high"},
+    }
+    verdicts, status = _with_fake_client(
+        [
+            '[{"id": "p1", "u": [4, 4',  # truncated, no closing bracket
+            '[{"id": "q1", "u": [2, 2], "s": [], "why": "ok"}]',
+        ],
+        lambda: llm_mod.rerank_new_items([item_p, item_q], classify_pq, {"llm_score_batch_size": 1}),
+    )
+    check("p1" not in verdicts and "q1" in verdicts,
+          "the truncated batch's item falls back; the other batch is unaffected", str(verdicts))
+
+    section("Two-stage pipeline: a hallucinated id in a response is ignored, not stored")
+    item_r = item("r1")
+    classify_r = {"r1": {"type": "SECTOR", "locality": 0, "confidence": "high"}}
+    verdicts, status = _with_fake_client(
+        ['[{"id": "r1", "u": [4, 4], "s": [], "why": "real"}, '
+         '{"id": "made-up-id", "u": [4, 4], "s": [], "why": "hallucinated"}]'],
+        lambda: llm_mod.rerank_new_items([item_r], classify_r, {"llm_score_batch_size": 10}),
+    )
+    check("made-up-id" not in verdicts and "r1" in verdicts,
+          "a hallucinated id is dropped; the real item's verdict is kept", str(verdicts))
+
+    section("Two-stage pipeline: out-of-range scores are clamped, wrong-length arrays are dropped")
+    item_s1, item_s2 = item("s1"), item("s2")
+    classify_s = {
+        "s1": {"type": "SECTOR", "locality": 0, "confidence": "high"},
+        "s2": {"type": "SECTOR", "locality": 0, "confidence": "high"},
+    }
+    verdicts, status = _with_fake_client(
+        ['[{"id": "s1", "u": [99, -5], "s": [], "why": "clamped"}, '
+         '{"id": "s2", "u": [2], "s": [], "why": "wrong length, dropped"}]'],
+        lambda: llm_mod.rerank_new_items([item_s1, item_s2], classify_s, {"llm_score_batch_size": 10}),
+    )
+    # u1 clamped 99->4, u2 clamped -5->0: universals = 0.6*4 + 0.4*0 = 2.4;
+    # relevance = 2.4 * 2.5 = 6.0
+    check(abs(verdicts.get("s1", (0.0, ""))[0] - 6.0) < 1e-9,
+          "out-of-range u values are clamped to [0, 4] before computing relevance", str(verdicts))
+    check("s2" not in verdicts,
+          "a wrong-length u array (1 item, not 2) is dropped rather than padded", str(verdicts))
+
+    section("Two-stage pipeline: the locality floor is a build-time percentile, not a fixed number")
+    rank_items = [
+        CorpusItem(id=f"loc{k}", title="t", url="u", summary="", source_id="s", source_name="S",
+                   published=now, first_seen=now, expires=now + timedelta(days=14),
+                   relevance=rel, locality=loc)
+        for k, (rel, loc) in enumerate(
+            [(9.0, 0), (8.0, 0), (7.0, 0), (6.0, 0), (1.0, 4), (0.5, 2)]
+        )
+    ]
+    recompute_rank(rank_items, {"locality": {"floor_percentile": 85, "floor_min_score": 3},
+                                 "tiers": {}, "rank_score": {}}, now)
+    by_id = {i.id: i for i in rank_items}
+    # 85th percentile of [0.5,1,6,7,8,9] (linear interpolation): k=0.85*5=4.25
+    # -> between index 4 (8.0) and 5 (9.0) -> 8.0 + (9.0-8.0)*0.25 = 8.25
+    check(abs(by_id["loc4"].rank_score - 8.25) < 1e-6,
+          "an item with locality >= floor_min_score is floored to this build's 85th percentile",
+          str(by_id["loc4"].rank_score))
+    check(by_id["loc5"].rank_score == 0.5,
+          "an item with locality below the threshold (2 < 3) is never floored, even as the lowest score",
+          str(by_id["loc5"].rank_score))
+
+    section("Golden test: a fixture set produces a stable section assignment")
+    # Section grouping itself runs client-side in JS (see render() in
+    # site.py) -- there's no headless browser in this offline suite to
+    # execute it, the same honest limit AC12 already notes for ReadStore.
+    # What IS directly checkable, and is what the JS grouping actually
+    # depends on: every item's {type, locality} survives into the embedded
+    # ITEMS payload unchanged, and the section order/labels driving the
+    # grouping are exactly what scoring.yml's section_order says, not
+    # something the template silently defaults to. Fixed input -> fixed
+    # output, checked by direct string comparison, is the "golden" part.
+    from src import site as site_mod
+
+    golden_now = datetime(2026, 1, 1, tzinfo=timezone.utc)
+    golden_items = [
+        CorpusItem(id="g-cur", title="Curriculum story", url="uc", summary="", source_id="s",
+                   source_name="S", published=golden_now, first_seen=golden_now,
+                   expires=golden_now + timedelta(days=14), relevance=8.0, rank_score=8.0,
+                   tier="lead", item_type="CURRICULUM", locality=0),
+        CorpusItem(id="g-notts", title="Notts history story", url="un", summary="", source_id="s",
+                   source_name="S", published=golden_now, first_seen=golden_now,
+                   expires=golden_now + timedelta(days=14), relevance=6.0, rank_score=6.0,
+                   tier="worth", item_type="HISTORY", locality=4),
+        CorpusItem(id="g-sector", title="Sector story", url="us", summary="", source_id="s",
+                   source_name="S", published=golden_now, first_seen=golden_now,
+                   expires=golden_now + timedelta(days=14), relevance=3.0, rank_score=3.0,
+                   tier="rest", item_type="SECTOR", locality=0),
+        CorpusItem(id="g-other", title="Uncategorised story", url="uo", summary="", source_id="s",
+                   source_name="S", published=golden_now, first_seen=golden_now,
+                   expires=golden_now + timedelta(days=14), relevance=2.0, rank_score=2.0,
+                   tier="rest", item_type="OTHER", locality=0),
+    ]
+    golden_cfg = {"section_order": ["CURRICULUM", "HISTORY", "PUPILS", "PEDAGOGY", "CAREER", "SECTOR"]}
+    payload = site_mod._payload(golden_items)
+    by_id_payload = {p["id"]: p for p in payload}
+    check(
+        [by_id_payload[i]["type"] for i in ["g-cur", "g-notts", "g-sector", "g-other"]]
+        == ["CURRICULUM", "HISTORY", "SECTOR", "OTHER"],
+        "every item's type survives into the payload unchanged and in order",
+    )
+    check(by_id_payload["g-notts"]["locality"] == 4,
+          "locality survives into the payload unchanged")
     with tempfile.TemporaryDirectory() as tmp:
-        # Production bug (21 Aug 2026): Sonnet 5 runs adaptive thinking by
-        # default, so response.content[0] is a ThinkingBlock with no .text --
-        # indexing [0] instead of searching for type=="text" raised
-        # AttributeError on every batch, silently dropping to deterministic
-        # scoring. This reproduces that exact response shape.
-        from src.fetch import Item
-        from datetime import datetime, timezone
-
-        item_c = Item(uid="c3", title="C", summary="", url="uc", source_id="s", source_name="S",
-                      published=datetime.now(timezone.utc))
-        cfg = {"llm_batch_size": 1}
-
-        os.environ["ANTHROPIC_API_KEY"] = "test-key-not-real"
-        try:
-            import anthropic
-
-            original_cls = anthropic.Anthropic
-            anthropic.Anthropic = lambda *a, **kw: _FakeAnthropicClient(
-                ['[{"id": "c3", "1_1": 4, "2_1": 4, "3_1": 4, "3_3": 4, "3_4": 4, '
-                 '"4_1": 4, "why": "directly relevant"}]'],
-                prefix_thinking_block=True,
-            )
-            try:
-                verdicts, status = llm_mod.rerank_new_items([item_c], cfg)
-            finally:
-                anthropic.Anthropic = original_cls
-        finally:
-            del os.environ["ANTHROPIC_API_KEY"]
-
-        check(verdicts.get("c3", (None, None))[0] == 10.0,
-              "the verdict behind a leading thinking block is still extracted", str(verdicts))
-        check("failed" not in status and "AttributeError" not in status,
-              "no AttributeError surfaces in the status message", status)
+        golden_root = Path(tmp)
+        meta_stub = {"scoring": {"status": "test"}, "retention_days": 14, "sources": []}
+        site_mod.write_site(golden_items, [], meta_stub, golden_root, golden_now, golden_cfg)
+        golden_html = (golden_root / "docs" / "index.html").read_text("utf-8")
+    check(
+        'const SECTION_ORDER = ["CURRICULUM", "HISTORY", "PUPILS", "PEDAGOGY", "CAREER", "SECTOR"];'
+        in golden_html,
+        "the rendered page's section order comes from scoring.yml's config, not a silent default",
+    )
+    check('"type": "HISTORY", "locality": 4' in golden_html,
+          "the Nottinghamshire-eligible item's type and locality both reach the rendered page")
 
     section("Full offline build")
     with tempfile.TemporaryDirectory() as tmp:

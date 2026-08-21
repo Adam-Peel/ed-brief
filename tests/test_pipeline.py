@@ -292,12 +292,12 @@ def main() -> int:
             Item(uid="k1", title="History curriculum shakeup", summary="", url="u1",
                  source_id="s", source_name="S", published=now),
         ]
-        verdicts, status = llm.rerank_new_items(raw_items, scoring_cfg)
+        verdicts, status = llm.rerank_new_items(raw_items, {}, scoring_cfg)
         check(verdicts == {}, "no verdicts are produced with no API key set")
         check("no API key" in status, "status message names the missing key",
               status)
         scorer2 = Scorer(scoring_cfg)
-        frozen = score_new_items(raw_items, scorer2, verdicts, scoring_cfg, now, 14)
+        frozen = score_new_items(raw_items, scorer2, verdicts, {}, scoring_cfg, now, 14)
         check(all(i.mode == "deterministic" for i in frozen),
               "every item falls back to deterministic mode")
         meta = build_meta(frozen, frozen, [{"id": "s", "name": "S"}], [], status, now, 14)

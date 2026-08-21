@@ -1,11 +1,15 @@
-"""LLM ranking pass, run once per item during ingestion, never at page-view
-time.
+"""Stage 2 of the two-stage LLM pipeline, run once per item during
+ingestion, never at page-view time. Stage 1 (src/classify.py) triages every
+new item into a TYPE and discards IRRELEVANT ones, unscored; this module
+scores each survivor against universals plus its own type's Likert scale,
+batched by type so every batch only ever carries the questions that
+actually apply to what's in it.
 
-Dormant unless ANTHROPIC_API_KEY is set in the environment. Every failure path
--- no key, missing package, client construction, a network/API error,
+Dormant unless ANTHROPIC_API_KEY is set in the environment. Every failure
+path -- no key, missing package, client construction, a network/API error,
 malformed JSON, or a response that omits some of the requested ids -- falls
-back to deterministic scoring for exactly the affected items, never the whole
-run. The build must never fail because of a billing or API problem.
+back to deterministic scoring for exactly the affected items, never the
+whole run. The build must never fail because of a billing or API problem.
 
 To switch it on:
   1. Add ANTHROPIC_API_KEY as a repository secret (Settings → Secrets and
@@ -23,231 +27,13 @@ from .fetch import Item
 
 DEFAULT_MODEL = "claude-sonnet-5"
 
-# Anchors are load-bearing: the model is asked to score each story against a
-# fixed rubric, never against the other stories in the batch. Batch-relative
-# ranking is exactly the bug the fixed-ceiling deterministic normalisation
-# (score.py) also exists to avoid -- see BUILD-SPEC.md's "scoring must be
-# absolute" section.
-RUBRIC = """You are helping a career-changer in England moving into secondary \
-HISTORY teaching. They are currently {reader_stage}.
 
-Score against this fixed rubric only. Do not rank or compare stories \
-against each other -- judge each one in isolation, on its own merits.
-
-Score each item below 0-4, anchored at 0/2/4 -- the same scale \
-throughout, so every item is judged the same mental way. Each item \
-measures ONE thing only. How the items combine into a final score is \
-handled separately, after your answers -- not something to weigh in \
-yourself.
-
-=== DOMAIN 1: SUBJECT (history as a school subject) ===
-
-1.1 Curriculum, qualifications and assessment: to what extent is this \
-about what school history contains or how it's examined -- KS3 content, \
-GCSE/A-level specs, exam board options (AQA, Edexcel, OCR, WJEC), entry \
-numbers, or curriculum/assessment reform as it reaches history?
-  4 = what school history teaches or how it's assessed IS the subject of \
-the story
-  2 = school history is one substantial strand of a broader curriculum or \
-qualifications story
-  0 = no bearing on what history classrooms teach or how it's assessed
-A cross-curricular reform story (the Francis Review, EBacc, Progress 8, a \
-structural Ofqual change) scores at least 2 here even when history is \
-never named, because it determines history's content, timetable share, \
-or uptake.
-
-1.2 Subject knowledge for periods they might teach: to what extent does \
-this add to the reader's own historical knowledge of a period, place or \
-theme on the secondary curriculum -- new research, interpretations, \
-discoveries, or newly released archive material (The National Archives' \
-periodic openings and digitisation projects count as much as academic \
-papers)?
-  4 = substantive new historical knowledge about a period, event or theme \
-taught at KS3, GCSE or A-level
-  2 = real historical content, but a period, place or scale they'd rarely \
-teach
-  0 = not about the past
-Period is not a hard gate: pre-1066 content scores on its merits when \
-it's local (see LOCALITY), tied to a thematic study running from c.1000, \
-or maps to a named exam-board option (e.g. OCR Ancient History). Reserve \
-0-1 for ancient-world or prehistory writing with no England, local, or \
-curricular connection.
-
-1.3 How young people learn history: to what extent is this about pupils' \
-historical thinking specifically -- progression in ideas about evidence, \
-causation, chronology, significance, or interpretation, or how \
-adolescents reason about the past?
-  4 = research or practice squarely on pupils' historical thinking
-  2 = generic pedagogy or learning science with an explicit history \
-application
-  0 = no connection to how history in particular is learned
-
-SUBJECT = the HIGHEST of 1.1-1.3, not their average -- alternative routes \
-into the subject, not converging signs. A pure curriculum story shouldn't \
-be marked down for containing no new scholarship; scoring strongly on ONE \
-of these is what matters.
-
-=== DOMAIN 2: CAREER (their route in, and their working life once in) ===
-
-2.1 Training and qualifying: to what extent does this affect how they \
-train and gain QTS -- ITT routes, PGCE and SCITT, bursaries and funding, \
-provider accreditation or inspection, placement supply, or the ITTECF as \
-it governs their training year?
-  4 = directly changes the terms, cost, availability or content of their \
-training
-  2 = affects ITT generally, or a route/subject other than theirs
-  0 = no bearing on training in England
-
-2.2 Getting and keeping a post: to what extent does this affect whether \
-secondary history posts exist and whether they can get one -- \
-recruitment and vacancies, subject-level demand, falling rolls, school \
-funding, staffing cuts, trust restructuring, closures?
-  4 = materially changes the number or nature of posts they could apply \
-for
-  2 = affects the sector's labour market broadly, or with a long lag
-  0 = no bearing on secondary teaching employment
-
-2.3 Working conditions in post: to what extent does this affect what the \
-job is like to do -- workload, pay, pensions, the STRB, industrial \
-action, retention, induction, mentoring, or ECT entitlement?
-  4 = directly changes pay, workload or entitlements for teachers in \
-England
-  2 = evidence or comment about conditions without a change attached
-  0 = no bearing on the terms of the job
-
-2.4 Accountability and statutory duties: to what extent does this change \
-what they'll be held accountable for -- school inspection, accountability \
-measures, or statutory duties such as KCSIE, behaviour and attendance \
-guidance?
-  4 = changes the framework, measures or duties a secondary teacher works \
-under
-  2 = commentary on inspection or accountability without changing it
-  0 = no bearing on secondary school accountability
-Strict: Ofsted also regulates children's social care and early years, and \
-the DfE covers early years and HE. A story about Ofsted prosecuting an \
-illegal children's home, or an annual report as an administrative \
-document, scores 0 here -- the test is what the story is about, not whose \
-name is in the headline.
-
-CAREER = the HIGHEST of 2.1-2.4 -- alternative routes again: a bursary \
-story and a pay story are both fully career-relevant, by different \
-mechanisms.
-
-=== DOMAIN 3: SUBSTANCE (is there anything actually here, and does it matter) ===
-
-3.1 Is anything new? To what extent does this report something that's \
-actually happened, been decided, been found, or been released, rather \
-than discussing something already established?
-  4 = reports a new decision, finding, dataset, release, or event
-  2 = a small new development wrapped in substantial recap
-  0 = entirely commentary, opinion, or retelling of known facts
-
-3.3 Magnitude: if what this describes is true or goes ahead, to what \
-extent does it change things?
-  4 = reshapes the system, the curriculum, or a whole cohort's experience
-  2 = a real but bounded change, affecting some schools, subjects or \
-pupils
-  0 = nothing changes as a result
-A story about research showing that a policy harms pupil wellbeing is \
-real (score 3.1 accordingly) but reports a STUDY, not an enacted change -- \
-score magnitude for what the story itself describes happening, not the \
-scale of the underlying problem it studies.
-
-3.4 Durability: to what extent would this still matter to the reader in \
-a month's time?
-  4 = still material at the end of term
-  2 = matters for a few weeks
-  0 = a one-day story
-Tuned to a 14-day rolling digest, not a same-day alert -- this replaces \
-"must read today" urgency, which this reader's corpus can't support \
-anyway.
-
-SUBSTANCE = the AVERAGE of 3.1, 3.3 and 3.4, not the highest -- unlike \
-the other domains, these genuinely converge: an item strong on all three \
-is genuinely substantial, and real weakness on any one should pull the \
-whole domain down, not be masked by strength elsewhere.
-
-=== DOMAIN 4: ACTIONABILITY (could they do something with it) ===
-
-4.1 Classroom material: to what extent could this go into a lesson more \
-or less as it stands -- a source, image, dataset, site, story, archive \
-release, or anniversary hook?
-  4 = usable in a lesson this term with little preparation
-  2 = usable after real work, or for a topic they may not teach
-  0 = nothing lesson-usable
-
-4.2 Planning and sequencing: to what extent would this change a planning \
-decision -- what to teach, in what order, which option or specification \
-to choose?
-  4 = would change a concrete planning or option decision
-  2 = worth knowing when planning, without forcing a change
-  0 = no planning implication
-
-4.3 Practice in the room: to what extent would this change something \
-they actually do when teaching -- a technique, an assessment or feedback \
-practice, or how they support a particular pupil?
-  4 = a specific, adoptable change to practice
-  2 = a principle they'd need to translate into practice themselves
-  0 = nothing to change
-
-ACTIONABILITY = the HIGHEST of 4.1-4.3 -- any one route to use is enough; \
-a National Archives release is fully actionable as material even though \
-it changes no one's teaching practice.
-
-=== DOMAIN 5: LOCALITY (Nottinghamshire) ===
-
-5.1 The county's past: to what extent is the story itself about \
-Nottinghamshire's past -- its history, heritage, archaeology, archives, \
-or historic landscape?
-  4 = the county's past is the subject of the story
-  2 = Nottinghamshire is one of several places covered
-  0 = not about the county's past
-Strict: a modern event merely held AT a historic Nottinghamshire site -- \
-a concert, a market, a screening, a wedding fair -- scores 0, however \
-prominently the site is named. Score what the story is ABOUT, not which \
-building it namedrops.
-
-5.2 Local schools and providers: to what extent is this about a \
-Nottinghamshire school, multi-academy trust, or ITT provider?
-  4 = a named local school, trust, or provider is the subject
-  2 = a regional story covering Nottinghamshire among other areas
-  0 = no local institution involved
-
-5.3 Local market and policy: to what extent is this about the \
-Nottinghamshire or East Midlands teaching job market, or local authority \
-education policy?
-  4 = directly about local demand, vacancies, or local education policy
-  2 = regional coverage including the area
-  0 = no local labour-market or policy content
-
-LOCALITY = the HIGHEST of 5.1-5.3. This is scored like the others but is \
-NOT summed into the final total with the domains above -- it's near zero \
-for most of the corpus, so it works as a guaranteed floor instead: a \
-story scoring 4 on any locality item is guaranteed a place in the \
-"worth a look" range regardless of the other domains, so genuinely local \
-stories reliably surface without needing to outrank real curriculum or \
-career news to do it.
-
-Source note: `source` is not a reputation shortcut for any item above -- \
-don't score a story up for coming from a trusted outlet, that's handled \
-separately and deterministically elsewhere in this pipeline, and doing it \
-here too double-counts it. But a source's own declared identity IS \
-legitimate evidence for SUBJECT specifically: a post from a named \
-history-teacher-training blog or a university history department is \
-evidence its content is history- and training-specific even when its own \
-wording doesn't say so.
-
-For each story below, return every item score (0-4 each) using these \
-exact keys -- 1_1, 1_2, 1_3, 2_1, 2_2, 2_3, 2_4, 3_1, 3_3, 3_4, 4_1, 4_2, \
-4_3, 5_1, 5_2, 5_3 -- and a single short clause (under 25 words, no full \
-stop) saying why it matters to them specifically, or for a low total, why \
-it doesn't.
-
-Return ONLY a JSON array, no prose, no code fence:
-[{{"id": "...", "1_1": 0-4, "1_2": 0-4, "1_3": 0-4, "2_1": 0-4, "2_2": 0-4, "2_3": 0-4, "2_4": 0-4, "3_1": 0-4, "3_3": 0-4, "3_4": 0-4, "4_1": 0-4, "4_2": 0-4, "4_3": 0-4, "5_1": 0-4, "5_2": 0-4, "5_3": 0-4, "why": "..."}}]
-
-Stories:
-{payload}"""
+def _resolve_model(cfg: dict) -> str:
+    """BRIEF_LLM_MODEL overrides scoring.yml's llm_model for quick local
+    testing, matching the same env-var-overrides-config pattern as
+    BRIEF_WINDOW_HOURS in build.py. Shared with classify.py so both stages
+    of the pipeline resolve the model the same way."""
+    return os.environ.get("BRIEF_LLM_MODEL") or cfg.get("llm_model", DEFAULT_MODEL)
 
 
 def available() -> bool:
@@ -272,31 +58,267 @@ def _extract_json(text: str) -> list[dict]:
     return json.loads(text[start : end + 1])
 
 
-def _score_batch(
-    batch: list[Item], client, model: str, reader_stage: str
+def _extract_text_block(response):
+    """Find the text block in a response's content list rather than
+    indexing content[0] -- current-generation models (Sonnet 5 among them)
+    run adaptive thinking by default even with no `thinking` param set at
+    all, which puts a thinking block ahead of the text block, so content[0]
+    is a ThinkingBlock with no .text attribute. Explicitly disabling
+    thinking is a documented pitfall on this model family (occasional
+    tool-call-in-visible-text / thinking-tag leakage), so this finds the
+    actual text block instead of fighting the default off. Shared with
+    classify.py -- both stages hit the exact same response shape."""
+    text_block = next((b for b in response.content if getattr(b, "type", None) == "text"), None)
+    if text_block is None:
+        raise ValueError(f"no text block in response (stop_reason={response.stop_reason!r})")
+    return text_block
+
+
+# ---------------------------------------------------------------------------
+# Stage 2 prompts. Every batch is one call's worth of one TYPE (assigned by
+# stage 1) -- the shared preamble plus universals always applies; the type
+# scale is appended only for the five types that have one. SECTOR and OTHER
+# get universals alone, no type scale, no "s" items -- see scoring.yml's
+# `weights` comment for how the two combine into a final 0-10 relevance.
+# ---------------------------------------------------------------------------
+
+# Anchors are load-bearing: the model scores each story against a fixed
+# rubric, never against the other stories in the batch. Batch-relative
+# ranking is exactly the bug the fixed-ceiling deterministic normalisation
+# (score.py) also exists to avoid -- see BUILD-SPEC.md's "scoring must be
+# absolute" section. Batching by type makes this a sharper risk than the
+# single-pass rubric this replaced: every batch looks alike (same type), so
+# the preamble says so explicitly -- a weak fortnight of CURRICULUM stories
+# must produce low scores, not a re-ranked set of high ones.
+STAGE2_PREAMBLE = """You are scoring education and history news for one \
+specific reader: a career-changer in England entering secondary HISTORY \
+teaching. They are currently {reader_stage}.
+
+Every article below has already been classified as {type_name}. Do not \
+re-judge the type. Score each one against the fixed anchors below.
+
+Score each article ON ITS OWN MERITS against these anchors. Do NOT rank or \
+compare the articles against each other. These articles have been grouped by \
+type, so they will resemble one another; that is expected and must not push \
+scores up. If every article in this batch is weak, every score should be \
+low. There is no quota of high scores.
+
+ALWAYS ANSWER THESE TWO:
+
+U1 CONSEQUENCE
+If this is true or goes ahead, how much changes for this reader, or for the \
+pupils and schools they will work in?
+  4  reshapes something whole - a curriculum, a cohort's experience, a system
+  2  a real but bounded change affecting some schools, subjects or pupils
+  0  nothing changes as a result
+
+U2 DISCOVERY VALUE
+How likely is it that this reader would MISS this without a curated brief?
+  4  obscure or specialist - a small archive post, a single study, a local \
+find; they would almost certainly never see it
+  2  they might catch it if they were looking in the right place
+  0  unavoidable headline news, or the latest of several near-identical \
+reports of the same event
+Score this on how hard the item is to discover, not on how good it is."""
+
+_CURRICULUM_SCALE = """C1 HISTORY DIRECTNESS
+  4  about the history curriculum, a history specification, or a history \
+qualification
+  3  a cross-subject change that demonstrably moves history's content, \
+timetable share or uptake - the EBacc, Progress 8, KS3 structure, \
+option-block policy
+  2  a change to how all subjects are examined, history affected as one of \
+many
+  1  about another subject's curriculum or qualifications
+  0  not about what is taught or examined
+
+C2 STAGE
+  4  a decision made - a specification published, an option withdrawn, a \
+statutory change confirmed
+  3  a formal proposal or consultation with a named timetable
+  2  an official review or inquiry under way
+  1  comment or speculation about possible change
+  0  no change is involved
+
+C3 REACH
+  4  changes a subject's content or structure across KS3, GCSE or A-level
+  3  changes one qualification, one key stage, or a major option
+  2  changes assessment mechanics or a single component
+  1  marginal or administrative
+  0  no effect on what is taught"""
+
+_HISTORY_SCALE = """H1 CURRICULUM PROXIMITY
+  4  squarely on a period, theme or place taught at KS3, GCSE or A-level
+  3  adjacent to taught content, or within the range of a thematic study \
+running from c.1000
+  2  British history outside the periods usually taught
+  1  world history with no curricular foothold
+  0  not about the past
+Do not apply a blanket penalty before 1066. The KS3 programme of study \
+includes a local history study and a thematic strand that explicitly \
+reaches back before 1066, and OCR offers Ancient History at GCSE and \
+A-level. Judge pre-1066 material on the same terms as anything else, \
+scoring it low only when it has no English, local or curricular \
+connection.
+
+H2 SUBSTANCE
+  4  new research, a discovery, or a substantive reinterpretation
+  2  a competent retelling that contains something fresh
+  0  recycled narrative, a staff or student profile, an accreditation \
+notice, or a personal travelogue
+
+H3 CLASSROOM USABILITY
+  4  a source, image, dataset, site or collection that could go in front of \
+a class with little adaptation
+  2  usable after real preparatory work
+  0  nothing a class could use
+
+H4 DISCIPLINARY PURCHASE
+  4  raises a genuine historical question, or shows how knowledge of the \
+past was constructed from evidence
+  2  illustrates interpretation or contested accounts implicitly
+  0  pure content, or nothing to interrogate"""
+
+_PEDAGOGY_SCALE = """G1 EVIDENCE STRENGTH
+  4  a synthesis, replication, or well-designed trial
+  2  a single study, or a careful and specific practitioner account
+  0  assertion, opinion, or a vendor claim
+
+G2 SETTING FIT
+  4  secondary classrooms
+  2  primary, FE, or mixed-age settings
+  0  adult, undergraduate or laboratory findings presented as classroom \
+evidence
+
+G3 ACTIONABILITY
+  4  could be tried next term substantially as described
+  2  a principle the reader would have to translate into practice \
+themselves
+  0  nothing to do differently
+
+G4 HISTORY TRANSFER
+  4  bears directly on teaching history - extended writing, source work, \
+causal explanation, chronology, disciplinary vocabulary
+  2  general but clearly applicable to a history classroom
+  0  specific to another subject"""
+
+_PUPILS_SCALE = """P1 AGE FIT
+  4  about 11-18s specifically
+  2  about school-age children generally
+  0  early years, adults, or an undifferentiated "young people"
+
+P2 EVIDENCE QUALITY
+  4  research findings or substantive data
+  2  reported experience or professional testimony
+  0  opinion or anecdote
+
+P3 CLASSROOM BEARING
+  4  would change how the reader reads or responds to a pupil in front of \
+them
+  2  useful background on the cohort they will teach
+  0  no bearing on the classroom"""
+
+_CAREER_SCALE = """K1 STAGE FIT
+  4  bites during initial teacher training or induction
+  2  bites within their first few years in post
+  0  distant, hypothetical, or applies to a career stage they will not \
+reach soon
+
+K2 MATERIALITY
+  4  changes money, workload, entitlement, job availability, or what a \
+teacher is held accountable for
+  2  evidence or comment about conditions with no change attached
+  0  no bearing on the terms of the job
+
+K3 EXPOSURE
+  4  hits history teachers, or East Midlands schools, specifically
+  2  hits secondary teachers in England generally
+  0  another phase, sector or nation"""
+
+TYPE_NAMES = {
+    "CURRICULUM": "curriculum and qualifications news",
+    "HISTORY": "historical scholarship and resources",
+    "PEDAGOGY": "pedagogy and learning evidence",
+    "PUPILS": "pupils and adolescence",
+    "CAREER": "career, conditions and accountability",
+    "SECTOR": "general sector news",
+    "OTHER": "news that doesn't fit a specific category",
+}
+
+# SECTOR and OTHER deliberately absent here -- no type scale, universals
+# alone carry the score (see _score_batch_typed's assembly formula).
+TYPE_SCALES = {
+    "CURRICULUM": _CURRICULUM_SCALE,
+    "HISTORY": _HISTORY_SCALE,
+    "PEDAGOGY": _PEDAGOGY_SCALE,
+    "PUPILS": _PUPILS_SCALE,
+    "CAREER": _CAREER_SCALE,
+}
+
+TYPE_ITEM_COUNT = {
+    "CURRICULUM": 3,
+    "HISTORY": 4,
+    "PEDAGOGY": 4,
+    "PUPILS": 3,
+    "CAREER": 3,
+    "SECTOR": 0,
+    "OTHER": 0,
+}
+
+
+def _build_stage2_prompt(item_type: str, reader_stage: str, payload: str) -> str:
+    """Assemble one type's scoring prompt: shared preamble (formatted with
+    this type's name), its Likert scale if it has one, then the output
+    contract -- built by plain concatenation rather than one big .format()
+    template, so none of the JSON-example braces below need doubling."""
+    type_name = TYPE_NAMES.get(item_type, item_type)
+    scale = TYPE_SCALES.get(item_type)
+
+    parts = [STAGE2_PREAMBLE.format(reader_stage=reader_stage, type_name=type_name)]
+    if scale:
+        parts.append(scale)
+
+    s_example = "<type item scores in order>" if scale else ""
+    parts.append(
+        "Return ONLY a JSON array, no prose, no code fence. For each article "
+        "give the scores in the order the items are listed above, then one "
+        "clause of at most 20 words, no full stop, saying why it matters to "
+        "this reader -- or, for a low score, why it does not.\n\n"
+        '[{"id": "...", "u": [U1, U2], "s": [' + s_example + '], "why": "..."}]'
+    )
+    parts.append(f"Articles:\n{payload}")
+    return "\n\n".join(parts)
+
+
+def _score_batch_typed(
+    batch: list[Item], item_type: str, client, model: str, reader_stage: str, cfg: dict
 ) -> dict[str, tuple[float, str]]:
-    """One API call for up to llm_batch_size items.
+    """One API call for up to llm_score_batch_size items, all the same TYPE
+    (grouped by the caller). Computes each item's final 0-10 relevance from
+    the assembly formula in scoring.yml's `weights` block:
+
+        universals = u1_consequence * U1 + u2_discovery * U2         # 0-4
+        type_score = mean(s items) if the type has any, else None    # 0-4
+        relevance = (type_score * .6 + universals * .4) * 2.5        # 0-10
+                    -- or universals * 2.5 alone when type_score is None
+                    (SECTOR, OTHER)
 
     Raises on total failure (network error, malformed JSON) -- the caller
-    treats that as "none of this batch got a verdict". A clean return with
-    some ids missing means the response parsed fine but omitted them, so only
-    those specific items fall back; everything else in the batch still used
-    the LLM.
+    treats that as "none of this batch got a verdict", and because batching
+    is per-type, a failure here can never affect another type's batches.
     """
+    weights = cfg.get("weights", {})
+    u1_w = float(weights.get("u1_consequence", 0.6))
+    u2_w = float(weights.get("u2_discovery", 0.4))
+    type_w = float(weights.get("type_score", 0.6))
+    universals_w = float(weights.get("universals", 0.4))
+    max_tokens = int(cfg.get("llm_max_tokens", 12000))
+
     payload = json.dumps(
         [
             {
                 "id": item.uid,
                 "title": item.title,
-                # Raised from 320, 2026-08-21: real corpus data showed some
-                # feeds front-load this with boilerplate that eats the old
-                # budget before any real content -- Visit Nottinghamshire's
-                # venue/ticket details ahead of what an exhibit is actually
-                # about, in exactly the cases where the DIRECT vs ABOUT test
-                # above matters most. Doesn't fix every feed (Cambridge
-                # Faculty of History leads with an author byline that just
-                # continues past a larger budget too), but checked against
-                # real data rather than guessed.
                 "summary": item.summary[:500],
                 "source": item.source_name,
             }
@@ -305,35 +327,20 @@ def _score_batch(
         ensure_ascii=False,
         indent=1,
     )
+    prompt = _build_stage2_prompt(item_type, reader_stage, payload)
     response = client.messages.create(
         model=model,
-        # Generous, not tuned to typical usage: adaptive thinking (on by
-        # default -- see the text_block search below) spends part of this
-        # budget before a single verdict token is written, so a tight cap
-        # risks truncating the JSON array mid-batch. A truncated array has
-        # no closing "]", _extract_json raises, and the WHOLE batch (up to
-        # llm_batch_size items) falls back to deterministic -- the exact
-        # all-or-nothing failure this function's docstring says it avoids.
-        # Raising the ceiling doesn't cost anything unless it's actually
-        # used: billing is by tokens generated, not by max_tokens itself.
-        max_tokens=12000,
-        messages=[{
-            "role": "user",
-            "content": RUBRIC.format(payload=payload, reader_stage=reader_stage),
-        }],
+        # Generous, not tuned to typical usage: adaptive thinking spends
+        # part of this budget before a single verdict token is written, so
+        # a tight cap risks truncating the JSON array mid-batch -- see the
+        # comment on llm_max_tokens in scoring.yml.
+        max_tokens=max_tokens,
+        messages=[{"role": "user", "content": prompt}],
     )
-    # NOT response.content[0] -- current-generation models (Sonnet 5 among
-    # them) run adaptive thinking by default even with no `thinking` param
-    # set at all, which puts a thinking block ahead of the text block, so
-    # content[0] is a ThinkingBlock with no .text attribute. Explicitly
-    # disabling thinking is a documented pitfall on this model family
-    # (occasional tool-call-in-visible-text / thinking-tag leakage), so this
-    # finds the actual text block instead of fighting the default off.
-    text_block = next((b for b in response.content if getattr(b, "type", None) == "text"), None)
-    if text_block is None:
-        raise ValueError(f"no text block in response (stop_reason={response.stop_reason!r})")
+    text_block = _extract_text_block(response)
     verdicts = _extract_json(text_block.text)
     valid_ids = {item.uid for item in batch}
+    expected_s_len = TYPE_ITEM_COUNT.get(item_type, 0)
 
     results: dict[str, tuple[float, str]] = {}
     for verdict in verdicts:
@@ -344,94 +351,78 @@ def _score_batch(
         # or stale id from the model should be ignored, not stored.
         if not item_id or item_id not in valid_ids:
             continue
-        # Item bank, 2026-08-21: the model answers 16 single-concept "to what
-        # extent" items (see RUBRIC), each 0-4 on the same scale for scoring
-        # consistency -- a missing key defaults to 0 rather than failing the
-        # whole verdict, same tolerance the old single-score parsing had for
-        # a missing "score" key.
-        try:
-            def item(key: str) -> float:
-                return max(0.0, min(4.0, float(verdict.get(key, 0))))
 
-            subject_items = [item("1_1"), item("1_2"), item("1_3")]
-            career_items = [item("2_1"), item("2_2"), item("2_3"), item("2_4")]
-            substance_items = [item("3_1"), item("3_3"), item("3_4")]
-            actionability_items = [item("4_1"), item("4_2"), item("4_3")]
-            locality_items = [item("5_1"), item("5_2"), item("5_3")]
+        u = verdict.get("u")
+        s = verdict.get("s")
+        # Wrong-length arrays are dropped, not padded -- a model that
+        # miscounted its own answer is a signal something went wrong with
+        # that specific verdict, not something to paper over by guessing
+        # which item it forgot.
+        if not isinstance(u, list) or len(u) != 2:
+            continue
+        if not isinstance(s, list) or len(s) != expected_s_len:
+            continue
+        try:
+            u1 = max(0.0, min(4.0, float(u[0])))
+            u2 = max(0.0, min(4.0, float(u[1])))
+            s_clamped = [max(0.0, min(4.0, float(v))) for v in s]
         except (TypeError, ValueError):
             continue
 
-        # Two different aggregation rules, not one: SUBJECT/CAREER/
-        # ACTIONABILITY/LOCALITY take the MAX of their items, because those
-        # items are alternative routes into the domain, not converging
-        # signs -- a pure curriculum story shouldn't be marked down for
-        # containing no new scholarship. SUBSTANCE takes the MEAN, because
-        # its three items (is anything new / magnitude / durability)
-        # genuinely converge on one question -- real weakness on any one
-        # should pull the whole domain down, not be masked by the others.
-        subject = max(subject_items)
-        career = max(career_items)
-        substance = sum(substance_items) / len(substance_items)
-        actionability = max(actionability_items)
-        locality = max(locality_items)
+        universals = u1_w * u1 + u2_w * u2  # 0-4
+        if s_clamped:
+            # Plain mean, no per-item weighting yet -- see the placeholder
+            # note on `weights` in scoring.yml.
+            type_score = sum(s_clamped) / len(s_clamped)  # 0-4
+            relevance = (type_w * type_score + universals_w * universals) * 2.5
+        else:
+            # SECTOR / OTHER: no type scale, universals alone carry it.
+            relevance = universals * 2.5
+        relevance = max(0.0, min(10.0, relevance))
 
-        # Weighted average of the four summed domains (weights sum to 3.0),
-        # rescaled from the shared 0-4 item scale to the final 0-10 scale
-        # (x2.5). Weights are never shown to the model -- it can't discount
-        # a domain it knows "counts less", or start doing its own mental
-        # arithmetic instead of just answering "to what extent" each time.
-        # These weights are placeholders, not a calibrated result: they
-        # reproduce the previous four-dimension design's relative-importance
-        # ratio (1 / .75 / .75 / .5) rather than anything empirically fit.
-        raw = subject * 1.0 + career * 0.75 + substance * 0.75 + actionability * 0.5
-        score = (raw / 3.0) * 2.5
-
-        # LOCALITY is deliberately excluded from that sum -- it's 0 for most
-        # of the corpus, so any weight small enough not to distort the
-        # ranking is also too small to ever change one. Used as a gate and a
-        # floor instead, which can never both fire on the same item (the
-        # gate requires locality == 0, the floor requires locality == 4):
-        if subject <= 1 and career <= 1 and locality == 0:
-            # Nothing irrelevant floats up on substance/actionability alone
-            # -- a hugely important, highly actionable story about
-            # something outside this reader's subject and career is still
-            # not for this reader.
-            score = min(score, 3.0)
-        if locality == 4:
-            # A genuinely local story always reaches "worth a look",
-            # without needing to outrank real curriculum/career news to
-            # get there.
-            score = max(score, 6.0)
-        score = max(0.0, min(10.0, score))
-        # Raised from 160, 2026-08-21: the rubric asks for "under 25 words",
-        # which averages 150-170 characters -- 160 was clipping the longest
-        # ones mid-word. 220 gives real headroom above that average.
+        # 220, not the 20-word limit's naive char estimate: 20 words
+        # averages 120-140 characters, but a few genuinely long words push
+        # past that, and this is the same generous-headroom call already
+        # made for the single-pass rubric this replaced.
         why = str(verdict.get("why", "")).strip()[:220]
-        results[item_id] = (score, why)
+        results[item_id] = (relevance, why)
     return results
 
 
 def rerank_new_items(
-    items: list[Item], cfg: dict
+    items: list[Item], classify_results: dict[str, dict], cfg: dict
 ) -> tuple[dict[str, tuple[float, str]], str]:
-    """Score every new item against the absolute rubric, batched.
+    """Score every new item that survived stage 1 classification (see
+    classify.classify_items), batched by type. Returns (verdicts_by_id,
+    status). Only ids present in verdicts_by_id got an LLM score; the
+    caller falls back to deterministic scoring for everything else, item by
+    item -- never as an all-or-nothing decision for the whole run.
 
-    Returns (verdicts_by_id, status). Only ids present in verdicts_by_id got
-    an LLM score; the caller falls back to deterministic scoring for
-    everything else, item by item -- never as an all-or-nothing decision for
-    the whole run.
+    Items classified IRRELEVANT are excluded here, not deleted anywhere --
+    they simply never get a verdict, so score_new_items() in build.py falls
+    them back to deterministic scoring exactly like any other missing
+    verdict (no API key, a failed batch, ...). A genuinely irrelevant story
+    scores near-zero deterministically anyway, and publish_floor keeps it
+    off every published surface while still remembering it for dedup -- the
+    same mechanism already used for below-floor items, not a new discard
+    path.
     """
     if not items:
         return {}, "no new items"
     if not available():
         return {}, "deterministic only (no API key set)"
 
+    survivors = [
+        item for item in items
+        if classify_results.get(item.uid, {}).get("type") != "IRRELEVANT"
+    ]
+    discarded = len(items) - len(survivors)
+    if not survivors:
+        return {}, f"no items to score ({discarded} irrelevant, discarded)"
+
     import anthropic
 
-    # BRIEF_LLM_MODEL overrides scoring.yml's llm_model for quick local
-    # testing, matching the same env-var-overrides-config pattern as
-    # BRIEF_WINDOW_HOURS in build.py.
-    model = os.environ.get("BRIEF_LLM_MODEL") or cfg.get("llm_model", DEFAULT_MODEL)
+    model = _resolve_model(cfg)
     reader_stage = cfg.get("llm_reader_stage", "at the point of entering initial teacher training")
 
     try:
@@ -439,25 +430,45 @@ def rerank_new_items(
     except Exception as exc:  # noqa: BLE001 -- must not break the run
         return {}, f"deterministic only (client init failed: {type(exc).__name__})"
 
-    batch_size = max(1, int(cfg.get("llm_batch_size", 45)))
-    batches = [items[i : i + batch_size] for i in range(0, len(items), batch_size)]
+    # Group by type -- every batch carries only the Likert scale that
+    # actually applies to what's in it.
+    by_type: dict[str, list[Item]] = {}
+    for item in survivors:
+        item_type = classify_results.get(item.uid, {}).get("type", "OTHER")
+        by_type.setdefault(item_type, []).append(item)
+
+    batch_size = max(1, int(cfg.get("llm_score_batch_size", 20)))
+    total_batches = sum(
+        (len(type_items) + batch_size - 1) // batch_size for type_items in by_type.values()
+    )
 
     verdicts: dict[str, tuple[float, str]] = {}
     errors: list[str] = []
-    for n, batch in enumerate(batches, start=1):
-        try:
-            verdicts.update(_score_batch(batch, client, model, reader_stage))
-        except Exception as exc:  # noqa: BLE001 -- deliberately broad
-            errors.append(f"batch {n}/{len(batches)}: {type(exc).__name__}")
+    batch_n = 0
+    for item_type, type_items in by_type.items():
+        for i in range(0, len(type_items), batch_size):
+            batch_n += 1
+            batch = type_items[i : i + batch_size]
+            try:
+                # Each type's batches are tried independently -- one type's
+                # failure can never affect another's, since this update()
+                # only ever touches the ids from this one batch.
+                verdicts.update(_score_batch_typed(batch, item_type, client, model, reader_stage, cfg))
+            except Exception as exc:  # noqa: BLE001 -- deliberately broad
+                errors.append(f"{item_type} batch {batch_n}/{total_batches}: {type(exc).__name__}")
+
+    discard_note = f"{discarded} irrelevant, discarded" if discarded else ""
 
     if not verdicts:
         detail = "; ".join(errors) or "no verdicts returned"
-        return {}, f"deterministic only (LLM pass failed: {detail})"
+        suffix = f" ({discard_note})" if discard_note else ""
+        return {}, f"deterministic only (LLM pass failed: {detail}){suffix}"
 
-    missing = len(items) - len(verdicts)
+    missing = len(survivors) - len(verdicts)
     if errors or missing:
         detail = "; ".join(errors) if errors else f"{missing} item(s) omitted from responses"
-        return verdicts, (
-            f"LLM re-ranked with {model} ({len(verdicts)}/{len(items)}; degraded: {detail})"
-        )
-    return verdicts, f"LLM re-ranked with {model}"
+        bits = "; ".join(b for b in [f"degraded: {detail}", discard_note] if b)
+        return verdicts, f"LLM re-ranked with {model} ({len(verdicts)}/{len(survivors)}; {bits})"
+
+    suffix = f" ({discard_note})" if discard_note else ""
+    return verdicts, f"LLM re-ranked with {model}{suffix}"

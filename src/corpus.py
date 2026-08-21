@@ -52,6 +52,19 @@ class CorpusItem:
     mode: str = "deterministic"
     rank_score: float = 0.0
     tier: str = "rest"
+    # Two-stage classify+score pipeline (src/classify.py, src/llm.py),
+    # frozen at ingest alongside relevance -- never recomputed. `item_type`
+    # (not `type`, to avoid shadowing the builtin) drives which section of
+    # the site an item renders in; `locality` drives the build-time
+    # percentile floor on rank_score (see recompute_rank below); `confidence`
+    # is kept for debugging a classification that looks wrong, not currently
+    # read by anything downstream. Defaults match what a pre-classify-stage
+    # corpus item (i.e. one written before this pipeline existed) should be
+    # treated as: OTHER/0/high, never IRRELEVANT -- an old item with no type
+    # info at all must not silently disappear from every section.
+    item_type: str = "OTHER"
+    locality: int = 0
+    confidence: str = "high"
 
     def to_dict(self) -> dict:
         return {
@@ -66,6 +79,9 @@ class CorpusItem:
             "relevance": round(self.relevance, 2),
             "rank_score": round(self.rank_score, 2),
             "tier": self.tier,
+            "type": self.item_type,
+            "locality": self.locality,
+            "confidence": self.confidence,
             "tags": self.tags,
             "why": self.why,
             "image_url": self.image_url,
@@ -102,6 +118,9 @@ class CorpusItem:
             mode=scoring.get("mode", "deterministic"),
             rank_score=float(d.get("rank_score", 0.0)),
             tier=d.get("tier", "rest"),
+            item_type=d.get("type", "OTHER"),
+            locality=int(d.get("locality", 0)),
+            confidence=d.get("confidence", "high"),
         )
 
 
@@ -134,6 +153,24 @@ def drop_expired(items: list[CorpusItem], now: datetime) -> list[CorpusItem]:
     return [i for i in items if i.expires > now]
 
 
+def _percentile(values: list[float], pct: float) -> float:
+    """Linear-interpolation percentile (numpy's default 'linear' method), no
+    external dependency. Robust to tiny inputs: empty -> 0.0, a single value
+    -> that value, rather than raising the way statistics.quantiles() does
+    below n=2."""
+    if not values:
+        return 0.0
+    s = sorted(values)
+    if len(s) == 1:
+        return s[0]
+    k = (pct / 100.0) * (len(s) - 1)
+    f = int(k)
+    c = min(f + 1, len(s) - 1)
+    if f == c:
+        return s[f]
+    return s[f] + (s[c] - s[f]) * (k - f)
+
+
 def recompute_rank(items: list[CorpusItem], cfg: dict, now: datetime) -> None:
     """Recompute rank_score and tier for the whole live corpus, in place, and
     sort by rank_score descending.
@@ -162,6 +199,24 @@ def recompute_rank(items: list[CorpusItem], cfg: dict, now: datetime) -> None:
             if item.relevance >= rest_cut
             else "noise"
         )
+
+    # Nottinghamshire premium: a build-time floor on rank_score, not summed
+    # into relevance anywhere (locality is a tag, never a scoring input --
+    # see scoring.yml's `locality` comment). Deliberately a PERCENTILE of
+    # this build's own rank_score distribution, not a fixed number: a fixed
+    # floor (this project tried 6.0 first) means whatever that number is
+    # relative to a quiet fortnight can let a local story outrank real
+    # curriculum/career news on a strong one. Computed from the un-floored
+    # distribution BEFORE any floor is applied, so a local item's own score
+    # never feeds back into the threshold being applied to it.
+    locality_cfg = cfg.get("locality", {})
+    floor_min_score = int(locality_cfg.get("floor_min_score", 3))
+    floor_percentile = float(locality_cfg.get("floor_percentile", 85))
+    if items:
+        floor_value = _percentile([i.rank_score for i in items], floor_percentile)
+        for item in items:
+            if item.locality >= floor_min_score:
+                item.rank_score = max(item.rank_score, floor_value)
 
     items.sort(key=lambda i: (-i.rank_score, -i.published.timestamp()))
 

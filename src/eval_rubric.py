@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import sys
 
-from . import llm
+from . import classify, llm
 from .build import ROOT, load_config
 from .corpus import load
 from .fetch import Item
@@ -59,8 +59,17 @@ def main() -> int:
     old_score_by_id = {c.id: c.llm_score for c in scored_before}
     title_by_id = {c.id: c.title for c in scored_before}
 
-    print(f"Re-scoring {len(items)} already-scored items against the current rubric...\n")
-    verdicts, status = llm.rerank_new_items(items, cfg)
+    # Classified fresh, not reused from the corpus's own stored type --
+    # existing items may predate the two-stage pipeline entirely (defaulting
+    # to OTHER via CorpusItem's backward-compat default), and the whole
+    # point of this run is testing the CURRENT pipeline end to end, not just
+    # stage 2 in isolation.
+    print(f"Classifying {len(items)} already-scored items against the current pipeline...")
+    classify_results, classify_status = classify.classify_items(items, cfg)
+    print(f"{classify_status}\n")
+
+    print(f"Re-scoring {len(items)} items against the current rubric...\n")
+    verdicts, status = llm.rerank_new_items(items, classify_results, cfg)
     print(f"{status}\n")
 
     if not verdicts:

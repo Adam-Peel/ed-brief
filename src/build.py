@@ -16,7 +16,7 @@ from pathlib import Path
 
 import yaml
 
-from . import api, brief, llm, rss, site
+from . import api, brief, classify, llm, rss, site
 from .corpus import (
     SCHEMA,
     CorpusItem,
@@ -53,13 +53,22 @@ def score_new_items(
     new_raw: list[Item],
     scorer: Scorer,
     verdicts: dict[str, tuple[float, str]],
+    classify_results: dict[str, dict],
     cfg: dict,
     now: datetime,
     retention_days: int,
 ) -> list[CorpusItem]:
     """Deterministically score, blend with any LLM verdict, and freeze each
     new item into a CorpusItem. Existing corpus items never pass through
-    here -- their relevance was frozen on a previous run and stays that way."""
+    here -- their relevance was frozen on a previous run and stays that way.
+
+    `classify_results` carries stage 1's type/locality/confidence for every
+    item that went through it (see classify.classify_items) -- persisted
+    onto the CorpusItem alongside relevance, frozen the same way. An item
+    missing from classify_results (classify never ran at all -- no API key)
+    gets the CorpusItem field defaults (OTHER/0/high), same as any other
+    deterministic-only fallback.
+    """
     llm_weight = float(cfg.get("llm_weight", 0.8))
     expires = now + timedelta(days=retention_days)
 
@@ -70,6 +79,7 @@ def score_new_items(
         verdict = verdicts.get(item.uid)
         llm_score, why = verdict if verdict else (None, "")
         relevance = blend_relevance(norm, llm_score, llm_weight)
+        classification = classify_results.get(item.uid, {})
         frozen.append(
             CorpusItem(
                 id=item.uid,
@@ -89,6 +99,9 @@ def score_new_items(
                 deterministic_norm=norm,
                 llm_score=llm_score,
                 mode="llm" if verdict else "deterministic",
+                item_type=classification.get("type", "OTHER"),
+                locality=classification.get("locality", 0),
+                confidence=classification.get("confidence", "high"),
             )
         )
     return frozen
@@ -177,11 +190,30 @@ def main(argv: list[str] | None = None, *, output_root: Path | None = None) -> i
     new_raw = [item for item in fetched if item.uid not in existing_ids]
     print(f"  {len(new_raw)} new since last run", file=sys.stderr)
 
-    # Stages 4-5: deterministic + LLM scoring, new items only.
+    # Stage 4: classify new items into a type (CURRICULUM/HISTORY/PEDAGOGY/
+    # PUPILS/CAREER/SECTOR/OTHER/IRRELEVANT) -- see classify.py. Runs before
+    # deterministic scoring only because it's cheap and order doesn't matter
+    # otherwise; the two are independent passes over the same new_raw list.
+    classify_results, classify_status = classify.classify_items(new_raw, cfg)
+    print(f"  classify: {classify_status}", file=sys.stderr)
+
+    # Stages 4-5: deterministic + typed LLM scoring, new items only. IRRELEVANT
+    # items are excluded from the LLM pass inside rerank_new_items -- they
+    # still get deterministically scored below like everything else, which is
+    # what keeps them out of the corpus's dedup memory problem (see the
+    # docstring on rerank_new_items) without a separate discard path.
     scorer = Scorer(cfg)
-    verdicts, llm_status = llm.rerank_new_items(new_raw, cfg)
+    verdicts, llm_status = llm.rerank_new_items(new_raw, classify_results, cfg)
     print(f"  ranking: {llm_status}", file=sys.stderr)
-    new_items = score_new_items(new_raw, scorer, verdicts, cfg, now, retention_days)
+
+    # The page footer shows one status line (see build_meta/site.py); fold
+    # classify's own degradation into it only when classify actually
+    # degraded (a batch failure defaulting some items to OTHER) -- llm_status
+    # already reports the irrelevant-discarded count on its own in the
+    # common case, so this avoids a redundant line when nothing went wrong.
+    if "degraded" in classify_status:
+        llm_status = f"{classify_status}; then {llm_status}"
+    new_items = score_new_items(new_raw, scorer, verdicts, classify_results, cfg, now, retention_days)
 
     # Stages 6-8: merge, expire, recompute rank_score/tier across everything.
     live = drop_expired(existing + new_items, now)
@@ -211,7 +243,7 @@ def main(argv: list[str] | None = None, *, output_root: Path | None = None) -> i
 
     # Stage 9: emit the API, the site, and today's dated markdown brief.
     api.write_all(published, published_new, today_items, meta, out_root, now)
-    site.write_site(published, today_items, meta, out_root, now, cfg.get("topics", []))
+    site.write_site(published, today_items, meta, out_root, now, cfg)
     brief.write_brief(today_items, feed_problems, llm_status, out_root, now)
     rss.write_feed(published, cfg, out_root, now)
 

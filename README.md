@@ -82,10 +82,20 @@ starting guess about what matters to you, not a finished answer.
 Every story gets a **deterministic score** — the sum of a source weight
 (`config/feeds.yml`), matched topic groups (`config/scoring.yml`), a recency
 bonus, and any mute penalties — normalised onto a fixed 0–10 scale. If an
-`ANTHROPIC_API_KEY` is configured, an **LLM pass** also judges the story on
-its own merits, 0–10, against a written rubric (never against the other
-stories in the batch — see [below](#why-the-scoring-has-to-be-absolute)). The
-two are blended (60% LLM, 40% deterministic by default) into a single
+`ANTHROPIC_API_KEY` is configured, a **two-stage LLM pass** also judges the
+story:
+
+1. **Classify** (`src/classify.py`) triages every new story into a type --
+   CURRICULUM, HISTORY, PEDAGOGY, PUPILS, CAREER, SECTOR, OTHER, or
+   IRRELEVANT (discarded, unscored) -- plus a 0–4 Nottinghamshire locality
+   score.
+2. **Score** (`src/llm.py`) batches surviving stories by type and scores each
+   against universals (how much changes, how easy to discover) plus that
+   type's own small Likert item bank (never against the other stories in the
+   batch — see [below](#why-the-scoring-has-to-be-absolute)).
+
+The two stages produce one 0–10 LLM score, which is then blended with the
+deterministic one (60% LLM, 40% deterministic by default) into a single
 **relevance** score, 0–10.
 
 That blend happens exactly once, when a story is first seen, and is then
@@ -93,11 +103,18 @@ That blend happens exactly once, when a story is first seen, and is then
 doesn't change. What you see ranked highest on a given day is relevance minus
 a small, ever-growing age penalty (`rank_score`), recomputed for the whole
 list on every run so fresher stories edge out equally-relevant stale ones
-without ever re-touching the frozen score.
+without ever re-touching the frozen score. A Nottinghamshire-eligible story
+also gets a **percentile floor** on `rank_score` at this same recompute step
+(see `locality` in `config/scoring.yml`) -- not summed into relevance, so
+locality can surface a story without ever letting it outrank real curriculum
+or career news on its own.
 
-Stories land in three tiers — **Read these**, **Worth a look**, **Everything
-else** — set by fixed thresholds on the relevance scale (`tiers` in
-`config/scoring.yml`).
+Stories land in four tiers — **Read these**, **Worth a look**, **Everything
+else**, **Low relevance** — set by fixed thresholds on the relevance scale
+(`tiers` in `config/scoring.yml`). The site organises stories primarily by
+**type**, not tier -- Curriculum, History, Pupils, Pedagogy, Career, Sector
+(background, collapsed by default) -- with tier staying as a filter and
+Nottinghamshire as a cross-cutting section.
 
 A topic group scores **once** no matter how many of its terms match, so an
 article that repeats a keyword twenty times gains nothing over one that says
@@ -116,10 +133,10 @@ depending on what else happened to be scored alongside it that day. A
 
 - The deterministic score is normalised against a **fixed ceiling**
   (`deterministic_scale_max` in config), not the current run's own min/max.
-- The LLM is given a **written rubric with fixed anchors** (0 = irrelevant,
-  5 = useful to any teacher, 8 = directly relevant to history ITT, 10 =
-  drop-everything) and is explicitly told never to compare stories to each
-  other.
+- The LLM scores each story on a fixed 0–4 Likert scale per item (0 = not at
+  all, 4 = entirely), explicitly told never to compare stories to each
+  other and never to let a batch of similar stories (they're grouped by
+  type) push scores up on that basis alone.
 
 You can read exactly why anything ranked where it did in `deterministic_raw`
 and the tags surfaced per item — everything is in `data/corpus.json` and the
@@ -321,8 +338,9 @@ config/feeds.yml         sources, weights, on/off
 config/scoring.yml       topic groups, weights, mutes, tier cuts, scoring scale
 src/fetch.py             HTTP + feed normalisation, item identity (id derivation)
 src/score.py             deterministic scorer + fixed-ceiling normalisation
-src/llm.py               absolute LLM re-rank, batched, dormant without a key
-src/corpus.py            the rolling corpus: load/save/expire/rank
+src/classify.py          stage 1: type + locality triage, batched, dormant without a key
+src/llm.py               stage 2: typed Likert scoring, batched, dormant without a key
+src/corpus.py            the rolling corpus: load/save/expire/rank/locality floor
 src/api.py               docs/api/v1/*.json writer
 src/site.py              docs/index.html, docs/archive.html, dated snapshots
 src/rss.py               docs/feed.xml writer (lead/worth tiers only)
