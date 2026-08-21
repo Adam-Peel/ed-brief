@@ -291,16 +291,18 @@ def main() -> int:
           "an item with locality below the threshold (2 < 3) is never floored, even as the lowest score",
           str(by_id["loc5"].rank_score))
 
-    section("Golden test: a fixture set produces a stable section assignment")
-    # Section grouping itself runs client-side in JS (see render() in
-    # site.py) -- there's no headless browser in this offline suite to
-    # execute it, the same honest limit AC12 already notes for ReadStore.
-    # What IS directly checkable, and is what the JS grouping actually
-    # depends on: every item's {type, locality} survives into the embedded
-    # ITEMS payload unchanged, and the section order/labels driving the
-    # grouping are exactly what scoring.yml's section_order says, not
-    # something the template silently defaults to. Fixed input -> fixed
-    # output, checked by direct string comparison, is the "golden" part.
+    section("Golden test: a fixture set produces stable type/locality data on each card")
+    # The list groups by TIER (score strength), same as it always has --
+    # type moved to a per-card pill (see card() in site.py) after grouping
+    # by type buried high-scoring items under whichever category happened
+    # to render lower on the page. Pill rendering itself runs client-side
+    # in JS -- there's no headless browser in this offline suite to execute
+    # it, the same honest limit AC12 already notes for ReadStore. What IS
+    # directly checkable: every item's {type, locality} survives into the
+    # embedded ITEMS payload unchanged, and TYPE_LABELS (what the pill text
+    # actually says) is present and correct in the rendered page. Fixed
+    # input -> fixed output, checked by direct string comparison, is the
+    # "golden" part.
     from src import site as site_mod
 
     golden_now = datetime(2026, 1, 1, tzinfo=timezone.utc)
@@ -322,7 +324,6 @@ def main() -> int:
                    expires=golden_now + timedelta(days=14), relevance=2.0, rank_score=2.0,
                    tier="rest", item_type="OTHER", locality=0),
     ]
-    golden_cfg = {"section_order": ["CURRICULUM", "HISTORY", "PUPILS", "PEDAGOGY", "CAREER", "SECTOR"]}
     payload = site_mod._payload(golden_items)
     by_id_payload = {p["id"]: p for p in payload}
     check(
@@ -335,13 +336,14 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as tmp:
         golden_root = Path(tmp)
         meta_stub = {"scoring": {"status": "test"}, "retention_days": 14, "sources": []}
-        site_mod.write_site(golden_items, [], meta_stub, golden_root, golden_now, golden_cfg)
+        site_mod.write_site(golden_items, [], meta_stub, golden_root, golden_now, {})
         golden_html = (golden_root / "docs" / "index.html").read_text("utf-8")
     check(
-        'const SECTION_ORDER = ["CURRICULUM", "HISTORY", "PUPILS", "PEDAGOGY", "CAREER", "SECTOR"];'
-        in golden_html,
-        "the rendered page's section order comes from scoring.yml's config, not a silent default",
+        '"CURRICULUM": "Curriculum"' in golden_html and '"OTHER": "Other"' in golden_html,
+        "TYPE_LABELS (the pill text for every type, including OTHER) reaches the rendered page",
     )
+    check('class="type-pill"' in golden_html and 'class="notts-pill"' in golden_html,
+          "the card template emits both the type pill and the Notts pill")
     check('"type": "HISTORY", "locality": 4' in golden_html,
           "the Nottinghamshire-eligible item's type and locality both reach the rendered page")
 

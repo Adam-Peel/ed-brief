@@ -129,14 +129,6 @@ locality:
   floor_percentile: 85
   floor_min_score: 3
 
-# Fixed rendering order for docs/index.html's type sections (src/site.py).
-# IRRELEVANT is never here -- those items are discarded at classify time
-# and never reach the site at all. An empty section still renders its
-# heading and a zero count: CURRICULUM being empty on a given run is
-# information (nothing curriculum-relevant happened this fortnight), not
-# a bug to hide.
-section_order: [CURRICULUM, HISTORY, PUPILS, PEDAGOGY, CAREER, SECTOR]
-
 tiers:
   # Fixed thresholds on the FROZEN relevance scale (0-10), not the raw
   # deterministic sum -- tiering happens once per item, after the
