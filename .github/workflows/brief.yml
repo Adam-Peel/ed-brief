@@ -66,10 +66,11 @@ jobs:
       - name: Build the brief
         if: steps.guard.outputs.go == 'true'
         env:
-          # Uncomment the next line after adding ANTHROPIC_API_KEY as a
-          # repository secret, to turn on LLM re-ranking. Without it the run
-          # falls back to deterministic scoring and says so in the footer.
-          # ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Empty/unset is safe: llm.available() treats a blank key the same
+          # as no key at all and falls back to deterministic scoring, so this
+          # can stay uncommented whether or not the ANTHROPIC_API_KEY repo
+          # secret exists yet -- it activates the moment that secret is added.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PYTHONUNBUFFERED: "1"
           BRIEF_WINDOW_HOURS: ${{ github.event.inputs.window_hours }}
         run: python -m src.build
