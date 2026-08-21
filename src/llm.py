@@ -43,14 +43,26 @@ CORE (7-10) -- the direct substance of their subject and their training:
 board choices, spec changes, option withdrawals, entry numbers -- Ofqual \
 and the awarding bodies (AQA, Edexcel, OCR, WJEC) matter here as much as \
 Ofsted does.
+- National curriculum and qualifications reform, whether or not it names \
+history: the Francis Review, EBacc and Progress 8, KS3 and GCSE content \
+and structure, accountability measures that shape which subjects get \
+timetable and option-block space. EBacc and Progress 8 specifically are \
+the mechanisms that decide how many pupils take GCSE history -- a story \
+about accountability measures is a history story even when it never says \
+so, and this applies to reform not yet named here too: judge by whether \
+it reshapes what gets taught system-wide, not by whether it matches one \
+of these examples.
 - New historical research or scholarship on a period they might actually \
 teach: not just teaching methodology, but new findings, interpretations, \
 or discoveries. Real standing value for a history teacher's own subject \
 knowledge, not just narrow classroom-practice tips -- score 7-8. The same \
 quality of history writing on a period they would NOT teach (see PERIOD \
 below) scores 4-5 instead: good history journalism, but not this reader's \
-subject. The Historical Association and Teaching History are exactly this \
-reader's trade press.
+subject. This also covers primary-source releases -- The National \
+Archives' periodic records openings, digitisation projects, newly \
+available collections -- lesson material in its own right, not just \
+secondary literature about it. The Historical Association and Teaching \
+History are exactly this reader's trade press.
 - Contested history and curriculum politics as they play out IN schools: \
 empire and decolonisation in the curriculum, Holocaust education, \
 political-impartiality guidance, textbook and exam-board controversies. \
@@ -59,13 +71,25 @@ taught, or how, it's a history-teaching story.
 - Heritage and museum education: a history-specific teaching resource or \
 schools programme from a museum or heritage body, Nottinghamshire or \
 national. Distinct from the Nottinghamshire-heritage-as-news premium \
-below -- this is usable teaching material, not background local interest.
-- Routes into teaching: ITT, PGCE, bursaries, QTS, recruitment, national \
-curriculum and assessment reform including the Francis Review, and the \
-ITT-phase content of the ITTECF (the Initial Teacher Training and Early \
-Career Framework -- a single framework since September 2025 covering ITT \
-and induction as two distinct phases within it). The ITT phase applies to \
-them now, since they're about to enter it.
+below -- this is usable teaching material, not background local interest. \
+Anniversaries and commemorations belong here too: schools plan assemblies, \
+trips, and units around them.
+- Routes into teaching and the profession's own institutions: ITT, PGCE, \
+bursaries, QTS, recruitment -- read subject-specific where the story is: \
+history's bursary position and competition for posts are not the same as \
+physics's, so don't flatten "recruitment" into one generic signal. Also \
+covers ITT providers themselves: accreditation, inspection, or \
+placement-supply problems at a provider are exactly this reader's route \
+in, not background sector news. Includes the ITT-phase content of the \
+ITTECF (the Initial Teacher Training and Early Career Framework -- a \
+single framework since September 2025 covering ITT and induction as two \
+distinct phases within it); the ITT phase applies to them now, since \
+they're about to enter it.
+- The shape of the secondary job market they're entering: falling \
+secondary pupil rolls and a contracting market for new teacher posts over \
+the coming years. For someone entering in 2026 this may be the single \
+most consequential structural fact about their next decade -- score it as \
+a career story even when it never mentions history specifically.
 
 PROFESSIONAL CONTEXT (5-8) -- shapes the job, not the subject itself:
 - Classroom practice broadly, not just "cognitive science" narrowly: \
@@ -86,6 +110,11 @@ shows up.
 - Workload, retention, pay, pensions, the STRB, and industrial action -- \
 material to someone actually deciding whether to enter or stay in the \
 profession.
+- School funding, budgets, multi-academy trusts, and academisation: when \
+budgets tighten, humanities staffing and option-block space are what gets \
+cut first. A trust restructuring its humanities provision, or a funding \
+story with real staffing consequences, is a career story, not abstract \
+sector news.
 - The induction/early-career phase of the ITTECF, mentoring, and the \
 first-year workload picture: relevant background, but they haven't \
 reached this phase yet, so it sits here rather than in CORE.
@@ -93,8 +122,9 @@ reached this phase yet, so it sits here rather than in CORE.
 ADJACENT (4-6) -- real interest, but capped below the bands above:
 - Pupil wellbeing and mental health as shaped by school policy or \
 research -- see the separate paragraph below for scoring within this band.
-- Nottinghamshire local HISTORY, heritage, or archaeology specifically -- \
-also see the separate paragraph below.
+- The Nottinghamshire premium, covering BOTH local history/heritage AND \
+local schools/education context (MATs, ITT providers, the local job \
+market) -- see the separate paragraph below.
 
 They care much less about higher education, early years, further \
 education colleges, and school sport -- below all three bands. They teach \
@@ -111,22 +141,27 @@ Score 5-7: higher toward 7 when it's squarely about secondary-age pupils' \
 academic experience (e.g. exam-linked stress), lower toward 5 when it's \
 more general wellbeing news not tied to a specific school-age policy.
 
-NOTTINGHAMSHIRE LOCAL HISTORY PREMIUM: a genuine regional interest, not a \
-generic "local news" bump. A story ITSELF about Nottinghamshire's history, \
-heritage, or archaeology scores noticeably higher than an equivalent story \
-about somewhere else, even though it isn't curriculum news and doesn't \
-need to connect to teaching at all. But the cap is on locality as the \
-REASON for the score, not on the story itself: never score above 6 for \
-being local alone -- a Nottinghamshire story can still exceed 6 on other \
-grounds (significant new scholarship, a genuine curriculum or teaching \
-link), the same as any other story would, just not for being local. Be \
-strict about what counts as local-history content at all: a modern event \
+NOTTINGHAMSHIRE PREMIUM: a genuine regional interest, not a generic "local \
+news" bump, with two facets. First, local HISTORY, heritage, or \
+archaeology: a story ITSELF about Nottinghamshire's history, heritage, or \
+archaeology scores noticeably higher than an equivalent story about \
+somewhere else, even though it isn't curriculum news and doesn't need to \
+connect to teaching at all. Second, local SCHOOLS and career context: a \
+story about a Nottinghamshire school, multi-academy trust, ITT provider, \
+or the local teaching job market gets the same kind of bump, for the same \
+reason -- this is where they'll actually work. Both facets share one cap, \
+on locality as the REASON for the score, not on the story itself: never \
+score above 6 for being local alone -- a Nottinghamshire story can still \
+exceed 6 on other grounds (significant new scholarship, a genuine \
+curriculum link, a real funding or staffing story under the school-funding \
+category above), the same as any other story would, just not for being \
+local. Be strict about the history facet specifically: a modern event \
 that merely takes place AT a historic Nottinghamshire site -- a cinema \
 night, a concert, a market -- is not a history story and gets no premium, \
 however prominently it names the site. The test is what the story is \
-ABOUT, not which building it namedrops. This premium is exempt from the \
-pre-1066 guidance below -- Nottinghamshire's prehistoric and Roman sites \
-are exactly what a local history study can legitimately cover.
+ABOUT, not which building it namedrops. The history facet is exempt from \
+the pre-1066 guidance below -- Nottinghamshire's prehistoric and Roman \
+sites are exactly what a local history study can legitimately cover.
 
 DIRECT vs INCIDENTAL relevance: Ofsted and the DfE cover far more than \
 secondary schools -- Ofsted also regulates children's social care \
@@ -173,8 +208,11 @@ Score each story 0-10 against these anchors:
 ITT-direct
   8  = directly relevant to secondary history, ITT, or this reader's own \
 subject knowledge/career
-  10 = essential reading for THIS reader specifically -- not just strong \
-journalism generally
+  10 = essential reading for this reader -- either because it is \
+specifically about their subject, their route in, or their region, or \
+because it changes the system they are about to enter (a curriculum \
+overhaul, an inspection-framework rewrite, a system-wide funding or pay \
+shock)
 
 This is a rolling 14-day digest, not a same-day alert -- score for lasting \
 relevance to this reader, not literal urgency.
