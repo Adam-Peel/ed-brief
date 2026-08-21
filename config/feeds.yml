@@ -340,6 +340,22 @@ feeds:
       lower than the history-specific sources above, but real and
       relevant to the SEND/professional-context categories.
 
+  - id: national-archives-blog
+    name: The National Archives Blog
+    url: https://www.nationalarchives.gov.uk/feeds/blogs.xml
+    weight: 1.5
+    enabled: true
+    note: >
+      Added 2026-08-21, owner-found. Not the blocked blog.
+      nationalarchives.gov.uk subdomain checked earlier -- a different path
+      under the main domain, unaffected by that block. Verified reachable
+      and genuinely current (most recent item published the same day this
+      was added) through the real fetch pipeline. Exactly the primary-
+      source-release category the LLM rubric names explicitly: real recent
+      titles include "Uncovering precious medieval silk seal bags in our
+      collection" and "Three archives gain accredited status". Weighted
+      like DfE -- primary-source, not commentary.
+
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
   # Enable one and run `python -m src.validate` to see whether it resolves.
@@ -520,17 +536,14 @@ feeds:
   #     itself changes, not by re-suggesting these two feeds alone.
   #
   # Also checked 2026-08-21: The National Archives, owner-suggested
-  # directly. Neither of the two URLs given works:
-  #   - nationalarchives.gov.uk/rss/ is a landing page, not a feed itself --
-  #     it links to news.xml (real feed, but stale: last item Sep 2018) and
-  #     podcasts.xml (real feed, stale: last item Oct 2022). Both fail the
-  #     "content within 6 months" bar by years, not months.
-  #   - blog.nationalarchives.gov.uk/feed/ -- which is genuinely the
-  #     better-fit one for "primary-source releases, digitisation projects"
-  #     -- returns HTTP 405 with an AWS WAF "Human Verification" challenge.
-  #     Same class of block as Schools Week/FE Week, not fixable
-  #     client-side. This is the one worth revisiting if that block ever
-  #     lifts or an RSS-bridge instance is ever set up.
+  # directly. The first two URLs given didn't work -- nationalarchives.
+  # gov.uk/rss/ is a landing page, not a feed itself, linking to news.xml
+  # (real, stale since Sep 2018) and podcasts.xml (real, stale since Oct
+  # 2022); blog.nationalarchives.gov.uk/feed/ 405s behind an AWS WAF
+  # challenge. But the owner then found the actual working URL --
+  # nationalarchives.gov.uk/feeds/blogs.xml, a DIFFERENT path under the
+  # main domain rather than the blocked blog. subdomain -- now enabled
+  # above as the-national-archives-blog.
   #
   # Also checked 2026-08-21, owner asked specifically for a pass over
   # feedspot.com's "Top 30 UK History RSS Feeds" list, filtered for content
@@ -606,3 +619,16 @@ feeds:
   #     the American subject name, not "History"/"Humanities" as UK
   #     schools call it. Reachability isn't the issue here, curriculum fit
   #     is.
+  #
+  # Also checked 2026-08-21: govwire.co.uk, owner-suggested specifically to
+  # search for museum feeds. GovWire is real infrastructure -- a directory
+  # mirroring official press releases for institutions that often lack
+  # their own working feed -- but every museum/heritage slug tried
+  # (british-museum, royal-museums-greenwich, british-library,
+  # victoria-and-albert-museum) returns a well-formed but completely empty
+  # RSS shell: generic placeholder channel title/description ("RSS Feed" /
+  # "Description"), a <pubDate> that's just the request timestamp (all four
+  # returned dates within one second of each other and of "now"), zero
+  # <item> elements. Not usable as-is. Worth a second look if GovWire ever
+  # actually populates these -- not rechecked exhaustively across GovWire's
+  # non-museum categories, since that wasn't what was asked.
