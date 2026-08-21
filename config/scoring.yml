@@ -69,6 +69,18 @@ tiers:
   # browsing the rest of the corpus still doesn't mean wading through
   # near-zero-score noise unless you specifically ask for it too.
 
+# Items scoring below this are excluded from every PUBLISHED surface (site,
+# API, archive) entirely -- not just hidden behind a toggle like the tiers
+# above. This is a real exception to "the API always returns the full live
+# corpus": below 0.1, the deterministic scorer and the LLM both agree
+# there's nothing there, for any plausible reader, not just this profile,
+# so there's nothing for a future re-ranker to reconsider either. They still
+# get PERSISTED to data/corpus.json (see corpus.publishable()), just not
+# published -- excluding them from the corpus entirely would mean the same
+# worthless item gets re-fetched and re-scored by the LLM on every run until
+# it aged out of the fetch window, for zero benefit.
+publish_floor: 0.1
+
 # How long an item stays in the rolling list after first being seen.
 retention_days: 14
 

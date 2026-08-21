@@ -161,3 +161,15 @@ def recompute_rank(items: list[CorpusItem], cfg: dict, now: datetime) -> None:
         )
 
     items.sort(key=lambda i: (-i.rank_score, -i.published.timestamp()))
+
+
+def publishable(items: list[CorpusItem], cfg: dict) -> list[CorpusItem]:
+    """Items below `publish_floor` are excluded from every published surface
+    -- the site, the API, the archive -- even though they stay in the
+    persisted corpus (see the comment on publish_floor in scoring.yml for
+    why: dedup still needs to remember them, or they'd be re-fetched and
+    re-scored by the LLM every run for no benefit). Call this on the full
+    corpus right before writing anything public; `save()` itself should
+    always get the unfiltered list."""
+    floor = float(cfg.get("publish_floor", 0.0))
+    return [i for i in items if i.relevance >= floor]

@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src import llm  # noqa: E402
 from src.build import build_meta, load_config, score_new_items  # noqa: E402
-from src.corpus import CorpusItem, drop_expired, recompute_rank  # noqa: E402
+from src.corpus import CorpusItem, drop_expired, publishable, recompute_rank  # noqa: E402
 from src.fetch import Item, parse_feed  # noqa: E402
 from src.score import Scorer, blend_relevance  # noqa: E402
 
@@ -207,6 +207,26 @@ def main() -> int:
     check(above_rest.tier == "rest",
           f"relevance {rest_cut + 0.5} (above the {rest_cut} rest cut) lands in 'rest'",
           above_rest.tier)
+
+    section("publish_floor: excluded from published output, kept in the corpus")
+    floor = float(scoring_cfg.get("publish_floor", 0.0))
+    below_floor = CorpusItem(
+        id="floor-below", title="t", url="u", summary="", source_id="s", source_name="S",
+        published=now, first_seen=now, expires=now + timedelta(days=14),
+        relevance=max(0.0, floor - 0.05),
+    )
+    above_floor = CorpusItem(
+        id="floor-above", title="t", url="u", summary="", source_id="s", source_name="S",
+        published=now, first_seen=now, expires=now + timedelta(days=14),
+        relevance=floor + 0.05,
+    )
+    all_items = [below_floor, above_floor]
+    published = publishable(all_items, scoring_cfg)
+    check(above_floor in published and below_floor not in published,
+          "an item below publish_floor is excluded from the published list",
+          f"floor={floor} published_ids={[i.id for i in published]}")
+    check(len(all_items) == 2,
+          "the item below publish_floor is untouched in the original (corpus-bound) list")
 
     section("Pre-1066 mute")
     ancient = scorer.score_item(Item(

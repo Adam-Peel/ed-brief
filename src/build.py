@@ -17,7 +17,16 @@ from pathlib import Path
 import yaml
 
 from . import api, brief, llm, site
-from .corpus import SCHEMA, CorpusItem, drop_expired, format_dt, load, recompute_rank, save
+from .corpus import (
+    SCHEMA,
+    CorpusItem,
+    drop_expired,
+    format_dt,
+    load,
+    publishable,
+    recompute_rank,
+    save,
+)
 from .fetch import Item, fetch_all
 from .score import Scorer, blend_relevance
 
@@ -85,7 +94,7 @@ def score_new_items(
 
 
 def build_meta(
-    live: list[CorpusItem],
+    published: list[CorpusItem],
     new_items: list[CorpusItem],
     feeds: list[dict],
     feed_problems: list[str],
@@ -95,7 +104,9 @@ def build_meta(
 ) -> dict:
     """Run metadata: per-source health, counts, scoring mode, retention. Feeds
     the API's meta.json and the site footer from one place so they can't
-    disagree with each other."""
+    disagree with each other. `published` and `new_items` should already be
+    publish_floor-filtered -- meta.json's counts describe what's actually
+    shown, not the full persisted corpus."""
     problem_detail = {}
     for problem in feed_problems:
         name, _, detail = problem.partition(": ")
@@ -112,8 +123,8 @@ def build_meta(
         if f.get("enabled", True)
     ]
 
-    tier_counts = {"lead": 0, "worth": 0, "rest": 0}
-    for item in live:
+    tier_counts = {"lead": 0, "worth": 0, "rest": 0, "noise": 0}
+    for item in published:
         tier_counts[item.tier] = tier_counts.get(item.tier, 0) + 1
 
     llm_count = sum(1 for item in new_items if item.mode == "llm")
@@ -123,7 +134,7 @@ def build_meta(
         "generated": format_dt(now),
         "retention_days": retention_days,
         "counts": {
-            "live": len(live),
+            "live": len(published),
             "new": len(new_items),
             "by_tier": tier_counts,
         },
@@ -175,10 +186,18 @@ def main(argv: list[str] | None = None, *, output_root: Path | None = None) -> i
     live = drop_expired(existing + new_items, now)
     recompute_rank(live, cfg, now)
 
-    # Persist the corpus before emitting anything derived from it.
+    # Persist the FULL corpus (including anything below publish_floor)
+    # before emitting anything derived from it -- dedup needs to remember
+    # every item ever seen, published or not.
     save(corpus_path, live, now, retention_days)
 
-    meta = build_meta(live, new_items, feeds, feed_problems, llm_status, now, retention_days)
+    # Everything from here on is what actually gets published. Below
+    # publish_floor is excluded entirely, not just hidden behind a toggle --
+    # see the comment on publish_floor in scoring.yml.
+    published = publishable(live, cfg)
+    published_new = publishable(new_items, cfg)
+
+    meta = build_meta(published, published_new, feeds, feed_problems, llm_status, now, retention_days)
 
     # Everything keyed by calendar date (the dated archive, the markdown
     # brief) needs every item first seen *today*, not just this run's new
@@ -187,14 +206,18 @@ def main(argv: list[str] | None = None, *, output_root: Path | None = None) -> i
     # day's record. latest.json is the one place that's deliberately
     # run-scoped (it documents "added by the most recent run").
     today_iso = now.strftime("%Y-%m-%d")
-    today_items = [item for item in live if item.first_seen.strftime("%Y-%m-%d") == today_iso]
+    today_items = [item for item in published if item.first_seen.strftime("%Y-%m-%d") == today_iso]
 
     # Stage 9: emit the API, the site, and today's dated markdown brief.
-    api.write_all(live, new_items, today_items, meta, out_root, now)
-    site.write_site(live, today_items, meta, out_root, now, cfg.get("topics", []))
+    api.write_all(published, published_new, today_items, meta, out_root, now)
+    site.write_site(published, today_items, meta, out_root, now, cfg.get("topics", []))
     brief.write_brief(today_items, feed_problems, llm_status, out_root, now)
 
-    print(f"\nWrote {len(live)} live items ({len(new_items)} new).", file=sys.stderr)
+    print(
+        f"\nWrote {len(published)} published items ({len(live) - len(published)} below "
+        f"publish_floor, kept in the corpus but not shown) ({len(new_items)} new).",
+        file=sys.stderr,
+    )
     return 0
 
 
