@@ -188,6 +188,36 @@ def main() -> int:
           "the older item's rank_score is lower than the fresher one's",
           f"fresh={fresh.rank_score:.2f} stale={stale.rank_score:.2f}")
 
+    section("Four-tier split: 'noise' below the rest cut")
+    below_rest = CorpusItem(
+        id="tier-noise", title="t", url="u", summary="", source_id="s", source_name="S",
+        published=now, first_seen=now, expires=now + timedelta(days=14), relevance=0.5,
+    )
+    above_rest = CorpusItem(
+        id="tier-rest", title="t", url="u", summary="", source_id="s", source_name="S",
+        published=now, first_seen=now, expires=now + timedelta(days=14), relevance=2.0,
+    )
+    recompute_rank([below_rest, above_rest], scoring_cfg, now)
+    check(below_rest.tier == "noise", "relevance 0.5 (below the 1.0 rest cut) lands in 'noise'",
+          below_rest.tier)
+    check(above_rest.tier == "rest", "relevance 2.0 (above the rest cut) lands in 'rest'",
+          above_rest.tier)
+
+    section("Pre-1066 mute")
+    ancient = scorer.score_item(Item(
+        uid="p1", title="New evidence from Ancient Rome reshapes our view",
+        summary="", url="u", source_id="s", source_name="S", published=now,
+    ))
+    conquest_era = scorer.score_item(Item(
+        uid="p2", title="Anglo-Saxon and Norman England: new GCSE resources",
+        summary="", url="u", source_id="s", source_name="S", published=now,
+    ))
+    check(any("pre-1066" in r for r in ancient.reasons),
+          "'Ancient Rome' triggers the pre-1066 mute", str(ancient.reasons))
+    check(not any("pre-1066" in r for r in conquest_era.reasons),
+          "'Anglo-Saxon and Norman England' is NOT muted -- it's a real GCSE-boundary topic",
+          str(conquest_era.reasons))
+
     section("Acceptance criterion 2: existing items are never re-scored")
     existing_item = CorpusItem(
         id="exist-1", title="Old story", url="https://example.org/a", summary="",

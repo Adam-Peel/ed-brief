@@ -82,16 +82,19 @@ feeds:
   - id: historyextra
     name: HistoryExtra
     url: https://www.historyextra.com/feed
-    weight: 0.0
+    weight: 1.0
     enabled: true
     note: >
-      BBC History Magazine's site. Verified reachable 2026-08-21. Weighted
-      neutral rather than up, deliberately: unlike the sources above this is
-      general public history content (narrative features, quizzes,
-      crosswords), not teaching/curriculum news, so a source-level nudge
-      would be a false signal here -- let topic scoring alone decide which
-      pieces are actually relevant to a trainee. A weekly quiz/crossword mute
-      group in scoring.yml sinks the pure trivia entries.
+      BBC History Magazine's site. Verified reachable 2026-08-21. Raised from
+      an initial 0.0 (2026-08-21): new historical scholarship has real
+      standing value for a history teacher's own subject knowledge and
+      curriculum design, not just narrow classroom-practice tips -- still
+      well below Schools Week's 2.0, since a lot of this is general-audience
+      narrative history rather than teaching-relevant. Two mute groups in
+      scoring.yml do the real filtering work now: quiz-and-trivia sinks the
+      quizzes/crosswords, and pre-1066 sinks classical/ancient content that's
+      outside the secondary curriculum's c.1066-present range -- the LLM
+      rubric (llm.py) applies the same period judgement with more nuance.
 
   - id: oxford-education
     name: Oxford Department of Education
@@ -118,6 +121,33 @@ feeds:
       pedagogy/education-research content mixed with international
       partnership and staff-award announcements, so weighted neutral rather
       than up.
+
+  - id: cambridge-history
+    name: Cambridge Faculty of History
+    url: https://www.hist.cam.ac.uk/rss.xml
+    weight: 1.0
+    enabled: true
+    note: >
+      Added 2026-08-21 as an actual HISTORY-research source, distinct from
+      the education-faculty feeds above -- new scholarship, not pedagogy.
+      Verified reachable. Content is a mix of genuine research (new books,
+      prize wins for historical work) and faculty-internal news (staff
+      profiles, building restoration) at roughly one item per 10 days;
+      weighted the same as HistoryExtra for the same reason -- real value,
+      but not universally relevant, so topic scoring and the pre-1066 mute
+      do the filtering.
+
+  - id: warwick-history
+    name: Warwick History Department
+    url: https://warwick.ac.uk/sitebuilder2/api/rss/news.rss?page=/fac/arts/history/news/&rss=true
+    weight: 1.0
+    enabled: true
+    note: >
+      Added 2026-08-21. Verified reachable via the RSS link Warwick's own
+      news page advertises (not a guessed URL). Low volume (roughly monthly)
+      and mostly new-book/prize announcements rather than research findings
+      themselves, but each one is a real, citable piece of new scholarship --
+      weighted like the other research sources above.
 
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
@@ -207,3 +237,16 @@ feeds:
   #     equivalents; Exeter's redirects to a plain HTML page, the others 404).
   #     Not exhaustively checked -- may be worth a second pass with more
   #     specific URLs if one of these becomes a priority.
+  #
+  # Also checked 2026-08-21 looking specifically for HISTORY-research sources
+  # (distinct from the education-faculty search above) -- Cambridge and
+  # Warwick are enabled above, the rest weren't usable:
+  #   - Oxford Faculty of History (history.ox.ac.uk): no RSS anywhere found --
+  #     no autodiscovery link, no sitemap-adjacent feed, and (unlike Oxford's
+  #     Education department) no WordPress signature to guess a
+  #     ?post_type= variant from. They publish a termly e-newsletter instead.
+  #   - UCL History: every URL tried 301-redirects into the same Cloudflare
+  #     "Just a moment..." JS-challenge as UCL IOE above -- same domain-wide
+  #     block, not fixable client-side.
+  #   - King's College London History: /history/news/feed 404s. Not checked
+  #     exhaustively.

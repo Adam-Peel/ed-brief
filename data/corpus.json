@@ -1294,7 +1294,7 @@
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.95,
    "rank_score": 0.94,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1318,7 +1318,7 @@
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.82,
    "rank_score": 0.81,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1342,7 +1342,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.8,
    "rank_score": 0.79,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -1368,7 +1368,7 @@
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.77,
    "rank_score": 0.76,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1392,7 +1392,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.75,
    "rank_score": 0.74,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1416,7 +1416,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.71,
    "rank_score": 0.7,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1440,7 +1440,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.61,
    "rank_score": 0.6,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1464,7 +1464,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
    "rank_score": 0.59,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1488,7 +1488,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
    "rank_score": 0.59,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1512,7 +1512,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
    "rank_score": 0.59,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1536,7 +1536,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
    "rank_score": 0.59,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1560,7 +1560,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
    "rank_score": 0.59,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1584,7 +1584,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
    "rank_score": 0.59,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1608,7 +1608,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
    "rank_score": 0.59,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1632,7 +1632,7 @@
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 0.6,
    "rank_score": 0.59,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1656,7 +1656,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.6,
    "rank_score": 0.59,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1680,7 +1680,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.6,
    "rank_score": 0.59,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1704,7 +1704,7 @@
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.55,
    "rank_score": 0.54,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1728,13 +1728,37 @@
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.55,
    "rank_score": 0.54,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 1.38,
     "deterministic_norm": 0.55,
+    "llm": null
+   }
+  },
+  {
+   "id": "c4ba9ffc68420c31",
+   "title": "Parents pushed to breaking point by Child Maintenance Service, BBC told",
+   "url": "https://www.bbc.co.uk/news/articles/c4g3re5ew8do?at_medium=RSS&at_campaign=rss",
+   "summary": "Some parents describe battles to make ex-partners pay, while others say there have been mistakes in calculating what they owe.",
+   "source": {
+    "id": "bbc-education",
+    "name": "BBC Education"
+   },
+   "published": "2026-08-17T05:03:31Z",
+   "first_seen": "2026-08-21T10:30:32Z",
+   "expires": "2026-09-04T10:30:32Z",
+   "relevance": 0.51,
+   "rank_score": 0.5,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 1.27,
+    "deterministic_norm": 0.51,
     "llm": null
    }
   },
@@ -1752,7 +1776,7 @@
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.5,
    "rank_score": 0.5,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "ped-ai"
    ],
@@ -1762,30 +1786,6 @@
     "deterministic_raw": 3.14,
     "deterministic_norm": 1.26,
     "llm": 0.0
-   }
-  },
-  {
-   "id": "c4ba9ffc68420c31",
-   "title": "Parents pushed to breaking point by Child Maintenance Service, BBC told",
-   "url": "https://www.bbc.co.uk/news/articles/c4g3re5ew8do?at_medium=RSS&at_campaign=rss",
-   "summary": "Some parents describe battles to make ex-partners pay, while others say there have been mistakes in calculating what they owe.",
-   "source": {
-    "id": "bbc-education",
-    "name": "BBC Education"
-   },
-   "published": "2026-08-17T05:03:31Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.51,
-   "rank_score": 0.5,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 1.27,
-    "deterministic_norm": 0.51,
-    "llm": null
    }
   },
   {
@@ -1802,7 +1802,7 @@
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.48,
    "rank_score": 0.48,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "Political commentary unrelated to history teaching or ITT",
    "scoring": {
@@ -1826,7 +1826,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.44,
    "rank_score": 0.43,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1850,7 +1850,7 @@
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.43,
    "rank_score": 0.43,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "Indian school infrastructure irrelevant to English secondary history ITT",
    "scoring": {
@@ -1874,7 +1874,7 @@
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.43,
    "rank_score": 0.42,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1898,7 +1898,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.41,
    "rank_score": 0.4,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1922,7 +1922,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.4,
    "rank_score": 0.39,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1930,30 +1930,6 @@
     "deterministic_raw": 1.0,
     "deterministic_norm": 0.4,
     "llm": null
-   }
-  },
-  {
-   "id": "29bd6ae9b51789a5",
-   "title": "UK minister criticises misogynistic social media culture | Politics Weekly",
-   "url": "https://www.theguardian.com/politics/video/2026/aug/20/uk-minister-criticises-misogynistic-social-media-culture-politics-weekly",
-   "summary": "Racism and misogyny are becoming normalised as a result of rightwing politics and the ‘cesspit’ of social media, according to Labour’s Bridget Phillipson. In an extended interview, the minister for women and equalities and new party chair talks to Kiran Stacey about her fears for British society, the climate crisis, what Andy Burnham is really doing differently from Keir Starmer, and whether her party can beat Reform Continue reading...",
-   "source": {
-    "id": "guardian-education",
-    "name": "Guardian Education"
-   },
-   "published": "2026-08-20T14:00:23Z",
-   "first_seen": "2026-08-21T11:46:16Z",
-   "expires": "2026-09-04T11:46:16Z",
-   "relevance": 0.39,
-   "rank_score": 0.39,
-   "tier": "rest",
-   "tags": [],
-   "why": "Social media commentary unrelated to history teaching or curriculum",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 2.44,
-    "deterministic_norm": 0.98,
-    "llm": 0.0
    }
   },
   {
@@ -1970,13 +1946,37 @@
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.39,
    "rank_score": 0.39,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "Ancient Greek content enrichment unrelated to ITT pedagogy or curriculum",
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 2.42,
     "deterministic_norm": 0.97,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "29bd6ae9b51789a5",
+   "title": "UK minister criticises misogynistic social media culture | Politics Weekly",
+   "url": "https://www.theguardian.com/politics/video/2026/aug/20/uk-minister-criticises-misogynistic-social-media-culture-politics-weekly",
+   "summary": "Racism and misogyny are becoming normalised as a result of rightwing politics and the ‘cesspit’ of social media, according to Labour’s Bridget Phillipson. In an extended interview, the minister for women and equalities and new party chair talks to Kiran Stacey about her fears for British society, the climate crisis, what Andy Burnham is really doing differently from Keir Starmer, and whether her party can beat Reform Continue reading...",
+   "source": {
+    "id": "guardian-education",
+    "name": "Guardian Education"
+   },
+   "published": "2026-08-20T14:00:23Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 0.39,
+   "rank_score": 0.39,
+   "tier": "noise",
+   "tags": [],
+   "why": "Social media commentary unrelated to history teaching or curriculum",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 2.44,
+    "deterministic_norm": 0.98,
     "llm": 0.0
    }
   },
@@ -1994,7 +1994,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.34,
    "rank_score": 0.33,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2018,7 +2018,7 @@
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.33,
    "rank_score": 0.32,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2042,7 +2042,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.32,
    "rank_score": 0.31,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2066,7 +2066,7 @@
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.3,
    "rank_score": 0.3,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "Royal history content enrichment unrelated to ITT pedagogy or assessment",
    "scoring": {
@@ -2090,7 +2090,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.29,
    "rank_score": 0.28,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2114,7 +2114,7 @@
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.28,
    "rank_score": 0.27,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "ped-ai"
    ],
@@ -2140,7 +2140,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.26,
    "rank_score": 0.25,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2164,7 +2164,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.25,
    "rank_score": 0.24,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2188,7 +2188,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.24,
    "rank_score": 0.23,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2212,7 +2212,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.23,
    "rank_score": 0.22,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2236,7 +2236,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.22,
    "rank_score": 0.21,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2260,7 +2260,7 @@
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.14,
    "rank_score": 0.13,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2284,7 +2284,7 @@
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.08,
    "rank_score": 0.07,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2308,7 +2308,7 @@
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.06,
    "rank_score": 0.05,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2332,7 +2332,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.01,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2356,7 +2356,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.01,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2380,7 +2380,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.01,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2404,7 +2404,7 @@
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "History quiz entertainment irrelevant to ITT or classroom practice",
    "scoring": {
@@ -2428,7 +2428,7 @@
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "History crossword puzzle irrelevant to ITT or teaching practice",
    "scoring": {
@@ -2452,7 +2452,7 @@
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "Daily quiz entertainment unrelated to ITT or secondary history teaching",
    "scoring": {
@@ -2476,7 +2476,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2500,7 +2500,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2524,7 +2524,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2548,7 +2548,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2572,7 +2572,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2596,7 +2596,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2620,7 +2620,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2644,7 +2644,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2668,7 +2668,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2692,7 +2692,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2716,7 +2716,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2740,7 +2740,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2764,7 +2764,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2788,7 +2788,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -2812,7 +2812,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.0,
    "rank_score": 0.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {

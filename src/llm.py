@@ -33,6 +33,11 @@ secondary HISTORY teaching. They are at the point of entering initial teacher \
 training, so they care most about:
 
 - anything specific to history as a school subject (curriculum, GCSE, pedagogy)
+- new historical research or scholarship that could inform how they teach or \
+sequence their subject content -- not just teaching methodology, but new \
+findings, interpretations, or discoveries about periods they might actually \
+teach. This has real standing value for a history teacher's own subject \
+knowledge, not just narrow classroom-practice tips.
 - routes into teaching: ITT, PGCE, bursaries, QTS, recruitment
 - the early career framework, induction, mentoring, workload, retention
 - national curriculum and assessment reform, including the Francis Review
@@ -42,6 +47,20 @@ training, so they care most about:
 They care much less about higher education, early years, further education \
 colleges, and school sport. They teach in ENGLAND, so Scottish and Welsh \
 policy is background only.
+
+The secondary history curriculum in England runs from roughly 1066 (the \
+Norman Conquest) to the present day. A story about history set before 1066 \
+-- ancient civilisations, prehistory, the classical world -- is very \
+unlikely to connect to what they will actually teach, however well-written \
+the history journalism is: score these low (0-2) UNLESS the story is \
+explicitly framed around teaching, curriculum, or a documented KS3/GCSE/ \
+A-level topic that reaches back that far (e.g. an exam board's ancient- \
+history option). The immediate pre-Conquest period (Anglo-Saxon and Viking \
+England) is a genuine judgement call, not an automatic low score -- some \
+GCSE options cover it as direct context for 1066 (e.g. "Anglo-Saxon and \
+Norman England, c1060-88"); use your judgement on whether a given story sits \
+close enough to that boundary to matter. The same story set after 1066 \
+should be judged purely on its own merits, with no date penalty at all.
 
 Score each story on its own merits against this fixed rubric. Do not rank or \
 compare stories against each other -- judge each one in isolation:

@@ -21,8 +21,13 @@ from pathlib import Path
 
 from .corpus import CorpusItem
 
-TIER_LABELS = {"lead": "Read these", "worth": "Worth a look", "rest": "Everything else"}
-TIER_ORDER = ["lead", "worth", "rest"]
+TIER_LABELS = {
+    "lead": "Read these",
+    "worth": "Worth a look",
+    "rest": "Everything else",
+    "noise": "Low relevance",
+}
+TIER_ORDER = ["lead", "worth", "rest", "noise"]
 
 PAGE_TEMPLATE = """<!doctype html>
 <html lang="en">
@@ -213,6 +218,7 @@ details summary { cursor: pointer; }
     <button class="chip" data-tier="lead" aria-pressed="true">Read these</button>
     <button class="chip" data-tier="worth" aria-pressed="true">Worth a look</button>
     <button class="chip" data-tier="rest" aria-pressed="false">Everything else</button>
+    <button class="chip" data-tier="noise" aria-pressed="false">Low relevance</button>
     <button class="chip" id="read-toggle" aria-pressed="false">Show read</button>
     <input id="search" type="search" placeholder="Search titles and summaries…" aria-label="Search">
   </div>
@@ -240,7 +246,7 @@ details summary { cursor: pointer; }
 <script>
 const ITEMS = __ITEMS_JSON__;
 const TIER_LABELS = __TIER_LABELS_JSON__;
-const TIER_ORDER = ["lead", "worth", "rest"];
+const TIER_ORDER = ["lead", "worth", "rest", "noise"];
 
 const ReadStore = (() => {
   const KEY = "ed-brief:read";

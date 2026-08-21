@@ -145,6 +145,7 @@ def recompute_rank(items: list[CorpusItem], cfg: dict, now: datetime) -> None:
     tiers = cfg.get("tiers", {})
     lead_cut = float(tiers.get("lead", 8.0))
     worth_cut = float(tiers.get("worth", 5.0))
+    rest_cut = float(tiers.get("rest", 1.0))
 
     for item in items:
         age_days = max((now - item.first_seen).total_seconds() / 86400.0, 0.0)
@@ -155,6 +156,8 @@ def recompute_rank(items: list[CorpusItem], cfg: dict, now: datetime) -> None:
             else "worth"
             if item.relevance >= worth_cut
             else "rest"
+            if item.relevance >= rest_cut
+            else "noise"
         )
 
     items.sort(key=lambda i: (-i.rank_score, -i.published.timestamp()))

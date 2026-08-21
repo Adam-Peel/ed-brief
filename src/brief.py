@@ -19,8 +19,13 @@ from pathlib import Path
 
 from .corpus import CorpusItem
 
-TIER_LABELS = {"lead": "Read these", "worth": "Worth a look", "rest": "Everything else"}
-TIER_ORDER = ["lead", "worth", "rest"]
+TIER_LABELS = {
+    "lead": "Read these",
+    "worth": "Worth a look",
+    "rest": "Everything else",
+    "noise": "Low relevance",
+}
+TIER_ORDER = ["lead", "worth", "rest", "noise"]
 
 
 def render_markdown(

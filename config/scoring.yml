@@ -63,7 +63,11 @@ tiers:
   # "directly relevant to history ITT", 5 = "useful to any teacher generally".
   lead: 8.0      # "Read these"
   worth: 5.0     # "Worth a look"
-  # anything below `worth` → "Everything else", collapsed by default
+  rest: 1.0      # "Everything else" -- below this, "Low relevance"
+  # anything below `rest` → "Low relevance", collapsed behind its own
+  # separate toggle on the site (not bundled with "Everything else"), so
+  # browsing the rest of the corpus still doesn't mean wading through
+  # near-zero-score noise unless you specifically ask for it too.
 
 # How long an item stays in the rolling list after first being seen.
 retention_days: 14
@@ -427,3 +431,29 @@ mutes:
       - daily quiz
       - history crossword
       - crossword of the week
+
+  - name: pre-1066
+    weight: -3.0
+    terms:
+      # The secondary curriculum here is c.1066-present -- classical/ancient
+      # content is real history, but not curriculum-relevant, so it's muted
+      # rather than removed (still findable under "Low relevance" if wrong).
+      # Deliberately excludes Anglo-Saxon/Viking-era terms: those genuinely
+      # straddle 1066 as pre-Conquest context on some GCSE specs (e.g.
+      # "Anglo-Saxon and Norman England, c1060-88"), so they're left for the
+      # LLM pass's date judgement rather than a blanket keyword mute. See the
+      # RUBRIC in llm.py for the equivalent (and more nuanced) instruction.
+      - ancient rome
+      - ancient greece
+      - ancient egypt
+      - mesopotamia
+      - roman empire
+      - roman britain
+      - prehistoric
+      - stone age
+      - bronze age
+      - trojan war
+      - julius caesar
+      - alexander the great
+      - sparta
+      - pharaoh
