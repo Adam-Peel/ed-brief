@@ -109,6 +109,34 @@ topics:
       - key stage 3 history
       - ks3 history
 
+  - tag: sub-local-nottinghamshire   # NEW — add to Tag Index
+    weight: 5.0
+    new: true
+    description: >-
+      Nottinghamshire local history, heritage, and archaeology -- a
+      deliberate regional premium, not a generic subject-relevance signal.
+    terms:
+      # Deliberately place names/landmarks, not generic words -- word-boundary
+      # matching already guards against false positives, but a term like
+      # "castle" alone would match every county's castle, not just this one.
+      - nottingham
+      - nottinghamshire
+      - sherwood forest
+      - robin hood
+      - newstead abbey
+      - wollaton
+      - southwell minster
+      - nottingham castle
+      - creswell crags
+      - mansfield
+      - worksop
+      - newark-on-trent
+      - retford
+      - sneinton
+      - lace market
+      - major oak
+      - trent valley
+
   - tag: disc-interpretations
     weight: 3.0
     description: >-

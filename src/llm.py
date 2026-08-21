@@ -43,6 +43,12 @@ knowledge, not just narrow classroom-practice tips.
 - national curriculum and assessment reform, including the Francis Review
 - Ofsted inspection, since it shapes what they will walk into
 - evidence and cognitive science that changes classroom practice
+- Nottinghamshire local history, heritage, and archaeology specifically --
+they have a deliberate regional interest in their own area's history. This
+is a genuine premium, not a generic "local news" bump: a Nottinghamshire
+heritage or archaeology story should score noticeably higher than an
+equivalent story about somewhere else, even though neither is curriculum
+news. It does not need to connect to teaching at all to score well here.
 
 They care much less about higher education, early years, further education \
 colleges, and school sport. They teach in ENGLAND, so Scottish and Welsh \

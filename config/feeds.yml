@@ -149,6 +149,49 @@ feeds:
       themselves, but each one is a real, citable piece of new scholarship --
       weighted like the other research sources above.
 
+  - id: nottingham-hidden-history
+    name: Nottingham Hidden History Team
+    url: https://nottinghamhiddenhistoryteam.wordpress.com/feed/
+    weight: 2.0
+    enabled: true
+    note: >
+      Added 2026-08-21, suggested by the owner. Verified reachable and
+      genuinely active (last post June 2026, roughly monthly). Every entry is
+      Nottinghamshire local history/folklore/archaeology -- weighted like
+      Schools Week (2.0) because almost everything this source publishes is
+      exactly what the sub-local-nottinghamshire topic group and the LLM
+      rubric's Nottinghamshire premium exist to surface.
+
+  - id: heritage-calling
+    name: Heritage Calling (Historic England)
+    url: https://heritagecalling.com/feed/
+    weight: 1.0
+    enabled: true
+    note: >
+      Added 2026-08-21, suggested by the owner as "the Historic England
+      blog" -- this is its real domain (heritagecalling.com, not
+      historicengland.org.uk, which 403s any request). Verified reachable,
+      active weekly. Deliberately NOT using the /tag/nottingham/feed/ or
+      /tag/nottinghamshire/feed/ variants: both are real but stale (most
+      recent tagged posts April 2025 and January 2024), so filtering to them
+      would mean this source almost never contributes. Using the general
+      feed instead and letting sub-local-nottinghamshire catch the
+      Nottinghamshire pieces when they appear; the rest is still genuine
+      national heritage/architecture content, weighted like HistoryExtra.
+
+  - id: visit-nottinghamshire
+    name: Visit Nottinghamshire
+    url: https://www.visit-nottinghamshire.co.uk/feeds/rss/highlightedproducts/?channel=NOTTSEVRSS
+    weight: 0.0
+    enabled: true
+    note: >
+      Added 2026-08-21, suggested by the owner as an events/heritage-trails
+      feed. Verified reachable, but it's actually a generic "what's on"
+      events feed (Halloween cinema nights, a touring musical) with only
+      occasional heritage content (e.g. "Secret and Sacred Libraries from
+      East Midlands Parishes") mixed in, not a dedicated heritage feed --
+      weighted neutral rather than up, same reasoning as HistoryExtra.
+
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
   # Enable one and run `python -m src.validate` to see whether it resolves.
@@ -250,3 +293,29 @@ feeds:
   #     block, not fixable client-side.
   #   - King's College London History: /history/news/feed 404s. Not checked
   #     exhaustively.
+  #
+  # Also checked 2026-08-21 while adding a Nottinghamshire local-history
+  # premium (owner-suggested sources, plus a search for more, filtered for
+  # real recent activity per the owner's explicit "safeguard vs old, stale
+  # sites" instruction). Enabled where genuinely current: Nottingham Hidden
+  # History Team, Heritage Calling, and Visit Nottinghamshire above. Checked
+  # and rejected as STALE, not as unreachable -- these all have real feeds
+  # that simply stopped updating:
+  #   - Nottinghamshire History Blog (nottshistory.blogspot.com): last post
+  #     10 May 2018.
+  #   - Nottinghamshire Local History Association (nlha.org.uk/feed/): last
+  #     post 31 Mar 2020.
+  #   - Historic England's /tag/nottingham/feed/ and
+  #     /tag/nottinghamshire/feed/ (as opposed to their general feed, which
+  #     IS used above): last tagged posts Apr 2025 and Jan 2024 respectively.
+  # And genuinely no feed found:
+  #   - Thoroton Society of Nottinghamshire (thorotonsociety.org.uk): a
+  #     pre-RSS-era static HTML site (still using .htm pages from the
+  #     2000s-2010s), no feed at any guessed path. Quarterly newsletter only.
+  #   - University of Nottingham History department (as opposed to the
+  #     Education department already added): no RSS autodiscovery, and the
+  #     ?newsListings_SyndicationType=1 pattern that worked for Education's
+  #     news page returns plain HTML here -- likely needs a different query
+  #     parameter for this specific page, not confirmed.
+  #   - Nottingham Trent University history/heritage research: no feed found;
+  #     their research-group pages appear to be static, not syndicated.
