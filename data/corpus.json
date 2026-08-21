@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated": "2026-08-21T10:55:21Z",
+ "generated": "2026-08-21T11:38:31Z",
  "retention_days": 14,
  "items": [
   {
@@ -16,7 +16,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 6.11,
-   "rank_score": 6.11,
+   "rank_score": 6.1,
    "tier": "worth",
    "tags": [
     "pol-early-career-framework",
@@ -43,7 +43,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 4.24,
-   "rank_score": 4.24,
+   "rank_score": 4.23,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -148,7 +148,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 3.91,
-   "rank_score": 3.91,
+   "rank_score": 3.9,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -174,7 +174,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 3.9,
-   "rank_score": 3.9,
+   "rank_score": 3.89,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -200,7 +200,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 3.88,
-   "rank_score": 3.88,
+   "rank_score": 3.87,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -226,7 +226,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 3.86,
-   "rank_score": 3.86,
+   "rank_score": 3.85,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -252,7 +252,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 3.85,
-   "rank_score": 3.85,
+   "rank_score": 3.84,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -278,7 +278,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 3.84,
-   "rank_score": 3.84,
+   "rank_score": 3.83,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -304,7 +304,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 3.83,
-   "rank_score": 3.83,
+   "rank_score": 3.82,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -330,7 +330,7 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 3.81,
-   "rank_score": 3.81,
+   "rank_score": 3.8,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
@@ -434,7 +434,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 3.71,
-   "rank_score": 3.71,
+   "rank_score": 3.7,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -460,7 +460,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.2,
-   "rank_score": 3.2,
+   "rank_score": 3.19,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -486,7 +486,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.2,
-   "rank_score": 3.2,
+   "rank_score": 3.19,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -512,7 +512,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.19,
-   "rank_score": 3.19,
+   "rank_score": 3.18,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -538,7 +538,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.19,
-   "rank_score": 3.19,
+   "rank_score": 3.18,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -564,7 +564,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.19,
-   "rank_score": 3.19,
+   "rank_score": 3.18,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -590,7 +590,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 3.12,
-   "rank_score": 3.12,
+   "rank_score": 3.11,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -616,7 +616,7 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 2.97,
-   "rank_score": 2.97,
+   "rank_score": 2.96,
    "tier": "rest",
    "tags": [
     "prof-adaptive-teaching",
@@ -721,7 +721,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 2.58,
-   "rank_score": 2.58,
+   "rank_score": 2.57,
    "tier": "rest",
    "tags": [
     "prof-sen"
@@ -747,7 +747,7 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 2.46,
-   "rank_score": 2.46,
+   "rank_score": 2.45,
    "tier": "rest",
    "tags": [
     "prof-behaviour"
@@ -773,7 +773,7 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 2.44,
-   "rank_score": 2.44,
+   "rank_score": 2.43,
    "tier": "rest",
    "tags": [
     "ped-ai"
@@ -799,7 +799,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 2.32,
-   "rank_score": 2.32,
+   "rank_score": 2.31,
    "tier": "rest",
    "tags": [
     "prof-sen"
@@ -955,7 +955,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 1.79,
-   "rank_score": 1.79,
+   "rank_score": 1.78,
    "tier": "rest",
    "tags": [
     "prof-behaviour"
@@ -981,7 +981,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 1.6,
-   "rank_score": 1.6,
+   "rank_score": 1.59,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -1033,7 +1033,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 1.27,
-   "rank_score": 1.27,
+   "rank_score": 1.26,
    "tier": "rest",
    "tags": [
     "ped-ai"
@@ -1111,7 +1111,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 1.2,
-   "rank_score": 1.2,
+   "rank_score": 1.19,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1135,7 +1135,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 1.19,
-   "rank_score": 1.19,
+   "rank_score": 1.18,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -1161,7 +1161,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 1.09,
-   "rank_score": 1.09,
+   "rank_score": 1.08,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1185,7 +1185,7 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.06,
-   "rank_score": 1.06,
+   "rank_score": 1.05,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -1211,7 +1211,7 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.05,
-   "rank_score": 1.05,
+   "rank_score": 1.04,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -1263,7 +1263,7 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.01,
-   "rank_score": 1.01,
+   "rank_score": 1.0,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -1341,7 +1341,7 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.0,
-   "rank_score": 1.0,
+   "rank_score": 0.99,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -1367,7 +1367,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.99,
-   "rank_score": 0.99,
+   "rank_score": 0.98,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1391,7 +1391,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.98,
-   "rank_score": 0.98,
+   "rank_score": 0.97,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1415,7 +1415,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.95,
-   "rank_score": 0.95,
+   "rank_score": 0.94,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1439,7 +1439,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.82,
-   "rank_score": 0.82,
+   "rank_score": 0.81,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1489,7 +1489,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.77,
-   "rank_score": 0.77,
+   "rank_score": 0.76,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1513,7 +1513,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.77,
-   "rank_score": 0.77,
+   "rank_score": 0.76,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1537,7 +1537,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.75,
-   "rank_score": 0.75,
+   "rank_score": 0.74,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1561,7 +1561,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.71,
-   "rank_score": 0.71,
+   "rank_score": 0.7,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1585,7 +1585,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.61,
-   "rank_score": 0.61,
+   "rank_score": 0.6,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1777,7 +1777,7 @@
    "first_seen": "2026-08-21T10:32:47Z",
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1801,7 +1801,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1825,7 +1825,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1849,7 +1849,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.55,
-   "rank_score": 0.55,
+   "rank_score": 0.54,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1873,7 +1873,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.55,
-   "rank_score": 0.55,
+   "rank_score": 0.54,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1897,7 +1897,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.51,
-   "rank_score": 0.51,
+   "rank_score": 0.5,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1921,7 +1921,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.44,
-   "rank_score": 0.44,
+   "rank_score": 0.43,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1969,7 +1969,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.41,
-   "rank_score": 0.41,
+   "rank_score": 0.4,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2017,7 +2017,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.34,
-   "rank_score": 0.34,
+   "rank_score": 0.33,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2065,7 +2065,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.32,
-   "rank_score": 0.32,
+   "rank_score": 0.31,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2089,7 +2089,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.29,
-   "rank_score": 0.29,
+   "rank_score": 0.28,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2113,7 +2113,7 @@
    "first_seen": "2026-08-21T10:07:49Z",
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 0.28,
-   "rank_score": 0.28,
+   "rank_score": 0.27,
    "tier": "rest",
    "tags": [
     "ped-ai"
@@ -2139,7 +2139,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.26,
-   "rank_score": 0.26,
+   "rank_score": 0.25,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2163,7 +2163,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.25,
-   "rank_score": 0.25,
+   "rank_score": 0.24,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2187,7 +2187,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.24,
-   "rank_score": 0.24,
+   "rank_score": 0.23,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2211,7 +2211,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.23,
-   "rank_score": 0.23,
+   "rank_score": 0.22,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2235,7 +2235,7 @@
    "first_seen": "2026-08-21T10:30:32Z",
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 0.22,
-   "rank_score": 0.22,
+   "rank_score": 0.21,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2387,6 +2387,174 @@
     "mode": "deterministic",
     "deterministic_raw": 0.02,
     "deterministic_norm": 0.01,
+    "llm": null
+   }
+  },
+  {
+   "id": "36601ee908938359",
+   "title": "Quiz of the week: who is widely considered the world’s first black professional footballer?",
+   "url": "https://www.historyextra.com/period/general-history/weekly-history-quiz/",
+   "summary": "How much have you been paying attention to this week's content on HistoryExtra? Test your knowledge with our quiz…",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-21T08:03:12Z",
+   "first_seen": "2026-08-21T10:30:32Z",
+   "expires": "2026-09-04T10:30:32Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "rest",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": -5.57,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "99f36693e3d08df2",
+   "title": "History crossword: 14 August",
+   "url": "https://www.historyextra.com/membership/history-crossword-14-august/",
+   "summary": "",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-21T08:01:10Z",
+   "first_seen": "2026-08-21T10:30:32Z",
+   "expires": "2026-09-04T10:30:32Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "rest",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": -1.57,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "fc4ac09825427028",
+   "title": "Daily quiz: 21 August",
+   "url": "https://www.historyextra.com/membership/daily-history-trivia-quiz/",
+   "summary": "Put your history knowledge to the test with our daily quiz challenge – updated every morning at 7am UK time",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-21T06:00:10Z",
+   "first_seen": "2026-08-21T10:30:32Z",
+   "expires": "2026-09-04T10:30:32Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "rest",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": -1.63,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "181fa6458f7d77c4",
+   "title": "Can you solve our history crossword of the week?",
+   "url": "https://www.historyextra.com/period/general-history/crossword/",
+   "summary": "",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-20T08:00:16Z",
+   "first_seen": "2026-08-21T10:30:32Z",
+   "expires": "2026-09-04T10:30:32Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "rest",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": -2.16,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "e2fe05c7b5677c7e",
+   "title": "Jason Arday is now the stick the right will use to beat back racial equality. Don’t let that happen | Afua Hirsch",
+   "url": "https://www.theguardian.com/commentisfree/2026/aug/13/jason-arday-right-racial-equality-society",
+   "summary": "The UK is far from equality in academia or society. You don’t need a Cambridge degree to see that Arday’s story is being used to stop any progress in its tracks In 1987, a college at the University of Cambridge considered offering a prestigious position to a black man in what would be the first appointment of its kind. Not only did the man not have a degree, but he had left school at the age of 13, struggling with dyslexia and – at the time – unable to read or write. That he would later to go on to accumulate 20 honorary doctorates and become a professor of creative writing is only one way,…",
+   "source": {
+    "id": "guardian-education",
+    "name": "Guardian Education"
+   },
+   "published": "2026-08-13T05:00:48Z",
+   "first_seen": "2026-08-21T10:30:32Z",
+   "expires": "2026-09-04T10:30:32Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "rest",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": -4.24,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "bc7fb1ec9de09a65",
+   "title": "I share concerns over Arday appointment, says Cambridge University head",
+   "url": "https://www.bbc.co.uk/news/articles/cn4npy3w1p2o?at_medium=RSS&at_campaign=rss",
+   "summary": "Vice-chancellor Deborah Prentice acknowledged the \"anger and anxiety around this damaging and difficult case\".",
+   "source": {
+    "id": "bbc-education",
+    "name": "BBC Education"
+   },
+   "published": "2026-08-12T14:50:40Z",
+   "first_seen": "2026-08-21T10:30:32Z",
+   "expires": "2026-09-04T10:30:32Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "rest",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": -4.28,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "9df5b2294b499c73",
+   "title": "Notice to improve: Nettleham Infant and Nursery School",
+   "url": "https://www.gov.uk/government/publications/notice-to-improve-nettleham-infant-and-nursery-school",
+   "summary": "A notice to improve issued to Nettleham Infant and Nursery School.",
+   "source": {
+    "id": "dfe",
+    "name": "DfE (gov.uk)"
+   },
+   "published": "2026-08-10T12:18:07Z",
+   "first_seen": "2026-08-21T10:30:32Z",
+   "expires": "2026-09-04T10:30:32Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "rest",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": -1.38,
+    "deterministic_norm": 0.0,
     "llm": null
    }
   },
@@ -2650,174 +2818,6 @@
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "36601ee908938359",
-   "title": "Quiz of the week: who is widely considered the world’s first black professional footballer?",
-   "url": "https://www.historyextra.com/period/general-history/weekly-history-quiz/",
-   "summary": "How much have you been paying attention to this week's content on HistoryExtra? Test your knowledge with our quiz…",
-   "source": {
-    "id": "historyextra",
-    "name": "HistoryExtra"
-   },
-   "published": "2026-08-21T08:03:12Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": -5.57,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "99f36693e3d08df2",
-   "title": "History crossword: 14 August",
-   "url": "https://www.historyextra.com/membership/history-crossword-14-august/",
-   "summary": "",
-   "source": {
-    "id": "historyextra",
-    "name": "HistoryExtra"
-   },
-   "published": "2026-08-21T08:01:10Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": -1.57,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "fc4ac09825427028",
-   "title": "Daily quiz: 21 August",
-   "url": "https://www.historyextra.com/membership/daily-history-trivia-quiz/",
-   "summary": "Put your history knowledge to the test with our daily quiz challenge – updated every morning at 7am UK time",
-   "source": {
-    "id": "historyextra",
-    "name": "HistoryExtra"
-   },
-   "published": "2026-08-21T06:00:10Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": -1.63,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "181fa6458f7d77c4",
-   "title": "Can you solve our history crossword of the week?",
-   "url": "https://www.historyextra.com/period/general-history/crossword/",
-   "summary": "",
-   "source": {
-    "id": "historyextra",
-    "name": "HistoryExtra"
-   },
-   "published": "2026-08-20T08:00:16Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": -2.16,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "e2fe05c7b5677c7e",
-   "title": "Jason Arday is now the stick the right will use to beat back racial equality. Don’t let that happen | Afua Hirsch",
-   "url": "https://www.theguardian.com/commentisfree/2026/aug/13/jason-arday-right-racial-equality-society",
-   "summary": "The UK is far from equality in academia or society. You don’t need a Cambridge degree to see that Arday’s story is being used to stop any progress in its tracks In 1987, a college at the University of Cambridge considered offering a prestigious position to a black man in what would be the first appointment of its kind. Not only did the man not have a degree, but he had left school at the age of 13, struggling with dyslexia and – at the time – unable to read or write. That he would later to go on to accumulate 20 honorary doctorates and become a professor of creative writing is only one way,…",
-   "source": {
-    "id": "guardian-education",
-    "name": "Guardian Education"
-   },
-   "published": "2026-08-13T05:00:48Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": -4.24,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "bc7fb1ec9de09a65",
-   "title": "I share concerns over Arday appointment, says Cambridge University head",
-   "url": "https://www.bbc.co.uk/news/articles/cn4npy3w1p2o?at_medium=RSS&at_campaign=rss",
-   "summary": "Vice-chancellor Deborah Prentice acknowledged the \"anger and anxiety around this damaging and difficult case\".",
-   "source": {
-    "id": "bbc-education",
-    "name": "BBC Education"
-   },
-   "published": "2026-08-12T14:50:40Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": -4.28,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "9df5b2294b499c73",
-   "title": "Notice to improve: Nettleham Infant and Nursery School",
-   "url": "https://www.gov.uk/government/publications/notice-to-improve-nettleham-infant-and-nursery-school",
-   "summary": "A notice to improve issued to Nettleham Infant and Nursery School.",
-   "source": {
-    "id": "dfe",
-    "name": "DfE (gov.uk)"
-   },
-   "published": "2026-08-10T12:18:07Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": -1.38,
     "deterministic_norm": 0.0,
     "llm": null
    }
