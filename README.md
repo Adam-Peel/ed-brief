@@ -157,6 +157,31 @@ picker or per-user config.
 
 ---
 
+## The RSS feed
+
+`docs/feed.xml` — a standard RSS 2.0 feed, for reading in Feeder,
+NetNewsWire, Feedly, or any other feed reader, the same way you'd read any
+other source. The site's `<head>` advertises it via the normal
+`<link rel="alternate">` autodiscovery tag, so most readers pick it up from
+just the site URL; otherwise point a reader directly at
+`https://YOUR-USERNAME.github.io/ed-brief/feed.xml`.
+
+This is deliberately a different thing from the JSON API above: the API is a
+bespoke contract for a future purpose-built client that can be taught its
+exact fields, RSS is for interoperating with reader software this repo
+doesn't control. Static output either way — a reader polling `feed.xml` is
+an ordinary file fetch, generated fresh at every build like everything else.
+
+The feed only includes **"Read these" and "Worth a look"** items, not the
+full corpus — the same bar the site itself defaults to showing. Everything
+else is still reachable through the JSON API; a reader's inbox is a worse
+place than a browsable list for items that are borderline by design. Each
+entry's description carries the LLM's "why this matters" (when there is
+one), the summary, the tier, and the score, so you don't lose that context
+just because you're reading it somewhere else.
+
+---
+
 ## The read-only guarantee
 
 The published page and API are load-bearing on being **strictly read-only**:
@@ -300,6 +325,7 @@ src/llm.py               absolute LLM re-rank, batched, dormant without a key
 src/corpus.py            the rolling corpus: load/save/expire/rank
 src/api.py               docs/api/v1/*.json writer
 src/site.py              docs/index.html, docs/archive.html, dated snapshots
+src/rss.py               docs/feed.xml writer (lead/worth tiers only)
 src/brief.py             briefs/YYYY-MM-DD.md writer
 src/build.py             entry point: fetch, dedupe, score, rank, publish
 src/validate.py          feed health check

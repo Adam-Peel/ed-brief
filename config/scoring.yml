@@ -92,6 +92,13 @@ tiers:
 # it aged out of the fetch window, for zero benefit.
 publish_floor: 0.10
 
+# The published site's own URL. Needed for the RSS feed (a channel-level
+# <link> is required by the spec) and its autodiscovery tag on the site --
+# nothing here is used for fetching, this is purely publishing metadata
+# about where the output itself lives. Update if the repo is ever renamed
+# or moved to a custom domain.
+site_url: https://adam-peel.github.io/ed-brief/
+
 # How long an item stays in the rolling list after first being seen.
 retention_days: 14
 

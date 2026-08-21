@@ -13,6 +13,7 @@ import re
 import sys
 import tempfile
 import types
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -141,6 +142,30 @@ def main() -> int:
 
         tags_html = (docs / "tags.html").read_text("utf-8") if (docs / "tags.html").exists() else ""
         check(bool(tags_html), "tags.html was written")
+
+        section("RSS feed")
+        feed_path = docs / "feed.xml"
+        check(feed_path.exists(), "feed.xml was written")
+        feed_text = feed_path.read_text("utf-8")
+        try:
+            root_el = ET.fromstring(feed_text)
+            feed_parses = True
+        except ET.ParseError as exc:
+            root_el, feed_parses = None, False
+            failures.append(f"feed.xml is not well-formed XML: {exc}")
+        check(feed_parses, "feed.xml is well-formed XML")
+        if feed_parses:
+            channel = root_el.find("channel")
+            check(root_el.tag == "rss" and channel is not None,
+                  "feed.xml has an <rss><channel> structure")
+            check(channel.find("title") is not None and channel.find("link") is not None,
+                  "the channel has a title and link")
+            feed_items = channel.findall("item")
+            tiers_in_feed = {
+                it.find("description").text or "" for it in feed_items
+            }
+            check(all(("Everything else" not in t and "Low relevance" not in t) for t in tiers_in_feed),
+                  "the feed only includes lead/worth tier items, not the full corpus")
         check("sub-history" in tags_html and "<td>" in tags_html,
               "tags.html lists at least one known tag with a description")
 

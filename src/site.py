@@ -35,6 +35,7 @@ PAGE_TEMPLATE = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>__TITLE__</title>
+<link rel="alternate" type="application/rss+xml" title="ed-brief" href="./feed.xml">
 <style>
 :root {
   --bg: #fbfaf8;
@@ -247,6 +248,9 @@ details summary { cursor: pointer; }
   <p>Tags follow the Tag Index vocabulary, so a tag here is the same string as
   the matching tag in Zotero -- see the <a href="./tags.html">tag
   reference</a> for what each one means.</p>
+  <p>Also available as an <a href="./feed.xml">RSS feed</a>, for reading in
+  Feeder or any other feed reader -- "Read these" and "Worth a look" only,
+  pre-ranked the same way as here.</p>
 </footer>
 </div>
 
