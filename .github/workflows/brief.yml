@@ -25,13 +25,13 @@ on:
     inputs:
       window_hours:
         description: >-
-          Lookback window in hours. Currently defaulted to 1440 (60 days)
-          for a one-off: getting every remaining deterministic-only item
-          re-scored by the LLM. Change back to "" once that run is done --
-          a 60-day window on every ordinary manual trigger is wider than
-          needed and not the normal default for a reason.
+          Lookback window in hours. Leave blank for the normal default
+          (24h). The one-off 1440h (60 day) window used to get every
+          deterministic-only item re-scored by the LLM is done -- the run
+          on 21 Aug 2026 confirmed all 132 corpus items came back
+          mode="llm" -- so this reverted to the normal default.
         required: false
-        default: "1440"
+        default: ""
 
 permissions:
   contents: write
