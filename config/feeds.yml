@@ -419,3 +419,10 @@ feeds:
   #     page tried) -- but it's completely empty, zero <item> entries.
   #     The site itself still resolves, but its blog aggregation feature
   #     appears abandoned. Not added.
+  #   - Wonkhe (wonkhe.com/feed) and HEPI Blog (hepi.ac.uk/blog/feed): both
+  #     real, active, verified-working feeds -- deliberately NOT added.
+  #     Both are pure UK higher-education policy, which the LLM rubric
+  #     explicitly deprioritises ("care much less about... higher
+  #     education"). Owner confirmed keeping that stance as-is rather than
+  #     adding these underneath it. Revisit only if the rubric's HE stance
+  #     itself changes, not by re-suggesting these two feeds alone.
