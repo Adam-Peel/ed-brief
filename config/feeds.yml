@@ -279,20 +279,23 @@ feeds:
   - id: past-and-present
     name: Past & Present Blog
     url: https://www.pastandpresent.org.uk/feed/
-    weight: 0.0
+    weight: 1.0
     enabled: true
     note: >
       Added 2026-08-21, from the same feedspot.com list. Verified reachable
       and active (most recent 14 Jul 2026) -- a genuinely well-regarded
-      academic history journal's blog, not a content mill. But the actual
-      sample skews heavily toward non-England global/comparative history
-      (Ottoman religious history, transatlantic slavery, Mexico-Algiers
-      connections) and academic-community-internal posts (prize wins,
-      symposium programmes) rather than England-curriculum-relevant
-      scholarship or teacher-accessible writing. Weighted neutral rather
-      than up like HistoryExtra -- the PERIOD/England guidance in the LLM
-      rubric should do the real filtering here, same as the pre-1066 mute
-      does for HistoryExtra's classical-antiquity content.
+      academic history journal's blog, not a content mill. Corrected
+      2026-08-21: originally weighted neutral partly because the sample
+      skewed toward non-England global/comparative history (Ottoman
+      religious history, transatlantic slavery, Mexico-Algiers
+      connections) -- that reasoning was wrong. Global/world history
+      (Empire, Cold War, Russia, China, apartheid) is standard, growing
+      GCSE/A-level content, not a mismatch; the LLM rubric's CORE bullet
+      now says so explicitly. Raised to match HistoryExtra/Cambridge/
+      Warwick. The other real caveat still applies and isn't a geography
+      issue: some content is academic-community-internal (prize wins,
+      symposium programmes) rather than reader-usable -- same profile as
+      Cambridge Faculty of History, weighted the same way despite it.
 
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.

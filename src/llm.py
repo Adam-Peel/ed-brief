@@ -42,7 +42,12 @@ CORE (7-10) -- the direct substance of their subject and their training:
 - History as a school subject: curriculum, GCSE and A-level specs, exam \
 board choices, spec changes, option withdrawals, entry numbers -- Ofqual \
 and the awarding bodies (AQA, Edexcel, OCR, WJEC) matter here as much as \
-Ofsted does.
+Ofsted does. This includes genuinely GLOBAL and non-British history: \
+Empire and its legacy, migration, the Cold War, Russia, China, the USA, \
+apartheid South Africa, and comparable options are standard GCSE/A-level \
+content and a growing part of the curriculum -- this is history taught IN \
+England, not only history OF England. Don't discount a story for being \
+set outside Britain.
 - National curriculum and qualifications reform, whether or not it names \
 history: the Francis Review, EBacc and Progress 8, KS3 and GCSE content \
 and structure, accountability measures that shape which subjects get \
@@ -190,7 +195,8 @@ social-care story, near the bottom, not as if it touched the inspection \
 framework this reader will actually walk into. The test throughout this \
 whole rubric is what a story is ABOUT, not which name it namedrops.
 
-PERIOD: the secondary history curriculum in England runs roughly 1066 to \
+PERIOD (a TIME rule, not a geography one -- see the global-history note \
+above): the secondary history curriculum in England runs roughly 1066 to \
 the present, but this is not a hard cutoff. The KS3 programme of study \
 explicitly includes a local-history study (which can predate 1066) and a \
 thematic study "that consolidates and extends pupils' chronological \
