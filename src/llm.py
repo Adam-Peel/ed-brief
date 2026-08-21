@@ -150,8 +150,17 @@ running from c.1000
   2  British history outside the periods usually taught
   1  world history with no curricular foothold
   0  not about the past
-Be strict about the pre-1066 exception -- it exists for a NAMED curricular \
-link, not a general gesture toward antiquity. The KS3 programme of study \
+English or British medieval material (Norman Conquest to roughly 1500) \
+does not need a named curricular link the way pre-1066 material does --
+score it 3-4 by default, even from a bare title and a thin summary with no \
+named monarch or event, unless something marks it as OUTSIDE an English/ \
+British context. "Medieval" alone, from an English institution (a national \
+or cathedral archive, an English university, English heritage body), is \
+enough: this is squarely "the range of a thematic study running from \
+c.1000", not a vague gesture toward antiquity the way an undated "ancient \
+world" claim is. Be strict about the SEPARATE pre-1066 exception below --
+it exists for a NAMED curricular link, not a general gesture toward \
+antiquity. The KS3 programme of study \
 includes a local history study and a thematic strand that explicitly \
 reaches back before 1066; OCR offers Ancient History at GCSE and A-level. \
 Score pre-1066 material on its merits ONLY when it names that specific \
@@ -181,7 +190,10 @@ a class with little adaptation
 
 H4 DISCIPLINARY PURCHASE
   4  raises a genuine historical question, or shows how knowledge of the \
-past was constructed from evidence
+past was constructed from evidence -- this includes archival/curatorial \
+"how we know" research (conservation science on an object, provenance or \
+authentication work, a newly catalogued item), which is disciplinary \
+methodology made visible, not just content about the object
   2  illustrates interpretation or contested accounts implicitly
   0  pure content, or nothing to interrogate"""
 

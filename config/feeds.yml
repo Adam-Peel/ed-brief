@@ -16,38 +16,6 @@ feeds:
     weight: 0.5
     enabled: true
 
-  - id: schools-week
-    name: Schools Week
-    url: https://schoolsweek.co.uk/feed/
-    weight: 2.0
-    enabled: true
-    note: >
-      Highest-signal source for policy, Ofsted and workforce. Weighted up
-      because almost everything it publishes is relevant to a new entrant.
-      As of 2026-08-21 this domain is behind Cloudflare + Kasada bot
-      management (a JS-challenge anti-bot layer, identifiable by the
-      `ki-edge` response header and `__cf_bm` cookie) and returns 403 to
-      every plain HTTP client -- confirmed both locally and from the real
-      GitHub Actions run, and not fixable by changing the User-Agent, since
-      the block isn't UA-based. Left enabled rather than disabled: the build
-      already degrades gracefully around a dead feed (reported in
-      meta.json/the footer, never fails the run), so there's no harm in
-      leaving it on in case the block lifts, and this note explains why it's
-      showing as unhealthy rather than leaving that a mystery. A fix would
-      need a JS-capable fetcher (e.g. a headless browser) or an RSS-bridge
-      instance in front of it -- out of scope for the current fetch.py.
-
-  - id: fe-week
-    name: FE Week
-    url: https://feweek.co.uk/feed/
-    weight: -0.5
-    enabled: true
-    note: >
-      Post-16 focus. Weighted down slightly since much of it concerns FE
-      colleges rather than secondary; topic scoring still surfaces the
-      qualifications-reform stories that matter. Same Cloudflare + Kasada
-      block as Schools Week above, as of 2026-08-21 -- see that note.
-
   - id: dfe
     name: DfE (gov.uk)
     url: https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=department-for-education
@@ -206,31 +174,6 @@ feeds:
       updates. Weighted like Chartered College/TeacherToolkit -- commentary,
       not primary-source.
 
-  - id: teachertoolkit
-    name: TeacherToolkit
-    url: https://www.teachertoolkit.co.uk/blog/feed
-    weight: 1.0
-    enabled: true
-    note: >
-      Added 2026-08-21, owner-suggested. Ross McGill's blog, widely cited as
-      one of the most-read UK teacher blogs. Verified reachable and active
-      (posts through 12 Aug 2026); content is squarely classroom-practice
-      and Ofsted/curriculum commentary ("What Ofsted Data Reveals About
-      Curriculum and Teaching"). Weighted like Chartered College.
-
-  - id: learning-spy
-    name: David Didau (The Learning Spy)
-    url: https://daviddidau.substack.com/feed
-    weight: 1.0
-    enabled: true
-    note: >
-      Added 2026-08-21, owner-suggested as "The Learning Spy". That site's
-      own feed (learningspy.co.uk/feed) 404s -- Didau has moved his active
-      writing to Substack, which has a real, weekly-ish feed (5 posts in
-      the last month, verified). Known specifically for evidence-informed
-      teaching critique, overlapping cog-cognitive-load and the ped- topics.
-      Weighted the same as HistoryExtra/Chartered College.
-
   - id: british-newspaper-archive
     name: British Newspaper Archive Blog
     url: https://blog.britishnewspaperarchive.co.uk/feed/
@@ -329,6 +272,65 @@ feeds:
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
   # Enable one and run `python -m src.validate` to see whether it resolves.
+
+  - id: schools-week
+    name: Schools Week
+    url: https://schoolsweek.co.uk/feed/
+    weight: 2.0
+    enabled: false
+    note: >
+      Highest-signal source for policy, Ofsted and workforce when it works --
+      disabled 2026-08-21 at the owner's request after it showed up as
+      "not responding" in the footer on every real run. Behind Cloudflare +
+      Kasada bot management (a JS-challenge anti-bot layer, identifiable by
+      the `ki-edge` response header and `__cf_bm` cookie); returns 403 to
+      the actual GitHub Actions runner every time, confirmed across
+      multiple real builds. Previously left enabled on the reasoning that a
+      dead feed is harmless (degrades gracefully, never fails the run) --
+      that held while it was one line in meta.json, but persistent noise in
+      the visible footer is a real cost, so disabled rather than carried
+      forever on the chance the block lifts. A fix would need a JS-capable
+      fetcher (e.g. a headless browser) or an RSS-bridge instance in front
+      of it -- out of scope for the current fetch.py. Re-enable and rerun
+      `python -m src.validate` to check if the block has lifted.
+
+  - id: fe-week
+    name: FE Week
+    url: https://feweek.co.uk/feed/
+    weight: -0.5
+    enabled: false
+    note: >
+      Same Cloudflare + Kasada block as Schools Week above, and disabled
+      2026-08-21 for the same reason -- see that note.
+
+  - id: teachertoolkit
+    name: TeacherToolkit
+    url: https://www.teachertoolkit.co.uk/blog/feed
+    weight: 1.0
+    enabled: false
+    note: >
+      Ross McGill's blog, widely cited as one of the most-read UK teacher
+      blogs. Disabled 2026-08-21 at the owner's request after persistent
+      403s in the footer -- same Cloudflare-class bot block as Schools
+      Week/FE Week above, hitting the GitHub Actions runner specifically:
+      an ad-hoc curl from outside GitHub Actions gets a clean redirect
+      (301 to the trailing-slash URL) with no block at all, so this is a
+      runner-IP-range block, not a dead feed. Re-enable and rerun
+      `python -m src.validate` to check if the block has lifted.
+
+  - id: learning-spy
+    name: David Didau (The Learning Spy)
+    url: https://daviddidau.substack.com/feed
+    weight: 1.0
+    enabled: false
+    note: >
+      That site's own feed (learningspy.co.uk/feed) 404s -- Didau has moved
+      his active writing to Substack, which has a real feed. Disabled
+      2026-08-21 at the owner's request after persistent 403s in the
+      footer -- same runner-IP-range Cloudflare block as TeacherToolkit
+      above (an ad-hoc curl from outside GitHub Actions gets a clean 200,
+      so the feed itself is alive). Re-enable and rerun
+      `python -m src.validate` to check if the block has lifted.
 
   - id: historyextra
     name: HistoryExtra

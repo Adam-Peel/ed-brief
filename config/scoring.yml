@@ -60,10 +60,24 @@ llm_weight: 0.8
 # typing first means each article only answers questions that actually apply
 # to it.
 #
-# Classify batches larger than score batches: the classify prompt and its
-# output are small (a type, a confidence, one locality number), so more fit
-# in one call without the consistency risk a large *scoring* batch has.
-llm_classify_batch_size: 40
+# Lowered 40 -> 12, 2026-08-22, on real evidence: with the object-keyed
+# schema (see llm_score_batch_size's note below), a 40-item classify batch
+# hit a DIFFERENT API error than the one that note describes -- "The
+# compiled grammar is too large" -- on 2 of 3 real batches, while the
+# 6-item remainder batch and every one of score's 12-item batches (same
+# schema shape, that same run) succeeded. The object-keyed design compiles
+# one grammar branch per batch id (not one shared branch reused N times,
+# the way an array would), so grammar size scales with batch size more
+# than the old array-based approach's would have -- but going back to
+# arrays would reopen the omission bug arrays can't close (see that note).
+# No documented numeric threshold exists for this error as of 2026-08-22,
+# so rather than guess a new number, this matches 12: the exact batch size
+# already proven safe, in production, that same run, under the same schema
+# shape. Classify's own per-item schema (type/confidence/locality, 3
+# simple fields) is simpler than score's largest type schemas (up to 7
+# fields including HISTORY/PEDAGOGY's four-item scale), so 12 has real
+# margin here, not just a match on the number.
+llm_classify_batch_size: 12
 
 # Lowered 20 -> 12, 2026-08-21, on real evidence: the first real eval run
 # (149 items) returned verdicts for only 31/82 survivors -- 51 omitted from
