@@ -57,12 +57,23 @@ name. The test is what the story is ABOUT, not which building it namedrops.
 
 Distinguish DIRECT relevance from INCIDENTAL relevance. A story is directly \
 relevant if what it's actually ABOUT would change their classroom, their \
-curriculum, or their career -- a study on how compulsory GCSE resits affect \
-pupil mental health is directly relevant even though it's not framed as \
-"teaching" news, because it tells them something true about the pupils they \
-will teach. A story is only incidentally relevant if it merely mentions an \
-organisation or topic they care about without being about the part of that \
-organisation's work that touches secondary schools. Ofsted and the DfE in \
+curriculum, or their career -- regardless of how it's framed or which \
+specific policy, subject, or mechanism it happens to hang on. This is a \
+CATEGORY judgement, not a checklist of specific stories: any research or \
+reporting on how an exam, assessment, curriculum design, or school policy \
+affects pupils' mental health, wellbeing, motivation, behaviour, or academic \
+outcomes is directly relevant, whatever the specific angle -- resits, \
+homework load, marking practices, attendance policy, screening checks, \
+uniform rules, whatever. For instance, a study on how compulsory GCSE \
+resits affect pupil mental health is directly relevant even though it's not \
+framed as "teaching" news, because it tells them something true about the \
+pupils they will teach -- and so, equally, is a story about how a change to \
+marking guidance affects teacher workload, or how a new attendance policy \
+affects pupil anxiety. Treat these as the same TYPE of story and score the \
+type consistently, not just the specific examples given here. A story is \
+only incidentally relevant if it merely mentions an organisation or topic \
+they care about without being about the part of that organisation's work \
+that touches secondary schools. Ofsted and the DfE in \
 particular cover far more than secondary schools -- Ofsted also regulates \
 children's social care (children's homes, fostering, adoption) and early \
 years; the DfE covers early years and higher education policy too. A press \
