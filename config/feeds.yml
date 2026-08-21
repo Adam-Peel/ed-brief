@@ -192,6 +192,37 @@ feeds:
       East Midlands Parishes") mixed in, not a dedicated heritage feed --
       weighted neutral rather than up, same reasoning as HistoryExtra.
 
+  - id: chartered-college
+    name: Chartered College of Teaching
+    url: https://chartered.college/news-blogs/feed/
+    weight: 1.0
+    enabled: true
+    note: >
+      Added 2026-08-21, found while searching for sources matching the LLM
+      rubric's expanded categories (classroom practice, Ofsted, ITT/CPD).
+      Verified reachable and active (posts through Jul 2026). NOT the site's
+      plain /feed/ -- that one is a "Partner" directory (discount-scheme
+      listings for corporate partners), not news, and was rejected after
+      checking its actual item titles. /news-blogs/feed/ is the real
+      article feed, found via RSS autodiscovery on that specific page.
+      Content mixes genuine practice/policy pieces ("When the inspector
+      calls: teacher agency...") with some international/generic CPD
+      content, so weighted like HistoryExtra rather than up.
+
+  - id: ucet
+    name: UCET (ITT providers)
+    url: https://feeds.feedburner.com/ucet-news
+    weight: 1.5
+    enabled: true
+    note: >
+      Added 2026-08-21. Universities' Council for the Education of
+      Teachers -- the ITT sector's own representative body, i.e. exactly
+      the "ITT providers themselves: accreditation, inspection, or
+      placement-supply" category the rubric added this round. Verified
+      reachable and active (5 items, most recent 27 Jul 2026): policy
+      correspondence with the DfE, ITE research group updates, provider
+      conferences. Weighted like DfE -- primary-source, not commentary.
+
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
   # Enable one and run `python -m src.validate` to see whether it resolves.
@@ -201,7 +232,14 @@ feeds:
     url: https://www.sec-ed.co.uk/rss/
     weight: 1.0
     enabled: false
-    note: Secondary-focused practitioner writing. URL unconfirmed.
+    note: >
+      Secondary-focused practitioner writing -- exactly the falling-rolls/
+      job-market and general professional-context territory the rubric
+      added this round. Confirmed 2026-08-21, not just "unconfirmed": this
+      URL returns a real HTTP 403, same Cloudflare-class bot block as
+      Schools Week/FE Week. SecEd's own site says its news is otherwise
+      only distributed via free email bulletins (sec-ed.co.uk/register) --
+      a newsletter-bridge candidate, not a feed fix.
 
   - id: eef
     name: Education Endowment Foundation
@@ -209,8 +247,12 @@ feeds:
     weight: 1.5
     enabled: false
     note: >
-      Evidence summaries and trial reports. URL unconfirmed but worth
-      chasing — this is the closest thing to a research feed for teaching.
+      Evidence summaries and trial reports -- the closest thing to a
+      research feed for the classroom-practice/cog-cognitive-load
+      categories. Confirmed 2026-08-21: this exact URL returns a real HTTP
+      403, same Cloudflare-class block as Schools Week/FE Week/History
+      Today. Not fixable client-side; would need a headless-browser fetcher
+      or an RSS-bridge instance in front of it.
 
   - id: tes
     name: Tes
@@ -319,3 +361,27 @@ feeds:
   #     parameter for this specific page, not confirmed.
   #   - Nottingham Trent University history/heritage research: no feed found;
   #     their research-group pages appear to be static, not syndicated.
+  #
+  # Also checked 2026-08-21 looking for sources matching the LLM rubric's
+  # newer categories (SEND, ITT providers, teaching-union pay/industrial
+  # action, museum education). chartered-college and ucet above came from
+  # this pass; the rest weren't usable:
+  #   - Historical Association (history.org.uk): re-checked specifically
+  #     (owner mentioned getting their newsletter by email) -- confirmed
+  #     again via raw HTML, no <link rel="alternate" type="rss/atom"> on
+  #     the homepage or /ha-news, no /feed, /ha-news/feed. They genuinely
+  #     don't syndicate; email newsletter is the only channel. See the
+  #     newsletter-bridge discussion below instead of a feed entry.
+  #   - nasen (nasen.org.uk): no RSS autodiscovery on the homepage, /feed
+  #     and /news/feed both 404. No feed found.
+  #   - NEU (neu.org.uk): no RSS autodiscovery on the homepage or the
+  #     press-releases page. No feed found -- not checked exhaustively,
+  #     NASUWT/NAHT/ASCL not yet tried.
+  #   - Museums Association (museumsassociation.org): not checked beyond
+  #     the news page itself, which had no autodiscovery link.
+  #   - Kids in Museums (kidsinmuseums.org.uk/feed/): real, active feed
+  #     (verified), but its actual content is family/parent days-out
+  #     content ("best museums for family days out"), not schools-programme
+  #     or teaching-resource content -- doesn't match what the heritage/
+  #     museum-education rubric bullet is after. Skipped rather than added
+  #     at a low weight, since it would mostly just add noise.
