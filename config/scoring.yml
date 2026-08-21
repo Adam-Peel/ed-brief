@@ -61,9 +61,16 @@ tiers:
   # deterministic/LLM blend, and is recomputed every build in case these cuts
   # change later. Anchored to the LLM rubric's own anchors in llm.py: 8 =
   # "directly relevant to history ITT", 5 = "useful to any teacher generally".
-  lead: 8.0      # "Read these"
-  worth: 5.0     # "Worth a look"
-  rest: 2.5      # "Everything else" -- below this, "Low relevance" (raised from 1.0, 2026-08-21)
+  #
+  # Written to 2 decimal places deliberately: these are exact comparison
+  # values (recompute_rank uses the full-precision relevance, never a
+  # rounded copy), never fuzzy. The site now displays scores to 2dp too
+  # (was 1dp, 2026-08-21) so what you see always matches which side of a
+  # threshold an item is actually on -- e.g. 2.46 now shows as "2.46", not a
+  # misleadingly-rounded "2.5" that looks tied with the 2.50 cut below.
+  lead: 8.00     # "Read these"
+  worth: 5.00    # "Worth a look"
+  rest: 2.50     # "Everything else" -- below this, "Low relevance" (raised from 1.0, 2026-08-21)
   # anything below `rest` → "Low relevance", collapsed behind its own
   # separate toggle on the site (not bundled with "Everything else"), so
   # browsing the rest of the corpus still doesn't mean wading through
@@ -79,7 +86,7 @@ tiers:
 # published -- excluding them from the corpus entirely would mean the same
 # worthless item gets re-fetched and re-scored by the LLM on every run until
 # it aged out of the fetch window, for zero benefit.
-publish_floor: 0.1
+publish_floor: 0.10
 
 # How long an item stays in the rolling list after first being seen.
 retention_days: 14

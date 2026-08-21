@@ -139,6 +139,7 @@ h2 {
 }
 h2[data-tier="lead"] { color: var(--lead); }
 h2[data-tier="worth"] { color: var(--worth); }
+h2[data-tier="noise"] { opacity: .65; }
 article {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -150,6 +151,12 @@ article {
 }
 article[data-tier="lead"] { border-left-color: var(--lead); }
 article[data-tier="worth"] { border-left-color: var(--worth); }
+/* "Low relevance" gets a structural difference (dashed, dimmer), not just a
+   slightly different shade of the same muted colour -- "rest" and "noise"
+   were previously indistinguishable at a glance, sharing the same solid
+   var(--rest) border. A dashed pattern also survives colourblindness and
+   greyscale printing better than a colour-only distinction would. */
+article[data-tier="noise"] { border-left-style: dashed; opacity: .72; }
 article.is-read { opacity: .55; }
 article h3 { margin: 0 0 5px; font-size: 1.02rem; line-height: 1.35; font-weight: 600; display: flex; gap: 8px; align-items: baseline; }
 article h3 a { color: var(--text); text-decoration: none; }
@@ -386,7 +393,7 @@ function card(item) {
   const modeLabel = item.mode === "llm" ? "LLM-ranked" : "keyword-ranked";
   return `<article data-tier="${esc(item.tier)}" class="${read ? "is-read" : ""}">
     <h3>
-      <span class="score" data-tier="${esc(item.tier)}" title="Rank score: relevance minus a small age decay -- this is what the list is sorted by.">${esc(item.score.toFixed(1))}</span>
+      <span class="score" data-tier="${esc(item.tier)}" title="Rank score: relevance minus a small age decay -- this is what the list is sorted by.">${esc(item.score.toFixed(2))}</span>
       <a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a>
     </h3>
     <div class="meta">${esc(item.source_name)} &middot; ${esc(item.when)} &middot; <span class="mode">${modeLabel}</span></div>
@@ -535,7 +542,13 @@ def _payload(items: list[CorpusItem]) -> list[dict]:
             "why": item.why,
             "mode": item.mode,
             # Round for display only -- the corpus/API keep full precision.
-            "score": round(item.rank_score, 1),
+            # 2 decimal places, not 1: at 1dp, a tier-boundary item like
+            # 2.46 displays as "2.5" and visually contradicts sitting in
+            # "Low relevance" (cut at 2.50) -- the tier assignment itself was
+            # always correct (it compares the un-rounded value), this was
+            # purely a display artifact. 2dp makes ties against a threshold
+            # like 2.50 rare enough to stop being confusing.
+            "score": round(item.rank_score, 2),
         }
         for item in items
     ]
