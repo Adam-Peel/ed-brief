@@ -1,17 +1,16 @@
 # ed-brief
 
-A daily education news brief, ranked for someone moving into secondary
+A twice-daily education news brief, ranked for someone moving into secondary
 history teaching in England.
 
-Runs every day at 20:00 London time via GitHub Actions -- chosen from the
-feeds' own publish-time data: almost nothing appears after ~20:00 or before
-~05:00, so an evening run captures each day's news with far less average
-staleness than a next-morning run would, at no cost to anyone checking first
-thing in the morning. Pulls the feeds, scores every story against a
-vocabulary you control, and publishes a rolling, filterable list to GitHub
-Pages — plus a public read-only JSON API and a dated markdown copy committed
-to `briefs/`, so you have a searchable archive that outlives any hosting
-decision.
+Runs at 07:00 and 19:00 London time via GitHub Actions, aimed at the two
+commutes -- 07:00 catches the overnight trickle before the morning journey,
+19:00 catches the day's main volume (measured at ~91% of daily items from
+the real feed data) before the evening one. Pulls the feeds, scores every
+story against a vocabulary you control, and publishes a rolling, filterable
+list to GitHub Pages — plus a public read-only JSON API and a dated markdown
+copy committed to `briefs/`, so you have a searchable archive that outlives
+any hosting decision.
 
 Every story is pre-scored and pre-ranked at ingest time, before anything is
 published. The site and API are static output: nothing is fetched, scored, or
@@ -63,8 +62,9 @@ minute or two of the first run being committed.
 
 **Actions → Build education brief → Run workflow.**
 
-Manual runs skip the time guard, so you don't have to wait until 20:00.
-Watch the log: the "Check feed health" step reports any source that has
+Manual runs skip the time guard, so you don't have to wait for the next
+scheduled 07:00 or 19:00. Watch the log: the "Check feed health" step
+reports any source that has
 moved or died, which is the single most useful thing to glance at on a first
 run.
 

@@ -1,11 +1,16 @@
-"""Dated markdown brief of each run's new items, committed to briefs/ as a
+"""Dated markdown brief of each day's new items, committed to briefs/ as a
 searchable archive that outlives any hosting decision.
 
 A close port of the proof of concept's render_markdown, adapted to
-CorpusItem. Unlike docs/index.html, a brief file only ever covers ONE run's
-new stories -- never the rolling corpus -- so briefs/ stays a readable
-chronological log even though the site itself is not.
-"""
+CorpusItem. Unlike docs/index.html, a brief file only ever covers items
+first seen on ONE calendar day -- never the rolling corpus -- so briefs/
+stays a readable chronological log even though the site itself is not.
+Scoped to the day, not the run, so that a second run later the same day
+(e.g. a twice-daily schedule) accumulates into the same file rather than
+overwriting the first run's items -- see build.py's `today_items`. The
+ranking-status and feed-health lines below are still reported per the
+latest run, since those are about this run's execution, not the day's
+accumulated items."""
 
 from __future__ import annotations
 
@@ -27,11 +32,11 @@ def render_markdown(
     lines = [f"# Education brief — {run_date.strftime('%A %-d %B %Y')}", ""]
 
     if not items:
-        lines += ["No new items since the last run.", ""]
+        lines += ["No new items today.", ""]
     else:
         lines += [
-            f"{len(items)} new items from {len({i.source_id for i in items})} sources. "
-            "Ranked by relevance to history teaching, routes into the profession, "
+            f"{len(items)} items first seen today, from {len({i.source_id for i in items})} "
+            "sources. Ranked by relevance to history teaching, routes into the profession, "
             "and curriculum policy.",
             "",
         ]

@@ -215,6 +215,68 @@ def main() -> int:
               "every localStorage read and write is wrapped in try/catch",
               f"try count={store_src.count('try {')} catch count={store_src.count('catch')}")
 
+    section("Regression: two runs on the same day accumulate, not overwrite")
+    # With more than one scheduled run a day (e.g. 07:00 and 19:00), a second
+    # run's day-scoped writes (the dated archive, the markdown brief) must
+    # add to the first run's items, not replace them -- this is exactly the
+    # bug that existed before today_items was introduced in build.py.
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp_root = Path(tmp)
+        all_stems = sorted(p.stem for p in FIXTURES.glob("*.xml"))
+        half = len(all_stems) // 2
+        first_stems, second_stems = set(all_stems[:half]), set(all_stems)
+
+        def make_fetch(stems):
+            def _fetch(feeds, window_hours):
+                by_id = {f["id"]: f for f in feeds if f.get("enabled", True)}
+                items, problems, seen = [], [], set()
+                for path in sorted(FIXTURES.glob("*.xml")):
+                    if path.stem not in stems:
+                        continue
+                    cfg = by_id.get(path.stem)
+                    if not cfg:
+                        continue
+                    parsed, error = parse_feed(path.read_bytes(), cfg, window_hours)
+                    if error:
+                        problems.append(f"{cfg['name']}: {error}")
+                        continue
+                    for item in parsed:
+                        if item.uid in seen:
+                            continue
+                        seen.add(item.uid)
+                        items.append(item)
+                return items, problems
+
+            return _fetch
+
+        original_fetch_all = build.fetch_all
+        try:
+            build.fetch_all = make_fetch(first_stems)
+            assert build.main(output_root=tmp_root) == 0
+            build.fetch_all = make_fetch(second_stems)  # dedup narrows this to the remaining stems
+            assert build.main(output_root=tmp_root) == 0
+        finally:
+            build.fetch_all = original_fetch_all
+
+        from datetime import datetime, timezone
+
+        iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        api_dir = tmp_root / "docs" / "api" / "v1"
+        archive_doc = json.loads((api_dir / "archive" / f"{iso}.json").read_text("utf-8"))
+        items_doc = json.loads((api_dir / "items.json").read_text("utf-8"))
+        brief_text = (tmp_root / "briefs" / f"{iso}.md").read_text("utf-8")
+
+        check(
+            archive_doc["count"] == items_doc["count"] == len(archive_doc["items"]),
+            "today's archive file covers items from both runs, not just the second",
+            f"archive={archive_doc['count']} live={items_doc['count']}",
+        )
+        first_run_titles = [i["title"] for i in archive_doc["items"]][: len(first_stems)]
+        check(
+            any(t in brief_text for t in first_run_titles),
+            "the markdown brief still contains a first-run item after the second run wrote the file",
+        )
+
     print()
     if failures:
         print(f"{len(failures)} check(s) failed:")

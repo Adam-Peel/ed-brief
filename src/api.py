@@ -19,7 +19,7 @@ from .corpus import SCHEMA, CorpusItem, format_dt
 
 
 def _dump(obj: dict) -> str:
-    # Minified: the archive accumulates one file per run, retained
+    # Minified: the archive accumulates one file per calendar day, retained
     # indefinitely, so keeping every API file compact costs nothing and adds
     # up over a year of runs.
     return json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
@@ -28,6 +28,7 @@ def _dump(obj: dict) -> str:
 def write_all(
     live: list[CorpusItem],
     new_items: list[CorpusItem],
+    today_items: list[CorpusItem],
     meta: dict,
     root: Path,
     now: datetime,
@@ -81,8 +82,8 @@ def write_all(
         {
             "schema": SCHEMA,
             "date": now.strftime("%Y-%m-%d"),
-            "count": len(new_items),
-            "items": [item.to_dict() for item in new_items],
+            "count": len(today_items),
+            "items": [item.to_dict() for item in today_items],
         },
     )
 

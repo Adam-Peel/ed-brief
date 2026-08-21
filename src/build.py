@@ -23,15 +23,15 @@ from .score import Scorer, blend_relevance
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# Daily runs are ~24h apart, so a 48h window (2x the gap) means nothing is
-# missed if a single run is skipped. Cross-run dedup is the corpus itself
-# now, not a window -- unlike the proof of concept, an item doesn't need to
-# still be inside this window to be recognised as already-seen. A backfill
-# or a fresh corpus can widen this via BRIEF_WINDOW_HOURS (or the workflow's
-# manual "Run workflow" window_hours input) without changing the daily
-# default; a wider window is always safe to rerun since dedup is by id
-# against the corpus, not the window.
-DEFAULT_WINDOW_HOURS = 48
+# Runs are ~12h apart (07:00 and 19:00 London), so a 24h window (2x the gap)
+# means nothing is missed if a single run is skipped. Cross-run dedup is the
+# corpus itself now, not a window -- unlike the proof of concept, an item
+# doesn't need to still be inside this window to be recognised as
+# already-seen. A backfill or a fresh corpus can widen this via
+# BRIEF_WINDOW_HOURS (or the workflow's manual "Run workflow" window_hours
+# input) without changing the default; a wider window is always safe to
+# rerun since dedup is by id against the corpus, not the window.
+DEFAULT_WINDOW_HOURS = 24
 
 
 def load_config() -> tuple[list[dict], dict]:
@@ -180,10 +180,19 @@ def main(argv: list[str] | None = None, *, output_root: Path | None = None) -> i
 
     meta = build_meta(live, new_items, feeds, feed_problems, llm_status, now, retention_days)
 
-    # Stage 9: emit the API, the site, and this run's dated markdown brief.
-    api.write_all(live, new_items, meta, out_root, now)
-    site.write_site(live, meta, out_root, now)
-    brief.write_brief(new_items, feed_problems, llm_status, out_root, now)
+    # Everything keyed by calendar date (the dated archive, the markdown
+    # brief) needs every item first seen *today*, not just this run's new
+    # items -- with more than one run a day, a run-scoped list would let a
+    # later run's write silently erase an earlier run's items from that
+    # day's record. latest.json is the one place that's deliberately
+    # run-scoped (it documents "added by the most recent run").
+    today_iso = now.strftime("%Y-%m-%d")
+    today_items = [item for item in live if item.first_seen.strftime("%Y-%m-%d") == today_iso]
+
+    # Stage 9: emit the API, the site, and today's dated markdown brief.
+    api.write_all(live, new_items, today_items, meta, out_root, now)
+    site.write_site(live, today_items, meta, out_root, now)
+    brief.write_brief(today_items, feed_problems, llm_status, out_root, now)
 
     print(f"\nWrote {len(live)} live items ({len(new_items)} new).", file=sys.stderr)
     return 0

@@ -508,7 +508,9 @@ def _render_page(
     return page
 
 
-def write_site(live: list[CorpusItem], meta: dict, root: Path, now: datetime) -> None:
+def write_site(
+    live: list[CorpusItem], today_items: list[CorpusItem], meta: dict, root: Path, now: datetime
+) -> None:
     docs_dir = root / "docs"
     docs_briefs = docs_dir / "briefs"
     docs_dir.mkdir(parents=True, exist_ok=True)
@@ -532,23 +534,24 @@ def write_site(live: list[CorpusItem], meta: dict, root: Path, now: datetime) ->
     (docs_dir / "index.html").write_text(index_page, encoding="utf-8")
     (docs_dir / ".nojekyll").write_text("", encoding="utf-8")
 
-    # This run's dated snapshot: only items first seen today, matching the
-    # markdown brief and the archive/YYYY-MM-DD.json API endpoint.
+    # Today's dated snapshot -- every item first seen today, matching the
+    # markdown brief and the archive/YYYY-MM-DD.json API endpoint. Computed
+    # once in build.py and passed in so a second run later the same day
+    # accumulates into this page rather than a run-scoped list overwriting it.
     iso = now.strftime("%Y-%m-%d")
-    today_items = [i for i in live if i.first_seen.strftime("%Y-%m-%d") == iso]
     date_label = now.strftime("%A %-d %B %Y")
     dated_page = _render_page(
         today_items,
         title=f"Education brief — {date_label}",
         heading=f"Education brief<br>{date_label}",
         subtitle=(
-            f"{len(today_items)} new items from this run, ranked the same way as "
+            f"{len(today_items)} items first seen today, ranked the same way as "
             "the live list."
         ),
         meta=meta,
         generated_label=generated_label,
         footer_extra=(
-            "<p>This is a snapshot of items first seen in this run. See the "
+            "<p>This is a snapshot of items first seen today. See the "
             '<a href="../">live list</a> for current state, including this '
             "item if it's still within the retention window.</p>"
         ),
