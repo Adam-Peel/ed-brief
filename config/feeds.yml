@@ -248,6 +248,52 @@ feeds:
       teaching critique, overlapping cog-cognitive-load and the ped- topics.
       Weighted the same as HistoryExtra/Chartered College.
 
+  - id: history-of-england
+    name: The History of England Blog
+    url: https://www.thehistoryofengland.co.uk/feed/
+    weight: 1.0
+    enabled: true
+    note: >
+      Added 2026-08-21, found via feedspot.com's UK history RSS list (owner
+      asked for a check on that list specifically for recency). Companion
+      blog to the long-running "History of England" podcast. Verified
+      reachable and active (most recent 9 Aug 2026). England-specific by
+      nature, unlike most of the other list entries -- weighted like
+      HistoryExtra.
+
+  - id: british-newspaper-archive
+    name: British Newspaper Archive Blog
+    url: https://blog.britishnewspaperarchive.co.uk/feed/
+    weight: 0.0
+    enabled: true
+    note: >
+      Added 2026-08-21, from the same feedspot.com list. Verified reachable
+      and active (most recent 20 Jul 2026). Real historical content sits
+      alongside heavy subscription marketing ("Hot Off The Press -- New
+      Titles This Week", "Register now and explore The Archive") -- the
+      genuine pieces (Sheffield industrial conditions, naval disease
+      outbreaks) are worth having, but this is "history wrapped around a
+      product", not independent journalism. Weighted neutral, same
+      reasoning as Visit Nottinghamshire, rather than up.
+
+  - id: past-and-present
+    name: Past & Present Blog
+    url: https://www.pastandpresent.org.uk/feed/
+    weight: 0.0
+    enabled: true
+    note: >
+      Added 2026-08-21, from the same feedspot.com list. Verified reachable
+      and active (most recent 14 Jul 2026) -- a genuinely well-regarded
+      academic history journal's blog, not a content mill. But the actual
+      sample skews heavily toward non-England global/comparative history
+      (Ottoman religious history, transatlantic slavery, Mexico-Algiers
+      connections) and academic-community-internal posts (prize wins,
+      symposium programmes) rather than England-curriculum-relevant
+      scholarship or teacher-accessible writing. Weighted neutral rather
+      than up like HistoryExtra -- the PERIOD/England guidance in the LLM
+      rubric should do the real filtering here, same as the pre-1066 mute
+      does for HistoryExtra's classical-antiquity content.
+
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
   # Enable one and run `python -m src.validate` to see whether it resolves.
@@ -426,3 +472,56 @@ feeds:
   #     education"). Owner confirmed keeping that stance as-is rather than
   #     adding these underneath it. Revisit only if the rubric's HE stance
   #     itself changes, not by re-suggesting these two feeds alone.
+  #
+  # Also checked 2026-08-21: The National Archives, owner-suggested
+  # directly. Neither of the two URLs given works:
+  #   - nationalarchives.gov.uk/rss/ is a landing page, not a feed itself --
+  #     it links to news.xml (real feed, but stale: last item Sep 2018) and
+  #     podcasts.xml (real feed, stale: last item Oct 2022). Both fail the
+  #     "content within 6 months" bar by years, not months.
+  #   - blog.nationalarchives.gov.uk/feed/ -- which is genuinely the
+  #     better-fit one for "primary-source releases, digitisation projects"
+  #     -- returns HTTP 405 with an AWS WAF "Human Verification" challenge.
+  #     Same class of block as Schools Week/FE Week, not fixable
+  #     client-side. This is the one worth revisiting if that block ever
+  #     lifts or an RSS-bridge instance is ever set up.
+  #
+  # Also checked 2026-08-21, owner asked specifically for a pass over
+  # feedspot.com's "Top 30 UK History RSS Feeds" list, filtered for content
+  # within the last 6 months. history-of-england, british-newspaper-archive
+  # and past-and-present above came from this list; HistoryExtra (already
+  # enabled) and History Today (already logged dead) also appear on it.
+  # Checked and rejected from the rest of the list:
+  #   - BALH Blog (balh.org.uk/blog/feed): real, well-formed feed, channel
+  #     metadata present, but zero <item> entries -- same dead-aggregator
+  #     pattern as EdCentral.
+  #   - History of government (history.blog.gov.uk/feed/): real feed, but
+  #     stale -- last item May 2024, well outside the 6-month bar.
+  #   - The British Museum Blog (britishmuseum.org/blog/feed) and HRP Blogs
+  #     -- Historic Royal Palaces (hrp.org.uk/blog/feed): both 403,
+  #     Cloudflare-class bot block, same as several sources above.
+  #   - University of Nottingham "History Past and Present" blog
+  #     (blogs.nottingham.ac.uk/historypastandpresent): 404 at the feed URL
+  #     and the blog's own path -- looks to have been retired or moved; not
+  #     chased further.
+  #   - History Matters (historymatters.sites.sheffield.ac.uk): 404, same
+  #     situation.
+  #   - BBC History Research Blog (bbc.co.uk/blogs/bbchistoryresearch): no
+  #     working feed URL found -- likely a retired legacy BBC blogs
+  #     platform. Not chased further.
+  #   - The History Blog (thehistoryblog.com): inconclusive, not a
+  #     confirmed rejection -- every request from this environment failed
+  #     with a local TLS "unable to get local issuer certificate" error,
+  #     which reads as an environment/CA-trust-store limitation here rather
+  #     than a real problem with the site. Worth a manual check in an
+  #     ordinary browser before writing this one off.
+  #   - Not individually checked at all (name alone suggested a mismatched
+  #     audience -- royal-family/celebrity-genealogy interest, London
+  #     tourism, or family-history record-lookup, rather than curriculum-
+  #     relevant serious history): The Royal Watcher Blog, The History
+  #     Girls, Stuff About London, Living London History Blog, A Bit About
+  #     Britain, Love British History, European Royal History, Museum
+  #     Facts, Royal Splendor, London Guided Walks Blog, Findmypast Blog,
+  #     Historic UK, Essex Record Office Blog, Centre for Kent History and
+  #     Heritage Blog. Worth a targeted check if the owner names one
+  #     specifically, not worth an exhaustive pass on the assumption alone.
