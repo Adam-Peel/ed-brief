@@ -173,6 +173,12 @@ def publishable(items: list[CorpusItem], cfg: dict) -> list[CorpusItem]:
     why: dedup still needs to remember them, or they'd be re-fetched and
     re-scored by the LLM every run for no benefit). Call this on the full
     corpus right before writing anything public; `save()` itself should
-    always get the unfiltered list."""
+    always get the unfiltered list.
+
+    Checked against rank_score, not the frozen relevance -- the floor is
+    meant to match what a reader actually sees on the site (which displays
+    rank_score), so a story that ages past the cut disappears from the feed
+    even though its relevance never changes. recompute_rank() must run on
+    `items` before this, which build.py already guarantees."""
     floor = float(cfg.get("publish_floor", 0.0))
-    return [i for i in items if i.relevance >= floor]
+    return [i for i in items if i.rank_score >= floor]

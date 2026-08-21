@@ -83,14 +83,19 @@ tiers:
 # Items scoring below this are excluded from every PUBLISHED surface (site,
 # API, archive) entirely -- not just hidden behind a toggle like the tiers
 # above. This is a real exception to "the API always returns the full live
-# corpus": below 0.1, the deterministic scorer and the LLM both agree
-# there's nothing there, for any plausible reader, not just this profile,
-# so there's nothing for a future re-ranker to reconsider either. They still
+# corpus": below the floor, there's nothing worth a reader's time, so
+# there's nothing for a future re-ranker to reconsider either. They still
 # get PERSISTED to data/corpus.json (see corpus.publishable()), just not
 # published -- excluding them from the corpus entirely would mean the same
 # worthless item gets re-fetched and re-scored by the LLM on every run until
 # it aged out of the fetch window, for zero benefit.
-publish_floor: 0.10
+#
+# Checked against rank_score (the decayed, displayed value), not the frozen
+# relevance -- see the comment on publishable() in corpus.py. Set at 1.05,
+# the same "midpoint between display buckets" trick as the tiers above:
+# everything that would display "1.0" or lower is excluded, everything
+# displaying "1.1" or higher is kept.
+publish_floor: 1.05
 
 # The published site's own URL. Needed for the RSS feed (a channel-level
 # <link> is required by the spec) and its autodiscovery tag on the site --

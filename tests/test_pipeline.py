@@ -210,15 +210,18 @@ def main() -> int:
 
     section("publish_floor: excluded from published output, kept in the corpus")
     floor = float(scoring_cfg.get("publish_floor", 0.0))
+    # publishable() checks rank_score (the decayed, displayed value), not the
+    # frozen relevance -- see corpus.publishable()'s docstring -- so these
+    # need rank_score set directly rather than relying on recompute_rank.
     below_floor = CorpusItem(
         id="floor-below", title="t", url="u", summary="", source_id="s", source_name="S",
         published=now, first_seen=now, expires=now + timedelta(days=14),
-        relevance=max(0.0, floor - 0.05),
+        relevance=max(0.0, floor - 0.05), rank_score=max(0.0, floor - 0.05),
     )
     above_floor = CorpusItem(
         id="floor-above", title="t", url="u", summary="", source_id="s", source_name="S",
         published=now, first_seen=now, expires=now + timedelta(days=14),
-        relevance=floor + 0.05,
+        relevance=floor + 0.05, rank_score=floor + 0.05,
     )
     all_items = [below_floor, above_floor]
     published = publishable(all_items, scoring_cfg)
