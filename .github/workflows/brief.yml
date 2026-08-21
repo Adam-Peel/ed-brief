@@ -23,7 +23,7 @@ on:
     - cron: "0 19 * * *"   # 19:00 London during GMT
   workflow_dispatch:         # run it by hand any time, from the Actions tab
     inputs:
-      window_hours:
+      window_hours: 1440
         description: >-
           Lookback window in hours. Leave blank for the normal 96h (~4 day)
           window; widen it (e.g. 336 for 14 days) for a one-off backfill --
