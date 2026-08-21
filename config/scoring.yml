@@ -62,15 +62,19 @@ tiers:
   # change later. Anchored to the LLM rubric's own anchors in llm.py: 8 =
   # "directly relevant to history ITT", 5 = "useful to any teacher generally".
   #
-  # Written to 2 decimal places deliberately: these are exact comparison
-  # values (recompute_rank uses the full-precision relevance, never a
-  # rounded copy), never fuzzy. The site now displays scores to 2dp too
-  # (was 1dp, 2026-08-21) so what you see always matches which side of a
-  # threshold an item is actually on -- e.g. 2.46 now shows as "2.46", not a
-  # misleadingly-rounded "2.5" that looks tied with the 2.50 cut below.
-  lead: 8.00     # "Read these"
-  worth: 5.00    # "Worth a look"
-  rest: 2.50     # "Everything else" -- below this, "Low relevance" (raised from 1.0, 2026-08-21)
+  # Deliberately offset by 0.05 from the "round" number (8.00 -> 7.95, etc):
+  # the site displays scores to 1 decimal place, and a threshold sitting
+  # exactly on a display boundary (e.g. 2.50) means anything in [2.45, 2.50)
+  # DISPLAYS as "2.5" (rounds up) while actually tiering as the one below --
+  # a card that visually looks tied with the cut but isn't. Landing the
+  # threshold at the MIDPOINT between two display buckets instead (2.45) means
+  # every value that displays "2.4" or lower is genuinely below the cut, and
+  # everything displaying "2.5" or higher is genuinely at/above it -- 2dp
+  # thresholds resolve the ambiguity so the display can stay at the cleaner
+  # 1dp, rather than the other way around.
+  lead: 7.95     # "Read these"
+  worth: 4.95    # "Worth a look"
+  rest: 2.45     # "Everything else" -- below this, "Low relevance"
   # anything below `rest` → "Low relevance", collapsed behind its own
   # separate toggle on the site (not bundled with "Everything else"), so
   # browsing the rest of the corpus still doesn't mean wading through

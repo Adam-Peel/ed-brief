@@ -748,7 +748,7 @@
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 2.46,
    "rank_score": 2.45,
-   "tier": "noise",
+   "tier": "rest",
    "tags": [
     "prof-behaviour"
    ],
@@ -2561,30 +2561,6 @@
    }
   },
   {
-   "id": "05127ffa54a6c016",
-   "title": "Halloween Outdoor Cinema at Newstead Abbey (26 Oct 2023 - 28 Oct 2023)",
-   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-newstead-abbey-p803011",
-   "summary": "",
-   "source": {
-    "id": "visit-nottinghamshire",
-    "name": "Visit Nottinghamshire"
-   },
-   "published": "2026-07-27T02:10:59Z",
-   "first_seen": "2026-08-21T12:51:08Z",
-   "expires": "2026-09-04T12:51:08Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
    "id": "36601ee908938359",
    "title": "Quiz of the week: who is widely considered the world’s first black professional footballer?",
    "url": "https://www.historyextra.com/period/general-history/weekly-history-quiz/",
@@ -2868,6 +2844,30 @@
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": -4.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "05127ffa54a6c016",
+   "title": "Halloween Outdoor Cinema at Newstead Abbey (26 Oct 2023 - 28 Oct 2023)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-newstead-abbey-p803011",
+   "summary": "",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-07-27T02:10:59Z",
+   "first_seen": "2026-08-21T12:51:08Z",
+   "expires": "2026-09-04T12:51:08Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
     "deterministic_norm": 0.0,
     "llm": null
    }

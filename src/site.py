@@ -393,7 +393,7 @@ function card(item) {
   const modeLabel = item.mode === "llm" ? "LLM-ranked" : "keyword-ranked";
   return `<article data-tier="${esc(item.tier)}" class="${read ? "is-read" : ""}">
     <h3>
-      <span class="score" data-tier="${esc(item.tier)}" title="Rank score: relevance minus a small age decay -- this is what the list is sorted by.">${esc(item.score.toFixed(2))}</span>
+      <span class="score" data-tier="${esc(item.tier)}" title="Rank score: relevance minus a small age decay -- this is what the list is sorted by.">${esc(item.score.toFixed(1))}</span>
       <a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a>
     </h3>
     <div class="meta">${esc(item.source_name)} &middot; ${esc(item.when)} &middot; <span class="mode">${modeLabel}</span></div>
@@ -542,13 +542,24 @@ def _payload(items: list[CorpusItem]) -> list[dict]:
             "why": item.why,
             "mode": item.mode,
             # Round for display only -- the corpus/API keep full precision.
-            # 2 decimal places, not 1: at 1dp, a tier-boundary item like
-            # 2.46 displays as "2.5" and visually contradicts sitting in
-            # "Low relevance" (cut at 2.50) -- the tier assignment itself was
-            # always correct (it compares the un-rounded value), this was
-            # purely a display artifact. 2dp makes ties against a threshold
-            # like 2.50 rare enough to stop being confusing.
-            "score": round(item.rank_score, 2),
+            # 1dp, deliberately: the tier thresholds in scoring.yml sit at
+            # X.X5 (the midpoint between two 1dp display buckets), not a
+            # round X.X0, so a boundary item never displays a number that
+            # contradicts which tier it's in -- see the comment there.
+            #
+            # Rounded to 2dp FIRST, matching corpus.CorpusItem.to_dict()'s
+            # own rounding, before rounding again to 1dp for display: raw
+            # rank_score is a float subtraction (relevance - age*penalty)
+            # that can land a hair off a clean value (e.g. 2.4499999999999997
+            # instead of 2.45) due to ordinary floating-point noise. Rounding
+            # straight to 1dp let that noise decide which side of a display
+            # bucket the number fell on, so the site could show a different
+            # figure than the API's 2dp-rounded value for the same item.
+            # Going through the same 2dp step first keeps both surfaces
+            # showing the same number, and matches the canonical value
+            # everything else (corpus.json, the API) already treats as
+            # ground truth.
+            "score": round(round(item.rank_score, 2), 1),
         }
         for item in items
     ]
