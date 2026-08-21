@@ -1,0 +1,83 @@
+name: Build education brief
+
+on:
+  # GitHub cron is UTC and has no idea about British Summer Time, so a single
+  # schedule would drift by an hour every October and March. Both times are
+  # scheduled and a guard step below drops whichever one isn't 07:00 in London.
+  schedule:
+    - cron: "0 6 * * 1,4"   # 07:00 London during BST
+    - cron: "0 7 * * 1,4"   # 07:00 London during GMT
+  workflow_dispatch:         # run it by hand any time, from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: brief
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Is it actually 07:00 in London?
+        id: guard
+        run: |
+          hour=$(TZ=Europe/London date +%H)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Manual run — proceeding."
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          elif [ "$hour" = "07" ]; then
+            echo "London time is ${hour}:00 — proceeding."
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "London time is ${hour}:00, not 07:00. This is the other"
+            echo "seasonal cron firing. Skipping."
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.guard.outputs.go == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.guard.outputs.go == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        if: steps.guard.outputs.go == 'true'
+        run: pip install -r requirements.txt
+
+      - name: Check feed health
+        if: steps.guard.outputs.go == 'true'
+        continue-on-error: true
+        run: python -m src.validate
+
+      - name: Build the brief
+        if: steps.guard.outputs.go == 'true'
+        env:
+          # Uncomment the next line after adding ANTHROPIC_API_KEY as a
+          # repository secret, to turn on LLM re-ranking. Without it the run
+          # falls back to deterministic scoring and says so in the footer.
+          # ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PYTHONUNBUFFERED: "1"
+        run: python -m src.build
+
+      - name: Commit the result
+        if: steps.guard.outputs.go == 'true'
+        run: |
+          git config user.name  "ed-brief bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs briefs
+          # rank_score is recomputed for the whole corpus every run, so
+          # corpus.json's `generated` timestamp changes even when nothing new
+          # was found -- there is always something to commit, which is what
+          # keeps this schedule from being disabled after 60 quiet days. The
+          # guard below is defensive, not expected to trigger.
+          if git diff --cached --quiet; then
+            echo "Nothing new since the last run — no commit."
+          else
+            git commit -m "Brief for $(TZ=Europe/London date +%Y-%m-%d)"
+            git push
+          fi

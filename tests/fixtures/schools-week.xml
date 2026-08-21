@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+<title>Schools Week</title>
+<link>https://example.invalid/schools-week</link>
+<description>Fixture feed for testing</description>
+<item>
+<title>Curriculum review: what the Francis report means for history teaching</title>
+<link>https://example.invalid/schools-week/0</link>
+<description>The Curriculum and Assessment Review recommends changes to the national curriculum programmes of study, with implications for how history is sequenced at key stage 3.</description>
+<pubDate>Thu, 20 Aug 2026 20:55:18 +0000</pubDate>
+<guid>https://example.invalid/schools-week/0</guid>
+</item>
+<item>
+<title>Cost-cutters' advice could be released in written form</title>
+<link>https://example.invalid/schools-week/1</link>
+<description>Schools facing budget pressure may receive written recommendations from the department's school resource management advisers.</description>
+<pubDate>Thu, 20 Aug 2026 14:55:18 +0000</pubDate>
+<guid>https://example.invalid/schools-week/1</guid>
+</item>
+<item>
+<title>Ofsted report cards: inspectors to trial new grading in autumn</title>
+<link>https://example.invalid/schools-week/2</link>
+<description>The inspectorate confirms pilot schools for its replacement for single-word judgements under the revised inspection framework.</description>
+<pubDate>Thu, 20 Aug 2026 06:55:18 +0000</pubDate>
+<guid>https://example.invalid/schools-week/2</guid>
+</item>
+<item>
+<title>Early career framework reforms: what changes for ECTs in September</title>
+<link>https://example.invalid/schools-week/3</link>
+<description>Induction arrangements and mentor training are revised, with implications for early career teachers starting this year.</description>
+<pubDate>Wed, 19 Aug 2026 16:55:18 +0000</pubDate>
+<guid>https://example.invalid/schools-week/3</guid>
+</item>
+<item>
+<title>Every pupil must feel they are valued and that they can contribute</title>
+<link>https://example.invalid/schools-week/4</link>
+<description>A headteacher writes on building belonging and inclusion across a diverse intake.</description>
+<pubDate>Wed, 19 Aug 2026 06:55:18 +0000</pubDate>
+<guid>https://example.invalid/schools-week/4</guid>
+</item>
+</channel></rss>

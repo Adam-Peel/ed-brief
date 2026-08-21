@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+<title>DfE (gov.uk)</title>
+<link>https://example.invalid/dfe</link>
+<description>Fixture feed for testing</description>
+<item>
+<title>£1bn boost to PE and school sport to end fitness postcode lottery</title>
+<link>https://example.invalid/dfe/0</link>
+<description>New funding for school sport facilities and coaching across primary and secondary schools.</description>
+<pubDate>Fri, 21 Aug 2026 03:55:18 +0000</pubDate>
+<guid>https://example.invalid/dfe/0</guid>
+</item>
+<item>
+<title>Government sets out next steps for children's social care reforms</title>
+<link>https://example.invalid/dfe/1</link>
+<description>Reforms cover kinship care, family help and information sharing between agencies.</description>
+<pubDate>Thu, 20 Aug 2026 10:55:18 +0000</pubDate>
+<guid>https://example.invalid/dfe/1</guid>
+</item>
+<item>
+<title>New bursaries announced for history and modern languages trainee teachers</title>
+<link>https://example.invalid/dfe/2</link>
+<description>Initial teacher training bursaries are extended to cover further shortage subjects from the next recruitment cycle.</description>
+<pubDate>Wed, 19 Aug 2026 22:55:18 +0000</pubDate>
+<guid>https://example.invalid/dfe/2</guid>
+</item>
+</channel></rss>

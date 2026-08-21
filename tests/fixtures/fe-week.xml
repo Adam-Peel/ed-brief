@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+<title>FE Week</title>
+<link>https://example.invalid/fe-week</link>
+<description>Fixture feed for testing</description>
+<item>
+<title>GCSE resit results: 15.3% of post-16 maths students achieve grade 4 or above</title>
+<link>https://example.invalid/fe-week/0</link>
+<description>The English pass rate fell to 19.8% despite increased entries among post-16 learners.</description>
+<pubDate>Fri, 21 Aug 2026 01:55:18 +0000</pubDate>
+<guid>https://example.invalid/fe-week/0</guid>
+</item>
+<item>
+<title>College principals warn on adult education budget allocations</title>
+<link>https://example.invalid/fe-week/1</link>
+<description>Funding settlements leave providers unable to plan beyond the current year.</description>
+<pubDate>Wed, 19 Aug 2026 12:55:18 +0000</pubDate>
+<guid>https://example.invalid/fe-week/1</guid>
+</item>
+</channel></rss>

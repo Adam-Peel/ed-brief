@@ -1,0 +1,5 @@
+feedparser>=6.0.11
+PyYAML>=6.0.1
+requests>=2.31.0
+# Optional: only needed if you switch the LLM re-ranking pass on.
+anthropic>=0.40.0

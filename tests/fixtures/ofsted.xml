@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+<title>Ofsted (gov.uk)</title>
+<link>https://example.invalid/ofsted</link>
+<description>Fixture feed for testing</description>
+<item>
+<title>Ofsted publishes revised school inspection handbook</title>
+<link>https://example.invalid/ofsted/0</link>
+<description>The handbook sets out how the new inspection framework will operate, including changes to deep dives in foundation subjects.</description>
+<pubDate>Thu, 20 Aug 2026 16:55:18 +0000</pubDate>
+<guid>https://example.invalid/ofsted/0</guid>
+</item>
+</channel></rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+<title>BBC Education</title>
+<link>https://example.invalid/bbc-education</link>
+<description>Fixture feed for testing</description>
+<item>
+<title>'Relentless' GCSE resit cycle 'simply not working', school and college leaders say</title>
+<link>https://example.invalid/bbc-education/0</link>
+<description>School and college leaders say the requirement to resit GCSE maths and English is demoralising students and consuming teaching time.</description>
+<pubDate>Fri, 21 Aug 2026 02:55:18 +0000</pubDate>
+<guid>https://example.invalid/bbc-education/0</guid>
+</item>
+<item>
+<title>Students get their GCSE and BTec grades as app launches for 750 schools in England</title>
+<link>https://example.invalid/bbc-education/1</link>
+<description>Hundreds of thousands of teenagers receive results as the government's new digital credentials app goes live.</description>
+<pubDate>Fri, 21 Aug 2026 00:55:18 +0000</pubDate>
+<guid>https://example.invalid/bbc-education/1</guid>
+</item>
+<item>
+<title>Competition for degree apprenticeships quadruples as university costs rise</title>
+<link>https://example.invalid/bbc-education/2</link>
+<description>Applications per place have risen sharply as students weigh tuition fees against earning while training.</description>
+<pubDate>Thu, 20 Aug 2026 12:55:18 +0000</pubDate>
+<guid>https://example.invalid/bbc-education/2</guid>
+</item>
+<item>
+<title>Teacher recruitment falls short of secondary targets for a fourth year</title>
+<link>https://example.invalid/bbc-education/3</link>
+<description>Department for Education figures show initial teacher training recruitment reaching only two thirds of the secondary target, with history among the shortage subjects.</description>
+<pubDate>Thu, 20 Aug 2026 02:55:18 +0000</pubDate>
+<guid>https://example.invalid/bbc-education/3</guid>
+</item>
+</channel></rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+<title>Guardian Education</title>
+<link>https://example.invalid/guardian-education</link>
+<description>Fixture feed for testing</description>
+<item>
+<title>Teaching about empire: schools grapple with a contested history curriculum</title>
+<link>https://example.invalid/guardian-education/0</link>
+<description>History departments describe navigating debate over how colonial history and slavery are taught at key stage 3.</description>
+<pubDate>Thu, 20 Aug 2026 18:55:18 +0000</pubDate>
+<guid>https://example.invalid/guardian-education/0</guid>
+</item>
+<item>
+<title>Vice-chancellor pay rises again as university funding crisis deepens</title>
+<link>https://example.invalid/guardian-education/1</link>
+<description>Analysis of higher education accounts shows senior pay outpacing staff settlements.</description>
+<pubDate>Thu, 20 Aug 2026 04:55:18 +0000</pubDate>
+<guid>https://example.invalid/guardian-education/1</guid>
+</item>
+<item>
+<title>Cognitive science in the classroom: what the evidence actually supports</title>
+<link>https://example.invalid/guardian-education/2</link>
+<description>Researchers caution that retrieval practice and cognitive load theory are often oversimplified in school CPD.</description>
+<pubDate>Wed, 19 Aug 2026 20:55:18 +0000</pubDate>
+<guid>https://example.invalid/guardian-education/2</guid>
+</item>
+</channel></rss>

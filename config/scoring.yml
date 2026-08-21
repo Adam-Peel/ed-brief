@@ -1,0 +1,388 @@
+# How items get ranked.
+#
+# Final score for an item =
+#     source weight
+#   + sum of the weights of every topic group that matches
+#   + recency bonus
+#   + mute penalties (negative)
+#
+# A topic group scores ONCE however many of its terms match, so an article
+# that repeats a keyword twenty times gains nothing over one that says it
+# once. A match in the TITLE is worth `title_multiplier` times a match in
+# the summary body.
+#
+# Tags come from the Tag Index in claude/filing-convention.md, so a tag on a
+# brief item and a tag in Zotero are the same string. Two are new and marked
+# NEW — per rule 5.2 of the filing convention, add them to the Tag Index
+# before relying on them.
+
+title_multiplier: 1.6
+
+recency:
+  # Items decay toward zero bonus as they age. This feeds the deterministic
+  # raw score below, not rank_score -- see rank_score: at the bottom, which is
+  # the separate, corpus-wide age penalty applied after scoring.
+  half_life_hours: 60
+  max_bonus: 2.5
+
+# Ceiling used to normalise the deterministic raw score onto a fixed 0-10
+# scale: norm = min(raw, deterministic_scale_max) / deterministic_scale_max * 10.
+# FIXED, not batch-relative -- unlike the proof of concept, which normalised
+# against the min/max of whatever happened to be in that run's batch. That
+# breaks once items persist across runs: two runs are different batches, so
+# the same raw score would land at different points on the scale. A fixed
+# ceiling means the same raw score always means the same thing, in this run
+# or three weeks from now. ~25 is comfortably above what a strong two-signal
+# story scores (see the old calibration note this replaced: a single strong
+# headline hit was 8-11 points).
+deterministic_scale_max: 25.0
+
+# Final relevance = (1 - llm_weight) * deterministic_norm + llm_weight * llm_score.
+# Both inputs are already 0-10 by the time they're blended. Deterministic-only
+# items (no LLM available) use deterministic_norm directly.
+llm_weight: 0.6
+
+# How many new items go into a single LLM call before the ingest step chunks
+# into another batch. Same number the proof of concept used as its silent
+# per-run candidate cap (MAX_CANDIDATES); here nothing is silently dropped --
+# it's just a batch size, and every new item eventually gets scored.
+llm_batch_size: 45
+
+tiers:
+  # Fixed thresholds on the FROZEN relevance scale (0-10), not the raw
+  # deterministic sum -- tiering happens once per item, after the
+  # deterministic/LLM blend, and is recomputed every build in case these cuts
+  # change later. Anchored to the LLM rubric's own anchors in llm.py: 8 =
+  # "directly relevant to history ITT", 5 = "useful to any teacher generally".
+  lead: 8.0      # "Read these"
+  worth: 5.0     # "Worth a look"
+  # anything below `worth` → "Everything else", collapsed by default
+
+# How long an item stays in the rolling list after first being seen.
+retention_days: 14
+
+# rank_score = relevance - (days since first_seen * age_penalty_per_day),
+# floored at 0. Recomputed for the WHOLE corpus on every build so fresher
+# items outrank equally-relevant stale ones -- relevance itself never changes
+# once frozen. 0.15/day means a two-week-old item has drifted about 2 points
+# below an identically-scored story from today, enough to reorder without
+# swamping a genuinely more significant older story.
+rank_score:
+  age_penalty_per_day: 0.15
+
+# ---------------------------------------------------------------------------
+# Topic groups
+# ---------------------------------------------------------------------------
+# Ordered loosely by how much they matter to you right now: subject-specific
+# history teaching and routes into the profession outrank general schools
+# policy, which outranks sector news.
+
+topics:
+
+  # --- Your subject ---------------------------------------------------------
+
+  - tag: sub-history
+    weight: 7.0
+    terms:
+      - history curriculum
+      - history teacher
+      - history teaching
+      - teaching history
+      - history gcse
+      - history a-level
+      - history a level
+      - history department
+      - school history
+      - historical association
+      - key stage 3 history
+      - ks3 history
+
+  - tag: disc-interpretations
+    weight: 3.0
+    terms:
+      - contested history
+      - decolonis
+      - decoloniz
+      - empire in schools
+      - colonial history
+      - history wars
+      - teaching about slavery
+      - migration curriculum
+      - diverse curriculum
+
+  - tag: disc-evidence
+    weight: 2.0
+    terms:
+      - source analysis
+      - primary sources
+      - historical evidence
+      - disinformation
+      - media literacy
+      - fact-check
+
+  # --- Getting into the profession -----------------------------------------
+
+  - tag: prof-routes-into-teaching   # NEW — add to Tag Index
+    weight: 6.5
+    terms:
+      - initial teacher training
+      - teacher training
+      - itt market review
+      - itt reform
+      - pgce
+      - school direct
+      - teach first
+      - salaried route
+      - trainee teacher
+      - teacher recruitment
+      - recruitment target
+      - bursary
+      - training bursaries
+      - career changer
+      - career change
+      - qts
+      - qualified teacher status
+
+  - tag: pol-early-career-framework
+    weight: 5.5
+    terms:
+      - early career framework
+      - ecf
+      - early career teacher
+      - ect
+      - induction period
+      - mentor
+      - npq
+      - national professional qualification
+      - teacher retention
+      - leaving the profession
+      - workload
+
+  - tag: pol-teachers-standards
+    weight: 3.5
+    terms:
+      - teachers' standards
+      - teachers standards
+      - teacher pay
+      - pay award
+      - strn
+      - school teachers' review body
+      - teaching regulation agency
+
+  # --- Curriculum and assessment policy ------------------------------------
+
+  - tag: pol-national-curriculum
+    weight: 6.0
+    terms:
+      - national curriculum
+      - curriculum review
+      - curriculum and assessment review
+      - francis review
+      - becky francis
+      - curriculum reform
+      - programmes of study
+      - knowledge-rich
+      - knowledge rich curriculum
+      - cultural capital
+
+  - tag: pol-gcse-spec
+    weight: 4.5
+    terms:
+      - gcse
+      - a-level
+      - a level results
+      - exam board
+      - aqa
+      - ocr
+      - edexcel
+      - pearson
+      - specification
+      - grade boundaries
+      - exam reform
+      - assessment reform
+      - coursework
+      - non-exam assessment
+      - progress 8
+      - ebacc
+
+  - tag: pol-ofsted
+    weight: 5.0
+    terms:
+      - ofsted
+      - inspection
+      - inspectorate
+      - report card
+      - school report cards
+      - inspection framework
+      - eif
+      - deep dive
+      - single-word judgement
+      - single word judgement
+
+  # --- Pedagogy and research -----------------------------------------------
+
+  - tag: ped-enquiry
+    weight: 3.0
+    terms:
+      - enquiry-based
+      - inquiry-based
+      - enquiry question
+      - disciplinary knowledge
+      - substantive knowledge
+      - subject pedagogy
+
+  - tag: ped-disciplinary-literacy
+    weight: 3.0
+    terms:
+      - disciplinary literacy
+      - reading comprehension
+      - literacy across the curriculum
+      - academic writing
+      - oracy
+      - vocabulary instruction
+      - reading for pleasure
+
+  - tag: ped-retrieval-practice
+    weight: 2.5
+    terms:
+      - retrieval practice
+      - spaced practice
+      - interleaving
+      - low-stakes quizzing
+      - knowledge organiser
+
+  - tag: ped-feedback
+    weight: 2.5
+    terms:
+      - marking policy
+      - feedback policy
+      - whole-class feedback
+      - formative assessment
+      - assessment for learning
+
+  - tag: cog-cognitive-load
+    weight: 3.0
+    terms:
+      - cognitive load
+      - cognitive science
+      - working memory
+      - dual coding
+      - learning science
+      - education research
+      - evidence-based teaching
+      - education endowment foundation
+      - randomised controlled trial
+      - meta-analysis
+
+  # --- Classroom practice ---------------------------------------------------
+
+  - tag: prof-behaviour
+    weight: 3.5
+    terms:
+      - behaviour policy
+      - behaviour management
+      - exclusions
+      - suspensions
+      - attendance
+      - persistent absence
+      - mobile phone ban
+      - phone policy
+      - smartphones in schools
+
+  - tag: prof-adaptive-teaching
+    weight: 3.0
+    terms:
+      - adaptive teaching
+      - differentiation
+      - eal
+      - pupil premium
+      - disadvantage gap
+      - attainment gap
+
+  - tag: prof-sen
+    weight: 3.0
+    terms:
+      - send
+      - special educational needs
+      - ehcp
+      - education health and care
+      - inclusion
+      - send reform
+
+  # --- Technology -----------------------------------------------------------
+
+  - tag: ped-ai   # NEW — add to Tag Index
+    weight: 3.5
+    terms:
+      - artificial intelligence
+      - generative ai
+      - chatgpt
+      - ai in schools
+      - ai marking
+      - edtech
+      - academic integrity
+      - plagiarism
+
+  # --- Sector context (low weight — useful background, rarely urgent) -------
+
+  - tag: context-sector
+    weight: 1.0
+    terms:
+      - academy trust
+      - multi-academy
+      - school funding
+      - school budgets
+      - teacher shortage
+      - schools bill
+      - department for education
+      - education secretary
+      - ofqual
+
+# ---------------------------------------------------------------------------
+# Mutes — applied as negative weight, once per group.
+# ---------------------------------------------------------------------------
+# These stop the sector feeds burying the brief in things outside your scope.
+# A muted item is not deleted; it just sinks. Raise the penalty to bury harder.
+
+mutes:
+  - name: higher-education
+    weight: -5.0
+    terms:
+      - vice-chancellor
+      - university funding
+      - tuition fees
+      - undergraduate
+      - ucas
+      - student loan
+      - university of
+      - russell group
+      - freshers
+
+  - name: early-years
+    weight: -3.0
+    terms:
+      - nursery
+      - childminder
+      - early years foundation
+      - eyfs
+      - reception baseline
+      - childcare
+
+  - name: not-england
+    weight: -2.0
+    terms:
+      - curriculum for excellence
+      - scottish qualifications
+      - sqa
+      - donaldson
+      - estyn
+      - curriculum for wales
+
+  - name: sport-and-fluff
+    weight: -4.0
+    terms:
+      - school sport
+      - football
+      - world cup
+      - celebrity
+      - reality tv

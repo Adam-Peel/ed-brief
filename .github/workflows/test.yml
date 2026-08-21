@@ -1,0 +1,31 @@
+name: Tests
+
+on:
+  push:
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "config/**"
+      - "requirements.txt"
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Regenerate fixtures
+        run: python tests/make_fixtures.py
+      - name: Run the pipeline test
+        run: python tests/test_pipeline.py
+      - name: Run the read-only / API / end-to-end test
+        run: python tests/test_readonly.py
+      - name: Check feed health
+        continue-on-error: true
+        run: python -m src.validate

@@ -1,0 +1,100 @@
+# Sources for the education news brief.
+#
+# weight  — a nudge applied to every item from this source, before topic scoring.
+#           Use it to reflect how consistently a source carries things you care
+#           about, not how good the source is. Range roughly -3 to +3.
+# enabled — set false to mute a source without deleting its config.
+#
+# Run `python -m src.validate` to check every URL still resolves.
+
+feeds:
+  # ---- Verified reachable 2026-08-21 -------------------------------------
+
+  - id: bbc-education
+    name: BBC Education
+    url: https://feeds.bbci.co.uk/news/education/rss.xml
+    weight: 0.5
+    enabled: true
+
+  - id: schools-week
+    name: Schools Week
+    url: https://schoolsweek.co.uk/feed/
+    weight: 2.0
+    enabled: true
+    note: >
+      Highest-signal source for policy, Ofsted and workforce. Weighted up
+      because almost everything it publishes is relevant to a new entrant.
+
+  - id: fe-week
+    name: FE Week
+    url: https://feweek.co.uk/feed/
+    weight: -0.5
+    enabled: true
+    note: >
+      Post-16 focus. Weighted down slightly since much of it concerns FE
+      colleges rather than secondary; topic scoring still surfaces the
+      qualifications-reform stories that matter.
+
+  - id: dfe
+    name: DfE (gov.uk)
+    url: https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=department-for-education
+    weight: 1.5
+    enabled: true
+    note: Primary source. Statutory announcements land here before commentary.
+
+  - id: ofsted
+    name: Ofsted (gov.uk)
+    url: https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=ofsted
+    weight: 1.5
+    enabled: true
+
+  - id: ofqual
+    name: Ofqual (gov.uk)
+    url: https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=ofqual
+    weight: 1.0
+    enabled: true
+
+  - id: guardian-education
+    name: Guardian Education
+    url: https://www.theguardian.com/education/rss
+    weight: 0.5
+    enabled: true
+
+  - id: guardian-schools
+    name: Guardian Schools
+    url: https://www.theguardian.com/education/schools/rss
+    weight: 0.5
+    enabled: true
+
+  # ---- Disabled by default ----------------------------------------------
+  # These either have no public feed or could not be confirmed at build time.
+  # Enable one and run `python -m src.validate` to see whether it resolves.
+
+  - id: sec-ed
+    name: SecEd
+    url: https://www.sec-ed.co.uk/rss/
+    weight: 1.0
+    enabled: false
+    note: Secondary-focused practitioner writing. URL unconfirmed.
+
+  - id: eef
+    name: Education Endowment Foundation
+    url: https://educationendowmentfoundation.org.uk/news/rss
+    weight: 1.5
+    enabled: false
+    note: >
+      Evidence summaries and trial reports. URL unconfirmed but worth
+      chasing — this is the closest thing to a research feed for teaching.
+
+  - id: tes
+    name: Tes
+    url: ""
+    weight: 1.5
+    enabled: false
+    note: >
+      Tes retired its public RSS feed; the old /magazine/rss.xml now serves a
+      migration notice. Two options if you want Tes in the brief:
+        1. Subscribe to a Tes newsletter with an Inoreader or Kill-the-Newsletter
+           address, which turns the email into a feed URL you can paste above.
+        2. Point this at an RSS-bridge instance that scrapes tes.com/magazine/news.
+      Left disabled rather than guessing at a URL that would fail silently.
