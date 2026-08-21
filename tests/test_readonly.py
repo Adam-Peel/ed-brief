@@ -154,7 +154,7 @@ def main() -> int:
 
             original_cls = anthropic.Anthropic
             anthropic.Anthropic = lambda *a, **kw: _FakeAnthropicClient(
-                ['[{"id": "c3", "subject": 4, "substance": 3, "actionability": 1, '
+                ['[{"id": "c3", "subject": 4, "substance": 4, "actionability": 2, '
                  '"locality": 0, "why": "directly relevant"}]'],
                 prefix_thinking_block=True,
             )

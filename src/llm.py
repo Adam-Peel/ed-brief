@@ -34,19 +34,25 @@ HISTORY teaching. They are currently {reader_stage}.
 Score against this fixed rubric only. Do not rank or compare stories \
 against each other -- judge each one in isolation, on its own merits.
 
-Score each story on FOUR SEPARATE dimensions, then the final score is \
-their sum -- score each dimension independently. A story that feels \
-generally important should not inflate SUBJECT just because it matters; \
-that belongs in SUBSTANCE instead. This split exists specifically so one \
-strong dimension (e.g. "this affects lots of pupils") can't single-\
-handedly carry a story that's weak on the others (e.g. not actually about \
-history, or not new information).
+Score each story on FOUR SEPARATE dimensions, each on the SAME 0-4 scale: \
+0 = not at all, 2 = a genuine middle -- moderately or partially, 4 = fully \
+or entirely. Answer "to what extent" for each dimension using that same \
+mental yardstick every time, not a scale specific to that dimension -- \
+this is deliberate: judging every dimension the same way is what keeps \
+scoring consistent across a batch, and how much each dimension actually \
+counts toward the final ranking is handled separately, after your \
+answers, not something to weigh in yourself. Score each dimension \
+independently. A story that feels generally important should not inflate \
+SUBJECT just because it matters; that belongs in SUBSTANCE instead. This \
+split exists specifically so one strong dimension (e.g. "this affects \
+lots of pupils") can't single-handedly carry a story that's weak on the \
+others (e.g. not actually about history, or not new information).
 
-SUBJECT (0-4): how directly is this about history as a school subject, or \
-this reader's own training and career, as opposed to secondary education \
-generally?
-  4 = history curriculum, GCSE/A-level specs and exam boards (AQA, \
-Edexcel, OCR, WJEC), new historical scholarship or primary-source \
+SUBJECT: to what extent is this specifically about history as a school \
+subject, or this reader's own training and career, rather than secondary \
+education generally?
+  4 = entirely: history curriculum, GCSE/A-level specs and exam boards \
+(AQA, Edexcel, OCR, WJEC), new historical scholarship or primary-source \
 releases (The National Archives' periodic openings, digitisation, newly \
 available collections count as much as academic papers) on a period they \
 might teach, contested history and curriculum politics (empire and \
@@ -67,36 +73,36 @@ this reader has a career to enter, even when they never name history \
 specifically. Global/non-British history (Empire, the Cold War, Russia, \
 China, apartheid) scores here too, at full value -- this is history \
 taught IN England, not only history OF England.
-  3 = real secondary-teaching professional substance that isn't subject- \
-specific: SEND and inclusion (the substance of classroom inclusion, not \
-just the word "SEND" appearing in a council notice or a community event \
-badged SEND-friendly), Ofsted inspection, safeguarding and statutory \
-duties (KCSIE, attendance/behaviour guidance with legal force), AI in \
-schools, workload/pay/pensions/industrial action, school funding and MAT/ \
-academisation stories that describe an actual staffing or curriculum \
-consequence (a routine administrative or financial-oversight bulletin \
-that merely mentions a trust or funding is NOT this -- see the 1 band \
+  3 = largely: real secondary-teaching professional substance that isn't \
+subject-specific -- SEND and inclusion (the substance of classroom \
+inclusion, not just the word "SEND" appearing in a council notice or a \
+community event badged SEND-friendly), Ofsted inspection, safeguarding \
+and statutory duties (KCSIE, attendance/behaviour guidance with legal \
+force), AI in schools, workload/pay/pensions/industrial action, school \
+funding and MAT/academisation stories that describe an actual staffing or \
+curriculum consequence (a routine administrative or financial-oversight \
+bulletin that merely mentions a trust or funding is NOT this -- see 1 \
 below), classroom practice broadly (retrieval practice and cognitive \
 load, but equally behaviour management, questioning, modelling, adaptive \
 teaching, oracy, disciplinary literacy, formative assessment), and the \
 induction/early-career phase of the ITTECF (relevant background, since \
 they haven't reached it yet).
-  2 = a story about a pupil-affecting policy (resit rules, uniform cost, \
+  2 = partially: a pupil-affecting policy (resit rules, uniform cost, \
 attendance enforcement, exam-day logistics) that describes a real effect \
 on pupils generally, without touching what or how much gets taught -- \
 this reader teaches those pupils, so it's not irrelevant, but it isn't \
 about their subject or their specific training either.
-  1 = education-adjacent but weak ties to secondary teaching: higher \
-education, early years, further education, school sport; a routine \
-administrative/financial-oversight bulletin that only namedrops a trust \
-or funding; Ofsted/DfE stories that are actually about children's social \
-care or early years, not school inspection (these bodies cover far more \
-than secondary schools, and a story is not about the part of their work \
-that touches this reader just because their name is in the headline); \
-disconnected ancient-world or prehistory journalism with no England link, \
-no local angle, and no curriculum framing (see the period note below); \
-Scottish/Welsh policy.
-  0 = not education-relevant at all.
+  1 = only slightly: education-adjacent but weak ties to secondary \
+teaching -- higher education, early years, further education, school \
+sport; a routine administrative/financial-oversight bulletin that only \
+namedrops a trust or funding; Ofsted/DfE stories that are actually about \
+children's social care or early years, not school inspection (these \
+bodies cover far more than secondary schools, and a story is not about \
+the part of their work that touches this reader just because their name \
+is in the headline); disconnected ancient-world or prehistory journalism \
+with no England link, no local angle, and no curriculum framing (see the \
+period note below); Scottish/Welsh policy.
+  0 = not at all: no education relevance.
 
 Period note for SUBJECT: the secondary history curriculum runs roughly \
 1066 to the present, but this is a TIME rule, not a hard cutoff or a \
@@ -117,55 +123,64 @@ a named history-teacher-training blog or a university history department \
 is evidence its content is history- and training-specific even when its \
 own wording doesn't say so.
 
-SUBSTANCE (0-3): is this genuinely NEW, or is it commentary, narrative, \
-or explanation of already-established facts?
-  3 = a primary discovery, finding, or reform EVENT actually happening -- \
-new archival or archaeological findings, a genuinely new historical \
-interpretation, an exam board confirming a real spec change, a policy \
-actually being enacted, not just studied or proposed.
-  2 = solid reporting or analysis of a real, specific development that \
-isn't itself new information -- a study's results being reported \
+SUBSTANCE: to what extent is this genuinely NEW information, rather than \
+commentary or narrative about already-established facts?
+  4 = entirely: a primary discovery, finding, or reform EVENT actually \
+happening -- new archival or archaeological findings, a genuinely new \
+historical interpretation, an exam board confirming a real spec change, a \
+policy actually being enacted, not just studied or proposed.
+  3 = largely: solid reporting or analysis of a real, specific development \
+that isn't itself new information -- a study's results being reported \
 (distinct from being the study itself), a genuine consultation or \
 proposal not yet enacted, an analysis piece with real evidence behind it. \
 A story about research showing that a policy harms pupil wellbeing sits \
-here, not at 3: the finding is real, but the story is reporting ON \
+here, not at 4: the finding is real, but the story is reporting ON \
 research, not presenting a reform event or a discovery itself.
-  1 = narrative, explainer, or summary journalism about facts that are \
-already well established -- well-written and still worth reading, but \
-not telling this reader, or the field, anything new.
-  0 = trivia, puzzles, listicles, or no real content.
+  2 = partially: a credible claim or moderate development, but vaguer or \
+less concrete than 3 -- general trend reporting, an early-stage proposal, \
+informed speculation.
+  1 = only slightly: narrative, explainer, or summary journalism about \
+facts that are already well established -- well-written and still worth \
+reading, but not telling this reader, or the field, anything new.
+  0 = not at all: trivia, puzzles, listicles, or no real content.
 
-ACTIONABILITY (0-2): could this reader actually DO something with it -- \
-use it as a lesson hook or resource, cite it in planning, change a \
-practice because of it?
-  2 = directly usable: a primary source, a teaching resource, a case \
-study concrete enough to build a lesson around, a practice change they \
-could make tomorrow.
-  1 = informs their thinking or context, but nothing to directly act on.
-  0 = no practical application for this reader.
+ACTIONABILITY: to what extent could this reader actually USE it -- as a \
+lesson hook or resource, in planning, to change a practice?
+  4 = entirely: directly usable as-is -- a primary source, a teaching \
+resource, a case study concrete enough to build a lesson around.
+  3 = largely: a practice change they could make soon, informed directly \
+by this.
+  2 = partially: informs planning or context meaningfully, though nothing \
+immediately actionable.
+  1 = only slightly: tangential background, nothing concrete to act on.
+  0 = not at all: no practical application for this reader.
 
-LOCALITY (0-1): the Nottinghamshire premium -- deliberately small and \
-structurally capped, so it can nudge a borderline story up but never \
-carry one on its own. Award 1 when the story is ITSELF about \
-Nottinghamshire's history, heritage, or archaeology, OR about a \
-Nottinghamshire school, multi-academy trust, ITT provider, or the local \
-teaching job market. A story framed as covering a wider region (e.g. "the \
-East Midlands") that is substantively about Nottinghamshire content still \
-counts -- don't withhold this point on a technicality of exact wording. \
-Be strict about the history facet specifically: a modern event that \
-merely takes place AT a historic Nottinghamshire site -- a cinema night, \
-a concert, a market -- gets 0 here, however prominently it names the \
-site; score what the story is ABOUT, not which building it namedrops.
+LOCALITY: to what extent is this specifically about Nottinghamshire -- \
+either its history/heritage/archaeology, or a Nottinghamshire school, \
+multi-academy trust, ITT provider, or the local teaching job market? \
+Deliberately the smallest-weighted dimension, so it can nudge a \
+borderline story up but never carry one on its own.
+  4 = entirely: the story ITSELF is substantively about Nottinghamshire \
+content -- including when it's framed as covering a wider region (e.g. \
+"the East Midlands") but Nottinghamshire content is the substantive core; \
+don't withhold marks on a technicality of exact wording.
+  2-3 = Nottinghamshire content is a significant part of the story \
+alongside other places, not the sole focus.
+  1 = a passing or incidental mention of Nottinghamshire.
+  0 = no Nottinghamshire connection -- including a modern event that \
+merely takes place AT a historic Nottinghamshire site (a cinema night, a \
+concert, a market): score what the story is ABOUT, not which building it \
+namedrops.
 
 This is a rolling 14-day digest, not a same-day alert -- score SUBSTANCE \
 for lasting value, not literal urgency.
 
-For each story below, return all four dimension scores and a single \
-short clause (under 25 words, no full stop) saying why it matters to \
-them specifically -- or, for a low total, why it doesn't.
+For each story below, return all four dimension scores (0-4 each) and a \
+single short clause (under 25 words, no full stop) saying why it matters \
+to them specifically -- or, for a low total, why it doesn't.
 
 Return ONLY a JSON array, no prose, no code fence:
-[{{"id": "...", "subject": 0-4, "substance": 0-3, "actionability": 0-2, "locality": 0-1, "why": "..."}}]
+[{{"id": "...", "subject": 0-4, "substance": 0-4, "actionability": 0-4, "locality": 0-4, "why": "..."}}]
 
 Stories:
 {payload}"""
@@ -266,22 +281,30 @@ def _score_batch(
         if not item_id or item_id not in valid_ids:
             continue
         # Additive, 2026-08-21: the model returns four independent
-        # dimensions (see RUBRIC) instead of one holistic 0-10 judgement,
-        # and the final score is their sum -- computed here, not asked of
-        # the model directly, so a single dominant dimension (e.g. "this
-        # affects lots of pupils") can't inflate the total by leaking into
-        # a dimension it doesn't belong in. Each is clamped to its own
-        # range independently; a missing field defaults to 0 rather than
-        # failing the whole verdict, same tolerance as the old single-score
-        # parsing had for a missing "score" key.
+        # dimensions (see RUBRIC) instead of one holistic 0-10 judgement, so
+        # a single dominant dimension (e.g. "this affects lots of pupils")
+        # can't inflate the total by leaking into a dimension it doesn't
+        # belong in. Each is clamped to its own range independently; a
+        # missing field defaults to 0 rather than failing the whole verdict,
+        # same tolerance as the old single-score parsing had for a missing
+        # "score" key.
         try:
             subject = max(0.0, min(4.0, float(verdict.get("subject", 0))))
-            substance = max(0.0, min(3.0, float(verdict.get("substance", 0))))
-            actionability = max(0.0, min(2.0, float(verdict.get("actionability", 0))))
-            locality = max(0.0, min(1.0, float(verdict.get("locality", 0))))
+            substance = max(0.0, min(4.0, float(verdict.get("substance", 0))))
+            actionability = max(0.0, min(4.0, float(verdict.get("actionability", 0))))
+            locality = max(0.0, min(4.0, float(verdict.get("locality", 0))))
         except (TypeError, ValueError):
             continue
-        score = subject + substance + actionability + locality
+        # All four are judged on the SAME 0-4 scale (deliberately, for
+        # scoring consistency -- see RUBRIC), but they don't matter equally
+        # to the final ranking. The weighting lives here, in code, and is
+        # never shown to the model -- so it can't discount a dimension it
+        # knows "counts less", or start doing its own mental arithmetic
+        # instead of just answering "to what extent" each time. Weights
+        # (1 / .75 / .5 / .25) reproduce the original 4:3:2:1 relative-
+        # importance ratio this replaced, landing on a clean 0-10 ceiling
+        # (4 + 3 + 2 + 1) when every dimension maxes out.
+        score = subject * 1.0 + substance * 0.75 + actionability * 0.5 + locality * 0.25
         # Raised from 160, 2026-08-21: the rubric asks for "under 25 words",
         # which averages 150-170 characters -- 160 was clipping the longest
         # ones mid-word. 220 gives real headroom above that average.
