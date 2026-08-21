@@ -154,8 +154,8 @@ def main() -> int:
 
             original_cls = anthropic.Anthropic
             anthropic.Anthropic = lambda *a, **kw: _FakeAnthropicClient(
-                ['[{"id": "c3", "subject": 4, "substance": 4, "actionability": 2, '
-                 '"locality": 0, "why": "directly relevant"}]'],
+                ['[{"id": "c3", "1_1": 4, "2_1": 4, "3_1": 4, "3_3": 4, "3_4": 4, '
+                 '"4_1": 4, "why": "directly relevant"}]'],
                 prefix_thinking_block=True,
             )
             try:
@@ -165,7 +165,7 @@ def main() -> int:
         finally:
             del os.environ["ANTHROPIC_API_KEY"]
 
-        check(verdicts.get("c3", (None, None))[0] == 8.0,
+        check(verdicts.get("c3", (None, None))[0] == 10.0,
               "the verdict behind a leading thinking block is still extracted", str(verdicts))
         check("failed" not in status and "AttributeError" not in status,
               "no AttributeError surfaces in the status message", status)

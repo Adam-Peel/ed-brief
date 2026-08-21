@@ -54,15 +54,17 @@ llm_weight: 0.8
 # into another batch. Every new item eventually gets scored regardless of
 # batch size -- this only controls how many judgements happen in one call.
 #
-# Lowered 45 -> 25, 2026-08-21: the rubric has grown to several competing
-# categories with real nuance between them (direct vs incidental, period
-# judgement, locality caps) -- asking for 45 consistent multi-criteria
-# verdicts in one pass risks later items in the batch getting flatter
-# treatment than earlier ones. Smaller batches cost a couple of extra API
-# calls per run (still pence/month -- see the README cost note) in
-# exchange for steadier scoring. max_tokens=12000 in llm.py already gives
-# plenty of headroom either way, so this isn't about truncation risk.
-llm_batch_size: 25
+# Lowered 45 -> 25 -> 15, 2026-08-21 (two separate cuts, same day). The
+# second cut is a bigger jump for a bigger reason: the rubric moved from
+# one holistic 0-10 judgement per story to a 16-item Likert bank (see
+# RUBRIC in llm.py), each item scored independently -- 15 items x 16
+# judgements is already 240 per batch, and consistency across a batch
+# matters more as the per-item judgement gets more granular, not less.
+# Smaller batches cost more API calls per run (still pence/month -- see
+# the README cost note) in exchange for steadier scoring. max_tokens=12000
+# in llm.py already gives plenty of headroom either way, so this isn't
+# about truncation risk.
+llm_batch_size: 15
 
 # Model for the LLM ranking pass. This is a nuanced-classification task
 # ("is this actually relevant"), not deep multi-step reasoning, so cost
