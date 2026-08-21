@@ -93,6 +93,32 @@ feeds:
       pieces are actually relevant to a trainee. A weekly quiz/crossword mute
       group in scoring.yml sinks the pure trivia entries.
 
+  - id: oxford-education
+    name: Oxford Department of Education
+    url: https://www.education.ox.ac.uk/feed/?post_type=news
+    weight: 0.0
+    enabled: true
+    note: >
+      Verified reachable 2026-08-21 -- note the ?post_type=news query string;
+      the plain /feed/ on this WordPress site is real but always empty
+      because their news items are a custom post type, not the default
+      "post". Content is genuine education research (pupil feedback studies,
+      AI in education, national policy evaluations) alongside some internal
+      academic news (staff honours, PhD/fellowship announcements) that isn't
+      classroom-relevant, so weighted neutral like HistoryExtra -- the
+      cog-cognitive-load topic group is what should surface the good pieces.
+
+  - id: nottingham-education
+    name: Nottingham School of Education
+    url: https://www.nottingham.ac.uk/education/news/index.aspx?schoolNewsListings_SyndicationType=1
+    weight: 0.0
+    enabled: true
+    note: >
+      Verified reachable 2026-08-21. Same profile as Oxford above: real
+      pedagogy/education-research content mixed with international
+      partnership and staff-award announcements, so weighted neutral rather
+      than up.
+
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
   # Enable one and run `python -m src.validate` to see whether it resolves.
@@ -161,3 +187,23 @@ feeds:
   #     for the Scottish National 5 syllabus, which scoring.yml's
   #     not-england mute would sink anyway) rather than news -- not a good
   #     fit for a twice-weekly news brief even if it were fresher.
+  #
+  # Also checked 2026-08-21 while looking for pedagogy/education-research
+  # sources (UCL IOE and Nottingham suggested by the owner; Oxford and
+  # Nottingham are enabled above, the rest weren't usable):
+  #   - UCL Institute of Education (ucl.ac.uk/ioe): no RSS autodiscovery on
+  #     the news page, and every guessed feed path (/rss.xml, /news/rss.xml)
+  #     returns Cloudflare's "Just a moment..." JS-challenge interstitial --
+  #     same class of block as Schools Week/FE Week, not fixable client-side.
+  #   - Durham University School of Education: the department news page and
+  #     the university-wide /feeds/ index both return 403 from CloudFront.
+  #   - Cambridge (Faculty of Education) and Manchester (Institute of
+  #     Education): no department-specific feed found, only a whole-university
+  #     newsroom feed (cam.ac.uk/news/feed, manchester.ac.uk/about/news/) --
+  #     skipped as too broad; a feed covering every department from medicine
+  #     to engineering would mostly just add noise here.
+  #   - Bristol, Birmingham, King's College London, Exeter: no working feed
+  #     found at their most likely URLs (checked /education/news/feed and
+  #     equivalents; Exeter's redirects to a plain HTML page, the others 404).
+  #     Not exhaustively checked -- may be worth a second pass with more
+  #     specific URLs if one of these becomes a priority.
