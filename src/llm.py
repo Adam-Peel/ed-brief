@@ -156,8 +156,9 @@ Score each story 0-10 against these anchors:
   2  = distantly related to education but outside this reader's remit \
 (e.g. early years, HE, another subject)
   5  = useful to any teacher generally, not specific to this reader
-  6  = solid interest to this reader specifically, short of ITT-direct
-  8  = directly relevant to secondary history ITT, or this reader's own \
+  6  = solid interest to this reader specifically, or exceptional history \
+  content
+  8  = directly relevant to secondary history, ITT, or this reader's own \
 subject knowledge/career
   10 = essential reading for THIS reader specifically -- not just strong \
 journalism generally
@@ -166,7 +167,7 @@ This is a rolling 14-day digest, not a same-day alert -- score for lasting \
 relevance to this reader, not literal urgency.
 
 For each story below, return a relevance score from 0 to 10, and a single \
-short clause (under 15 words, no full stop) saying why it matters to them \
+short clause (under 25 words, no full stop) saying why it matters to them \
 specifically -- or, for a low score, why it doesn't.
 
 Return ONLY a JSON array, no prose, no code fence:
