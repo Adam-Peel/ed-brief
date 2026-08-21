@@ -55,6 +55,15 @@ llm_batch_size: 45
 # was failing. BRIEF_LLM_MODEL env var overrides this for local testing.
 llm_model: claude-sonnet-5
 
+# Where the reader actually is right now, dropped into the LLM rubric
+# (src/llm.py's RUBRIC) as {reader_stage}. A config value, not hardcoded in
+# the prompt string, because it WILL go stale -- and the reader's priorities
+# genuinely shift when it does: once training starts, induction/mentoring/
+# the ITTECF outrank bursaries and "routes in" news; once they're a working
+# teacher, ITT news itself becomes background noise. Update this, not the
+# code, when that happens.
+llm_reader_stage: "at the point of entering initial teacher training"
+
 tiers:
   # Fixed thresholds on the FROZEN relevance scale (0-10), not the raw
   # deterministic sum -- tiering happens once per item, after the
