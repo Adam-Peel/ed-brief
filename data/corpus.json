@@ -1,8 +1,139 @@
 {
  "schema": 1,
- "generated": "2026-08-21T11:38:31Z",
+ "generated": "2026-08-21T11:46:16Z",
  "retention_days": 14,
  "items": [
+  {
+   "id": "50f3bb4fdee8b09a",
+   "title": "The Guardian view on GCSE results: much to celebrate, much to reform | Editorial",
+   "url": "https://www.theguardian.com/commentisfree/2026/aug/20/the-guardian-view-on-gcse-results-much-to-celebrate-much-to-reform",
+   "summary": "Another post-pandemic cohort has shown its resilience and talent. But growing inequalities of outcome must be addressed Most pupils who received their GCSE results this week were in the penultimate year of primary school when Covid struck, disrupting their preparation for secondary education. As with other post-pandemic cohorts, their achievements are therefore a testament to their ability, resilience and determination. A strong set of results, particularly in the core subjects of English and maths, should also be seen as a tribute to teachers dealing with ever expanding workloads. Overall…",
+   "source": {
+    "id": "guardian-education",
+    "name": "Guardian Education"
+   },
+   "published": "2026-08-20T17:46:28Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 6.04,
+   "rank_score": 6.04,
+   "tier": "worth",
+   "tags": [
+    "pol-early-career-framework",
+    "pol-gcse-spec"
+   ],
+   "why": "GCSE reform discussion affects all secondary teachers entering profession",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 15.23,
+    "deterministic_norm": 6.09,
+    "llm": 6.0
+   }
+  },
+  {
+   "id": "848af578b2193b39",
+   "title": "Five key takeaways from GCSE results day 2026",
+   "url": "https://www.bbc.co.uk/news/articles/cx2583xew8zo?at_medium=RSS&at_campaign=rss",
+   "summary": "Resits are up, the gap between boys and girls has shrunk and England's regional divide has widened.",
+   "source": {
+    "id": "bbc-education",
+    "name": "BBC Education"
+   },
+   "published": "2026-08-20T14:28:32Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 5.14,
+   "rank_score": 5.14,
+   "tier": "worth",
+   "tags": [
+    "pol-gcse-spec"
+   ],
+   "why": "GCSE results trends shape assessment context history teachers enter",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 9.65,
+    "deterministic_norm": 3.86,
+    "llm": 6.0
+   }
+  },
+  {
+   "id": "2f9a189daaaaf4aa",
+   "title": "GCSE results: girls still ahead but gender gap narrows as hundreds of thousands of pupils receive grades – as it happened",
+   "url": "https://www.theguardian.com/education/live/2026/aug/20/gcse-results-exams-schools-education-england-wales-northern-ireland-live-latest-updates",
+   "summary": "Nearly a quarter of girls’ entries received one of the higher grades against around a fifth of those from boys Almost one in four boys in England get top grades in maths Myles McGinley, managing director of the Cambridge OCR exam board, said more pupils are taking GCSE business studies than in previous years, describing this generation of young people as “increasingly entrepreneurial”. He said business studies entries are a third higher than five years ago, adding: “The founders of some of the next great unicorn businesses may well be among those achieving GCSEs in business studies today.”…",
+   "source": {
+    "id": "guardian-education",
+    "name": "Guardian Education"
+   },
+   "published": "2026-08-20T12:26:10Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 5.14,
+   "rank_score": 5.14,
+   "tier": "worth",
+   "tags": [
+    "pol-gcse-spec"
+   ],
+   "why": "Gender gap trends in GCSE outcomes relevant to understanding cohort context",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 9.61,
+    "deterministic_norm": 3.84,
+    "llm": 6.0
+   }
+  },
+  {
+   "id": "86d44c3d72066f7e",
+   "title": "Leaders attack ‘demotivating’ plan to make pupils who fail GCSEs retake maths and English",
+   "url": "https://www.theguardian.com/education/2026/aug/20/governments-plan-young-people-continue-studying-gcse-maths-english-exams",
+   "summary": "Government confirms plan for ‘stepping stone’ qualification in England as students face retaking maths or English after failure to achieve grade 4 The government’s plans to make young people continue studying maths and English if they fail GCSEs could be demotivating and ineffective, according to education experts and school leaders after retake pass rates slumped this year. Only one in seven students in the age group retaking GCSE maths after a previous failure got a grade 4 or above this summer, while only one in six managed to pass English, meaning the majority will have to retake the…",
+   "source": {
+    "id": "guardian-education",
+    "name": "Guardian Education"
+   },
+   "published": "2026-08-20T18:21:32Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 4.56,
+   "rank_score": 4.56,
+   "tier": "rest",
+   "tags": [
+    "pol-gcse-spec"
+   ],
+   "why": "GCSE policy reform affects all secondary teachers generically",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 9.74,
+    "deterministic_norm": 3.9,
+    "llm": 5.0
+   }
+  },
+  {
+   "id": "5560773cdf852350",
+   "title": "'Relentless' GCSE resit cycle 'simply not working', school and college leaders say",
+   "url": "https://www.bbc.co.uk/news/articles/czdm6d2z3gro?at_medium=RSS&at_campaign=rss",
+   "summary": "Pass rates for maths and English resits remain significantly lower than students taking them for the first time.",
+   "source": {
+    "id": "bbc-education",
+    "name": "BBC Education"
+   },
+   "published": "2026-08-20T16:26:34Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 4.55,
+   "rank_score": 4.55,
+   "tier": "rest",
+   "tags": [
+    "pol-gcse-spec"
+   ],
+   "why": "GCSE resit policy affects all secondary teachers but not history-specific",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 9.7,
+    "deterministic_norm": 3.88,
+    "llm": 5.0
+   }
+  },
   {
    "id": "e6263085a41a0509",
    "title": "Maths excellence as thousands achieve high grades at GCSE",
@@ -42,7 +173,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 4.16,
-   "rank_score": 4.16,
+   "rank_score": 4.15,
    "tier": "rest",
    "tags": [
     "prof-routes-into-teaching"
@@ -68,7 +199,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 4.16,
-   "rank_score": 4.16,
+   "rank_score": 4.15,
    "tier": "rest",
    "tags": [
     "prof-routes-into-teaching"
@@ -94,7 +225,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 3.92,
-   "rank_score": 3.92,
+   "rank_score": 3.91,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec",
@@ -225,7 +356,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 3.8,
-   "rank_score": 3.8,
+   "rank_score": 3.79,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
@@ -251,7 +382,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 3.8,
-   "rank_score": 3.8,
+   "rank_score": 3.79,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
@@ -277,7 +408,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 3.8,
-   "rank_score": 3.8,
+   "rank_score": 3.79,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
@@ -512,7 +643,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 2.6,
-   "rank_score": 2.6,
+   "rank_score": 2.59,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
@@ -538,7 +669,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 2.6,
-   "rank_score": 2.6,
+   "rank_score": 2.59,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
@@ -564,7 +695,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 2.6,
-   "rank_score": 2.6,
+   "rank_score": 2.59,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
@@ -694,7 +825,7 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 1.99,
-   "rank_score": 1.99,
+   "rank_score": 1.98,
    "tier": "rest",
    "tags": [
     "cog-cognitive-load"
@@ -720,7 +851,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.92,
-   "rank_score": 1.92,
+   "rank_score": 1.91,
    "tier": "rest",
    "tags": [
     "ped-disciplinary-literacy"
@@ -746,7 +877,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.92,
-   "rank_score": 1.92,
+   "rank_score": 1.91,
    "tier": "rest",
    "tags": [
     "ped-disciplinary-literacy"
@@ -772,7 +903,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.8,
-   "rank_score": 1.8,
+   "rank_score": 1.79,
    "tier": "rest",
    "tags": [
     "prof-sen"
@@ -798,7 +929,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.8,
-   "rank_score": 1.8,
+   "rank_score": 1.79,
    "tier": "rest",
    "tags": [
     "prof-sen"
@@ -876,7 +1007,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.4,
-   "rank_score": 1.4,
+   "rank_score": 1.39,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
@@ -902,7 +1033,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.24,
-   "rank_score": 1.24,
+   "rank_score": 1.23,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -928,7 +1059,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.24,
-   "rank_score": 1.24,
+   "rank_score": 1.23,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -1032,7 +1163,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.04,
-   "rank_score": 1.04,
+   "rank_score": 1.03,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -1084,7 +1215,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.0,
-   "rank_score": 1.0,
+   "rank_score": 0.99,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -1110,7 +1241,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.0,
-   "rank_score": 1.0,
+   "rank_score": 0.99,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -1210,7 +1341,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.8,
-   "rank_score": 0.8,
+   "rank_score": 0.79,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -1332,7 +1463,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1356,7 +1487,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1380,7 +1511,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1404,7 +1535,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1428,7 +1559,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1452,7 +1583,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1476,7 +1607,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.59,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1608,6 +1739,32 @@
    }
   },
   {
+   "id": "3b561734d49d1cba",
+   "title": "Academic who accused Jason Arday of plagiarism suspended by his university",
+   "url": "https://www.theguardian.com/uk-news/2026/aug/20/academic-who-accused-jason-arday-of-plagiarism-suspended-by-his-university",
+   "summary": "Researcher Nathan Cofnas previously claimed Black people would hold few high-profile positions in a meritocracy Nathan Cofnas, the academic who made plagiarism allegations against Prof Jason Arday before his death, has been suspended by a university. Arday, 41, resigned from his role at the University of Cambridge this month after coverage of Cofnas’s accusations of plagiarism. The allegations, which were not proven in any formal investigation, triggered questions about Arday’s achievements. Continue reading...",
+   "source": {
+    "id": "guardian-education",
+    "name": "Guardian Education"
+   },
+   "published": "2026-08-20T18:12:13Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 0.5,
+   "rank_score": 0.5,
+   "tier": "rest",
+   "tags": [
+    "ped-ai"
+   ],
+   "why": "Academic plagiarism dispute irrelevant to secondary history teaching",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 3.14,
+    "deterministic_norm": 1.26,
+    "llm": 0.0
+   }
+  },
+  {
    "id": "c4ba9ffc68420c31",
    "title": "Parents pushed to breaking point by Child Maintenance Service, BBC told",
    "url": "https://www.bbc.co.uk/news/articles/c4g3re5ew8do?at_medium=RSS&at_campaign=rss",
@@ -1629,6 +1786,30 @@
     "deterministic_raw": 1.27,
     "deterministic_norm": 0.51,
     "llm": null
+   }
+  },
+  {
+   "id": "33d080a981079902",
+   "title": "Ban on goods from occupied West Bank would help protect two-state solution, says Emily Thornberry – UK politics live",
+   "url": "https://www.theguardian.com/politics/live/2026/aug/21/andy-burnham-growth-labour-john-healey-uk-politics-latest-news-updates",
+   "summary": "Head of foreign affairs select committee urges government to adopt ban amid rising settler violence, after foreign secretary rebukes Israel over construction tender Members of the public could see actors dressed as armed police and simulated emergencies at the Houses of Parliament when filming takes place this weekend. Production company Bad Wolf, behind shows including Doctor Who, His Dark Materials and Industry, will be filming at locations around the parliamentary estate and on the River Thames on 22 August and 23. A licensed film production is taking place on and around parts of the…",
+   "source": {
+    "id": "guardian-education",
+    "name": "Guardian Education"
+   },
+   "published": "2026-08-21T11:24:45Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 0.48,
+   "rank_score": 0.48,
+   "tier": "rest",
+   "tags": [],
+   "why": "Political commentary unrelated to history teaching or ITT",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 2.99,
+    "deterministic_norm": 1.2,
+    "llm": 0.0
    }
   },
   {
@@ -1656,6 +1837,30 @@
    }
   },
   {
+   "id": "c7d4b1d36da70047",
+   "title": "Broken toilets, leaking roofs: Why India's 'cockroach' party wants to fix schools",
+   "url": "https://www.bbc.co.uk/news/articles/ckg4q8kyxp7o?at_medium=RSS&at_campaign=rss",
+   "summary": "The poor state of government schools is the focus of a new campaign by India's Cockroach Janta Party (CJP).",
+   "source": {
+    "id": "bbc-education",
+    "name": "BBC Education"
+   },
+   "published": "2026-08-21T00:04:10Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 0.43,
+   "rank_score": 0.43,
+   "tier": "rest",
+   "tags": [],
+   "why": "Indian school infrastructure irrelevant to English secondary history ITT",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 2.68,
+    "deterministic_norm": 1.07,
+    "llm": 0.0
+   }
+  },
+  {
    "id": "73629f00a41acbaf",
    "title": "Supporting female academics in Sub-Saharan Africa to publish and lead",
    "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/supporting-female-academics.aspx",
@@ -1668,7 +1873,7 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.43,
-   "rank_score": 0.43,
+   "rank_score": 0.42,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1716,7 +1921,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.4,
-   "rank_score": 0.4,
+   "rank_score": 0.39,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1725,6 +1930,54 @@
     "deterministic_raw": 1.0,
     "deterministic_norm": 0.4,
     "llm": null
+   }
+  },
+  {
+   "id": "29bd6ae9b51789a5",
+   "title": "UK minister criticises misogynistic social media culture | Politics Weekly",
+   "url": "https://www.theguardian.com/politics/video/2026/aug/20/uk-minister-criticises-misogynistic-social-media-culture-politics-weekly",
+   "summary": "Racism and misogyny are becoming normalised as a result of rightwing politics and the ‘cesspit’ of social media, according to Labour’s Bridget Phillipson. In an extended interview, the minister for women and equalities and new party chair talks to Kiran Stacey about her fears for British society, the climate crisis, what Andy Burnham is really doing differently from Keir Starmer, and whether her party can beat Reform Continue reading...",
+   "source": {
+    "id": "guardian-education",
+    "name": "Guardian Education"
+   },
+   "published": "2026-08-20T14:00:23Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 0.39,
+   "rank_score": 0.39,
+   "tier": "rest",
+   "tags": [],
+   "why": "Social media commentary unrelated to history teaching or curriculum",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 2.44,
+    "deterministic_norm": 0.98,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "31a27137e3f7833b",
+   "title": "Gods and monsters: the hidden stories of the Odyssey",
+   "url": "https://www.historyextra.com/membership/odyssey-podcast-series-episode-2/",
+   "summary": "Daisy Dunn explores the Odyssey's greatest hits – and how each tells us as much about ancient Greek civilisation as it does about Odysseus himself",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-21T09:00:15Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 0.39,
+   "rank_score": 0.39,
+   "tier": "rest",
+   "tags": [],
+   "why": "Ancient Greek content enrichment unrelated to ITT pedagogy or curriculum",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 2.42,
+    "deterministic_norm": 0.97,
+    "llm": 0.0
    }
   },
   {
@@ -1764,7 +2017,7 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.33,
-   "rank_score": 0.33,
+   "rank_score": 0.32,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -1797,6 +2050,30 @@
     "deterministic_raw": 0.8,
     "deterministic_norm": 0.32,
     "llm": null
+   }
+  },
+  {
+   "id": "545a93f15a869d3d",
+   "title": "Royal rivalry: 10 monarchs whose fate was determined by their siblings",
+   "url": "https://www.historyextra.com/membership/royal-sibling-rivalries/",
+   "summary": "Through history, the role of the second or third royal sibling has not always been easy. Here, historian Sarah Gristwood explores 10 of the most famous – and dysfunctional – royal sibling relationships...",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-20T12:01:54Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 0.3,
+   "rank_score": 0.3,
+   "tier": "rest",
+   "tags": [],
+   "why": "Royal history content enrichment unrelated to ITT pedagogy or assessment",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.9,
+    "deterministic_norm": 0.76,
+    "llm": 0.0
    }
   },
   {
@@ -1982,7 +2259,7 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.14,
-   "rank_score": 0.14,
+   "rank_score": 0.13,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2006,7 +2283,7 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.08,
-   "rank_score": 0.08,
+   "rank_score": 0.07,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2030,7 +2307,7 @@
    "first_seen": "2026-08-21T10:55:01Z",
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 0.06,
-   "rank_score": 0.06,
+   "rank_score": 0.05,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2054,7 +2331,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.01,
-   "rank_score": 0.01,
+   "rank_score": 0.0,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2078,7 +2355,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.01,
-   "rank_score": 0.01,
+   "rank_score": 0.0,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2102,7 +2379,7 @@
    "first_seen": "2026-08-21T10:55:21Z",
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 0.01,
-   "rank_score": 0.01,
+   "rank_score": 0.0,
    "tier": "rest",
    "tags": [],
    "why": "",
@@ -2111,6 +2388,78 @@
     "deterministic_raw": 0.02,
     "deterministic_norm": 0.01,
     "llm": null
+   }
+  },
+  {
+   "id": "36601ee908938359",
+   "title": "Quiz of the week: who is widely considered the world’s first black professional footballer?",
+   "url": "https://www.historyextra.com/period/general-history/weekly-history-quiz/",
+   "summary": "How much have you been paying attention to this week's content on HistoryExtra? Test your knowledge with our quiz…",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-21T08:03:12Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "rest",
+   "tags": [],
+   "why": "History quiz entertainment irrelevant to ITT or classroom practice",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": -5.61,
+    "deterministic_norm": 0.0,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "99f36693e3d08df2",
+   "title": "History crossword: 14 August",
+   "url": "https://www.historyextra.com/membership/history-crossword-14-august/",
+   "summary": "",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-21T08:01:10Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "rest",
+   "tags": [],
+   "why": "History crossword puzzle irrelevant to ITT or teaching practice",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": -1.61,
+    "deterministic_norm": 0.0,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "fc4ac09825427028",
+   "title": "Daily quiz: 21 August",
+   "url": "https://www.historyextra.com/membership/daily-history-trivia-quiz/",
+   "summary": "Put your history knowledge to the test with our daily quiz challenge – updated every morning at 7am UK time",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-21T06:00:10Z",
+   "first_seen": "2026-08-21T11:46:16Z",
+   "expires": "2026-09-04T11:46:16Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "rest",
+   "tags": [],
+   "why": "Daily quiz entertainment unrelated to ITT or secondary history teaching",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": -1.66,
+    "deterministic_norm": 0.0,
+    "llm": 0.0
    }
   },
   {
