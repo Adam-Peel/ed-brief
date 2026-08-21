@@ -179,19 +179,6 @@ feeds:
       Nottinghamshire pieces when they appear; the rest is still genuine
       national heritage/architecture content, weighted like HistoryExtra.
 
-  - id: visit-nottinghamshire
-    name: Visit Nottinghamshire
-    url: https://www.visit-nottinghamshire.co.uk/feeds/rss/highlightedproducts/?channel=NOTTSEVRSS
-    weight: 0.0
-    enabled: true
-    note: >
-      Added 2026-08-21, suggested by the owner as an events/heritage-trails
-      feed. Verified reachable, but it's actually a generic "what's on"
-      events feed (Halloween cinema nights, a touring musical) with only
-      occasional heritage content (e.g. "Secret and Sacred Libraries from
-      East Midlands Parishes") mixed in, not a dedicated heritage feed --
-      weighted neutral rather than up, same reasoning as HistoryExtra.
-
   - id: chartered-college
     name: Chartered College of Teaching
     url: https://chartered.college/news-blogs/feed/
@@ -359,6 +346,22 @@ feeds:
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
   # Enable one and run `python -m src.validate` to see whether it resolves.
+
+  - id: visit-nottinghamshire
+    name: Visit Nottinghamshire
+    url: https://www.visit-nottinghamshire.co.uk/feeds/rss/highlightedproducts/?channel=NOTTSEVRSS
+    weight: 0.0
+    enabled: false
+    note: >
+      Added 2026-08-21, suggested by the owner as an events/heritage-trails
+      feed; disabled 2026-08-21 at the owner's request -- too niche for the
+      signal it carries. Real problem, not just a preference: most entries
+      are events-listing items with a completely empty <content:encoded> at
+      source (confirmed against the raw feed, not a fetch.py extraction
+      gap), so classify.py sees title-only for a large share of what this
+      source contributes. What content there was, was mostly generic
+      "what's on" listings (Halloween cinema nights, a touring musical)
+      rather than the dedicated heritage feed it was suggested as.
 
   - id: sec-ed
     name: SecEd
