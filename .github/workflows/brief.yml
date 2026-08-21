@@ -16,11 +16,18 @@ on:
   # ~10h stale by a same-evening run vs. ~21h stale by a 7am run the next
   # day). Both runs cost about $0.001/day in LLM spend combined, so the
   # second run isn't there to save money -- see the README cost table.
+  #
+  # Minute deliberately :07, not :00 -- every on-the-hour cron across all of
+  # GitHub fires at once, and GitHub's own docs warn that top-of-the-hour is
+  # the most congested slot for scheduled workflows, with routine delays and
+  # occasional drops during peak load. A few minutes either side of 07:00/
+  # 19:00 is irrelevant to a twice-daily digest; landing outside the
+  # busiest queue isn't.
   schedule:
-    - cron: "0 6 * * *"    # 07:00 London during BST
-    - cron: "0 7 * * *"    # 07:00 London during GMT
-    - cron: "0 18 * * *"   # 19:00 London during BST
-    - cron: "0 19 * * *"   # 19:00 London during GMT
+    - cron: "7 6 * * *"    # 07:00 London during BST
+    - cron: "7 7 * * *"    # 07:00 London during GMT
+    - cron: "7 18 * * *"   # 19:00 London during BST
+    - cron: "7 19 * * *"   # 19:00 London during GMT
   workflow_dispatch:         # run it by hand any time, from the Actions tab
     inputs:
       window_hours:
