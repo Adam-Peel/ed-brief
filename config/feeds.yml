@@ -297,6 +297,49 @@ feeds:
       symposium programmes) rather than reader-usable -- same profile as
       Cambridge Faculty of History, weighted the same way despite it.
 
+  - id: history-teacher-training-nottingham
+    name: Becoming a History Teacher (Nottingham)
+    url: https://uonhistoryteachertraining.school.blog/feed/
+    weight: 2.0
+    enabled: true
+    note: >
+      Added 2026-08-21, from feedspot.com's "History Education RSS Feeds"
+      list. University of Nottingham's PGCE history training blog.
+      Verified reachable and very active (most recent 17 Aug 2026, days
+      before adding). About as precise a fit as this project has found:
+      HISTORY-specific ITT/mentoring/classroom-practice content, written
+      by trainers, from Nottingham -- real titles include "Mentoring
+      beginning and early career teachers" and "Resisting the pressure to
+      comment beyond your expertise". Weighted like Schools Week/
+      Nottingham Hidden History Team.
+
+  - id: royal-historical-society
+    name: Royal Historical Society Blog
+    url: https://blog.royalhistsoc.org/feed/
+    weight: 1.0
+    enabled: true
+    note: >
+      Added 2026-08-21, same list. The UK's principal learned society for
+      history, alongside the Historical Association. Verified reachable
+      and active (most recent 20 Jul 2026). Mixed profile like Cambridge/
+      Warwick/Past & Present: genuine scholarship (oral history methods,
+      the value of a history PhD) alongside society-internal news (Council
+      elections) -- weighted the same as those rather than up.
+
+  - id: ben-newmark
+    name: Ben Newmark
+    url: https://bennewmark.wordpress.com/feed/
+    weight: 0.5
+    enabled: true
+    note: >
+      Added 2026-08-21, same list. A well-known UK teacher-commentator's
+      personal blog. Verified reachable and active (most recent 7 Jul
+      2026). NOT history-specific -- content is general professional
+      practice and SEND/inclusion philosophy ("EHCPs, J S Mill and the
+      Tyranny of the Majority"), not subject-specific teaching. Weighted
+      lower than the history-specific sources above, but real and
+      relevant to the SEND/professional-context categories.
+
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
   # Enable one and run `python -m src.validate` to see whether it resolves.
@@ -528,3 +571,38 @@ feeds:
   #     Historic UK, Essex Record Office Blog, Centre for Kent History and
   #     Heritage Blog. Worth a targeted check if the owner names one
   #     specifically, not worth an exhaustive pass on the assumption alone.
+  #
+  # Also checked 2026-08-21, owner asked for a pass over feedspot.com's
+  # "History Education RSS Feeds" list. history-teacher-training-nottingham,
+  # royal-historical-society and ben-newmark above came from this list.
+  # Skipped without individual checks -- clearly wrong country/curriculum
+  # by name (US: Zinn Education Project, Ohio History, NCHE, World History
+  # Association probably; Canada: Canadian Historical Association;
+  # Australia: Sovereign Hill Education Blog): a UK secondary history
+  # rubric has no use for US state-standards or Canadian/Australian
+  # curriculum content even when the source is real and active.
+  # Checked and rejected from the rest:
+  #   - Women's History Network Blog (womenshistorynetwork.org/feed/): 403,
+  #     Cloudflare-class bot block.
+  #   - AndAllThat.co.uk: unreachable -- HTTP 000 on the feed URL AND the
+  #     bare homepage, not just a feed-path problem. Looks like a dead
+  #     domain, not a live site with a missing feed.
+  #   - Oxford Education "History Teacher" tag (educationblog.oup.com):
+  #     that URL now 301-redirects to global.oup.com/education/content/blog/
+  #     (OUP restructured their site), and the new endpoint returns an AWS
+  #     WAF challenge response. Same class of block as several sources
+  #     above, on top of the URL having moved.
+  #   - School History (schoolhistory.co.uk/resources): already logged
+  #     above as stale SEO worksheet content -- this list just links a
+  #     different path on the same already-rejected site.
+  #   - Students of History (studentsofhistory.com/feed/) and RogersHistory
+  #     Blog (rogershistory.com/feed/): both 404, no feed found.
+  #   - Future-Focused History Blog (futurefocusedhistory.blog/feed/): real
+  #     feed, but stale -- last item Jul 2025, over a year old.
+  #   - History Tech (historytech.wordpress.com/feed/): real feed, stale --
+  #     last item Mar 2025.
+  #   - 4QM Teaching Blog (4qmteaching.net/feed/): real and active (9 Aug
+  #     2026), but genuinely US -- its own titles use "Social Studies",
+  #     the American subject name, not "History"/"Humanities" as UK
+  #     schools call it. Reachability isn't the issue here, curriculum fit
+  #     is.
