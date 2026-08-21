@@ -120,17 +120,50 @@ h1 {
   padding: 4px 2px;
 }
 .linklike:hover { color: var(--accent); }
+.search-wrap { position: relative; width: 100%; }
+.search-icon {
+  position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+  font-size: .9rem; opacity: .5; pointer-events: none;
+}
 #search {
-  flex: 1; min-width: 160px;
-  font: inherit; font-size: .85rem;
-  padding: 5px 11px;
+  width: 100%;
+  font: inherit; font-size: .92rem;
+  padding: 10px 14px 10px 36px;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 10px;
   background: var(--surface);
   color: var(--text);
 }
 #search:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
 .count { color: var(--muted); font-size: .78rem; margin-left: auto; }
+
+/* Tag/source chip lists are collapsed behind these by default -- as the
+   feed and tag lists grow, a flat wall of buttons stops being a filter
+   and starts being a scroll obstacle. Native <details> rather than
+   custom JS: free keyboard/screen-reader support, and the chip-filtering
+   JS below doesn't need to know these rows are collapsible at all, since
+   it only ever queries by id regardless of what's wrapping them. */
+.filter-group { margin-top: 8px; }
+.filter-group summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: .78rem; font-weight: 600;
+  color: var(--muted);
+  padding: 6px 2px;
+  display: flex; align-items: center; gap: 6px;
+  user-select: none;
+}
+.filter-group summary::-webkit-details-marker { display: none; }
+.filter-group summary::before {
+  content: "▸";
+  display: inline-block;
+  font-size: .7rem;
+  transition: transform .12s;
+}
+.filter-group[open] summary::before { transform: rotate(90deg); }
+.filter-group summary:hover { color: var(--accent); }
+.filter-group summary .group-count { font-weight: 400; opacity: .75; }
+.filter-group .row { margin-top: 8px; }
 
 h2 {
   font-size: .78rem; text-transform: uppercase; letter-spacing: .1em;
@@ -222,16 +255,29 @@ details summary { cursor: pointer; }
 </header>
 
 <div class="filters">
+  <div class="row" id="search-row">
+    <div class="search-wrap">
+      <span class="search-icon" aria-hidden="true">&#128269;</span>
+      <input id="search" type="search" placeholder="Search titles and summaries…" aria-label="Search">
+    </div>
+  </div>
   <div class="row" id="tier-row">
     <button class="chip" data-tier="lead" aria-pressed="true">Read these</button>
     <button class="chip" data-tier="worth" aria-pressed="true">Worth a look</button>
-    <button class="chip" data-tier="rest" aria-pressed="false">Everything else</button>
+    <button class="chip" data-tier="rest" aria-pressed="true">Everything else</button>
     <button class="chip" data-tier="noise" aria-pressed="false">Low relevance</button>
     <button class="chip" id="read-toggle" aria-pressed="false">Show read</button>
-    <input id="search" type="search" placeholder="Search titles and summaries…" aria-label="Search">
+    <button class="linklike" id="mark-all">Mark all read</button>
+    <span class="count" id="count"></span>
   </div>
-  <div class="row" id="tag-row">__TAG_CHIPS__</div>
-  <div class="row" id="source-row">__SOURCE_CHIPS__<button class="linklike" id="mark-all">Mark all read</button><span class="count" id="count"></span></div>
+  <details class="filter-group" id="tag-group">
+    <summary>Filter by tag <span class="group-count">(__TAG_COUNT__)</span></summary>
+    <div class="row" id="tag-row">__TAG_CHIPS__</div>
+  </details>
+  <details class="filter-group" id="source-group">
+    <summary>Filter by source <span class="group-count">(__SOURCE_COUNT__)</span></summary>
+    <div class="row" id="source-row">__SOURCE_CHIPS__</div>
+  </details>
 </div>
 
 <main id="list"></main>
@@ -288,14 +334,15 @@ const ReadStore = (() => {
 
 function readFilterState() {
   const p = new URLSearchParams(location.search);
-  // No ?tier= at all means "fresh visit": default to hiding "Everything
-  // else" rather than showing all three tiers, so a muted or low-scoring
-  // item doesn't have to be manually filtered out every time. An explicit
-  // ?tier= (including an empty one, from clearing every tier chip) is a
-  // deliberate choice and is always respected exactly.
+  // No ?tier= at all means "fresh visit": default to "Read these", "Worth
+  // a look" and "Everything else", hiding only "Low relevance" -- that
+  // bottom tier is the one that's actually near-zero-score noise, see the
+  // tiers comment in scoring.yml. An explicit ?tier= (including an empty
+  // one, from clearing every tier chip) is a deliberate choice and is
+  // always respected exactly.
   const tierParam = p.get("tier");
   const tiers = tierParam === null
-    ? new Set(["lead", "worth"])
+    ? new Set(["lead", "worth", "rest"])
     : new Set(tierParam.split(",").filter(Boolean));
   return {
     tiers,
@@ -344,6 +391,12 @@ function initChips(rowId, key) {
 initChips("tier-row", "tier");
 initChips("tag-row", "tag");
 initChips("source-row", "source");
+
+// A tag/source filter arriving active (bookmarked or shared URL) opens its
+// group automatically -- an active filter should never be silently hidden
+// behind a closed disclosure the visitor has to think to open.
+if (state.tags.size) document.getElementById("tag-group").open = true;
+if (state.sources.size) document.getElementById("source-group").open = true;
 
 searchEl.value = state.q;
 searchEl.addEventListener("input", e => {
@@ -600,6 +653,8 @@ def _render_page(
         "__SUBTITLE__": html.escape(subtitle),
         "__TAG_CHIPS__": _chips([(t, t) for t in tags], "tag"),
         "__SOURCE_CHIPS__": _chips([(s, s) for s in sources], "source"),
+        "__TAG_COUNT__": str(len(tags)),
+        "__SOURCE_COUNT__": str(len(sources)),
         "__ITEMS_JSON__": json.dumps(_payload(items), ensure_ascii=False),
         "__TIER_LABELS_JSON__": json.dumps(TIER_LABELS),
         "__SCORING_LINE__": html.escape(meta.get("scoring", {}).get("status", "unknown")),
