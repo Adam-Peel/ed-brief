@@ -48,6 +48,13 @@ llm_weight: 0.6
 # it's just a batch size, and every new item eventually gets scored.
 llm_batch_size: 45
 
+# Model for the LLM ranking pass. This is a nuanced-classification task
+# ("is this actually relevant"), not deep multi-step reasoning, so cost
+# scales with model choice far more than judgement quality does at this
+# task size -- Sonnet over Haiku is chosen for judgement, not because Haiku
+# was failing. BRIEF_LLM_MODEL env var overrides this for local testing.
+llm_model: claude-sonnet-5
+
 tiers:
   # Fixed thresholds on the FROZEN relevance scale (0-10), not the raw
   # deterministic sum -- tiering happens once per item, after the
@@ -83,6 +90,7 @@ topics:
 
   - tag: sub-history
     weight: 7.0
+    description: History as a school subject -- curriculum, GCSE/A-level, departments.
     terms:
       - history curriculum
       - history teacher
@@ -99,6 +107,9 @@ topics:
 
   - tag: disc-interpretations
     weight: 3.0
+    description: >-
+      Second-order concept: historiography and contested interpretations of
+      the past (empire, decolonisation, historical debate).
     terms:
       - contested history
       - decolonis
@@ -112,6 +123,7 @@ topics:
 
   - tag: disc-evidence
     weight: 2.0
+    description: Second-order concept -- evidence, sources, and media literacy in historical method.
     terms:
       - source analysis
       - primary sources
@@ -124,6 +136,8 @@ topics:
 
   - tag: prof-routes-into-teaching   # NEW — add to Tag Index
     weight: 6.5
+    new: true
+    description: Getting into teaching -- ITT, PGCE, bursaries, QTS, recruitment.
     terms:
       - initial teacher training
       - teacher training
@@ -145,6 +159,7 @@ topics:
 
   - tag: pol-early-career-framework
     weight: 5.5
+    description: The Early Career Framework -- induction, mentoring, retention, workload.
     terms:
       - early career framework
       - ecf
@@ -160,6 +175,7 @@ topics:
 
   - tag: pol-teachers-standards
     weight: 3.5
+    description: Teachers' Standards, pay, and the bodies that set them.
     terms:
       - teachers' standards
       - teachers standards
@@ -173,6 +189,7 @@ topics:
 
   - tag: pol-national-curriculum
     weight: 6.0
+    description: National curriculum and assessment reform, including the Francis Review.
     terms:
       - national curriculum
       - curriculum review
@@ -187,6 +204,7 @@ topics:
 
   - tag: pol-gcse-spec
     weight: 4.5
+    description: GCSE/A-level specifications, exam boards, and assessment structure.
     terms:
       - gcse
       - a-level
@@ -207,6 +225,7 @@ topics:
 
   - tag: pol-ofsted
     weight: 5.0
+    description: Ofsted's inspection framework and methodology.
     terms:
       - ofsted
       - inspection
@@ -223,6 +242,7 @@ topics:
 
   - tag: ped-enquiry
     weight: 3.0
+    description: Pedagogy -- enquiry-based teaching and disciplinary/substantive knowledge.
     terms:
       - enquiry-based
       - inquiry-based
@@ -233,6 +253,7 @@ topics:
 
   - tag: ped-disciplinary-literacy
     weight: 3.0
+    description: Pedagogy -- literacy, reading, and academic writing within the subject.
     terms:
       - disciplinary literacy
       - reading comprehension
@@ -244,6 +265,7 @@ topics:
 
   - tag: ped-retrieval-practice
     weight: 2.5
+    description: Pedagogy -- retrieval practice, spaced practice, interleaving.
     terms:
       - retrieval practice
       - spaced practice
@@ -253,6 +275,7 @@ topics:
 
   - tag: ped-feedback
     weight: 2.5
+    description: Pedagogy -- marking, feedback, and formative assessment.
     terms:
       - marking policy
       - feedback policy
@@ -262,6 +285,7 @@ topics:
 
   - tag: cog-cognitive-load
     weight: 3.0
+    description: Cognitive science -- cognitive load, working memory, and the evidence base for teaching.
     terms:
       - cognitive load
       - cognitive science
@@ -278,6 +302,7 @@ topics:
 
   - tag: prof-behaviour
     weight: 3.5
+    description: Professional practice -- behaviour management, exclusions, attendance.
     terms:
       - behaviour policy
       - behaviour management
@@ -291,6 +316,7 @@ topics:
 
   - tag: prof-adaptive-teaching
     weight: 3.0
+    description: Professional practice -- differentiation and closing the disadvantage gap.
     terms:
       - adaptive teaching
       - differentiation
@@ -301,6 +327,7 @@ topics:
 
   - tag: prof-sen
     weight: 3.0
+    description: Professional practice -- SEND, EHCPs, and inclusion.
     terms:
       - send
       - special educational needs
@@ -313,6 +340,8 @@ topics:
 
   - tag: ped-ai   # NEW — add to Tag Index
     weight: 3.5
+    new: true
+    description: Pedagogy -- AI in the classroom, generative AI, academic integrity.
     terms:
       - artificial intelligence
       - generative ai
@@ -327,6 +356,7 @@ topics:
 
   - tag: context-sector
     weight: 1.0
+    description: Sector background -- funding, academy trusts, workforce. Rarely urgent, occasionally relevant.
     terms:
       - academy trust
       - multi-academy

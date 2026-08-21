@@ -201,6 +201,15 @@ Both `tiers.lead` and `tiers.worth` are thresholds on the final 0–10
 `llm_weight` (default 0.6). Higher trusts the LLM's judgement more; lower
 leans on your own weights.
 
+**A different model for the LLM pass** — change `llm_model` (default
+`claude-sonnet-5`). `BRIEF_LLM_MODEL` overrides it for a one-off local test
+without touching the config.
+
+**What each tag actually means** — `/tags.html` on the published site lists
+every tag from `config/scoring.yml`'s `description` field alongside its live
+item count; that field is the single source of truth for the glossary, so
+editing a topic's description there keeps the page in sync automatically.
+
 **Something keeps appearing that you never want** — add it to a `mutes`
 group in `config/scoring.yml`. Muting sinks an item rather than deleting it,
 so you can still find it under "Everything else" if you were wrong.
@@ -237,12 +246,15 @@ this matters" to each new story, which the deterministic scorer can't
 produce on its own.
 
 1. Get an API key from [console.anthropic.com](https://console.anthropic.com).
+   A non-expiring key is fine here: it's stored in a real secrets manager
+   (below) and used by an unattended schedule, so an expiring key would just
+   risk silently degrading back to deterministic-only scoring if nobody
+   happened to notice and rotate it in time.
 2. **Settings → Secrets and variables → Actions → New repository secret**,
-   named `ANTHROPIC_API_KEY`.
-3. In `.github/workflows/brief.yml`, uncomment the `ANTHROPIC_API_KEY` line
-   under the "Build the brief" step.
+   named `ANTHROPIC_API_KEY`. The workflow already reads it — nothing else
+   to uncomment.
 
-Cost is a few pence a month at two runs a week, since only *new* items are
+Cost is a few pence a month at two runs a day, since only *new* items are
 ever sent to the model — existing items keep their frozen score forever.
 
 Every failure path falls back to deterministic scoring for exactly the

@@ -191,7 +191,7 @@ def main(argv: list[str] | None = None, *, output_root: Path | None = None) -> i
 
     # Stage 9: emit the API, the site, and today's dated markdown brief.
     api.write_all(live, new_items, today_items, meta, out_root, now)
-    site.write_site(live, today_items, meta, out_root, now)
+    site.write_site(live, today_items, meta, out_root, now, cfg.get("topics", []))
     brief.write_brief(today_items, feed_problems, llm_status, out_root, now)
 
     print(f"\nWrote {len(live)} live items ({len(new_items)} new).", file=sys.stderr)

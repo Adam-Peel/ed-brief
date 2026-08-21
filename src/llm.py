@@ -21,7 +21,7 @@ import re
 
 from .fetch import Item
 
-MODEL = os.environ.get("BRIEF_LLM_MODEL", "claude-haiku-4-5")
+DEFAULT_MODEL = "claude-sonnet-5"
 
 # Anchors are load-bearing: the model is asked to score each story against a
 # fixed rubric, never against the other stories in the batch. Batch-relative
@@ -85,7 +85,7 @@ def _extract_json(text: str) -> list[dict]:
     return json.loads(text[start : end + 1])
 
 
-def _score_batch(batch: list[Item], client) -> dict[str, tuple[float, str]]:
+def _score_batch(batch: list[Item], client, model: str) -> dict[str, tuple[float, str]]:
     """One API call for up to llm_batch_size items.
 
     Raises on total failure (network error, malformed JSON) -- the caller
@@ -108,7 +108,7 @@ def _score_batch(batch: list[Item], client) -> dict[str, tuple[float, str]]:
         indent=1,
     )
     response = client.messages.create(
-        model=MODEL,
+        model=model,
         max_tokens=4000,
         messages=[{"role": "user", "content": RUBRIC.format(payload=payload)}],
     )
@@ -150,6 +150,11 @@ def rerank_new_items(
 
     import anthropic
 
+    # BRIEF_LLM_MODEL overrides scoring.yml's llm_model for quick local
+    # testing, matching the same env-var-overrides-config pattern as
+    # BRIEF_WINDOW_HOURS in build.py.
+    model = os.environ.get("BRIEF_LLM_MODEL") or cfg.get("llm_model", DEFAULT_MODEL)
+
     try:
         client = anthropic.Anthropic()
     except Exception as exc:  # noqa: BLE001 -- must not break the run
@@ -162,7 +167,7 @@ def rerank_new_items(
     errors: list[str] = []
     for n, batch in enumerate(batches, start=1):
         try:
-            verdicts.update(_score_batch(batch, client))
+            verdicts.update(_score_batch(batch, client, model))
         except Exception as exc:  # noqa: BLE001 -- deliberately broad
             errors.append(f"batch {n}/{len(batches)}: {type(exc).__name__}")
 
@@ -174,6 +179,6 @@ def rerank_new_items(
     if errors or missing:
         detail = "; ".join(errors) if errors else f"{missing} item(s) omitted from responses"
         return verdicts, (
-            f"LLM re-ranked with {MODEL} ({len(verdicts)}/{len(items)}; degraded: {detail})"
+            f"LLM re-ranked with {model} ({len(verdicts)}/{len(items)}; degraded: {detail})"
         )
-    return verdicts, f"LLM re-ranked with {MODEL}"
+    return verdicts, f"LLM re-ranked with {model}"

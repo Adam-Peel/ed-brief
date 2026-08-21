@@ -139,6 +139,11 @@ def main() -> int:
         first_run_count = items_doc["count"]
         check(first_run_count > 0, "the first run produced live items", str(first_run_count))
 
+        tags_html = (docs / "tags.html").read_text("utf-8") if (docs / "tags.html").exists() else ""
+        check(bool(tags_html), "tags.html was written")
+        check("sub-history" in tags_html and "<td>" in tags_html,
+              "tags.html lists at least one known tag with a description")
+
         section("Acceptance criterion 9: a quiet second run doesn't empty the site")
         _run_offline_build(tmp_root)  # same fixtures again -> nothing new
         items_doc_2 = json.loads((api_dir / "items.json").read_text("utf-8"))

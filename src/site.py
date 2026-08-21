@@ -146,9 +146,19 @@ article {
 article[data-tier="lead"] { border-left-color: var(--lead); }
 article[data-tier="worth"] { border-left-color: var(--worth); }
 article.is-read { opacity: .55; }
-article h3 { margin: 0 0 5px; font-size: 1.02rem; line-height: 1.35; font-weight: 600; }
+article h3 { margin: 0 0 5px; font-size: 1.02rem; line-height: 1.35; font-weight: 600; display: flex; gap: 8px; align-items: baseline; }
 article h3 a { color: var(--text); text-decoration: none; }
 article h3 a:hover { color: var(--accent); text-decoration: underline; }
+.score {
+  flex: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .76rem; font-weight: 700;
+  color: var(--rest); border: 1px solid var(--border);
+  border-radius: 5px; padding: 1px 6px;
+  cursor: help;
+}
+.score[data-tier="lead"] { color: var(--lead); border-color: var(--lead); }
+.score[data-tier="worth"] { color: var(--worth); border-color: var(--worth); }
 .meta { font-size: .76rem; color: var(--muted); margin-bottom: 7px; }
 .mode { text-transform: uppercase; letter-spacing: .04em; font-size: .68rem; }
 .why {
@@ -222,10 +232,8 @@ details summary { cursor: pointer; }
   __PROBLEMS_HTML__
   __FOOTER_EXTRA__
   <p>Tags follow the Tag Index vocabulary, so a tag here is the same string as
-  the matching tag in Zotero. Full ranked data, including items not shown
-  here: <a href="./api/v1/index.json">api/v1</a>. Tune weights in
-  <code>config/scoring.yml</code> and add or mute sources in
-  <code>config/feeds.yml</code>.</p>
+  the matching tag in Zotero -- see the <a href="./tags.html">tag
+  reference</a> for what each one means.</p>
 </footer>
 </div>
 
@@ -371,7 +379,10 @@ function card(item) {
   const read = ReadStore.isRead(item.id);
   const modeLabel = item.mode === "llm" ? "LLM-ranked" : "keyword-ranked";
   return `<article data-tier="${esc(item.tier)}" class="${read ? "is-read" : ""}">
-    <h3><a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a></h3>
+    <h3>
+      <span class="score" data-tier="${esc(item.tier)}" title="Rank score: relevance minus a small age decay -- this is what the list is sorted by.">${esc(item.score.toFixed(1))}</span>
+      <a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a>
+    </h3>
     <div class="meta">${esc(item.source_name)} &middot; ${esc(item.when)} &middot; <span class="mode">${modeLabel}</span></div>
     ${item.why ? `<p class="why">${esc(item.why)}</p>` : ""}
     ${item.summary ? `<p class="summary">${esc(item.summary)}</p>` : ""}
@@ -438,6 +449,63 @@ li span { color:var(--muted); font-size:.82rem; white-space:nowrap; }
 </html>
 """
 
+TAGS_TEMPLATE = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tag reference</title>
+<style>
+:root { --bg:#fbfaf8; --surface:#fff; --border:#e4e0d8; --text:#23201c; --muted:#6c665d; --accent:#7a4b2a; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#161513; --surface:#1e1d1a; --border:#33302b; --text:#ece8e1; --muted:#9b948a; --accent:#d09a6f; } }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif; }
+.wrap { max-width:720px; margin:0 auto; padding:40px 20px 80px; }
+h1 { font-size:1.6rem; margin:0 0 4px; letter-spacing:-.02em; }
+p.sub { color:var(--muted); font-size:.9rem; margin:0 0 22px; }
+a { color:var(--accent); }
+.domains { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 26px; }
+.domain {
+  font-size:.76rem; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  background:var(--surface); border:1px solid var(--border); border-radius:6px;
+  padding:4px 10px; color:var(--muted);
+}
+.domain b { color:var(--text); }
+table { width:100%; border-collapse:collapse; font-size:.87rem; }
+th {
+  text-align:left; font-size:.7rem; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--muted); font-weight:600; padding:0 10px 8px; border-bottom:1px solid var(--border);
+}
+td { padding:10px; border-bottom:1px solid var(--border); vertical-align:top; }
+td.tag { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.78rem; color:var(--accent); white-space:nowrap; }
+td.tag .new { display:block; font-size:.66rem; color:var(--muted); font-family:inherit; margin-top:2px; }
+td.count { color:var(--muted); text-align:right; white-space:nowrap; }
+@media (max-width: 560px) {
+  .wrap { padding: 24px 14px 60px; }
+  th:nth-child(3), td.count { display:none; }
+}
+</style>
+</head>
+<body><div class="wrap">
+<h1>Tag reference</h1>
+<p class="sub"><a href="./">← Live list</a> &middot; these follow the Tag
+Index vocabulary, so a tag here is the same string as the matching tag in
+Zotero.</p>
+<div class="domains">
+  <span class="domain"><b>sub-</b> the history itself</span>
+  <span class="domain"><b>disc-</b> historiography &amp; second-order concepts</span>
+  <span class="domain"><b>ped-</b> pedagogy</span>
+  <span class="domain"><b>prof-</b> professional practice</span>
+  <span class="domain"><b>pol-</b> policy</span>
+  <span class="domain"><b>cog-</b> cognitive science</span>
+</div>
+<table>
+<thead><tr><th>Tag</th><th>What it means</th><th>Live items</th></tr></thead>
+<tbody>__ROWS__</tbody>
+</table>
+</div></body>
+</html>
+"""
+
 
 def _chips(pairs: list[tuple[str, str]], attr: str) -> str:
     return "".join(
@@ -460,6 +528,8 @@ def _payload(items: list[CorpusItem]) -> list[dict]:
             "tags": item.tags,
             "why": item.why,
             "mode": item.mode,
+            # Round for display only -- the corpus/API keep full precision.
+            "score": round(item.rank_score, 1),
         }
         for item in items
     ]
@@ -509,7 +579,12 @@ def _render_page(
 
 
 def write_site(
-    live: list[CorpusItem], today_items: list[CorpusItem], meta: dict, root: Path, now: datetime
+    live: list[CorpusItem],
+    today_items: list[CorpusItem],
+    meta: dict,
+    root: Path,
+    now: datetime,
+    topics_cfg: list[dict],
 ) -> None:
     docs_dir = root / "docs"
     docs_briefs = docs_dir / "briefs"
@@ -559,6 +634,7 @@ def write_site(
     (docs_briefs / f"{iso}.html").write_text(dated_page, encoding="utf-8")
 
     _write_archive_index(root, docs_dir)
+    _write_tags_page(live, topics_cfg, docs_dir)
 
 
 def _write_archive_index(root: Path, docs_dir: Path) -> None:
@@ -582,3 +658,29 @@ def _write_archive_index(root: Path, docs_dir: Path) -> None:
         rows.append(f'<li><a href="briefs/{iso}.html">{label}<span>{count} new items</span></a></li>')
     page = ARCHIVE_TEMPLATE.replace("__ROWS__", "".join(rows) or "<li><span>No briefs yet.</span></li>")
     (docs_dir / "archive.html").write_text(page, encoding="utf-8")
+
+
+def _write_tags_page(live: list[CorpusItem], topics_cfg: list[dict], docs_dir: Path) -> None:
+    """A plain-language lookup for the tag vocabulary, generated from
+    scoring.yml's own `description` field so it can't drift out of sync with
+    the config that actually produces these tags. Order follows scoring.yml
+    (already curated by importance), not alphabetical."""
+    counts: dict[str, int] = {}
+    for item in live:
+        for tag in item.tags:
+            counts[tag] = counts.get(tag, 0) + 1
+
+    rows = []
+    for group in topics_cfg:
+        tag = group.get("tag", "")
+        description = html.escape(group.get("description", ""))
+        new_marker = (
+            '<span class="new">pending Tag Index addition</span>' if group.get("new") else ""
+        )
+        count = counts.get(tag, 0)
+        rows.append(
+            f"<tr><td class=\"tag\">{html.escape(tag)}{new_marker}</td>"
+            f"<td>{description}</td><td class=\"count\">{count}</td></tr>"
+        )
+    page = TAGS_TEMPLATE.replace("__ROWS__", "".join(rows))
+    (docs_dir / "tags.html").write_text(page, encoding="utf-8")
