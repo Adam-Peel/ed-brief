@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated": "2026-08-21T19:08:26Z",
+ "generated": "2026-08-21T19:15:28Z",
  "retention_days": 14,
  "items": [
   {
@@ -85,6 +85,108 @@
    }
   },
   {
+   "id": "1afe45089ba0dad2",
+   "title": "How archives across England are sharing different sides of America's Independence story (part two)",
+   "url": "https://www.nationalarchives.gov.uk/blogs/community-outreach/how-archives-across-england-are-sharing-different-sides-of-americas-independence-story-part-two/?utm_source=feed-all&utm_medium=rss",
+   "summary": "In his second blog this August, Joseph Kelly looks at two more archive services marking the 250th anniversary of the Declaration of Independence.",
+   "source": {
+    "id": "national-archives-blog",
+    "name": "The National Archives Blog"
+   },
+   "published": "2026-08-19T10:00:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 5.82,
+   "rank_score": 5.82,
+   "tier": "worth",
+   "tags": [],
+   "why": "Archive resource on US Independence anniversary, usable teaching material for global history",
+   "image_url": "https://www.nationalarchives.gov.uk/media/images/DOI-on-display-at-Th_lDaRJT6.2e16d0ba.fill-600x400.format-jpeg.jpegquality-60.bgcolor-fff.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 2.79,
+    "deterministic_norm": 1.12,
+    "llm": 7.0
+   }
+  },
+  {
+   "id": "6fd616258cae9ffa",
+   "title": "How archives across England are sharing different sides of America's Independence story (part one)",
+   "url": "https://www.nationalarchives.gov.uk/blogs/community-outreach/how-archives-across-england-are-sharing-different-sides-of-americas-independence-story-part-one/?utm_source=feed-all&utm_medium=rss",
+   "summary": "Joseph Kelly delves into four archive services marking the 250th anniversary of the US Declaration of Independence.",
+   "source": {
+    "id": "national-archives-blog",
+    "name": "The National Archives Blog"
+   },
+   "published": "2026-07-31T14:41:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 5.72,
+   "rank_score": 5.72,
+   "tier": "worth",
+   "tags": [],
+   "why": "Archive resource on US Independence anniversary, usable teaching material for global history",
+   "image_url": "https://www.nationalarchives.gov.uk/media/images/west-susssex-record-o.7e8d4ca9.fill-600x400.format-jpeg.jpegquality-60.bgcolor-fff.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.51,
+    "deterministic_norm": 0.6,
+    "llm": 7.0
+   }
+  },
+  {
+   "id": "0fe645f9c8751b0d",
+   "title": "Letter to Rt. Hon. Lucy Powell, MP, Secretary of State for Education - Teacher Supply and Teacher Education",
+   "url": "https://www.ucet.ac.uk/17706/letter-to-rt-hon-lucy-powell-mp-secretary-of-state-for-education-teacher-supply-and-teacher-education",
+   "summary": "A letter from UCET to the new Secretary of State for Education, Rt. Hon. Lucy Powell, MP.",
+   "source": {
+    "id": "ucet",
+    "name": "UCET (ITT providers)"
+   },
+   "published": "2026-07-22T23:00:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 5.72,
+   "rank_score": 5.72,
+   "tier": "worth",
+   "tags": [],
+   "why": "Sector letter on teacher supply and ITT policy directly affects routes into teaching",
+   "image_url": "",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.5,
+    "deterministic_norm": 0.6,
+    "llm": 7.0
+   }
+  },
+  {
+   "id": "fb3b83e79114f7a3",
+   "title": "Consistency, Consistency, Consistency: Articulating Ground Rules and Establishing Expectations in the Classroom",
+   "url": "https://uonhistoryteachertraining.school.blog/2026/07/31/consistency-consistency-consistency-articulating-ground-rules-and-establishing-expectations-in-the-classroom/",
+   "summary": "Every year my main message when teaching beginning teachers about behaviour management is CONSISTENCY. This week, I've been dropping my child off at a holiday club being held at their primary school. I've been struck by how the parents of the pupils who usually attend the school have abided by the usual school rules about … Continue reading Consistency, Consistency, Consistency: Articulating Ground Rules and Establishing Expectations in the Classroom →",
+   "source": {
+    "id": "history-teacher-training-nottingham",
+    "name": "Becoming a History Teacher (Nottingham)"
+   },
+   "published": "2026-07-31T09:30:11Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 5.24,
+   "rank_score": 5.24,
+   "tier": "worth",
+   "tags": [
+    "prof-behaviour"
+   ],
+   "why": "Classroom behaviour management advice, core professional-practice content for a new teacher",
+   "image_url": "https://uonhistoryteachertraining.school.blog/wp-content/uploads/2026/07/pexels-photo-3877563-edited.jpeg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 5.51,
+    "deterministic_norm": 2.2,
+    "llm": 6.0
+   }
+  },
+  {
    "id": "848af578b2193b39",
    "title": "Five key takeaways from GCSE results day 2026",
    "url": "https://www.bbc.co.uk/news/articles/cx2583xew8zo?at_medium=RSS&at_campaign=rss",
@@ -136,6 +238,83 @@
     "deterministic_raw": 9.61,
     "deterministic_norm": 3.84,
     "llm": 6.0
+   }
+  },
+  {
+   "id": "c682d6e09ba1f4be",
+   "title": "\"You say it best, when you say nothing at all\": Resisting the pressure to comment beyond your expertise",
+   "url": "https://uonhistoryteachertraining.school.blog/2026/08/17/you-say-it-best-when-you-say-nothing-at-all-resisting-the-pressure-to-comment-beyond-your-expertise/",
+   "summary": "It seems to me that whenever a major event occurs, a controversy erupts, or a cause gains public attention, there is increasingly an assumption that you should immediately take a position on the issue and share your opinion. Silence is viewed suspiciously, and interpreted varyingly as indifference, cowardice, complicity, or even opposition. In an age … Continue reading \"You say it best, when you say nothing at all\": Resisting the pressure to comment beyond your expertise →",
+   "source": {
+    "id": "history-teacher-training-nottingham",
+    "name": "Becoming a History Teacher (Nottingham)"
+   },
+   "published": "2026-08-17T15:53:15Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 5.02,
+   "rank_score": 5.02,
+   "tier": "worth",
+   "tags": [],
+   "why": "Professional-conduct reflection relevant to history teachers navigating controversial topics",
+   "image_url": "https://uonhistoryteachertraining.school.blog/wp-content/uploads/2026/08/pexels-photo-5993301-edited.jpeg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 2.79,
+    "deterministic_norm": 1.12,
+    "llm": 6.0
+   }
+  },
+  {
+   "id": "4014294957b7e504",
+   "title": "Uncovering precious medieval silk seal bags in our collection",
+   "url": "https://www.nationalarchives.gov.uk/professional-guidance-and-services/our-research-and-academic-collaboration/our-research-projects/research-projects/uncovering-medieval-silk-seal-bags/?utm_source=feed-all&utm_medium=rss",
+   "summary": "Marc Vermeulen shares new discoveries made during a research project into medieval silk seal bags, highlighting the richness and diversity of the collection.",
+   "source": {
+    "id": "national-archives-blog",
+    "name": "The National Archives Blog"
+   },
+   "published": "2026-08-07T15:07:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 4.92,
+   "rank_score": 4.92,
+   "tier": "rest",
+   "tags": [],
+   "why": "New medieval archival research, useful subject knowledge for medieval England units",
+   "image_url": "https://www.nationalarchives.gov.uk/media/images/Fig_4.2e16d0ba.fill-600x400.format-jpeg.jpegquality-60.bgcolor-fff.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.55,
+    "deterministic_norm": 0.62,
+    "llm": 6.0
+   }
+  },
+  {
+   "id": "d1d4b0170681013b",
+   "title": "Becoming a Teacher July newsletter",
+   "url": "https://www.ucet.ac.uk/17722/becoming-a-teacher-july-newsletter",
+   "summary": "The latest 'Becoming a Teacher' newsletter from the DfE. This month: placement requirements before changing trainee's status for qualified teacher status (QTS) or early years teacher status (EYTS) • let us know a trainee has gained qualified teacher status (QTS) or early years teacher status (EYTS) • ITT Reforms Evaluation Wave 2 • digital services updates: watch the online session recording • complete our annual survey",
+   "source": {
+    "id": "ucet",
+    "name": "UCET (ITT providers)"
+   },
+   "published": "2026-07-27T23:00:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 4.64,
+   "rank_score": 4.64,
+   "tier": "rest",
+   "tags": [
+    "prof-routes-into-teaching"
+   ],
+   "why": "DfE ITT admin newsletter on QTS processes, background for entering trainees",
+   "image_url": "",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 8.0,
+    "deterministic_norm": 3.2,
+    "llm": 5.0
    }
   },
   {
@@ -431,6 +610,31 @@
    }
   },
   {
+   "id": "613c217bbe621f05",
+   "title": "450 Beat Your Drums",
+   "url": "https://thehistoryofengland.co.uk/blog/2026/07/28/450-beat-your-drums/",
+   "summary": "The Battle of Sedgemoor and the Bloody Assizes",
+   "source": {
+    "id": "history-of-england",
+    "name": "The History of England Blog"
+   },
+   "published": "2026-07-28T06:00:40Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 3.28,
+   "rank_score": 3.28,
+   "tier": "rest",
+   "tags": [],
+   "why": "English Stuart-period episode, tangential subject knowledge but not a common exam topic",
+   "image_url": "",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.0,
+    "deterministic_norm": 0.4,
+    "llm": 4.0
+   }
+  },
+  {
    "id": "2b19f50a4e082efd",
    "title": "'Cheap travel is not a defence': the parents facing court for school absences in England",
    "url": "https://www.theguardian.com/education/2026/aug/15/inside-court-england-parents-face-fines-school-absence",
@@ -719,6 +923,56 @@
     "deterministic_raw": 1.0,
     "deterministic_norm": 0.4,
     "llm": 4.0
+   }
+  },
+  {
+   "id": "48784d4d578132a9",
+   "title": "ITE Research Group: July newsletter",
+   "url": "https://www.ucet.ac.uk/17719/ite-research-group-july-newsletter",
+   "summary": "The July newsletter of the UCET ITE research group.",
+   "source": {
+    "id": "ucet",
+    "name": "UCET (ITT providers)"
+   },
+   "published": "2026-07-23T23:00:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 2.52,
+   "rank_score": 2.52,
+   "tier": "rest",
+   "tags": [],
+   "why": "Vague UCET research newsletter with no specifics given",
+   "image_url": "",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.5,
+    "deterministic_norm": 0.6,
+    "llm": 3.0
+   }
+  },
+  {
+   "id": "91e3dc5f0b8e7893",
+   "title": "451 Exodus",
+   "url": "https://thehistoryofengland.co.uk/blog/2026/08/09/451-exodus/",
+   "summary": "Louis XIV revokes protection for 800,000 Huguenots and protestant Europe watches with horror",
+   "source": {
+    "id": "history-of-england",
+    "name": "The History of England Blog"
+   },
+   "published": "2026-08-09T09:26:58Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 2.49,
+   "rank_score": 2.49,
+   "tier": "rest",
+   "tags": [],
+   "why": "European early-modern history, not standard England curriculum content",
+   "image_url": "",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.08,
+    "deterministic_norm": 0.43,
+    "llm": 3.0
    }
   },
   {
@@ -1236,6 +1490,106 @@
     "deterministic_raw": 7.42,
     "deterministic_norm": 2.97,
     "llm": 1.0
+   }
+  },
+  {
+   "id": "ba233b256e6edbd1",
+   "title": "Follow the acorn: Designing a symbol for long distance national trails",
+   "url": "https://www.nationalarchives.gov.uk/explore-the-collection/the-collection-blog/follow-the-acorn-designing-a-symbol-for-long-distance-national-trails/?utm_source=feed-all&utm_medium=rss",
+   "summary": "In this blog post, Lucy Razzall and Giorgia Tolfo investigate some of the administrative history behind marking rights of way.",
+   "source": {
+    "id": "national-archives-blog",
+    "name": "The National Archives Blog"
+   },
+   "published": "2026-08-14T10:00:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 1.75,
+   "rank_score": 1.75,
+   "tier": "noise",
+   "tags": [],
+   "why": "Obscure administrative history of trail markers, no curriculum link",
+   "image_url": "https://www.nationalarchives.gov.uk/media/images/Acorn_on_a_.da00348a.fill-600x400.format-jpeg.jpegquality-60.bgcolor-fff.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.82,
+    "deterministic_norm": 0.73,
+    "llm": 2.0
+   }
+  },
+  {
+   "id": "38248b927087a2a6",
+   "title": "Three archives gain accredited status for the first time",
+   "url": "https://www.nationalarchives.gov.uk/news/three-archives-gain-accredited-status-for-the-first-time/?utm_source=feed-all&utm_medium=rss",
+   "summary": "The Archive Service Accreditation Committee has awarded the coveted accredited status to 3 archives.",
+   "source": {
+    "id": "national-archives-blog",
+    "name": "The National Archives Blog"
+   },
+   "published": "2026-08-05T10:09:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 1.72,
+   "rank_score": 1.72,
+   "tier": "noise",
+   "tags": [],
+   "why": "Administrative archive-accreditation news, no teaching relevance",
+   "image_url": "https://www.nationalarchives.gov.uk/media/images/Waterways_Ar.3054836d.fill-600x400.format-jpeg.jpegquality-60.bgcolor-fff.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.53,
+    "deterministic_norm": 0.61,
+    "llm": 2.0
+   }
+  },
+  {
+   "id": "223ff5cba0963b90",
+   "title": "Archive Rambler: from Lynmouth to Woolacombe",
+   "url": "https://www.nationalarchives.gov.uk/professional-guidance-and-services/our-research-and-academic-collaboration/our-research-projects/research-projects/archive-rambler-from-lynmouth-to-woolacombe/?utm_source=feed-all&utm_medium=rss",
+   "summary": "Giorgia Tolfo continues the second leg of her journey while exploring how archival research and walking can work together.",
+   "source": {
+    "id": "national-archives-blog",
+    "name": "The National Archives Blog"
+   },
+   "published": "2026-07-27T12:00:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 1.72,
+   "rank_score": 1.72,
+   "tier": "noise",
+   "tags": [],
+   "why": "Personal archival-walking travelogue, no curriculum or teaching relevance",
+   "image_url": "https://www.nationalarchives.gov.uk/media/images/Dixon_Scott_INF_9.2e16d0ba.fill-600x400.format-jpeg.jpegquality-60.bgcolor-fff.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.5,
+    "deterministic_norm": 0.6,
+    "llm": 2.0
+   }
+  },
+  {
+   "id": "0572591923b24537",
+   "title": "Archive Rambler: Lynmouth and Lynton",
+   "url": "https://www.nationalarchives.gov.uk/professional-guidance-and-services/our-research-and-academic-collaboration/our-research-projects/research-projects/archive-rambler-lynmouth/?utm_source=feed-all&utm_medium=rss",
+   "summary": "Continuing her exploration into the combination of archival research and walking, Giorgia Tolfo sets off on the next leg of her journey.",
+   "source": {
+    "id": "national-archives-blog",
+    "name": "The National Archives Blog"
+   },
+   "published": "2026-07-27T09:00:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 1.72,
+   "rank_score": 1.72,
+   "tier": "noise",
+   "tags": [],
+   "why": "Personal archival-walking travelogue, no curriculum or teaching relevance",
+   "image_url": "https://www.nationalarchives.gov.uk/media/images/Photograph_of_the_Ea_k9BFLJO.2e16d0ba.fill-600x400.format-jpeg.jpegquality-60.bgcolor-fff.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.5,
+    "deterministic_norm": 0.6,
+    "llm": 2.0
    }
   },
   {
@@ -3004,6 +3358,31 @@
     "mode": "llm",
     "deterministic_raw": 1.0,
     "deterministic_norm": 0.4,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "77b912075db89181",
+   "title": "Our first frontend library milestone",
+   "url": "https://www.nationalarchives.gov.uk/blogs/digital/our-first-frontend-library-milestone/?utm_source=feed-all&utm_medium=rss",
+   "summary": "Discover our process for releasing our frontend library, TNA Frontend.",
+   "source": {
+    "id": "national-archives-blog",
+    "name": "The National Archives Blog"
+   },
+   "published": "2026-08-03T10:00:00Z",
+   "first_seen": "2026-08-21T19:15:28Z",
+   "expires": "2026-09-04T19:15:28Z",
+   "relevance": 0.12,
+   "rank_score": 0.12,
+   "tier": "noise",
+   "tags": [],
+   "why": "Technical web development update, irrelevant to teaching",
+   "image_url": "https://www.nationalarchives.gov.uk/media/images/tna-frontend-v.1bab66f0.fill-600x400.format-jpeg.jpegquality-60.bgcolor-fff.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 1.52,
+    "deterministic_norm": 0.61,
     "llm": 0.0
    }
   },
