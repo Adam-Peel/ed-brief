@@ -1,0 +1,30 @@
+name: Compare rubric versions
+
+# Manual-only diagnostic -- never runs on a schedule, never commits or
+# publishes anything. Re-scores every already-LLM-scored item in
+# data/corpus.json against whatever rubric is on this branch right now,
+# and prints old score vs new score vs delta to this run's log. Run this
+# after any rubric edit to see, in numbers, whether it actually changed
+# scoring on real stories -- see src/eval_rubric.py.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Compare current rubric against corpus.json's stored scores
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PYTHONUNBUFFERED: "1"
+        run: python -m src.eval_rubric
