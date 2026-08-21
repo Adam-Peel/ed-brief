@@ -8,6 +8,15 @@ on:
     - cron: "0 6 * * 1,4"   # 07:00 London during BST
     - cron: "0 7 * * 1,4"   # 07:00 London during GMT
   workflow_dispatch:         # run it by hand any time, from the Actions tab
+    inputs:
+      window_hours:
+        description: >-
+          Lookback window in hours. Leave blank for the normal 96h (~4 day)
+          window; widen it (e.g. 336 for 14 days) for a one-off backfill --
+          safe to rerun, since dedup is by id against the corpus, not by
+          window.
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -62,6 +71,7 @@ jobs:
           # falls back to deterministic scoring and says so in the footer.
           # ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PYTHONUNBUFFERED: "1"
+          BRIEF_WINDOW_HOURS: ${{ github.event.inputs.window_hours }}
         run: python -m src.build
 
       - name: Commit the result

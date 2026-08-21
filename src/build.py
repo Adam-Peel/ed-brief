@@ -9,6 +9,7 @@ Usage:
 
 from __future__ import annotations
 
+import os
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -25,7 +26,11 @@ ROOT = Path(__file__).resolve().parent.parent
 # Twice-weekly runs are 3-4 days apart, so a 4-day window means nothing is
 # missed if a run is skipped. Cross-run dedup is the corpus itself now, not a
 # window -- unlike the proof of concept, an item doesn't need to still be
-# inside this window to be recognised as already-seen.
+# inside this window to be recognised as already-seen. A backfill or a fresh
+# corpus can widen this via BRIEF_WINDOW_HOURS (or the workflow's manual
+# "Run workflow" window_hours input) without changing the twice-weekly
+# default; a wider window is always safe to rerun since dedup is by id
+# against the corpus, not the window.
 DEFAULT_WINDOW_HOURS = 96
 
 
@@ -147,9 +152,10 @@ def main(argv: list[str] | None = None, *, output_root: Path | None = None) -> i
     existing_ids = {item.id for item in existing}
 
     # Stage 2: fetch every enabled feed.
+    window_hours = int(os.environ.get("BRIEF_WINDOW_HOURS") or DEFAULT_WINDOW_HOURS)
     enabled = [f for f in feeds if f.get("enabled", True)]
-    print(f"Fetching {len(enabled)} feeds…", file=sys.stderr)
-    fetched, feed_problems = fetch_all(feeds, DEFAULT_WINDOW_HOURS)
+    print(f"Fetching {len(enabled)} feeds ({window_hours}h window)…", file=sys.stderr)
+    fetched, feed_problems = fetch_all(feeds, window_hours)
     print(f"  {len(fetched)} items retrieved", file=sys.stderr)
     for problem in feed_problems:
         print(f"  ! {problem}", file=sys.stderr)

@@ -386,3 +386,14 @@ mutes:
       - world cup
       - celebrity
       - reality tv
+
+  - name: quiz-and-trivia
+    weight: -4.0
+    terms:
+      # HistoryExtra publishes a genuine mix of history features alongside a
+      # steady stream of quizzes and crosswords, which are entertainment, not
+      # news -- this sinks those specifically without touching the features.
+      - quiz of the week
+      - daily quiz
+      - history crossword
+      - crossword of the week

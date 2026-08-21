@@ -24,6 +24,18 @@ feeds:
     note: >
       Highest-signal source for policy, Ofsted and workforce. Weighted up
       because almost everything it publishes is relevant to a new entrant.
+      As of 2026-08-21 this domain is behind Cloudflare + Kasada bot
+      management (a JS-challenge anti-bot layer, identifiable by the
+      `ki-edge` response header and `__cf_bm` cookie) and returns 403 to
+      every plain HTTP client -- confirmed both locally and from the real
+      GitHub Actions run, and not fixable by changing the User-Agent, since
+      the block isn't UA-based. Left enabled rather than disabled: the build
+      already degrades gracefully around a dead feed (reported in
+      meta.json/the footer, never fails the run), so there's no harm in
+      leaving it on in case the block lifts, and this note explains why it's
+      showing as unhealthy rather than leaving that a mystery. A fix would
+      need a JS-capable fetcher (e.g. a headless browser) or an RSS-bridge
+      instance in front of it -- out of scope for the current fetch.py.
 
   - id: fe-week
     name: FE Week
@@ -33,7 +45,8 @@ feeds:
     note: >
       Post-16 focus. Weighted down slightly since much of it concerns FE
       colleges rather than secondary; topic scoring still surfaces the
-      qualifications-reform stories that matter.
+      qualifications-reform stories that matter. Same Cloudflare + Kasada
+      block as Schools Week above, as of 2026-08-21 -- see that note.
 
   - id: dfe
     name: DfE (gov.uk)
@@ -65,6 +78,20 @@ feeds:
     url: https://www.theguardian.com/education/schools/rss
     weight: 0.5
     enabled: true
+
+  - id: historyextra
+    name: HistoryExtra
+    url: https://www.historyextra.com/feed
+    weight: 0.0
+    enabled: true
+    note: >
+      BBC History Magazine's site. Verified reachable 2026-08-21. Weighted
+      neutral rather than up, deliberately: unlike the sources above this is
+      general public history content (narrative features, quizzes,
+      crosswords), not teaching/curriculum news, so a source-level nudge
+      would be a false signal here -- let topic scoring alone decide which
+      pieces are actually relevant to a trainee. A weekly quiz/crossword mute
+      group in scoring.yml sinks the pure trivia entries.
 
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
@@ -98,3 +125,39 @@ feeds:
            address, which turns the email into a feed URL you can paste above.
         2. Point this at an RSS-bridge instance that scrapes tes.com/magazine/news.
       Left disabled rather than guessing at a URL that would fail silently.
+
+  - id: history-today
+    name: History Today
+    url: https://www.historytoday.com/feed/blog.xml
+    weight: 0.0
+    enabled: false
+    note: >
+      Investigated 2026-08-21 looking for a history-specific source. The feed
+      URL is real, but historytoday.com returns 403 to every automated
+      request tried (custom UA, plain browser UA, with and without the
+      redirect chain) -- it's bot-blocked at the CDN, not a feed problem.
+      Left disabled rather than an enabled entry that would just show up as a
+      permanently unhealthy source in meta.json. Revisit if they ever loosen
+      that block, or if you want to route it through an RSS-bridge instance
+      the way Tes above suggests.
+
+  # ---- Investigated, not worth a config entry -----------------------------
+  # Also checked 2026-08-21 while looking for history-specific sources, no
+  # config entry because there's no usable URL at all (not even a disabled
+  # placeholder to revisit):
+  #   - Historical Association (history.org.uk): no RSS anywhere on the
+  #     site (checked /feed, /news/feed, /blog/feed, /rss, and homepage
+  #     RSS autodiscovery -- none exist). Their old blog at
+  #     historyjournal.org.uk/feed is real but explicitly discontinued
+  #     ("blog moves to HA website", archived as of Oct 2024, nothing since).
+  #   - Schools History Project (schoolshistoryproject.org.uk): the domain
+  #     no longer belongs to SHP -- it now redirects to and serves an
+  #     unrelated online-casino affiliate site. Not a feed issue; don't
+  #     point anything at this domain until/unless SHP is confirmed to have
+  #     it back.
+  #   - School History (schoolhistory.co.uk/feed): a real, working feed, but
+  #     its most recent entry was 5 months old at the time of checking and
+  #     its content is SEO-style "Facts & Worksheets" reference pages (some
+  #     for the Scottish National 5 syllabus, which scoring.yml's
+  #     not-england mute would sink anyway) rather than news -- not a good
+  #     fit for a twice-weekly news brief even if it were fresher.
