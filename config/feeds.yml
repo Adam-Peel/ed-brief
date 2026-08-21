@@ -79,23 +79,6 @@ feeds:
     weight: 0.5
     enabled: true
 
-  - id: historyextra
-    name: HistoryExtra
-    url: https://www.historyextra.com/feed
-    weight: 1.0
-    enabled: true
-    note: >
-      BBC History Magazine's site. Verified reachable 2026-08-21. Raised from
-      an initial 0.0 (2026-08-21): new historical scholarship has real
-      standing value for a history teacher's own subject knowledge and
-      curriculum design, not just narrow classroom-practice tips -- still
-      well below Schools Week's 2.0, since a lot of this is general-audience
-      narrative history rather than teaching-relevant. Two mute groups in
-      scoring.yml do the real filtering work now: quiz-and-trivia sinks the
-      quizzes/crosswords, and pre-1066 sinks classical/ancient content that's
-      outside the secondary curriculum's c.1066-present range -- the LLM
-      rubric (llm.py) applies the same period judgement with more nuance.
-
   - id: oxford-education
     name: Oxford Department of Education
     url: https://www.education.ox.ac.uk/feed/?post_type=news
@@ -210,6 +193,19 @@ feeds:
       correspondence with the DfE, ITE research group updates, provider
       conferences. Weighted like DfE -- primary-source, not commentary.
 
+  - id: ucet-blog
+    name: UCET Blog
+    url: https://feeds.feedburner.com/ucet-blog
+    weight: 1.0
+    enabled: true
+    note: >
+      Added 2026-08-21, owner-suggested. Sits alongside `ucet` (ucet-news)
+      rather than replacing it -- verified reachable, distinct content:
+      opinion/analysis pieces on ITE ("A Profession-Led Vision for High
+      Quality ITE") rather than that feed's policy-correspondence/conference
+      updates. Weighted like Chartered College/TeacherToolkit -- commentary,
+      not primary-source.
+
   - id: teachertoolkit
     name: TeacherToolkit
     url: https://www.teachertoolkit.co.uk/blog/feed
@@ -234,19 +230,6 @@ feeds:
       the last month, verified). Known specifically for evidence-informed
       teaching critique, overlapping cog-cognitive-load and the ped- topics.
       Weighted the same as HistoryExtra/Chartered College.
-
-  - id: history-of-england
-    name: The History of England Blog
-    url: https://www.thehistoryofengland.co.uk/feed/
-    weight: 1.0
-    enabled: true
-    note: >
-      Added 2026-08-21, found via feedspot.com's UK history RSS list (owner
-      asked for a check on that list specifically for recency). Companion
-      blog to the long-running "History of England" podcast. Verified
-      reachable and active (most recent 9 Aug 2026). England-specific by
-      nature, unlike most of the other list entries -- weighted like
-      HistoryExtra.
 
   - id: british-newspaper-archive
     name: British Newspaper Archive Blog
@@ -346,6 +329,24 @@ feeds:
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
   # Enable one and run `python -m src.validate` to see whether it resolves.
+
+  - id: historyextra
+    name: HistoryExtra
+    url: https://www.historyextra.com/feed
+    weight: 1.0
+    enabled: false
+    note: >
+      Disabled 2026-08-21 at the owner's request -- items link through to
+      paywalled articles on the live site, so a large share of what this
+      source contributes isn't actually readable.
+
+  - id: history-of-england
+    name: The History of England Blog
+    url: https://www.thehistoryofengland.co.uk/feed/
+    weight: 1.0
+    enabled: false
+    note: >
+      Disabled 2026-08-21 at the owner's request -- judged low quality.
 
   - id: visit-nottinghamshire
     name: Visit Nottinghamshire

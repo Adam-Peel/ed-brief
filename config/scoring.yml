@@ -65,16 +65,19 @@ llm_weight: 0.8
 # in one call without the consistency risk a large *scoring* batch has.
 llm_classify_batch_size: 40
 
-# Lowered 20 -> 12, 2026-08-21, on real evidence, not caution alone: the
-# first real eval run (149 items) returned verdicts for only 31/82
-# survivors -- 51 omitted from otherwise well-formed responses, not batch
-# failures. Each item's response is now a nested structure (a u array, a
-# type-specific s array, a why clause) rather than the old flat "score"
-# field, and that's a real jump in per-item output complexity on top of
-# more items per call. Also added an explicit "return exactly N entries,
-# none skipped" instruction to the output contract in llm.py -- the two
-# changes together are meant to fix this, but this needs verifying against
-# a real run, not assumed fixed just because it's now smaller.
+# Lowered 20 -> 12, 2026-08-21, on real evidence: the first real eval run
+# (149 items) returned verdicts for only 31/82 survivors -- 51 omitted from
+# otherwise well-formed responses (no batch exceptions), not batch
+# failures. A follow-up real run STILL omitted 35/63 despite this smaller
+# size plus an explicit "return exactly N entries, none skipped" prose
+# instruction in llm.py -- prose compliance wasn't the fix. The real fix
+# (2026-08-21) is output_config's json_schema structured output on both
+# classify.py and llm.py's batch calls: minItems==maxItems==(batch size)
+# makes a short response schema-invalid rather than merely against
+# instructions, so the model cannot return fewer than every item. Batch
+# size is left at 12 rather than raised back up, since smaller batches
+# still mean less for the model to hold in one generation even with the
+# omission failure mode closed off structurally.
 llm_score_batch_size: 12
 
 # Generous, not tuned to typical usage -- adaptive thinking spends part of
@@ -128,6 +131,21 @@ weights:
 locality:
   floor_percentile: 85
   floor_min_score: 3
+
+# A fixed floor on frozen relevance for specific sources judged always
+# worth a minimum look, regardless of what classify/score make of any one
+# article -- unlike locality's floor (a moving, corpus-relative threshold
+# on rank_score, recomputed every build), this is a constant applied ONCE
+# at ingest, in build.score_new_items, so it's baked into relevance (and
+# therefore tier) from the start rather than needing to be reapplied every
+# run. Keyed by feeds.yml's source id. Added 2026-08-21: "Becoming a
+# History Teacher (Nottingham)" is a niche, curated ITT/history-specific
+# blog -- everything it publishes is at minimum professionally relevant to
+# this reader even when classify/score misjudge a specific article (see the
+# omission-bug note on llm_score_batch_size above; this is a backstop for
+# that, not a substitute for fixing it).
+source_floors:
+  history-teacher-training-nottingham: 5.0
 
 tiers:
   # Fixed thresholds on the FROZEN relevance scale (0-10), not the raw

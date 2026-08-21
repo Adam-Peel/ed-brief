@@ -79,6 +79,9 @@ def score_new_items(
         verdict = verdicts.get(item.uid)
         llm_score, why = verdict if verdict else (None, "")
         relevance = blend_relevance(norm, llm_score, llm_weight)
+        source_floor = cfg.get("source_floors", {}).get(item.source_id)
+        if source_floor is not None:
+            relevance = max(relevance, float(source_floor))
         classification = classify_results.get(item.uid, {})
         frozen.append(
             CorpusItem(

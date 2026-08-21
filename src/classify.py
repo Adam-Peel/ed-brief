@@ -6,9 +6,12 @@ contract as llm.py, since it uses the same client.
 Discarding is deliberately conservative: only an explicit, high-confidence
 IRRELEVANT verdict discards an item (by excluding it from what stage 2 scores
 -- see rerank_new_items in llm.py). Every other failure mode -- a failed
-batch, a malformed response, an unknown type string, low confidence -- routes
-to OTHER, which still gets scored. An article is never dropped because of an
-error; only because the model was confident it doesn't belong here.
+batch, or low confidence -- routes to OTHER, which still gets scored. An
+unknown type string isn't a distinct failure mode any more: output_config's
+json_schema (see _classify_schema) constrains "type" to a fixed enum, so a
+response either names a real type or the call fails outright. An article is
+never dropped because of an error; only because the model was confident it
+doesn't belong here.
 """
 
 from __future__ import annotations
@@ -119,19 +122,51 @@ named. The test is what the story is about, not which building it names. A \
 story merely PUBLISHED BY a Nottinghamshire organisation scores 0 unless the \
 county is its subject.
 
-Return ONLY a JSON array, no prose, no code fence:
-[{{"id": "...", "type": "...", "confidence": "high|low", "locality": 0-4}}]
+Return one verdict per article listed below, in any order, giving that \
+article's id, type, confidence and locality as defined above.
 
 Articles:
 {payload}"""
 
 
+def _classify_schema(batch_ids: list[str]) -> dict:
+    """json_schema for one classify batch: exactly one verdict per id in the
+    batch, each id and type drawn from a fixed enum -- closes the same
+    item-omission failure mode this fixes in llm.py's stage 2 (see the note
+    on llm_score_batch_size in scoring.yml), and also means an unknown type
+    string is no longer a response shape the model CAN produce."""
+    return {
+        "type": "object",
+        "properties": {
+            "verdicts": {
+                "type": "array",
+                "minItems": len(batch_ids),
+                "maxItems": len(batch_ids),
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string", "enum": batch_ids},
+                        "type": {"type": "string", "enum": sorted(VALID_TYPES)},
+                        "confidence": {"type": "string", "enum": ["high", "low"]},
+                        "locality": {"type": "integer", "minimum": 0, "maximum": 4},
+                    },
+                    "required": ["id", "type", "confidence", "locality"],
+                    "additionalProperties": False,
+                },
+            }
+        },
+        "required": ["verdicts"],
+        "additionalProperties": False,
+    }
+
+
 def _classify_batch(batch: list[Item], client, model: str, reader_stage: str, max_tokens: int) -> dict[str, dict]:
     """One API call for up to llm_classify_batch_size items. Raises on total
-    failure (network error, malformed JSON) -- the caller routes every item
-    in the batch to OTHER, never drops them. A clean return with some ids
-    missing means those specific items get OTHER too, via the same
-    caller-side default."""
+    failure (network error, a response that can't satisfy the schema) --
+    the caller routes every item in the batch to OTHER, never drops them.
+    The schema guarantees one verdict per batch id from a fixed type/
+    confidence enum, so nothing here needs to defend against an unknown
+    type, a missing id, or a malformed entry."""
     payload = json.dumps(
         [
             {"id": item.uid, "title": item.title, "summary": item.summary[:500]}
@@ -140,38 +175,34 @@ def _classify_batch(batch: list[Item], client, model: str, reader_stage: str, ma
         ensure_ascii=False,
         indent=1,
     )
+    schema = _classify_schema([item.uid for item in batch])
     response = client.messages.create(
         model=model,
         max_tokens=max_tokens,
+        output_config={"format": {"type": "json_schema", "schema": schema}},
         messages=[{
             "role": "user",
             "content": RUBRIC.format(payload=payload, reader_stage=reader_stage),
         }],
     )
     text_block = llm._extract_text_block(response)
-    verdicts = llm._extract_json(text_block.text)
-    valid_ids = {item.uid for item in batch}
+    verdicts = json.loads(text_block.text)["verdicts"]
 
     results: dict[str, dict] = {}
     for verdict in verdicts:
-        if not isinstance(verdict, dict):
-            continue
-        item_id = verdict.get("id")
-        if not item_id or item_id not in valid_ids:
-            continue
-        try:
-            locality = max(0, min(4, int(float(verdict.get("locality", 0)))))
-        except (TypeError, ValueError):
-            locality = 0
-        item_type = verdict.get("type")
-        confidence = verdict.get("confidence")
-        # Unknown type, missing type, or low confidence -> OTHER. A low-
-        # confidence IRRELEVANT is exactly the case this guards: the model
-        # wasn't sure, so the conservative outcome is "keep it, score it",
-        # not "discard it".
-        if item_type not in VALID_TYPES or confidence != "high":
+        item_type = verdict["type"]
+        confidence = verdict["confidence"]
+        # Low confidence -> OTHER even when the model named a real type. A
+        # low-confidence IRRELEVANT is exactly the case this guards: the
+        # model wasn't sure, so the conservative outcome is "keep it, score
+        # it", not "discard it".
+        if confidence != "high":
             item_type = "OTHER"
-        results[item_id] = {"type": item_type, "locality": locality, "confidence": confidence or "low"}
+        results[verdict["id"]] = {
+            "type": item_type,
+            "locality": verdict["locality"],
+            "confidence": confidence,
+        }
     return results
 
 

@@ -6,10 +6,14 @@ batched by type so every batch only ever carries the questions that
 actually apply to what's in it.
 
 Dormant unless ANTHROPIC_API_KEY is set in the environment. Every failure
-path -- no key, missing package, client construction, a network/API error,
-malformed JSON, or a response that omits some of the requested ids -- falls
-back to deterministic scoring for exactly the affected items, never the
-whole run. The build must never fail because of a billing or API problem.
+path -- no key, missing package, client construction, or a network/API/
+schema-validation error that fails a whole batch -- falls back to
+deterministic scoring for exactly that batch's items, never the whole run.
+Per-item omission within an otherwise-successful response isn't a separate
+failure path any more: output_config's json_schema (see _stage2_schema)
+pins each batch's response to exactly one verdict per item, so a response
+either satisfies that or the call fails outright. The build must never fail
+because of a billing or API problem.
 
 To switch it on:
   1. Add ANTHROPIC_API_KEY as a repository secret (Settings → Secrets and
@@ -21,7 +25,6 @@ from __future__ import annotations
 
 import json
 import os
-import re
 
 from .fetch import Item
 
@@ -44,18 +47,6 @@ def available() -> bool:
     except ImportError:
         return False
     return True
-
-
-def _extract_json(text: str) -> list[dict]:
-    """Pull the JSON array out of a response that may be wrapped in prose."""
-    text = text.strip()
-    fence = re.search(r"```(?:json)?\s*(.+?)```", text, re.S)
-    if fence:
-        text = fence.group(1).strip()
-    start, end = text.find("["), text.rfind("]")
-    if start == -1 or end == -1:
-        raise ValueError("no JSON array in response")
-    return json.loads(text[start : end + 1])
 
 
 def _extract_text_block(response):
@@ -284,8 +275,12 @@ TYPE_ITEM_COUNT = {
 def _build_stage2_prompt(item_type: str, reader_stage: str, payload: str) -> str:
     """Assemble one type's scoring prompt: shared preamble (formatted with
     this type's name), its Likert scale if it has one, then the output
-    contract -- built by plain concatenation rather than one big .format()
-    template, so none of the JSON-example braces below need doubling."""
+    contract. Response shape (one verdict per article, none omitted) is
+    enforced by the json_schema passed alongside this prompt in
+    _score_batch_typed -- schema-invalid is a harder constraint than a
+    prose instruction the model can silently under-comply with, which is
+    exactly what happened before this was schema-enforced (see the note on
+    llm_score_batch_size in scoring.yml)."""
     type_name = TYPE_NAMES.get(item_type, item_type)
     scale = TYPE_SCALES.get(item_type)
 
@@ -293,22 +288,57 @@ def _build_stage2_prompt(item_type: str, reader_stage: str, payload: str) -> str
     if scale:
         parts.append(scale)
 
-    s_example = "<type item scores in order>" if scale else ""
-    n_articles = payload.count('"id"')
     parts.append(
-        f"There are {n_articles} articles below. Return exactly {n_articles} "
-        "entries, one per article, in the same order -- every article listed "
-        "gets an entry, with no exceptions and none skipped, even a weak or "
-        "borderline one. An omitted article is treated as a failure of this "
-        "response, not a low score.\n\n"
-        "Return ONLY a JSON array, no prose, no code fence. For each article "
-        "give the scores in the order the items are listed above, then one "
-        "clause of at most 20 words, no full stop, saying why it matters to "
-        "this reader -- or, for a low score, why it does not.\n\n"
-        '[{"id": "...", "u": [U1, U2], "s": [' + s_example + '], "why": "..."}]'
+        "For each article, give \"u\" as [U1, U2] and, if a type scale was "
+        "given above, \"s\" as those items' scores in the same order they "
+        "were listed -- then one clause of at most 20 words, no full stop, "
+        "in \"why\", saying why it matters to this reader, or why it does "
+        "not."
     )
     parts.append(f"Articles:\n{payload}")
     return "\n\n".join(parts)
+
+
+def _stage2_schema(batch_ids: list[str], expected_s_len: int) -> dict:
+    """json_schema for one stage-2 batch: exactly one verdict per id in the
+    batch (minItems == maxItems == len(batch_ids)), each id drawn from an
+    enum of the batch's own ids (a hallucinated id is schema-invalid, not
+    just ignored on read), and u/s arrays pinned to their expected length.
+    This is what actually closes the item-omission failure mode -- see the
+    note on llm_score_batch_size in scoring.yml."""
+    return {
+        "type": "object",
+        "properties": {
+            "verdicts": {
+                "type": "array",
+                "minItems": len(batch_ids),
+                "maxItems": len(batch_ids),
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string", "enum": batch_ids},
+                        "u": {
+                            "type": "array",
+                            "minItems": 2,
+                            "maxItems": 2,
+                            "items": {"type": "number", "minimum": 0, "maximum": 4},
+                        },
+                        "s": {
+                            "type": "array",
+                            "minItems": expected_s_len,
+                            "maxItems": expected_s_len,
+                            "items": {"type": "number", "minimum": 0, "maximum": 4},
+                        },
+                        "why": {"type": "string", "maxLength": 240},
+                    },
+                    "required": ["id", "u", "s", "why"],
+                    "additionalProperties": False,
+                },
+            }
+        },
+        "required": ["verdicts"],
+        "additionalProperties": False,
+    }
 
 
 def _score_batch_typed(
@@ -324,9 +354,10 @@ def _score_batch_typed(
                     -- or universals * 2.5 alone when type_score is None
                     (SECTOR, OTHER)
 
-    Raises on total failure (network error, malformed JSON) -- the caller
-    treats that as "none of this batch got a verdict", and because batching
-    is per-type, a failure here can never affect another type's batches.
+    Raises on total failure (network error, a response that can't satisfy
+    the schema, missing text block) -- the caller treats that as "none of
+    this batch got a verdict", and because batching is per-type, a failure
+    here can never affect another type's batches.
     """
     weights = cfg.get("weights", {})
     u1_w = float(weights.get("u1_consequence", 0.6))
@@ -334,6 +365,7 @@ def _score_batch_typed(
     type_w = float(weights.get("type_score", 0.6))
     universals_w = float(weights.get("universals", 0.4))
     max_tokens = int(cfg.get("llm_max_tokens", 12000))
+    expected_s_len = TYPE_ITEM_COUNT.get(item_type, 0)
 
     payload = json.dumps(
         [
@@ -349,64 +381,46 @@ def _score_batch_typed(
         indent=1,
     )
     prompt = _build_stage2_prompt(item_type, reader_stage, payload)
+    schema = _stage2_schema([item.uid for item in batch], expected_s_len)
     response = client.messages.create(
         model=model,
         # Generous, not tuned to typical usage: adaptive thinking spends
         # part of this budget before a single verdict token is written, so
-        # a tight cap risks truncating the JSON array mid-batch -- see the
+        # a tight cap risks truncating the response mid-batch -- see the
         # comment on llm_max_tokens in scoring.yml.
         max_tokens=max_tokens,
+        output_config={"format": {"type": "json_schema", "schema": schema}},
         messages=[{"role": "user", "content": prompt}],
     )
     text_block = _extract_text_block(response)
-    verdicts = _extract_json(text_block.text)
-    valid_ids = {item.uid for item in batch}
-    expected_s_len = TYPE_ITEM_COUNT.get(item_type, 0)
+    verdicts = json.loads(text_block.text)["verdicts"]
 
+    # The schema guarantees exactly one verdict per batch id, each id from
+    # an enum of the batch's own ids, and u/s pinned to their expected
+    # length and 0-4 range -- so unlike the old free-text parse, nothing
+    # here needs to defend against a wrong length, a hallucinated id, or a
+    # missing entry; a response that couldn't satisfy that already raised
+    # before reaching this point.
     results: dict[str, tuple[float, str]] = {}
     for verdict in verdicts:
-        if not isinstance(verdict, dict):
-            continue
-        item_id = verdict.get("id")
-        # Only accept ids that were actually in this batch -- a hallucinated
-        # or stale id from the model should be ignored, not stored.
-        if not item_id or item_id not in valid_ids:
-            continue
-
-        u = verdict.get("u")
-        s = verdict.get("s")
-        # Wrong-length arrays are dropped, not padded -- a model that
-        # miscounted its own answer is a signal something went wrong with
-        # that specific verdict, not something to paper over by guessing
-        # which item it forgot.
-        if not isinstance(u, list) or len(u) != 2:
-            continue
-        if not isinstance(s, list) or len(s) != expected_s_len:
-            continue
-        try:
-            u1 = max(0.0, min(4.0, float(u[0])))
-            u2 = max(0.0, min(4.0, float(u[1])))
-            s_clamped = [max(0.0, min(4.0, float(v))) for v in s]
-        except (TypeError, ValueError):
-            continue
+        item_id = verdict["id"]
+        u1, u2 = float(verdict["u"][0]), float(verdict["u"][1])
+        s_vals = [float(v) for v in verdict["s"]]
 
         universals = u1_w * u1 + u2_w * u2  # 0-4
-        if s_clamped:
+        if s_vals:
             # Plain mean, no per-item weighting yet -- see the placeholder
             # note on `weights` in scoring.yml.
-            type_score = sum(s_clamped) / len(s_clamped)  # 0-4
+            type_score = sum(s_vals) / len(s_vals)  # 0-4
             relevance = (type_w * type_score + universals_w * universals) * 2.5
         else:
             # SECTOR / OTHER: no type scale, universals alone carry it.
             relevance = universals * 2.5
+        # Guards against scoring.yml's weights not summing to 1.0, not
+        # against the model -- the schema already bounds u/s themselves.
         relevance = max(0.0, min(10.0, relevance))
 
-        # 220, not the 20-word limit's naive char estimate: 20 words
-        # averages 120-140 characters, but a few genuinely long words push
-        # past that, and this is the same generous-headroom call already
-        # made for the single-pass rubric this replaced.
-        why = str(verdict.get("why", "")).strip()[:220]
-        results[item_id] = (relevance, why)
+        results[item_id] = (relevance, str(verdict["why"]).strip())
     return results
 
 

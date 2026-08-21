@@ -133,12 +133,17 @@ def main() -> int:
         return Item(uid=uid, title=title, summary="", url=f"u{uid}", source_id="s",
                     source_name="S", published=now)
 
-    section("Acceptance criterion 6: LLM malformed JSON and omitted ids fall back cleanly")
+    section("Acceptance criterion 6: whole-batch response failures fall back cleanly")
     # Two items, both classified OTHER (universals only, no type scale) so
     # the fake response shape doesn't need a type-specific "s" array. Batch
     # size 1, so each gets its own API call: the first call returns
-    # unparseable text (total batch failure), the second returns valid JSON
-    # that omits the requested id (partial failure).
+    # unparseable text, the second a truncated (incomplete) JSON body -- two
+    # different ways a whole response can fail to parse. Per-item omission
+    # within an otherwise-valid response is no longer a reachable failure
+    # mode now that output_config's json_schema pins minItems==maxItems to
+    # the batch size and enums each id to the batch's own -- see the note on
+    # llm_score_batch_size in scoring.yml -- so that scenario isn't tested
+    # here any more; a batch either satisfies the schema or it doesn't.
     item_a, item_b = item("a1"), item("b2")
     classify_ab = {
         "a1": {"type": "OTHER", "locality": 0, "confidence": "high"},
@@ -146,11 +151,11 @@ def main() -> int:
     }
     cfg = {"llm_score_batch_size": 1}
     verdicts, status = _with_fake_client(
-        ["not json at all", '[{"id": "zzz-not-requested", "u": [4, 4], "s": [], "why": "ok"}]'],
+        ["not json at all", '{"verdicts": [{"id": "b2", "u": [4, 4'],
         lambda: llm_mod.rerank_new_items([item_a, item_b], classify_ab, cfg),
     )
-    check(verdicts == {}, "neither item gets a verdict: one batch was malformed, "
-          "the other omitted the requested id", str(verdicts))
+    check(verdicts == {}, "neither item gets a verdict: both batches failed to parse",
+          str(verdicts))
     check("degraded" in status or "failed" in status,
           "the status message reflects the degradation", status)
 
@@ -164,7 +169,7 @@ def main() -> int:
     classify_c = {"c3": {"type": "OTHER", "locality": 0, "confidence": "high"}}
     cfg = {"llm_score_batch_size": 1}
     verdicts, status = _with_fake_client(
-        ['[{"id": "c3", "u": [4, 4], "s": [], "why": "directly relevant"}]'],
+        ['{"verdicts": [{"id": "c3", "u": [4, 4], "s": [], "why": "directly relevant"}]}'],
         lambda: llm_mod.rerank_new_items([item_c], classify_c, cfg),
         prefix_thinking_block=True,
     )
@@ -201,7 +206,7 @@ def main() -> int:
     item_z = item("z1")
     classify_z = {"z1": {"type": "SECTOR", "locality": 0, "confidence": "high"}}
     verdicts, status = _with_fake_client(
-        ['[{"id": "z1", "u": [4, 2], "s": [], "why": "test"}]'],
+        ['{"verdicts": [{"id": "z1", "u": [4, 2], "s": [], "why": "test"}]}'],
         lambda: llm_mod.rerank_new_items([item_z], classify_z, {"llm_score_batch_size": 10}),
     )
     # universals = 0.6*4 + 0.4*2 = 3.2; relevance = 3.2 * 2.5 = 8.0
@@ -218,7 +223,7 @@ def main() -> int:
     verdicts, status = _with_fake_client(
         [
             "not json at all",  # CURRICULUM's one batch (grouped/sent first)
-            '[{"id": "hist1", "u": [4, 4], "s": [4, 4, 4, 4], "why": "ok"}]',  # HISTORY's
+            '{"verdicts": [{"id": "hist1", "u": [4, 4], "s": [4, 4, 4, 4], "why": "ok"}]}',  # HISTORY's
         ],
         lambda: llm_mod.rerank_new_items([item_cur, item_hist], classify_ch, {"llm_score_batch_size": 10}),
     )
@@ -233,42 +238,34 @@ def main() -> int:
     }
     verdicts, status = _with_fake_client(
         [
-            '[{"id": "p1", "u": [4, 4',  # truncated, no closing bracket
-            '[{"id": "q1", "u": [2, 2], "s": [], "why": "ok"}]',
+            '{"verdicts": [{"id": "p1", "u": [4, 4',  # truncated, no closing bracket
+            '{"verdicts": [{"id": "q1", "u": [2, 2], "s": [], "why": "ok"}]}',
         ],
         lambda: llm_mod.rerank_new_items([item_p, item_q], classify_pq, {"llm_score_batch_size": 1}),
     )
     check("p1" not in verdicts and "q1" in verdicts,
           "the truncated batch's item falls back; the other batch is unaffected", str(verdicts))
 
-    section("Two-stage pipeline: a hallucinated id in a response is ignored, not stored")
-    item_r = item("r1")
-    classify_r = {"r1": {"type": "SECTOR", "locality": 0, "confidence": "high"}}
-    verdicts, status = _with_fake_client(
-        ['[{"id": "r1", "u": [4, 4], "s": [], "why": "real"}, '
-         '{"id": "made-up-id", "u": [4, 4], "s": [], "why": "hallucinated"}]'],
-        lambda: llm_mod.rerank_new_items([item_r], classify_r, {"llm_score_batch_size": 10}),
-    )
-    check("made-up-id" not in verdicts and "r1" in verdicts,
-          "a hallucinated id is dropped; the real item's verdict is kept", str(verdicts))
-
-    section("Two-stage pipeline: out-of-range scores are clamped, wrong-length arrays are dropped")
-    item_s1, item_s2 = item("s1"), item("s2")
-    classify_s = {
-        "s1": {"type": "SECTOR", "locality": 0, "confidence": "high"},
-        "s2": {"type": "SECTOR", "locality": 0, "confidence": "high"},
-    }
-    verdicts, status = _with_fake_client(
-        ['[{"id": "s1", "u": [99, -5], "s": [], "why": "clamped"}, '
-         '{"id": "s2", "u": [2], "s": [], "why": "wrong length, dropped"}]'],
-        lambda: llm_mod.rerank_new_items([item_s1, item_s2], classify_s, {"llm_score_batch_size": 10}),
-    )
-    # u1 clamped 99->4, u2 clamped -5->0: universals = 0.6*4 + 0.4*0 = 2.4;
-    # relevance = 2.4 * 2.5 = 6.0
-    check(abs(verdicts.get("s1", (0.0, ""))[0] - 6.0) < 1e-9,
-          "out-of-range u values are clamped to [0, 4] before computing relevance", str(verdicts))
-    check("s2" not in verdicts,
-          "a wrong-length u array (1 item, not 2) is dropped rather than padded", str(verdicts))
+    section("Two-stage pipeline: the stage-2 schema pins exact verdict count, ids and s-length")
+    # Hallucinated ids, omitted items, wrong-length arrays and out-of-range
+    # scores used to be defended against by per-item validation after
+    # parsing; that code is gone now that output_config's json_schema makes
+    # all four schema-invalid rather than merely against instructions (see
+    # the note on llm_score_batch_size in scoring.yml) -- a fake test client
+    # can't exercise real schema enforcement (it returns canned text
+    # directly, bypassing the API), so what's checkable offline is that the
+    # schema this code actually SENDS enforces them.
+    schema = llm_mod._stage2_schema(["hist1", "hist2"], llm_mod.TYPE_ITEM_COUNT["HISTORY"])
+    verdicts_schema = schema["properties"]["verdicts"]
+    check(verdicts_schema["minItems"] == 2 and verdicts_schema["maxItems"] == 2,
+          "the verdicts array is pinned to exactly one entry per batch item")
+    item_schema = verdicts_schema["items"]["properties"]
+    check(item_schema["id"]["enum"] == ["hist1", "hist2"],
+          "each id must come from an enum of this batch's own ids -- a hallucinated id is schema-invalid")
+    check(item_schema["s"]["minItems"] == item_schema["s"]["maxItems"] == 4,
+          "HISTORY's s array is pinned to its scale's exact item count (4)")
+    check(item_schema["u"]["items"]["minimum"] == 0 and item_schema["u"]["items"]["maximum"] == 4,
+          "u values are bounded 0-4 by the schema itself, not by post-hoc clamping")
 
     section("Two-stage pipeline: the locality floor is a build-time percentile, not a fixed number")
     rank_items = [

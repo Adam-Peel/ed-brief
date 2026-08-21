@@ -301,10 +301,14 @@ ever sent to the model — existing items keep their frozen score forever.
 
 Every failure path falls back to deterministic scoring for exactly the
 affected items and says so in `data/corpus.json` (`scoring.mode`),
-`docs/api/v1/meta.json`, and the page footer: no key, missing package, a
-network/API error, malformed JSON, or a response that omits some of the
-requested items. A single bad API response degrades a handful of items, not
-the whole run, and never fails the build.
+`docs/api/v1/meta.json`, and the page footer: no key, missing package, or a
+network/API/schema-validation error that fails a whole batch. Both LLM
+stages use the Claude API's structured outputs (`output_config`'s
+`json_schema`) to pin each batch's response to exactly one verdict per item
+it was sent, so a response that would omit or invent an item is
+schema-invalid rather than merely against instructions — a single bad
+response degrades that one batch, not the whole run, and never fails the
+build.
 
 ---
 
