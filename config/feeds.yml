@@ -223,6 +223,31 @@ feeds:
       correspondence with the DfE, ITE research group updates, provider
       conferences. Weighted like DfE -- primary-source, not commentary.
 
+  - id: teachertoolkit
+    name: TeacherToolkit
+    url: https://www.teachertoolkit.co.uk/blog/feed
+    weight: 1.0
+    enabled: true
+    note: >
+      Added 2026-08-21, owner-suggested. Ross McGill's blog, widely cited as
+      one of the most-read UK teacher blogs. Verified reachable and active
+      (posts through 12 Aug 2026); content is squarely classroom-practice
+      and Ofsted/curriculum commentary ("What Ofsted Data Reveals About
+      Curriculum and Teaching"). Weighted like Chartered College.
+
+  - id: learning-spy
+    name: David Didau (The Learning Spy)
+    url: https://daviddidau.substack.com/feed
+    weight: 1.0
+    enabled: true
+    note: >
+      Added 2026-08-21, owner-suggested as "The Learning Spy". That site's
+      own feed (learningspy.co.uk/feed) 404s -- Didau has moved his active
+      writing to Substack, which has a real, weekly-ish feed (5 posts in
+      the last month, verified). Known specifically for evidence-informed
+      teaching critique, overlapping cog-cognitive-load and the ped- topics.
+      Weighted the same as HistoryExtra/Chartered College.
+
   # ---- Disabled by default ----------------------------------------------
   # These either have no public feed or could not be confirmed at build time.
   # Enable one and run `python -m src.validate` to see whether it resolves.
@@ -385,3 +410,12 @@ feeds:
   #     or teaching-resource content -- doesn't match what the heritage/
   #     museum-education rubric bullet is after. Skipped rather than added
   #     at a low weight, since it would mostly just add noise.
+  #
+  # Also checked 2026-08-21, owner-suggested teacher/HE blogs. TeacherToolkit
+  # and David Didau's Substack are enabled above; one rejected as dead:
+  #   - EdCentral (edcentral.uk): has a real, well-formed feed at the
+  #     Joomla-style URL edcentral.uk/edblog?format=feed&type=rss (not
+  #     autodiscoverable, no <link rel="alternate"> found by curl on any
+  #     page tried) -- but it's completely empty, zero <item> entries.
+  #     The site itself still resolves, but its blog aggregation feature
+  #     appears abandoned. Not added.
