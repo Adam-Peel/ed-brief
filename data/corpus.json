@@ -4,33 +4,6 @@
  "retention_days": 14,
  "items": [
   {
-   "id": "50f3bb4fdee8b09a",
-   "title": "The Guardian view on GCSE results: much to celebrate, much to reform | Editorial",
-   "url": "https://www.theguardian.com/commentisfree/2026/aug/20/the-guardian-view-on-gcse-results-much-to-celebrate-much-to-reform",
-   "summary": "Another post-pandemic cohort has shown its resilience and talent. But growing inequalities of outcome must be addressed Most pupils who received their GCSE results this week were in the penultimate year of primary school when Covid struck, disrupting their preparation for secondary education. As with other post-pandemic cohorts, their achievements are therefore a testament to their ability, resilience and determination. A strong set of results, particularly in the core subjects of English and maths, should also be seen as a tribute to teachers dealing with ever expanding workloads. Overall…",
-   "source": {
-    "id": "guardian-education",
-    "name": "Guardian Education"
-   },
-   "published": "2026-08-20T17:46:28Z",
-   "first_seen": "2026-08-21T10:07:49Z",
-   "expires": "2026-09-04T10:07:49Z",
-   "relevance": 6.11,
-   "rank_score": 6.1,
-   "tier": "worth",
-   "tags": [
-    "pol-early-career-framework",
-    "pol-gcse-spec"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 15.27,
-    "deterministic_norm": 6.11,
-    "llm": null
-   }
-  },
-  {
    "id": "e6263085a41a0509",
    "title": "Maths excellence as thousands achieve high grades at GCSE",
    "url": "https://www.gov.uk/government/news/maths-excellence-as-thousands-achieve-high-grades-at-gcse",
@@ -132,110 +105,6 @@
     "mode": "deterministic",
     "deterministic_raw": 9.8,
     "deterministic_norm": 3.92,
-    "llm": null
-   }
-  },
-  {
-   "id": "86d44c3d72066f7e",
-   "title": "Leaders attack ‘demotivating’ plan to make pupils who fail GCSEs retake maths and English",
-   "url": "https://www.theguardian.com/education/2026/aug/20/governments-plan-young-people-continue-studying-gcse-maths-english-exams",
-   "summary": "Government announce plan for ‘stepping stone’ qualification as 620,000 year 11 students face retaking maths or English after failure to achieve grade 4 The government’s plans to make young people continue studying maths and English if they fail GCSEs could be demotivating and ineffective, according to education experts and school leaders after retake pass rates slumped this year. Only one in seven students in the age group retaking GCSE maths after a previous failure got a grade 4 or above this summer, while only one in six managed to pass English, meaning the majority will have to retake the…",
-   "source": {
-    "id": "guardian-education",
-    "name": "Guardian Education"
-   },
-   "published": "2026-08-20T18:21:32Z",
-   "first_seen": "2026-08-21T10:07:49Z",
-   "expires": "2026-09-04T10:07:49Z",
-   "relevance": 3.91,
-   "rank_score": 3.9,
-   "tier": "rest",
-   "tags": [
-    "pol-gcse-spec"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 9.78,
-    "deterministic_norm": 3.91,
-    "llm": null
-   }
-  },
-  {
-   "id": "5560773cdf852350",
-   "title": "'Relentless' GCSE resit cycle 'simply not working', school and college leaders say",
-   "url": "https://www.bbc.co.uk/news/articles/czdm6d2z3gro?at_medium=RSS&at_campaign=rss",
-   "summary": "Pass rates for maths and English resits remain significantly lower than students taking them for the first time.",
-   "source": {
-    "id": "bbc-education",
-    "name": "BBC Education"
-   },
-   "published": "2026-08-20T16:26:34Z",
-   "first_seen": "2026-08-21T10:07:49Z",
-   "expires": "2026-09-04T10:07:49Z",
-   "relevance": 3.9,
-   "rank_score": 3.89,
-   "tier": "rest",
-   "tags": [
-    "pol-gcse-spec"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 9.74,
-    "deterministic_norm": 3.9,
-    "llm": null
-   }
-  },
-  {
-   "id": "848af578b2193b39",
-   "title": "Five key takeaways from GCSE results day 2026",
-   "url": "https://www.bbc.co.uk/news/articles/cx2583xew8zo?at_medium=RSS&at_campaign=rss",
-   "summary": "Resits are up, the gap between boys and girls has shrunk and England's regional divide has widened.",
-   "source": {
-    "id": "bbc-education",
-    "name": "BBC Education"
-   },
-   "published": "2026-08-20T14:28:32Z",
-   "first_seen": "2026-08-21T10:07:49Z",
-   "expires": "2026-09-04T10:07:49Z",
-   "relevance": 3.88,
-   "rank_score": 3.87,
-   "tier": "rest",
-   "tags": [
-    "pol-gcse-spec"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 9.69,
-    "deterministic_norm": 3.88,
-    "llm": null
-   }
-  },
-  {
-   "id": "2f9a189daaaaf4aa",
-   "title": "GCSE results: girls still ahead but gender gap narrows as hundreds of thousands of pupils receive grades – as it happened",
-   "url": "https://www.theguardian.com/education/live/2026/aug/20/gcse-results-exams-schools-education-england-wales-northern-ireland-live-latest-updates",
-   "summary": "Nearly a quarter of girls’ entries received one of the higher grades against around a fifth of those from boys Almost one in four boys in England get top grades in maths Myles McGinley, managing director of the Cambridge OCR exam board, said more pupils are taking GCSE business studies than in previous years, describing this generation of young people as “increasingly entrepreneurial”. He said business studies entries are a third higher than five years ago, adding: “The founders of some of the next great unicorn businesses may well be among those achieving GCSEs in business studies today.”…",
-   "source": {
-    "id": "guardian-education",
-    "name": "Guardian Education"
-   },
-   "published": "2026-08-20T12:26:10Z",
-   "first_seen": "2026-08-21T10:07:49Z",
-   "expires": "2026-09-04T10:07:49Z",
-   "relevance": 3.86,
-   "rank_score": 3.85,
-   "tier": "rest",
-   "tags": [
-    "pol-gcse-spec"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 9.65,
-    "deterministic_norm": 3.86,
     "llm": null
    }
   },
@@ -1021,32 +890,6 @@
    }
   },
   {
-   "id": "3b561734d49d1cba",
-   "title": "Academic who accused Jason Arday of plagiarism suspended by his university",
-   "url": "https://www.theguardian.com/uk-news/2026/aug/20/academic-who-accused-jason-arday-of-plagiarism-suspended-by-his-university",
-   "summary": "Researcher Nathan Cofnas previously claimed Black people would hold few high-profile positions in a meritocracy Nathan Cofnas, the academic who made plagiarism allegations against Prof Jason Arday before his death, has been suspended by a university. Arday, 41, resigned from his role at the University of Cambridge this month after coverage of Cofnas’s accusations of plagiarism. The allegations, which were not proven in any formal investigation, triggered questions about Arday’s achievements. Continue reading...",
-   "source": {
-    "id": "guardian-education",
-    "name": "Guardian Education"
-   },
-   "published": "2026-08-20T18:12:13Z",
-   "first_seen": "2026-08-21T10:07:49Z",
-   "expires": "2026-09-04T10:07:49Z",
-   "relevance": 1.27,
-   "rank_score": 1.26,
-   "tier": "rest",
-   "tags": [
-    "ped-ai"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 3.18,
-    "deterministic_norm": 1.27,
-    "llm": null
-   }
-  },
-  {
    "id": "aafb7d3956670f52",
    "title": "Letter to accounting officers in academy trusts: 15 July 2026",
    "url": "https://www.gov.uk/government/publications/letter-to-accounting-officers-in-academy-trusts-15-july-2026",
@@ -1099,30 +942,6 @@
    }
   },
   {
-   "id": "33d080a981079902",
-   "title": "Burnham to chair growth meeting call at No 10 North – UK politics live",
-   "url": "https://www.theguardian.com/politics/live/2026/aug/21/andy-burnham-growth-labour-john-healey-uk-politics-latest-news-updates",
-   "summary": "PM will work alongside chancellor John Healey, Lou Haigh, Angela Rayner and Sally Jameson with regional mayors expected to be involved Three Conservative council leaders in London have written to Andy Burnham, accusing the government of “devolving blame” for council tax hikes, PA reported. The leaders of Westminster, Wandsworth and Kensington + Chelsea councils say they are being forced to significantly increase council tax or slash services to plug a hole left by cuts to central government funding. Continue reading...",
-   "source": {
-    "id": "guardian-education",
-    "name": "Guardian Education"
-   },
-   "published": "2026-08-21T09:46:17Z",
-   "first_seen": "2026-08-21T10:07:49Z",
-   "expires": "2026-09-04T10:07:49Z",
-   "relevance": 1.2,
-   "rank_score": 1.19,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 2.99,
-    "deterministic_norm": 1.2,
-    "llm": null
-   }
-  },
-  {
    "id": "d2ecf4c733811986",
    "title": "London pulls further ahead as A-level regional divide for top grades hits record – as it happened",
    "url": "https://www.theguardian.com/education/live/2026/aug/13/a-level-results-universities-clearing-schools-college-sixth-forms-latest-news-updates",
@@ -1145,30 +964,6 @@
     "mode": "deterministic",
     "deterministic_raw": 2.98,
     "deterministic_norm": 1.19,
-    "llm": null
-   }
-  },
-  {
-   "id": "c7d4b1d36da70047",
-   "title": "Broken toilets, leaking roofs: Why India's 'cockroach' party wants to fix schools",
-   "url": "https://www.bbc.co.uk/news/articles/ckg4q8kyxp7o?at_medium=RSS&at_campaign=rss",
-   "summary": "The poor state of government schools is the focus of a new campaign by India's Cockroach Janta Party (CJP).",
-   "source": {
-    "id": "bbc-education",
-    "name": "BBC Education"
-   },
-   "published": "2026-08-21T00:04:10Z",
-   "first_seen": "2026-08-21T10:07:49Z",
-   "expires": "2026-09-04T10:07:49Z",
-   "relevance": 1.09,
-   "rank_score": 1.08,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 2.73,
-    "deterministic_norm": 1.09,
     "llm": null
    }
   },
@@ -1355,54 +1150,6 @@
    }
   },
   {
-   "id": "29bd6ae9b51789a5",
-   "title": "UK minister criticises misogynistic social media culture | Politics Weekly",
-   "url": "https://www.theguardian.com/politics/video/2026/aug/20/uk-minister-criticises-misogynistic-social-media-culture-politics-weekly",
-   "summary": "Racism and misogyny are becoming normalised as a result of rightwing politics and the ‘cesspit’ of social media, according to Labour’s Bridget Phillipson. In an extended interview, the minister for women and equalities and new party chair talks to Kiran Stacey about her fears for British society, the climate crisis, what Andy Burnham is really doing differently from Keir Starmer, and whether her party can beat Reform Continue reading...",
-   "source": {
-    "id": "guardian-education",
-    "name": "Guardian Education"
-   },
-   "published": "2026-08-20T14:00:23Z",
-   "first_seen": "2026-08-21T10:07:49Z",
-   "expires": "2026-09-04T10:07:49Z",
-   "relevance": 0.99,
-   "rank_score": 0.98,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 2.48,
-    "deterministic_norm": 0.99,
-    "llm": null
-   }
-  },
-  {
-   "id": "31a27137e3f7833b",
-   "title": "Gods and monsters: the hidden stories of the Odyssey",
-   "url": "https://www.historyextra.com/membership/odyssey-podcast-series-episode-2/",
-   "summary": "Daisy Dunn explores the Odyssey's greatest hits – and how each tells us as much about ancient Greek civilisation as it does about Odysseus himself",
-   "source": {
-    "id": "historyextra",
-    "name": "HistoryExtra"
-   },
-   "published": "2026-08-21T09:00:15Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.98,
-   "rank_score": 0.97,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 2.46,
-    "deterministic_norm": 0.98,
-    "llm": null
-   }
-  },
-  {
    "id": "5df63b46a2233e9c",
    "title": "What are BTecs and how are they graded?",
    "url": "https://www.bbc.co.uk/news/articles/ce832ze3y1vo?at_medium=RSS&at_campaign=rss",
@@ -1473,30 +1220,6 @@
     "mode": "deterministic",
     "deterministic_raw": 2.0,
     "deterministic_norm": 0.8,
-    "llm": null
-   }
-  },
-  {
-   "id": "545a93f15a869d3d",
-   "title": "Royal rivalry: 10 monarchs whose fate was determined by their siblings",
-   "url": "https://www.historyextra.com/membership/royal-sibling-rivalries/",
-   "summary": "Through history, the role of the second or third royal sibling has not always been easy. Here, historian Sarah Gristwood explores 10 of the most famous – and dysfunctional – royal sibling relationships...",
-   "source": {
-    "id": "historyextra",
-    "name": "HistoryExtra"
-   },
-   "published": "2026-08-20T12:01:54Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.77,
-   "rank_score": 0.76,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 1.93,
-    "deterministic_norm": 0.77,
     "llm": null
    }
   },
@@ -2387,78 +2110,6 @@
     "mode": "deterministic",
     "deterministic_raw": 0.02,
     "deterministic_norm": 0.01,
-    "llm": null
-   }
-  },
-  {
-   "id": "36601ee908938359",
-   "title": "Quiz of the week: who is widely considered the world’s first black professional footballer?",
-   "url": "https://www.historyextra.com/period/general-history/weekly-history-quiz/",
-   "summary": "How much have you been paying attention to this week's content on HistoryExtra? Test your knowledge with our quiz…",
-   "source": {
-    "id": "historyextra",
-    "name": "HistoryExtra"
-   },
-   "published": "2026-08-21T08:03:12Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": -5.57,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "99f36693e3d08df2",
-   "title": "History crossword: 14 August",
-   "url": "https://www.historyextra.com/membership/history-crossword-14-august/",
-   "summary": "",
-   "source": {
-    "id": "historyextra",
-    "name": "HistoryExtra"
-   },
-   "published": "2026-08-21T08:01:10Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": -1.57,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "fc4ac09825427028",
-   "title": "Daily quiz: 21 August",
-   "url": "https://www.historyextra.com/membership/daily-history-trivia-quiz/",
-   "summary": "Put your history knowledge to the test with our daily quiz challenge – updated every morning at 7am UK time",
-   "source": {
-    "id": "historyextra",
-    "name": "HistoryExtra"
-   },
-   "published": "2026-08-21T06:00:10Z",
-   "first_seen": "2026-08-21T10:30:32Z",
-   "expires": "2026-09-04T10:30:32Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "rest",
-   "tags": [],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": -1.63,
-    "deterministic_norm": 0.0,
     "llm": null
    }
   },
