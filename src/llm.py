@@ -98,7 +98,11 @@ equally behaviour management, questioning, modelling, adaptive teaching \
 and differentiation, oracy, disciplinary literacy, formative assessment \
 and marking.
 - SEND and inclusion: EHCPs, the SEND reform agenda, disadvantage and the \
-attainment gap. Daily classroom reality, not a niche interest.
+attainment gap in the classroom. Daily classroom reality, not a niche \
+interest -- but the word "SEND" appearing in a story (a council notice, a \
+community event badged SEND-friendly) doesn't make it one: score for \
+whether the story is actually about classroom inclusion, not for the \
+label.
 - Ofsted inspection, since it shapes what they will walk into -- but see \
 DIRECT vs INCIDENTAL relevance below before scoring anything Ofsted-branded.
 - Safeguarding and statutory duties: KCSIE updates (revised most \
@@ -113,8 +117,13 @@ profession.
 - School funding, budgets, multi-academy trusts, and academisation: when \
 budgets tighten, humanities staffing and option-block space are what gets \
 cut first. A trust restructuring its humanities provision, or a funding \
-story with real staffing consequences, is a career story, not abstract \
-sector news.
+story with real staffing consequences, is a career story. But be as \
+strict here as with Ofsted below: a routine accountability notice, \
+financial-oversight letter, or administrative bulletin about a trust is \
+NOT this category just because it mentions a trust or funding -- score \
+those near the bottom, same as any other administrative document, unless \
+the story itself describes an actual staffing, curriculum, or \
+option-block consequence.
 - The induction/early-career phase of the ITTECF, mentoring, and the \
 first-year workload picture: relevant background, but they haven't \
 reached this phase yet, so it sits here rather than in CORE.
@@ -137,9 +146,16 @@ academic outcomes belongs here, whatever the specific angle -- resits, \
 homework load, marking practices, attendance policy, screening checks, \
 uniform rules, whatever. Treat these as one type of story and score the \
 type consistently, not just whichever specific angle is in front of you. \
-Score 5-7: higher toward 7 when it's squarely about secondary-age pupils' \
-academic experience (e.g. exam-linked stress), lower toward 5 when it's \
-more general wellbeing news not tied to a specific school-age policy.
+As with the Nottinghamshire premium below, the 5-7 range is a cap on \
+wellbeing AS THE REASON, not on the story: score 5-7 when wellbeing is \
+the only substance, higher toward 7 when it's squarely about \
+secondary-age pupils' academic experience (e.g. exam-linked stress), \
+lower toward 5 when it's more general wellbeing news not tied to a \
+specific school-age policy -- but if the story is ALSO substantively \
+about qualifications or assessment reform (see that CORE bullet above), \
+score it on that basis instead. A story about how compulsory resits harm \
+pupil wellbeing is both a wellbeing story and a resit-policy story; score \
+it as the latter.
 
 NOTTINGHAMSHIRE PREMIUM: a genuine regional interest, not a generic "local \
 news" bump, with two facets. First, local HISTORY, heritage, or \
