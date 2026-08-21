@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated": "2026-08-21T14:06:44Z",
+ "generated": "2026-08-21T14:21:28Z",
  "retention_days": 14,
  "items": [
   {
@@ -44,7 +44,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 6.04,
-   "rank_score": 6.03,
+   "rank_score": 6.02,
    "tier": "worth",
    "tags": [
     "pol-early-career-framework",
@@ -72,7 +72,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 5.14,
-   "rank_score": 5.13,
+   "rank_score": 5.12,
    "tier": "worth",
    "tags": [
     "pol-gcse-spec"
@@ -99,7 +99,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 5.14,
-   "rank_score": 5.13,
+   "rank_score": 5.12,
    "tier": "worth",
    "tags": [
     "pol-gcse-spec"
@@ -126,7 +126,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 4.56,
-   "rank_score": 4.55,
+   "rank_score": 4.54,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -153,7 +153,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 4.55,
-   "rank_score": 4.54,
+   "rank_score": 4.53,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -331,33 +331,6 @@
    }
   },
   {
-   "id": "b65b8c22d697affc",
-   "title": "Ofsted annual report and accounts 2025 to 2026 published",
-   "url": "https://www.gov.uk/government/news/ofsted-annual-report-and-accounts-2025-to-2026-published",
-   "summary": "Ofsted has today published its annual report and accounts, covering the period from 1 April 2025 to 31 March 2026.",
-   "source": {
-    "id": "ofsted",
-    "name": "Ofsted (gov.uk)"
-   },
-   "published": "2026-07-14T12:13:48Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 3.8,
-   "rank_score": 3.8,
-   "tier": "rest",
-   "tags": [
-    "pol-ofsted"
-   ],
-   "why": "",
-   "image_url": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 9.5,
-    "deterministic_norm": 3.8,
-    "llm": null
-   }
-  },
-  {
    "id": "ece94cdae76aa08b",
    "title": "GCSE results, resits and appeals - what to do if you are unhappy with your grades",
    "url": "https://www.bbc.co.uk/news/articles/c1jxjk6g1l2o?at_medium=RSS&at_campaign=rss",
@@ -380,6 +353,33 @@
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 9.49,
+    "deterministic_norm": 3.8,
+    "llm": null
+   }
+  },
+  {
+   "id": "b65b8c22d697affc",
+   "title": "Ofsted annual report and accounts 2025 to 2026 published",
+   "url": "https://www.gov.uk/government/news/ofsted-annual-report-and-accounts-2025-to-2026-published",
+   "summary": "Ofsted has today published its annual report and accounts, covering the period from 1 April 2025 to 31 March 2026.",
+   "source": {
+    "id": "ofsted",
+    "name": "Ofsted (gov.uk)"
+   },
+   "published": "2026-07-14T12:13:48Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 3.8,
+   "rank_score": 3.8,
+   "tier": "rest",
+   "tags": [
+    "pol-ofsted"
+   ],
+   "why": "",
+   "image_url": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 9.5,
     "deterministic_norm": 3.8,
     "llm": null
    }
@@ -1806,31 +1806,6 @@
    }
   },
   {
-   "id": "145d88d564ac3de6",
-   "title": "An Introduction to Thatched Buildings and Thatching in England",
-   "url": "https://heritagecalling.com/2026/08/13/an-introduction-to-thatched-buildings-and-thatching-in-england/",
-   "summary": "Exploring one of England's oldest and most characterful building materials.",
-   "source": {
-    "id": "heritage-calling",
-    "name": "Heritage Calling (Historic England)"
-   },
-   "published": "2026-08-13T06:00:00Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.5,
-   "rank_score": 0.5,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 1.25,
-    "deterministic_norm": 0.5,
-    "llm": null
-   }
-  },
-  {
    "id": "c4ba9ffc68420c31",
    "title": "Parents pushed to breaking point by Child Maintenance Service, BBC told",
    "url": "https://www.bbc.co.uk/news/articles/c4g3re5ew8do?at_medium=RSS&at_campaign=rss",
@@ -1856,6 +1831,31 @@
    }
   },
   {
+   "id": "145d88d564ac3de6",
+   "title": "An Introduction to Thatched Buildings and Thatching in England",
+   "url": "https://heritagecalling.com/2026/08/13/an-introduction-to-thatched-buildings-and-thatching-in-england/",
+   "summary": "Exploring one of England's oldest and most characterful building materials.",
+   "source": {
+    "id": "heritage-calling",
+    "name": "Heritage Calling (Historic England)"
+   },
+   "published": "2026-08-13T06:00:00Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.5,
+   "rank_score": 0.5,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 1.25,
+    "deterministic_norm": 0.5,
+    "llm": null
+   }
+  },
+  {
    "id": "3b561734d49d1cba",
    "title": "Academic who accused Jason Arday of plagiarism suspended by his university",
    "url": "https://www.theguardian.com/uk-news/2026/aug/20/academic-who-accused-jason-arday-of-plagiarism-suspended-by-his-university",
@@ -1868,7 +1868,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.5,
-   "rank_score": 0.49,
+   "rank_score": 0.48,
    "tier": "noise",
    "tags": [
     "ped-ai"
@@ -1895,7 +1895,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.48,
-   "rank_score": 0.47,
+   "rank_score": 0.46,
    "tier": "noise",
    "tags": [],
    "why": "Political commentary unrelated to history teaching or ITT",
@@ -1970,7 +1970,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.43,
-   "rank_score": 0.42,
+   "rank_score": 0.41,
    "tier": "noise",
    "tags": [],
    "why": "Indian school infrastructure irrelevant to English secondary history ITT",
@@ -1980,6 +1980,31 @@
     "deterministic_raw": 2.68,
     "deterministic_norm": 1.07,
     "llm": 0.0
+   }
+  },
+  {
+   "id": "73629f00a41acbaf",
+   "title": "Supporting female academics in Sub-Saharan Africa to publish and lead",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/supporting-female-academics.aspx",
+   "summary": "THE article co-written by Dr Alicia Bowman and Professor Juliet Thondhlana",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-08-18T09:15:00Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.41,
+   "rank_score": 0.41,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/supporting-female-academics.aspx",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 1.03,
+    "deterministic_norm": 0.41,
+    "llm": null
    }
   },
   {
@@ -2008,27 +2033,27 @@
    }
   },
   {
-   "id": "73629f00a41acbaf",
-   "title": "Supporting female academics in Sub-Saharan Africa to publish and lead",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/supporting-female-academics.aspx",
-   "summary": "THE article co-written by Dr Alicia Bowman and Professor Juliet Thondhlana",
+   "id": "7f4234ab9589f821",
+   "title": "Jason Arday death 'tragedy on so many levels' says PM",
+   "url": "https://www.bbc.co.uk/news/articles/c9982znvyk4o?at_medium=RSS&at_campaign=rss",
+   "summary": "Andy Burnham says the former Cambridge professor's death is a \"really sad, sad and sorry state of affairs\".",
    "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
+    "id": "bbc-education",
+    "name": "BBC Education"
    },
-   "published": "2026-08-18T09:15:00Z",
+   "published": "2026-08-15T17:43:04Z",
    "first_seen": "2026-08-21T14:06:44Z",
    "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.41,
-   "rank_score": 0.41,
+   "relevance": 0.4,
+   "rank_score": 0.4,
    "tier": "noise",
    "tags": [],
    "why": "",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/supporting-female-academics.aspx",
+   "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ea6e/live/9024e850-988b-11f1-83ef-33838a09c7c1.jpg",
    "scoring": {
     "mode": "deterministic",
-    "deterministic_raw": 1.03,
-    "deterministic_norm": 0.41,
+    "deterministic_raw": 0.99,
+    "deterministic_norm": 0.4,
     "llm": null
    }
   },
@@ -2233,31 +2258,6 @@
    }
   },
   {
-   "id": "7f4234ab9589f821",
-   "title": "Jason Arday death 'tragedy on so many levels' says PM",
-   "url": "https://www.bbc.co.uk/news/articles/c9982znvyk4o?at_medium=RSS&at_campaign=rss",
-   "summary": "Andy Burnham says the former Cambridge professor's death is a \"really sad, sad and sorry state of affairs\".",
-   "source": {
-    "id": "bbc-education",
-    "name": "BBC Education"
-   },
-   "published": "2026-08-15T17:43:04Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.4,
-   "rank_score": 0.4,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ea6e/live/9024e850-988b-11f1-83ef-33838a09c7c1.jpg",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.99,
-    "deterministic_norm": 0.4,
-    "llm": null
-   }
-  },
-  {
    "id": "31a27137e3f7833b",
    "title": "Gods and monsters: the hidden stories of the Odyssey",
    "url": "https://www.historyextra.com/membership/odyssey-podcast-series-episode-2/",
@@ -2270,7 +2270,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.39,
-   "rank_score": 0.38,
+   "rank_score": 0.37,
    "tier": "noise",
    "tags": [],
    "why": "Ancient Greek content enrichment unrelated to ITT pedagogy or curriculum",
@@ -2295,7 +2295,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.39,
-   "rank_score": 0.38,
+   "rank_score": 0.37,
    "tier": "noise",
    "tags": [],
    "why": "Social media commentary unrelated to history teaching or curriculum",
@@ -2395,7 +2395,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.3,
-   "rank_score": 0.29,
+   "rank_score": 0.28,
    "tier": "noise",
    "tags": [],
    "why": "Royal history content enrichment unrelated to ITT pedagogy or assessment",
@@ -2405,31 +2405,6 @@
     "deterministic_raw": 1.9,
     "deterministic_norm": 0.76,
     "llm": 0.0
-   }
-  },
-  {
-   "id": "94aa7822bdfc84fd",
-   "title": "How to make sure that no child is left behind | Letters",
-   "url": "https://www.theguardian.com/education/2026/aug/12/how-to-make-sure-that-no-child-is-left-behind",
-   "summary": "Readers respond to Alan Milburn's recommendation that primary schools may be able to spot children at risk of future unemployment Alan Milburn suggests that primary schools should be asked to spot children at risk of future unemployment ( Primary schools to be told to identify children at risk of future unemployment, 7 August ). Intervening early makes sense. Children who miss a lot of school do tend to drift away from it later, and waiting until someone is 18 and out of work is obviously too late. But there is a difference between spotting what a child needs and deciding what they will…",
-   "source": {
-    "id": "guardian-schools",
-    "name": "Guardian Schools"
-   },
-   "published": "2026-08-12T16:29:06Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.28,
-   "rank_score": 0.28,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://i.guim.co.uk/img/media/3d2900a5e9fe0fe3ff645b738b551dee5500c7c0/253_0_4668_3737/master/4668.jpg?width=700&quality=85&auto=format&fit=max&s=908ab2b9277dcc35c321eaedcef87327",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.71,
-    "deterministic_norm": 0.28,
-    "llm": null
    }
   },
   {
@@ -2450,6 +2425,31 @@
    "tags": [],
    "why": "",
    "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FBurlesque_Image_1682808576.jpg&action=ProductMain",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.71,
+    "deterministic_norm": 0.28,
+    "llm": null
+   }
+  },
+  {
+   "id": "94aa7822bdfc84fd",
+   "title": "How to make sure that no child is left behind | Letters",
+   "url": "https://www.theguardian.com/education/2026/aug/12/how-to-make-sure-that-no-child-is-left-behind",
+   "summary": "Readers respond to Alan Milburn's recommendation that primary schools may be able to spot children at risk of future unemployment Alan Milburn suggests that primary schools should be asked to spot children at risk of future unemployment ( Primary schools to be told to identify children at risk of future unemployment, 7 August ). Intervening early makes sense. Children who miss a lot of school do tend to drift away from it later, and waiting until someone is 18 and out of work is obviously too late. But there is a difference between spotting what a child needs and deciding what they will…",
+   "source": {
+    "id": "guardian-schools",
+    "name": "Guardian Schools"
+   },
+   "published": "2026-08-12T16:29:06Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.28,
+   "rank_score": 0.28,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://i.guim.co.uk/img/media/3d2900a5e9fe0fe3ff645b738b551dee5500c7c0/253_0_4668_3737/master/4668.jpg?width=700&quality=85&auto=format&fit=max&s=908ab2b9277dcc35c321eaedcef87327",
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": 0.71,
@@ -2760,356 +2760,6 @@
    }
   },
   {
-   "id": "8329b4374d45684c",
-   "title": "Postgraduate student engagement activities",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/student-engagement.aspx",
-   "summary": "Review of recent events held for our student community",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-28T10:18:00Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/student-engagement.aspx",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "05127ffa54a6c016",
-   "title": "Halloween Outdoor Cinema at Newstead Abbey (26 Oct 2023 - 28 Oct 2023)",
-   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-newstead-abbey-p803011",
-   "summary": "",
-   "source": {
-    "id": "visit-nottinghamshire",
-    "name": "Visit Nottinghamshire"
-   },
-   "published": "2026-07-27T02:10:59Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FGhostbusters_338586242.png&action=ProductMain",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "a407b25d18ed71f6",
-   "title": "Motivation for learning as a process of actualisation",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/motivation-for-learning-as-a-process-of-actualisation.aspx",
-   "summary": "A Centre Research in Human Flourishing symposium",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-22T12:42:00Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/motivation-for-learning-as-a-process-of-actualisation.aspx",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "d8b3030f35020b99",
-   "title": "Podcast: exploring empire, migration and belonging",
-   "url": "https://www.education.ox.ac.uk/news/podcast-exploring-empire-migration-and-belonging/",
-   "summary": "",
-   "source": {
-    "id": "oxford-education",
-    "name": "Oxford Department of Education"
-   },
-   "published": "2026-07-22T09:43:27Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "c342c1bc2bd48eb3",
-   "title": "National study to investigate future of engineering education for the defence sector",
-   "url": "https://www.education.ox.ac.uk/news/national-study-to-investigate-future-of-engineering-education-for-the-defence-sector/",
-   "summary": "",
-   "source": {
-    "id": "oxford-education",
-    "name": "Oxford Department of Education"
-   },
-   "published": "2026-07-21T13:54:56Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "ae84ec2d6c736718",
-   "title": "Professor Pamela Sammons elected Fellow of British Academy",
-   "url": "https://www.education.ox.ac.uk/news/professor-pamela-sammons-elected-fellow-of-british-academy/",
-   "summary": "",
-   "source": {
-    "id": "oxford-education",
-    "name": "Oxford Department of Education"
-   },
-   "published": "2026-07-17T12:54:13Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "b36ece32277d8c86",
-   "title": "Play and Mathematics in Early Childhood Education",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/play-and-mathematics.aspx",
-   "summary": "Research from Dr Cath Gripton included in new book",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-17T10:15:00Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/play-and-mathematics.aspx",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "b4b2cb70a790c3f4",
-   "title": "Action research day for Sri Lanka",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/sri-lanka.aspx",
-   "summary": "Martin Cummings leads event for the Sri Lanka Collaborative Action Research Network",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-16T12:56:00Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/sri-lanka.aspx",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "769005185439f40f",
-   "title": "EABHAL (7 Oct 2026)",
-   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/eabhal-p1059531",
-   "summary": "Djanogly Theatre Wednesday 7 October | 7.30pm 2 hours including interval TIckets: £19 - £23 Eabhal have made a significant impact on the Scottish music scene with their vibrant and energetic folk music. The band earned a prestigious Folk Band of the Year nomination in the MG ALBA Scots Trad Music Awards 2022 amongst multiple other awards and nominations over the past 10 years. Current members are Kaitlin Ross (vocals), Megan MacDonald (accordion), Nicky Kirk (guitar), Robbie Greig (fiddle), and Ewan Duncan (pipes & whistle).",
-   "source": {
-    "id": "visit-nottinghamshire",
-    "name": "Visit Nottinghamshire"
-   },
-   "published": "2026-07-14T10:43:14Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FEabhal_623996499.jpg&action=ProductMain",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "051510fe764539d3",
-   "title": "Secret and Sacred Libraries from East Midlands Parishes (8 Oct 2026 - 28 Feb 2027)",
-   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/secret-and-sacred-libraries-from-east-midlands-parishes-p1059551",
-   "summary": "Lakeside Arts | Weston Gallery Thursday 8 October – Sunday 28 February Open Tuesday-Sunday | 12noon-4pm | Closed Mondays Tickets: Free admission Launch event: Thursday 8 October, 5-7pm Step into the sacred libraries of the East Midlands parish priests through books that they owned and annotated across the centuries. Amongst the Bibles and theological texts are more surprising books, on poetry, history, politics, games, and the social duties that governed everyday life. Through their pages we can glimpse the intense local concerns and a broader intellectual curiosity that extended far beyond…",
-   "source": {
-    "id": "visit-nottinghamshire",
-    "name": "Visit Nottinghamshire"
-   },
-   "published": "2026-07-14T10:24:22Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FSacred_and_Secret_696405498.jpg&action=ProductMain",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "bc72528ca43b54d9",
-   "title": "Dr Simin Ghavifekr awarded Senior Fellow status",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/ghavifekr.aspx",
-   "summary": "Higher Education Academy award",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-13T11:59:00Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/ghavifekr.aspx",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "03c1a960587a3510",
-   "title": "Rethinking the action research game: learning by being to develop teacher-researchers' identity",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/learning-by-being.aspx",
-   "summary": "Article by Lisa Robinson published in Educational Action Research",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-13T10:13:00Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/learning-by-being.aspx",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "5552a1b761541edb",
-   "title": "Mathematics teaching in the reception year",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/maths-reception.aspx",
-   "summary": "New report from the Observatory for Mathematical Education",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-07T10:15:00Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/maths-reception.aspx",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
-   "id": "82f26c262b77fc26",
-   "title": "Nottingham professor contributes to international HDR research conference in Sydney",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/hdr-conference.aspx",
-   "summary": "Professor Kathleen Pithouse-Morgan was a keynote speaker and workshop facilitator",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-06T15:01:00Z",
-   "first_seen": "2026-08-21T14:06:44Z",
-   "expires": "2026-09-04T14:06:44Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/hdr-conference.aspx",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": null
-   }
-  },
-  {
    "id": "36601ee908938359",
    "title": "Quiz of the week: who is widely considered the world’s first black professional footballer?",
    "url": "https://www.historyextra.com/period/general-history/weekly-history-quiz/",
@@ -3310,6 +2960,31 @@
    }
   },
   {
+   "id": "8329b4374d45684c",
+   "title": "Postgraduate student engagement activities",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/student-engagement.aspx",
+   "summary": "Review of recent events held for our student community",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-28T10:18:00Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/student-engagement.aspx",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
    "id": "bb7286df90dc4f0f",
    "title": "Multiple prize wins for Faculty members",
    "url": "https://www.hist.cam.ac.uk/news/multiple-prize-wins-faculty-members",
@@ -3335,6 +3010,131 @@
    }
   },
   {
+   "id": "05127ffa54a6c016",
+   "title": "Halloween Outdoor Cinema at Newstead Abbey (26 Oct 2023 - 28 Oct 2023)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-newstead-abbey-p803011",
+   "summary": "",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-07-27T02:10:59Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FGhostbusters_338586242.png&action=ProductMain",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "a407b25d18ed71f6",
+   "title": "Motivation for learning as a process of actualisation",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/motivation-for-learning-as-a-process-of-actualisation.aspx",
+   "summary": "A Centre Research in Human Flourishing symposium",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-22T12:42:00Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/motivation-for-learning-as-a-process-of-actualisation.aspx",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "d8b3030f35020b99",
+   "title": "Podcast: exploring empire, migration and belonging",
+   "url": "https://www.education.ox.ac.uk/news/podcast-exploring-empire-migration-and-belonging/",
+   "summary": "",
+   "source": {
+    "id": "oxford-education",
+    "name": "Oxford Department of Education"
+   },
+   "published": "2026-07-22T09:43:27Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "c342c1bc2bd48eb3",
+   "title": "National study to investigate future of engineering education for the defence sector",
+   "url": "https://www.education.ox.ac.uk/news/national-study-to-investigate-future-of-engineering-education-for-the-defence-sector/",
+   "summary": "",
+   "source": {
+    "id": "oxford-education",
+    "name": "Oxford Department of Education"
+   },
+   "published": "2026-07-21T13:54:56Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "ae84ec2d6c736718",
+   "title": "Professor Pamela Sammons elected Fellow of British Academy",
+   "url": "https://www.education.ox.ac.uk/news/professor-pamela-sammons-elected-fellow-of-british-academy/",
+   "summary": "",
+   "source": {
+    "id": "oxford-education",
+    "name": "Oxford Department of Education"
+   },
+   "published": "2026-07-17T12:54:13Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
    "id": "44c6ae8e0631a0f5",
    "title": "Revised direction issued to Sandwell Council: 2019",
    "url": "https://www.gov.uk/government/publications/revised-direction-issued-to-sandwell-council-2019",
@@ -3355,6 +3155,156 @@
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": -4.5,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "b36ece32277d8c86",
+   "title": "Play and Mathematics in Early Childhood Education",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/play-and-mathematics.aspx",
+   "summary": "Research from Dr Cath Gripton included in new book",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-17T10:15:00Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/play-and-mathematics.aspx",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "b4b2cb70a790c3f4",
+   "title": "Action research day for Sri Lanka",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/sri-lanka.aspx",
+   "summary": "Martin Cummings leads event for the Sri Lanka Collaborative Action Research Network",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-16T12:56:00Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/sri-lanka.aspx",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "769005185439f40f",
+   "title": "EABHAL (7 Oct 2026)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/eabhal-p1059531",
+   "summary": "Djanogly Theatre Wednesday 7 October | 7.30pm 2 hours including interval TIckets: £19 - £23 Eabhal have made a significant impact on the Scottish music scene with their vibrant and energetic folk music. The band earned a prestigious Folk Band of the Year nomination in the MG ALBA Scots Trad Music Awards 2022 amongst multiple other awards and nominations over the past 10 years. Current members are Kaitlin Ross (vocals), Megan MacDonald (accordion), Nicky Kirk (guitar), Robbie Greig (fiddle), and Ewan Duncan (pipes & whistle).",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-07-14T10:43:14Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FEabhal_623996499.jpg&action=ProductMain",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "051510fe764539d3",
+   "title": "Secret and Sacred Libraries from East Midlands Parishes (8 Oct 2026 - 28 Feb 2027)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/secret-and-sacred-libraries-from-east-midlands-parishes-p1059551",
+   "summary": "Lakeside Arts | Weston Gallery Thursday 8 October – Sunday 28 February Open Tuesday-Sunday | 12noon-4pm | Closed Mondays Tickets: Free admission Launch event: Thursday 8 October, 5-7pm Step into the sacred libraries of the East Midlands parish priests through books that they owned and annotated across the centuries. Amongst the Bibles and theological texts are more surprising books, on poetry, history, politics, games, and the social duties that governed everyday life. Through their pages we can glimpse the intense local concerns and a broader intellectual curiosity that extended far beyond…",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-07-14T10:24:22Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FSacred_and_Secret_696405498.jpg&action=ProductMain",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "bc72528ca43b54d9",
+   "title": "Dr Simin Ghavifekr awarded Senior Fellow status",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/ghavifekr.aspx",
+   "summary": "Higher Education Academy award",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-13T11:59:00Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/ghavifekr.aspx",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "03c1a960587a3510",
+   "title": "Rethinking the action research game: learning by being to develop teacher-researchers' identity",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/learning-by-being.aspx",
+   "summary": "Article by Lisa Robinson published in Educational Action Research",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-13T10:13:00Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/learning-by-being.aspx",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
     "deterministic_norm": 0.0,
     "llm": null
    }
@@ -3407,6 +3357,56 @@
    "scoring": {
     "mode": "deterministic",
     "deterministic_raw": -1.5,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "5552a1b761541edb",
+   "title": "Mathematics teaching in the reception year",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/maths-reception.aspx",
+   "summary": "New report from the Observatory for Mathematical Education",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-07T10:15:00Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/maths-reception.aspx",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": null
+   }
+  },
+  {
+   "id": "82f26c262b77fc26",
+   "title": "Nottingham professor contributes to international HDR research conference in Sydney",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/hdr-conference.aspx",
+   "summary": "Professor Kathleen Pithouse-Morgan was a keynote speaker and workshop facilitator",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-06T15:01:00Z",
+   "first_seen": "2026-08-21T14:06:44Z",
+   "expires": "2026-09-04T14:06:44Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/hdr-conference.aspx",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
     "deterministic_norm": 0.0,
     "llm": null
    }
