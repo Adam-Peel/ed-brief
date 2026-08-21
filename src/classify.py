@@ -101,6 +101,15 @@ history's timetable share and uptake.
 - A staff profile, a personal travelogue, or a conference listing is not \
 scholarship. If nothing about the past is actually conveyed, it is \
 IRRELEVANT.
+- The FE/HE exclusion is for stories ABOUT the FE or HE sector itself \
+(funding, provision, apprenticeship policy, university admissions) -- not \
+for teacher-training or pedagogy content that happens to draw on FE or HE \
+trainees as its research population or setting. A study of a teaching \
+technique, reflective practice, or professional development that used FE \
+trainees as subjects is PEDAGOGY or CAREER if the finding itself transfers \
+to teacher training generally, not IRRELEVANT. Judge what the story's \
+actual finding or subject is, not which institution its participants sat \
+in.
 
 CONFIDENCE
   high - the type is clear from what the story is about

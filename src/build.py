@@ -79,10 +79,19 @@ def score_new_items(
         verdict = verdicts.get(item.uid)
         llm_score, why = verdict if verdict else (None, "")
         relevance = blend_relevance(norm, llm_score, llm_weight)
+        classification = classify_results.get(item.uid, {})
+        # Floors combine via max, not by overriding each other -- an item
+        # can be eligible for both a source floor and a type floor. Applied
+        # regardless of scoring mode (llm or deterministic-fallback): the
+        # pill this floors against is set by classify.py succeeding, not by
+        # stage 2 succeeding, so a deterministic-only HISTORY/PEDAGOGY item
+        # still qualifies.
         source_floor = cfg.get("source_floors", {}).get(item.source_id)
         if source_floor is not None:
             relevance = max(relevance, float(source_floor))
-        classification = classify_results.get(item.uid, {})
+        type_floor = cfg.get("type_floors", {}).get(classification.get("type"))
+        if type_floor is not None:
+            relevance = max(relevance, float(type_floor))
         frozen.append(
             CorpusItem(
                 id=item.uid,

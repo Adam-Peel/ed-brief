@@ -170,6 +170,20 @@ locality:
 source_floors:
   history-teacher-training-nottingham: 5.0
 
+# Same mechanism as source_floors above (a constant applied once at
+# ingest), keyed by classify.py's TYPE instead of a source id. Added
+# 2026-08-22, owner request: HISTORY and PEDAGOGY are the two types where
+# clearing classify.py's own bar to be typed that way at all is already a
+# meaningful filter (see the RUBRIC in classify.py), so a floor here
+# guarantees baseline visibility -- both values still land well under the
+# `worth` tier cut (4.95) below, so this is "don't let it drop into noise
+# or below publish_floor", not "inflate it into a lead item". Both are
+# still subject to the same locality/source floors above if those also
+# apply -- floors combine via max, not by overriding each other.
+type_floors:
+  HISTORY: 4.0
+  PEDAGOGY: 3.0
+
 tiers:
   # Fixed thresholds on the FROZEN relevance scale (0-10), not the raw
   # deterministic sum -- tiering happens once per item, after the

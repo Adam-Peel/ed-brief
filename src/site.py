@@ -43,6 +43,16 @@ TYPE_LABELS = {
     "CAREER": "Career",
     "SECTOR": "Sector",
     "OTHER": "Other",
+    # IRRELEVANT items are discarded from stage 2, not deleted -- one can
+    # still surface here if its deterministic (keyword) score clears
+    # publish_floor despite classify.py's verdict (see rerank_new_items in
+    # llm.py). "Irrelevant" as a pill reads as a harsh, confusing judgement
+    # on something the reader is looking straight at; "Other" (reusing the
+    # existing label rather than inventing a new string) is an honest
+    # enough description either way -- the reader doesn't need to
+    # distinguish a real OTHER verdict from an IRRELEVANT one that
+    # surfaced anyway.
+    "IRRELEVANT": "Other",
 }
 
 PAGE_TEMPLATE = """<!doctype html>
