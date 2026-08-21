@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated": "2026-08-21T12:38:28Z",
+ "generated": "2026-08-21T12:51:08Z",
  "retention_days": 14,
  "items": [
   {
@@ -448,58 +448,6 @@
    }
   },
   {
-   "id": "e3ca2a116c736bd0",
-   "title": "Halloween Outdoor Cinema at Wollaton Park (17 Oct 2025 - 19 Oct 2025)",
-   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-wollaton-park-p802991",
-   "summary": "",
-   "source": {
-    "id": "visit-nottinghamshire",
-    "name": "Visit Nottinghamshire"
-   },
-   "published": "2026-08-10T02:10:00Z",
-   "first_seen": "2026-08-21T12:38:28Z",
-   "expires": "2026-09-04T12:38:28Z",
-   "relevance": 3.24,
-   "rank_score": 3.24,
-   "tier": "rest",
-   "tags": [
-    "sub-local-nottinghamshire"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 8.1,
-    "deterministic_norm": 3.24,
-    "llm": null
-   }
-  },
-  {
-   "id": "05127ffa54a6c016",
-   "title": "Halloween Outdoor Cinema at Newstead Abbey (26 Oct 2023 - 28 Oct 2023)",
-   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-newstead-abbey-p803011",
-   "summary": "",
-   "source": {
-    "id": "visit-nottinghamshire",
-    "name": "Visit Nottinghamshire"
-   },
-   "published": "2026-07-27T02:10:59Z",
-   "first_seen": "2026-08-21T12:38:28Z",
-   "expires": "2026-09-04T12:38:28Z",
-   "relevance": 3.2,
-   "rank_score": 3.2,
-   "tier": "rest",
-   "tags": [
-    "sub-local-nottinghamshire"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 8.0,
-    "deterministic_norm": 3.2,
-    "llm": null
-   }
-  },
-  {
    "id": "62f2787fbf807a5c",
    "title": "Behind England’s bumper A-level results lie record levels of regional disparities",
    "url": "https://www.theguardian.com/education/2026/aug/13/england-a-level-results-record-levels-regional-disparities",
@@ -800,7 +748,7 @@
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 2.46,
    "rank_score": 2.45,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "prof-behaviour"
    ],
@@ -826,7 +774,7 @@
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 2.44,
    "rank_score": 2.43,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "ped-ai"
    ],
@@ -852,7 +800,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 2.32,
    "rank_score": 2.31,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "prof-sen"
    ],
@@ -861,32 +809,6 @@
     "mode": "deterministic",
     "deterministic_raw": 5.79,
     "deterministic_norm": 2.32,
-    "llm": null
-   }
-  },
-  {
-   "id": "8119769605793b2c",
-   "title": "Burlesque The Musical (1 Feb 2027 - 6 Feb 2027)",
-   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/burlesque-the-musical-p1058381",
-   "summary": "Monday 1 to Saturday 6 February 2027 Theatre Royal Tickets £23 to £65.50 After taking the West End by storm — where it became summer 2025's biggest hit, selling out night after night — Burlesque A BIG New Musical is coming to Nottingham in February 2027. From executive producer Christina Aguilera and written by Steven Antin, based on the hit movie, Burlesque invites you to a club like no other: a hidden world beneath the city lights where sequins sparkle, seduction shimmers and lives can change in the flick of a feather boa. When Ali arrives in New York searching for the mother she never…",
-   "source": {
-    "id": "visit-nottinghamshire",
-    "name": "Visit Nottinghamshire"
-   },
-   "published": "2026-08-17T01:19:14Z",
-   "first_seen": "2026-08-21T12:38:28Z",
-   "expires": "2026-09-04T12:38:28Z",
-   "relevance": 2.29,
-   "rank_score": 2.29,
-   "tier": "rest",
-   "tags": [
-    "sub-local-nottinghamshire"
-   ],
-   "why": "",
-   "scoring": {
-    "mode": "deterministic",
-    "deterministic_raw": 5.72,
-    "deterministic_norm": 2.29,
     "llm": null
    }
   },
@@ -904,7 +826,7 @@
    "expires": "2026-09-04T10:55:01Z",
    "relevance": 1.99,
    "rank_score": 1.98,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "cog-cognitive-load"
    ],
@@ -930,7 +852,7 @@
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 1.96,
    "rank_score": 1.96,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "prof-sen"
    ],
@@ -956,7 +878,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.92,
    "rank_score": 1.91,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "ped-disciplinary-literacy"
    ],
@@ -982,7 +904,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.92,
    "rank_score": 1.91,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "ped-disciplinary-literacy"
    ],
@@ -1008,7 +930,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.8,
    "rank_score": 1.79,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "prof-sen"
    ],
@@ -1034,7 +956,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.8,
    "rank_score": 1.79,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "prof-sen"
    ],
@@ -1060,7 +982,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 1.79,
    "rank_score": 1.78,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "prof-behaviour"
    ],
@@ -1086,7 +1008,7 @@
    "expires": "2026-09-04T10:07:49Z",
    "relevance": 1.6,
    "rank_score": 1.58,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -1112,7 +1034,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.4,
    "rank_score": 1.39,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "pol-ofsted"
    ],
@@ -1138,7 +1060,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.24,
    "rank_score": 1.23,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -1164,7 +1086,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.24,
    "rank_score": 1.23,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -1190,7 +1112,7 @@
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 1.2,
    "rank_score": 1.2,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1214,7 +1136,7 @@
    "expires": "2026-09-04T10:30:32Z",
    "relevance": 1.19,
    "rank_score": 1.18,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "pol-gcse-spec"
    ],
@@ -1240,7 +1162,7 @@
    "expires": "2026-09-04T12:38:28Z",
    "relevance": 1.12,
    "rank_score": 1.12,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [],
    "why": "",
    "scoring": {
@@ -1264,7 +1186,7 @@
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.06,
    "rank_score": 1.05,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -1290,7 +1212,7 @@
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.05,
    "rank_score": 1.04,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -1316,7 +1238,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.04,
    "rank_score": 1.03,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -1342,7 +1264,7 @@
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.01,
    "rank_score": 1.0,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -1368,7 +1290,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.0,
    "rank_score": 0.99,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -1394,7 +1316,7 @@
    "expires": "2026-09-04T10:55:21Z",
    "relevance": 1.0,
    "rank_score": 0.99,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -1420,7 +1342,7 @@
    "expires": "2026-09-04T10:32:47Z",
    "relevance": 1.0,
    "rank_score": 0.99,
-   "tier": "rest",
+   "tier": "noise",
    "tags": [
     "context-sector"
    ],
@@ -2349,6 +2271,30 @@
    }
   },
   {
+   "id": "8119769605793b2c",
+   "title": "Burlesque The Musical (1 Feb 2027 - 6 Feb 2027)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/burlesque-the-musical-p1058381",
+   "summary": "Monday 1 to Saturday 6 February 2027 Theatre Royal Tickets £23 to £65.50 After taking the West End by storm — where it became summer 2025's biggest hit, selling out night after night — Burlesque A BIG New Musical is coming to Nottingham in February 2027. From executive producer Christina Aguilera and written by Steven Antin, based on the hit movie, Burlesque invites you to a club like no other: a hidden world beneath the city lights where sequins sparkle, seduction shimmers and lives can change in the flick of a feather boa. When Ali arrives in New York searching for the mother she never…",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-08-17T01:19:14Z",
+   "first_seen": "2026-08-21T12:51:08Z",
+   "expires": "2026-09-04T12:51:08Z",
+   "relevance": 0.29,
+   "rank_score": 0.29,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.72,
+    "deterministic_norm": 0.29,
+    "llm": null
+   }
+  },
+  {
    "id": "94aa7822bdfc84fd",
    "title": "How to make sure that no child is left behind | Letters",
    "url": "https://www.theguardian.com/education/2026/aug/12/how-to-make-sure-that-no-child-is-left-behind",
@@ -2587,6 +2533,54 @@
     "mode": "deterministic",
     "deterministic_raw": 0.16,
     "deterministic_norm": 0.06,
+    "llm": null
+   }
+  },
+  {
+   "id": "e3ca2a116c736bd0",
+   "title": "Halloween Outdoor Cinema at Wollaton Park (17 Oct 2025 - 19 Oct 2025)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-wollaton-park-p802991",
+   "summary": "",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-08-10T02:10:00Z",
+   "first_seen": "2026-08-21T12:51:08Z",
+   "expires": "2026-09-04T12:51:08Z",
+   "relevance": 0.04,
+   "rank_score": 0.04,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.1,
+    "deterministic_norm": 0.04,
+    "llm": null
+   }
+  },
+  {
+   "id": "05127ffa54a6c016",
+   "title": "Halloween Outdoor Cinema at Newstead Abbey (26 Oct 2023 - 28 Oct 2023)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-newstead-abbey-p803011",
+   "summary": "",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-07-27T02:10:59Z",
+   "first_seen": "2026-08-21T12:51:08Z",
+   "expires": "2026-09-04T12:51:08Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "",
+   "scoring": {
+    "mode": "deterministic",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
     "llm": null
    }
   },

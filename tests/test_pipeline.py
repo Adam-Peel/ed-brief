@@ -189,18 +189,23 @@ def main() -> int:
           f"fresh={fresh.rank_score:.2f} stale={stale.rank_score:.2f}")
 
     section("Four-tier split: 'noise' below the rest cut")
+    rest_cut = float(scoring_cfg["tiers"]["rest"])
     below_rest = CorpusItem(
         id="tier-noise", title="t", url="u", summary="", source_id="s", source_name="S",
-        published=now, first_seen=now, expires=now + timedelta(days=14), relevance=0.5,
+        published=now, first_seen=now, expires=now + timedelta(days=14),
+        relevance=rest_cut - 0.5,
     )
     above_rest = CorpusItem(
         id="tier-rest", title="t", url="u", summary="", source_id="s", source_name="S",
-        published=now, first_seen=now, expires=now + timedelta(days=14), relevance=2.0,
+        published=now, first_seen=now, expires=now + timedelta(days=14),
+        relevance=rest_cut + 0.5,
     )
     recompute_rank([below_rest, above_rest], scoring_cfg, now)
-    check(below_rest.tier == "noise", "relevance 0.5 (below the 1.0 rest cut) lands in 'noise'",
+    check(below_rest.tier == "noise",
+          f"relevance {rest_cut - 0.5} (below the {rest_cut} rest cut) lands in 'noise'",
           below_rest.tier)
-    check(above_rest.tier == "rest", "relevance 2.0 (above the rest cut) lands in 'rest'",
+    check(above_rest.tier == "rest",
+          f"relevance {rest_cut + 0.5} (above the {rest_cut} rest cut) lands in 'rest'",
           above_rest.tier)
 
     section("Pre-1066 mute")
