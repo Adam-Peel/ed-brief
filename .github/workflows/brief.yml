@@ -3,10 +3,20 @@ name: Build education brief
 on:
   # GitHub cron is UTC and has no idea about British Summer Time, so a single
   # schedule would drift by an hour every October and March. Both times are
-  # scheduled and a guard step below drops whichever one isn't 07:00 in London.
+  # scheduled and a guard step below drops whichever one isn't 20:00 in London.
+  #
+  # 20:00, not a morning slot: real publish-time data from the feeds (see
+  # tests/fixtures and the corpus) shows essentially nothing appears between
+  # ~20:00 and ~05:00 London, with volume clustering 09:00-19:00 and peaking
+  # late morning. A once-daily check minimizes average staleness by running
+  # right after that window closes, not at the start of the next day -- a
+  # 10am story is ~10h stale by a same-evening run vs. ~21h stale by a 7am
+  # run the next morning. Nothing publishes overnight either way, so this
+  # costs a morning reader nothing while being far fresher for anyone
+  # checking during the day or evening.
   schedule:
-    - cron: "0 6 * * 1,4"   # 07:00 London during BST
-    - cron: "0 7 * * 1,4"   # 07:00 London during GMT
+    - cron: "0 19 * * *"   # 20:00 London during BST
+    - cron: "0 20 * * *"   # 20:00 London during GMT
   workflow_dispatch:         # run it by hand any time, from the Actions tab
     inputs:
       window_hours:
@@ -29,18 +39,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Is it actually 07:00 in London?
+      - name: Is it actually 20:00 in London?
         id: guard
         run: |
           hour=$(TZ=Europe/London date +%H)
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "Manual run — proceeding."
             echo "go=true" >> "$GITHUB_OUTPUT"
-          elif [ "$hour" = "07" ]; then
+          elif [ "$hour" = "20" ]; then
             echo "London time is ${hour}:00 — proceeding."
             echo "go=true" >> "$GITHUB_OUTPUT"
           else
-            echo "London time is ${hour}:00, not 07:00. This is the other"
+            echo "London time is ${hour}:00, not 20:00. This is the other"
             echo "seasonal cron firing. Skipping."
             echo "go=false" >> "$GITHUB_OUTPUT"
           fi

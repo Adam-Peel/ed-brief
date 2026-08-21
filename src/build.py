@@ -23,15 +23,15 @@ from .score import Scorer, blend_relevance
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# Twice-weekly runs are 3-4 days apart, so a 4-day window means nothing is
-# missed if a run is skipped. Cross-run dedup is the corpus itself now, not a
-# window -- unlike the proof of concept, an item doesn't need to still be
-# inside this window to be recognised as already-seen. A backfill or a fresh
-# corpus can widen this via BRIEF_WINDOW_HOURS (or the workflow's manual
-# "Run workflow" window_hours input) without changing the twice-weekly
+# Daily runs are ~24h apart, so a 48h window (2x the gap) means nothing is
+# missed if a single run is skipped. Cross-run dedup is the corpus itself
+# now, not a window -- unlike the proof of concept, an item doesn't need to
+# still be inside this window to be recognised as already-seen. A backfill
+# or a fresh corpus can widen this via BRIEF_WINDOW_HOURS (or the workflow's
+# manual "Run workflow" window_hours input) without changing the daily
 # default; a wider window is always safe to rerun since dedup is by id
 # against the corpus, not the window.
-DEFAULT_WINDOW_HOURS = 96
+DEFAULT_WINDOW_HOURS = 48
 
 
 def load_config() -> tuple[list[dict], dict]:

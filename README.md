@@ -1,13 +1,17 @@
 # ed-brief
 
-A twice-weekly education news brief, ranked for someone moving into secondary
+A daily education news brief, ranked for someone moving into secondary
 history teaching in England.
 
-Runs on Monday and Thursday at 07:00 London time via GitHub Actions. Pulls the
-feeds, scores every story against a vocabulary you control, and publishes a
-rolling, filterable list to GitHub Pages — plus a public read-only JSON API
-and a dated markdown copy committed to `briefs/`, so you have a searchable
-archive that outlives any hosting decision.
+Runs every day at 20:00 London time via GitHub Actions -- chosen from the
+feeds' own publish-time data: almost nothing appears after ~20:00 or before
+~05:00, so an evening run captures each day's news with far less average
+staleness than a next-morning run would, at no cost to anyone checking first
+thing in the morning. Pulls the feeds, scores every story against a
+vocabulary you control, and publishes a rolling, filterable list to GitHub
+Pages — plus a public read-only JSON API and a dated markdown copy committed
+to `briefs/`, so you have a searchable archive that outlives any hosting
+decision.
 
 Every story is pre-scored and pre-ranked at ingest time, before anything is
 published. The site and API are static output: nothing is fetched, scored, or
@@ -59,7 +63,7 @@ minute or two of the first run being committed.
 
 **Actions → Build education brief → Run workflow.**
 
-Manual runs skip the time guard, so you don't have to wait until Monday.
+Manual runs skip the time guard, so you don't have to wait until 20:00.
 Watch the log: the "Check feed health" step reports any source that has
 moved or died, which is the single most useful thing to glance at on a first
 run.
@@ -105,7 +109,7 @@ because headlines are where publications put what a story is actually about.
 An earlier, snapshot-only version of this brief normalised the deterministic
 score against the min/max of whatever ran that day, and asked the LLM to rank
 stories against each other. Both are fine for a one-off page and both are
-wrong for a rolling list: today's batch and Thursday's batch are different
+wrong for a rolling list: today's batch and tomorrow's batch are different
 batches, so the same story could land at a different point on the scale
 depending on what else happened to be scored alongside it that day. A
 14-day rolling list needs everything on one fixed scale, so:
@@ -307,7 +311,7 @@ the archive). The derivation only ever changes alongside a `schema` bump in
 repos with no commits for 60 days. Because `rank_score` is recomputed for the
 whole corpus on every run, `data/corpus.json`'s `generated` timestamp changes
 even on a run with zero new stories — so every run produces a commit, and the
-clock resets twice a week regardless of how quiet the feeds are.
+clock resets every day regardless of how quiet the feeds are.
 
 **A quiet run never publishes an empty page.** Unlike a snapshot-per-run
 design, the rolling corpus means there's always something to show as long as
