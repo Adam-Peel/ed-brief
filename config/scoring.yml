@@ -64,7 +64,18 @@ llm_weight: 0.8
 # output are small (a type, a confidence, one locality number), so more fit
 # in one call without the consistency risk a large *scoring* batch has.
 llm_classify_batch_size: 40
-llm_score_batch_size: 20
+
+# Lowered 20 -> 12, 2026-08-21, on real evidence, not caution alone: the
+# first real eval run (149 items) returned verdicts for only 31/82
+# survivors -- 51 omitted from otherwise well-formed responses, not batch
+# failures. Each item's response is now a nested structure (a u array, a
+# type-specific s array, a why clause) rather than the old flat "score"
+# field, and that's a real jump in per-item output complexity on top of
+# more items per call. Also added an explicit "return exactly N entries,
+# none skipped" instruction to the output contract in llm.py -- the two
+# changes together are meant to fix this, but this needs verifying against
+# a real run, not assumed fixed just because it's now smaller.
+llm_score_batch_size: 12
 
 # Generous, not tuned to typical usage -- adaptive thinking spends part of
 # this budget before a single verdict token is written, and a truncated JSON

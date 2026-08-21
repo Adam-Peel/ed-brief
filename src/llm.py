@@ -148,18 +148,33 @@ C3 REACH
   0  no effect on what is taught"""
 
 _HISTORY_SCALE = """H1 CURRICULUM PROXIMITY
-  4  squarely on a period, theme or place taught at KS3, GCSE or A-level
+  4  squarely on a period, theme or place taught at KS3, GCSE or A-level -- \
+including history set outside Britain: Empire and its legacy, migration, \
+the Cold War, Russia, China, the USA, apartheid South Africa and \
+comparable options are standard, growing GCSE/A-level content. This is \
+history taught IN England, not only history OF England -- don't discount \
+a story for being set outside Britain.
   3  adjacent to taught content, or within the range of a thematic study \
 running from c.1000
   2  British history outside the periods usually taught
   1  world history with no curricular foothold
   0  not about the past
-Do not apply a blanket penalty before 1066. The KS3 programme of study \
+Be strict about the pre-1066 exception -- it exists for a NAMED curricular \
+link, not a general gesture toward antiquity. The KS3 programme of study \
 includes a local history study and a thematic strand that explicitly \
-reaches back before 1066, and OCR offers Ancient History at GCSE and \
-A-level. Judge pre-1066 material on the same terms as anything else, \
-scoring it low only when it has no English, local or curricular \
-connection.
+reaches back before 1066; OCR offers Ancient History at GCSE and A-level. \
+Score pre-1066 material on its merits ONLY when it names that specific \
+link (a documented thematic paper, OCR's Ancient History option, the \
+local-history study) or is local (see LOCALITY) -- a vague invocation of \
+"early civilisations" or "the ancient world" is not a named link. \
+Mythology, literature, and "what was life like" cultural pieces about the \
+classical world -- the Odyssey, ancient sexuality, daily life in \
+Mesopotamia -- are Classical Civilisation, a DIFFERENT subject from \
+History, not covered by this exception even when Greece or Rome is in the \
+headline: the test is whether the story is actually about a documented \
+history curriculum topic, not whether it's set in the ancient world. \
+Score disconnected ancient-world or prehistory content, named link or \
+not, at 0-1.
 
 H2 SUBSTANCE
   4  new research, a discovery, or a substantive reinterpretation
@@ -279,7 +294,13 @@ def _build_stage2_prompt(item_type: str, reader_stage: str, payload: str) -> str
         parts.append(scale)
 
     s_example = "<type item scores in order>" if scale else ""
+    n_articles = payload.count('"id"')
     parts.append(
+        f"There are {n_articles} articles below. Return exactly {n_articles} "
+        "entries, one per article, in the same order -- every article listed "
+        "gets an entry, with no exceptions and none skipped, even a weak or "
+        "borderline one. An omitted article is treated as a failure of this "
+        "response, not a low score.\n\n"
         "Return ONLY a JSON array, no prose, no code fence. For each article "
         "give the scores in the order the items are listed above, then one "
         "clause of at most 20 words, no full stop, saying why it matters to "

@@ -82,12 +82,21 @@ def main() -> int:
     ]
     rows.sort(key=lambda r: -abs(r[0]))
 
-    print(f"{'delta':>6}  {'old':>5}  {'new':>5}  title")
+    # locality is a build-time FLOOR on rank_score (corpus.recompute_rank),
+    # never summed into relevance -- so a locality-eligible item's "new"
+    # score here is deliberately its PRE-floor value, and a drop is not
+    # automatically a regression the way it would be for anything else.
+    # Flagged explicitly rather than left to look like an unexplained
+    # exception to every other row.
+    print(f"{'delta':>6}  {'old':>5}  {'new':>5}  type          title")
     for delta, old_score, new_score, item_id, why in rows:
-        title = title_by_id.get(item_id, item_id)[:70]
-        print(f"{delta:+6.1f}  {old_score:5.1f}  {new_score:5.1f}  {title}")
+        title = title_by_id.get(item_id, item_id)[:60]
+        item_type = classify_results.get(item_id, {}).get("type", "?")
+        locality = classify_results.get(item_id, {}).get("locality", 0)
+        local_flag = f" [locality={locality}, floored in production]" if locality >= 3 else ""
+        print(f"{delta:+6.1f}  {old_score:5.1f}  {new_score:5.1f}  {item_type:<12}  {title}{local_flag}")
         if why:
-            print(f"{'':>19}  now: {why}")
+            print(f"{'':>29}  now: {why}")
 
     deltas = [r[0] for r in rows]
     mean_delta = sum(deltas) / len(deltas)
