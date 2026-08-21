@@ -29,64 +29,76 @@ DEFAULT_MODEL = "claude-sonnet-5"
 # (score.py) also exists to avoid -- see BUILD-SPEC.md's "scoring must be
 # absolute" section.
 RUBRIC = """You are helping a career-changer in England moving into secondary \
-HISTORY teaching. They are currently {reader_stage} -- that stage is a \
-config value (scoring.yml), not fixed, because their priorities shift as it \
-changes.
+HISTORY teaching. They are currently {reader_stage}.
 
 Score against this fixed rubric only. Do not rank or compare stories \
 against each other -- judge each one in isolation, on its own merits.
 
-WHAT THEY CARE ABOUT, roughly in descending order:
+Group what they care about into three bands, each with its own score \
+range. Within a band, every category is equally weighted -- don't infer \
+that one category outranks another from where it happens to appear below.
 
+CORE (7-10) -- the direct substance of their subject and their training:
 - History as a school subject: curriculum, GCSE and A-level specs, exam \
 board choices, spec changes, option withdrawals, entry numbers -- Ofqual \
 and the awarding bodies (AQA, Edexcel, OCR, WJEC) matter here as much as \
 Ofsted does.
-- New historical research or scholarship that could inform how they teach \
-or sequence their subject content -- not just teaching methodology, but \
-new findings, interpretations, or discoveries about periods they might \
-actually teach. This has real standing value for a history teacher's own \
-subject knowledge, not just narrow classroom-practice tips. The Historical \
-Association and Teaching History are exactly this reader's trade press.
+- New historical research or scholarship on a period they might actually \
+teach: not just teaching methodology, but new findings, interpretations, \
+or discoveries. Real standing value for a history teacher's own subject \
+knowledge, not just narrow classroom-practice tips -- score 7-8. The same \
+quality of history writing on a period they would NOT teach (see PERIOD \
+below) scores 4-5 instead: good history journalism, but not this reader's \
+subject. The Historical Association and Teaching History are exactly this \
+reader's trade press.
 - Contested history and curriculum politics as they play out IN schools: \
 empire and decolonisation in the curriculum, Holocaust education, \
 political-impartiality guidance, textbook and exam-board controversies. \
 Don't file this as generic culture-war news -- if it's about what gets \
 taught, or how, it's a history-teaching story.
-- Routes into teaching and the profession's shape: ITT, PGCE, bursaries, \
-QTS, recruitment, national curriculum and assessment reform including the \
-Francis Review, and -- once past this stage -- the ITTECF (the Initial \
-Teacher Training and Early Career Framework, which merged the old ITT Core \
-Content Framework and Early Career Framework from September 2025), \
-induction, mentoring.
+- Heritage and museum education: a history-specific teaching resource or \
+schools programme from a museum or heritage body, Nottinghamshire or \
+national. Distinct from the Nottinghamshire-heritage-as-news premium \
+below -- this is usable teaching material, not background local interest.
+- Routes into teaching: ITT, PGCE, bursaries, QTS, recruitment, national \
+curriculum and assessment reform including the Francis Review, and the \
+ITT-phase content of the ITTECF (the Initial Teacher Training and Early \
+Career Framework -- a single framework since September 2025 covering ITT \
+and induction as two distinct phases within it). The ITT phase applies to \
+them now, since they're about to enter it.
+
+PROFESSIONAL CONTEXT (5-8) -- shapes the job, not the subject itself:
 - Classroom practice broadly, not just "cognitive science" narrowly: \
 retrieval and spaced practice, cognitive load and working memory, but \
 equally behaviour management, questioning, modelling, adaptive teaching \
 and differentiation, oracy, disciplinary literacy, formative assessment \
-and marking. Score a solid piece on any of these as you would a \
-cognitive-science piece -- it's the same category of story.
+and marking.
 - SEND and inclusion: EHCPs, the SEND reform agenda, disadvantage and the \
 attainment gap. Daily classroom reality, not a niche interest.
+- Ofsted inspection, since it shapes what they will walk into -- but see \
+DIRECT vs INCIDENTAL relevance below before scoring anything Ofsted-branded.
+- Safeguarding and statutory duties: KCSIE updates (revised most \
+Septembers), attendance and behaviour guidance with legal force.
 - AI in schools: generative AI in the classroom or in marking, academic \
 integrity and plagiarism, edtech. Sharp for history specifically, since \
 source analysis and independent coursework are exactly where AI misuse \
 shows up.
-- Safeguarding and statutory duties: KCSIE updates (revised most \
-Septembers), attendance and behaviour guidance with legal force.
 - Workload, retention, pay, pensions, the STRB, and industrial action -- \
 material to someone actually deciding whether to enter or stay in the \
-profession, not just abstract sector news.
-- Ofsted inspection, since it shapes what they will walk into.
+profession.
+- The induction/early-career phase of the ITTECF, mentoring, and the \
+first-year workload picture: relevant background, but they haven't \
+reached this phase yet, so it sits here rather than in CORE.
+
+ADJACENT (4-6) -- real interest, but capped below the bands above:
 - Pupil wellbeing and mental health as shaped by school policy or \
-research -- see the separate paragraph below; it needs its own scoring \
-guidance.
+research -- see the separate paragraph below for scoring within this band.
 - Nottinghamshire local HISTORY, heritage, or archaeology specifically -- \
-also see the separate paragraph below; a real premium, but capped lower \
-than the categories above.
+also see the separate paragraph below.
 
 They care much less about higher education, early years, further \
-education colleges, and school sport. They teach in ENGLAND, so Scottish \
-and Welsh policy is background only.
+education colleges, and school sport -- below all three bands. They teach \
+in ENGLAND, so Scottish and Welsh policy is background only.
 
 PUPIL WELLBEING AS A CATEGORY, not a single story: any research or \
 reporting on how an exam, assessment, curriculum design, or school policy \
@@ -95,25 +107,26 @@ academic outcomes belongs here, whatever the specific angle -- resits, \
 homework load, marking practices, attendance policy, screening checks, \
 uniform rules, whatever. Treat these as one type of story and score the \
 type consistently, not just whichever specific angle is in front of you. \
-This is real classroom-relevant evidence, but it is not automatically \
-top-tier: score it 5-7, higher toward 7 when it's squarely about \
-secondary-age pupils' academic experience (e.g. exam-linked stress), \
-lower toward 5 when it's more general wellbeing news not tied to a \
-specific school-age policy.
+Score 5-7: higher toward 7 when it's squarely about secondary-age pupils' \
+academic experience (e.g. exam-linked stress), lower toward 5 when it's \
+more general wellbeing news not tied to a specific school-age policy.
 
 NOTTINGHAMSHIRE LOCAL HISTORY PREMIUM: a genuine regional interest, not a \
 generic "local news" bump. A story ITSELF about Nottinghamshire's history, \
 heritage, or archaeology scores noticeably higher than an equivalent story \
 about somewhere else, even though it isn't curriculum news and doesn't \
-need to connect to teaching at all -- but cap it at 6: high enough to \
-reliably surface, never higher than genuine curriculum, ITT, or career \
-news. Be strict about what counts: a modern event that merely takes place \
-AT a historic Nottinghamshire site -- a cinema night, a concert, a market \
--- is not a history story and gets no premium at all, however prominently \
-it names the site. The test is what the story is ABOUT, not which \
-building it namedrops. This premium is exempt from the pre-1066 guidance \
-below -- Nottinghamshire's prehistoric and Roman sites are exactly what a \
-local history study can legitimately cover.
+need to connect to teaching at all. But the cap is on locality as the \
+REASON for the score, not on the story itself: never score above 6 for \
+being local alone -- a Nottinghamshire story can still exceed 6 on other \
+grounds (significant new scholarship, a genuine curriculum or teaching \
+link), the same as any other story would, just not for being local. Be \
+strict about what counts as local-history content at all: a modern event \
+that merely takes place AT a historic Nottinghamshire site -- a cinema \
+night, a concert, a market -- is not a history story and gets no premium, \
+however prominently it names the site. The test is what the story is \
+ABOUT, not which building it namedrops. This premium is exempt from the \
+pre-1066 guidance below -- Nottinghamshire's prehistoric and Roman sites \
+are exactly what a local history study can legitimately cover.
 
 DIRECT vs INCIDENTAL relevance: Ofsted and the DfE cover far more than \
 secondary schools -- Ofsted also regulates children's social care \
@@ -156,8 +169,8 @@ Score each story 0-10 against these anchors:
   2  = distantly related to education but outside this reader's remit \
 (e.g. early years, HE, another subject)
   5  = useful to any teacher generally, not specific to this reader
-  6  = solid interest to this reader specifically, or exceptional history \
-  content
+  6  = solid interest to this reader specifically, short of CORE-band or \
+ITT-direct
   8  = directly relevant to secondary history, ITT, or this reader's own \
 subject knowledge/career
   10 = essential reading for THIS reader specifically -- not just strong \
@@ -215,7 +228,16 @@ def _score_batch(
             {
                 "id": item.uid,
                 "title": item.title,
-                "summary": item.summary[:320],
+                # Raised from 320, 2026-08-21: real corpus data showed some
+                # feeds front-load this with boilerplate that eats the old
+                # budget before any real content -- Visit Nottinghamshire's
+                # venue/ticket details ahead of what an exhibit is actually
+                # about, in exactly the cases where the DIRECT vs ABOUT test
+                # above matters most. Doesn't fix every feed (Cambridge
+                # Faculty of History leads with an author byline that just
+                # continues past a larger budget too), but checked against
+                # real data rather than guessed.
+                "summary": item.summary[:500],
                 "source": item.source_name,
             }
             for item in batch
@@ -266,7 +288,10 @@ def _score_batch(
             score = max(0.0, min(10.0, float(verdict.get("score", 0))))
         except (TypeError, ValueError):
             continue
-        why = str(verdict.get("why", "")).strip()[:160]
+        # Raised from 160, 2026-08-21: the rubric asks for "under 25 words",
+        # which averages 150-170 characters -- 160 was clipping the longest
+        # ones mid-word. 220 gives real headroom above that average.
+        why = str(verdict.get("why", "")).strip()[:220]
         results[item_id] = (score, why)
     return results
 

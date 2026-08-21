@@ -51,10 +51,18 @@ deterministic_scale_max: 25.0
 llm_weight: 0.8
 
 # How many new items go into a single LLM call before the ingest step chunks
-# into another batch. Same number the proof of concept used as its silent
-# per-run candidate cap (MAX_CANDIDATES); here nothing is silently dropped --
-# it's just a batch size, and every new item eventually gets scored.
-llm_batch_size: 45
+# into another batch. Every new item eventually gets scored regardless of
+# batch size -- this only controls how many judgements happen in one call.
+#
+# Lowered 45 -> 25, 2026-08-21: the rubric has grown to several competing
+# categories with real nuance between them (direct vs incidental, period
+# judgement, locality caps) -- asking for 45 consistent multi-criteria
+# verdicts in one pass risks later items in the batch getting flatter
+# treatment than earlier ones. Smaller batches cost a couple of extra API
+# calls per run (still pence/month -- see the README cost note) in
+# exchange for steadier scoring. max_tokens=12000 in llm.py already gives
+# plenty of headroom either way, so this isn't about truncation risk.
+llm_batch_size: 25
 
 # Model for the LLM ranking pass. This is a nuanced-classification task
 # ("is this actually relevant"), not deep multi-step reasoning, so cost
