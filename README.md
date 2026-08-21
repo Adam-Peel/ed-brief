@@ -223,7 +223,7 @@ Both `tiers.lead` and `tiers.worth` are thresholds on the final 0–10
 `relevance` scale, not the raw deterministic sum.
 
 **The LLM and the keyword weights disagree too much, or too little** — adjust
-`llm_weight` (default 0.6). Higher trusts the LLM's judgement more; lower
+`llm_weight` (default 0.8). Higher trusts the LLM's judgement more; lower
 leans on your own weights.
 
 **A different model for the LLM pass** — change `llm_model` (default

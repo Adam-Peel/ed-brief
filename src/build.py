@@ -60,7 +60,7 @@ def score_new_items(
     """Deterministically score, blend with any LLM verdict, and freeze each
     new item into a CorpusItem. Existing corpus items never pass through
     here -- their relevance was frozen on a previous run and stays that way."""
-    llm_weight = float(cfg.get("llm_weight", 0.6))
+    llm_weight = float(cfg.get("llm_weight", 0.8))
     expires = now + timedelta(days=retention_days)
 
     frozen: list[CorpusItem] = []

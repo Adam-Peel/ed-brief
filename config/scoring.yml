@@ -40,7 +40,15 @@ deterministic_scale_max: 25.0
 # Final relevance = (1 - llm_weight) * deterministic_norm + llm_weight * llm_score.
 # Both inputs are already 0-10 by the time they're blended. Deterministic-only
 # items (no LLM available) use deterministic_norm directly.
-llm_weight: 0.6
+#
+# Raised 0.6 -> 0.8, 2026-08-21: the LLM reads the actual story against a
+# rubric with real judgement (direct-vs-incidental relevance, period
+# nuance, source-blind scoring); keyword matching can only ever detect
+# that a term appears. This is deliberately a bigger say for the signal
+# that's expected to keep improving as the rubric is refined, and a
+# smaller one for the signal that's now mostly a safety net for whichever
+# items the LLM pass didn't reach.
+llm_weight: 0.8
 
 # How many new items go into a single LLM call before the ingest step chunks
 # into another batch. Same number the proof of concept used as its silent
