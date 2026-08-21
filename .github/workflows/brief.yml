@@ -23,14 +23,15 @@ on:
     - cron: "0 19 * * *"   # 19:00 London during GMT
   workflow_dispatch:         # run it by hand any time, from the Actions tab
     inputs:
-      window_hours: 1440
+      window_hours:
         description: >-
-          Lookback window in hours. Leave blank for the normal 96h (~4 day)
-          window; widen it (e.g. 336 for 14 days) for a one-off backfill --
-          safe to rerun, since dedup is by id against the corpus, not by
-          window.
+          Lookback window in hours. Currently defaulted to 1440 (60 days)
+          for a one-off: getting every remaining deterministic-only item
+          re-scored by the LLM. Change back to "" once that run is done --
+          a 60-day window on every ordinary manual trigger is wider than
+          needed and not the normal default for a reason.
         required: false
-        default: ""
+        default: "1440"
 
 permissions:
   contents: write
