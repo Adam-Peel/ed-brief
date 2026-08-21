@@ -122,37 +122,45 @@ named. The test is what the story is about, not which building it names. A \
 story merely PUBLISHED BY a Nottinghamshire organisation scores 0 unless the \
 county is its subject.
 
-Return one verdict per article listed below, in any order, giving that \
-article's id, type, confidence and locality as defined above.
+Return one entry under "verdicts" for every article below, keyed by that \
+article's id exactly as given, giving its type, confidence and locality as \
+defined above.
 
 Articles:
 {payload}"""
 
 
 def _classify_schema(batch_ids: list[str]) -> dict:
-    """json_schema for one classify batch: exactly one verdict per id in the
-    batch, each id and type drawn from a fixed enum -- closes the same
-    item-omission failure mode this fixes in llm.py's stage 2 (see the note
-    on llm_score_batch_size in scoring.yml), and also means an unknown type
-    string is no longer a response shape the model CAN produce."""
+    """json_schema for one classify batch: "verdicts" is an OBJECT keyed by
+    the batch's own ids, not an array -- Anthropic's structured outputs only
+    supports array minItems of 0 or 1 (not an arbitrary exact count) and
+    doesn't support maxItems or minimum/maximum at all (see the note on
+    llm_score_batch_size in scoring.yml for how the first version of this
+    schema, built on those unsupported keywords, actually failed every
+    single request in production). `required` + `additionalProperties:
+    False` on an OBJECT has no such limit, so "verdicts" requiring exactly
+    batch_ids as keys gets the same one-verdict-per-item guarantee through a
+    mechanism the API actually supports. locality can no longer be
+    range-bounded by the schema (no minimum/maximum) -- clamped in
+    _classify_batch instead, same as before schema enforcement existed."""
+    verdict_schema = {
+        "type": "object",
+        "properties": {
+            "type": {"type": "string", "enum": sorted(VALID_TYPES)},
+            "confidence": {"type": "string", "enum": ["high", "low"]},
+            "locality": {"type": "integer"},
+        },
+        "required": ["type", "confidence", "locality"],
+        "additionalProperties": False,
+    }
     return {
         "type": "object",
         "properties": {
             "verdicts": {
-                "type": "array",
-                "minItems": len(batch_ids),
-                "maxItems": len(batch_ids),
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {"type": "string", "enum": batch_ids},
-                        "type": {"type": "string", "enum": sorted(VALID_TYPES)},
-                        "confidence": {"type": "string", "enum": ["high", "low"]},
-                        "locality": {"type": "integer", "minimum": 0, "maximum": 4},
-                    },
-                    "required": ["id", "type", "confidence", "locality"],
-                    "additionalProperties": False,
-                },
+                "type": "object",
+                "properties": {bid: verdict_schema for bid in batch_ids},
+                "required": batch_ids,
+                "additionalProperties": False,
             }
         },
         "required": ["verdicts"],
@@ -164,9 +172,11 @@ def _classify_batch(batch: list[Item], client, model: str, reader_stage: str, ma
     """One API call for up to llm_classify_batch_size items. Raises on total
     failure (network error, a response that can't satisfy the schema) --
     the caller routes every item in the batch to OTHER, never drops them.
-    The schema guarantees one verdict per batch id from a fixed type/
+    The schema guarantees one verdict per batch id (verdicts is keyed by
+    them, required, additionalProperties False) from a fixed type/
     confidence enum, so nothing here needs to defend against an unknown
-    type, a missing id, or a malformed entry."""
+    type, a missing id, or a malformed entry -- only locality's range,
+    which the schema can't bound (see _classify_schema)."""
     payload = json.dumps(
         [
             {"id": item.uid, "title": item.title, "summary": item.summary[:500]}
@@ -189,7 +199,7 @@ def _classify_batch(batch: list[Item], client, model: str, reader_stage: str, ma
     verdicts = json.loads(text_block.text)["verdicts"]
 
     results: dict[str, dict] = {}
-    for verdict in verdicts:
+    for item_id, verdict in verdicts.items():
         item_type = verdict["type"]
         confidence = verdict["confidence"]
         # Low confidence -> OTHER even when the model named a real type. A
@@ -198,9 +208,9 @@ def _classify_batch(batch: list[Item], client, model: str, reader_stage: str, ma
         # it", not "discard it".
         if confidence != "high":
             item_type = "OTHER"
-        results[verdict["id"]] = {
+        results[item_id] = {
             "type": item_type,
-            "locality": verdict["locality"],
+            "locality": max(0, min(4, int(verdict["locality"]))),
             "confidence": confidence,
         }
     return results
@@ -244,7 +254,11 @@ def classify_items(items: list[Item], cfg: dict) -> tuple[dict[str, dict], str]:
         try:
             batch_results = _classify_batch(batch, client, model, reader_stage, max_tokens)
         except Exception as exc:  # noqa: BLE001 -- deliberately broad
-            errors.append(f"batch {n}/{len(batches)}: {type(exc).__name__}")
+            # The message, not just the class name -- a bare "BadRequestError"
+            # in the footer gives no way to tell a schema problem from a rate
+            # limit from anything else without reproducing it by hand, which
+            # is exactly what happened the first time this schema shipped.
+            errors.append(f"batch {n}/{len(batches)}: {type(exc).__name__}: {exc}")
             batch_results = {}
         for item in batch:
             results[item.uid] = batch_results.get(

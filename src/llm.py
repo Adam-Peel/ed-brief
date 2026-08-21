@@ -261,14 +261,18 @@ TYPE_SCALES = {
     "CAREER": _CAREER_SCALE,
 }
 
-TYPE_ITEM_COUNT = {
-    "CURRICULUM": 3,
-    "HISTORY": 4,
-    "PEDAGOGY": 4,
-    "PUPILS": 3,
-    "CAREER": 3,
-    "SECTOR": 0,
-    "OTHER": 0,
+# Lowercase, matching the labels already used in each _*_SCALE string above
+# (C1/C2/C3, H1-H4, ...) -- reusing them as the JSON keys the model must
+# answer with means the scale text already explains what each key means,
+# with nothing extra to keep in sync.
+TYPE_SCORE_KEYS = {
+    "CURRICULUM": ["c1", "c2", "c3"],
+    "HISTORY": ["h1", "h2", "h3", "h4"],
+    "PEDAGOGY": ["g1", "g2", "g3", "g4"],
+    "PUPILS": ["p1", "p2", "p3"],
+    "CAREER": ["k1", "k2", "k3"],
+    "SECTOR": [],
+    "OTHER": [],
 }
 
 
@@ -283,57 +287,53 @@ def _build_stage2_prompt(item_type: str, reader_stage: str, payload: str) -> str
     llm_score_batch_size in scoring.yml)."""
     type_name = TYPE_NAMES.get(item_type, item_type)
     scale = TYPE_SCALES.get(item_type)
+    score_keys = TYPE_SCORE_KEYS.get(item_type, [])
 
     parts = [STAGE2_PREAMBLE.format(reader_stage=reader_stage, type_name=type_name)]
     if scale:
         parts.append(scale)
 
+    fields = ", ".join(f'"{f}"' for f in ["u1", "u2", *score_keys, "why"])
     parts.append(
-        "For each article, give \"u\" as [U1, U2] and, if a type scale was "
-        "given above, \"s\" as those items' scores in the same order they "
-        "were listed -- then one clause of at most 20 words, no full stop, "
-        "in \"why\", saying why it matters to this reader, or why it does "
-        "not."
+        "Return one entry under \"verdicts\" for every article below, keyed "
+        f"by that article's id exactly as given. Each entry has: {fields} "
+        "-- \"why\" is one clause of at most 20 words, no full stop, saying "
+        "why it matters to this reader, or why it does not."
     )
     parts.append(f"Articles:\n{payload}")
     return "\n\n".join(parts)
 
 
-def _stage2_schema(batch_ids: list[str], expected_s_len: int) -> dict:
-    """json_schema for one stage-2 batch: exactly one verdict per id in the
-    batch (minItems == maxItems == len(batch_ids)), each id drawn from an
-    enum of the batch's own ids (a hallucinated id is schema-invalid, not
-    just ignored on read), and u/s arrays pinned to their expected length.
-    This is what actually closes the item-omission failure mode -- see the
-    note on llm_score_batch_size in scoring.yml."""
+def _stage2_schema(batch_ids: list[str], score_keys: list[str]) -> dict:
+    """json_schema for one stage-2 batch: "verdicts" is an OBJECT keyed by
+    the batch's own ids, not an array -- Anthropic's structured outputs only
+    supports array minItems of 0 or 1 (not an arbitrary exact count) and
+    doesn't support maxItems, minimum/maximum or maxLength at all (see the
+    note on llm_score_batch_size in scoring.yml for how the first version of
+    this schema, built on those unsupported keywords, actually failed every
+    single request in production). `required` + `additionalProperties:
+    False` on an OBJECT has no such limit, so "verdicts" requiring exactly
+    batch_ids as keys gets the same one-verdict-per-item guarantee through a
+    mechanism the API actually supports. u/s values can no longer be
+    range-bounded by the schema itself (no minimum/maximum) -- clamped in
+    _score_batch_typed instead, same as before schema enforcement existed."""
+    field_names = ["u1", "u2", *score_keys, "why"]
+    verdict_schema = {
+        "type": "object",
+        "properties": {
+            f: ({"type": "string"} if f == "why" else {"type": "number"}) for f in field_names
+        },
+        "required": field_names,
+        "additionalProperties": False,
+    }
     return {
         "type": "object",
         "properties": {
             "verdicts": {
-                "type": "array",
-                "minItems": len(batch_ids),
-                "maxItems": len(batch_ids),
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {"type": "string", "enum": batch_ids},
-                        "u": {
-                            "type": "array",
-                            "minItems": 2,
-                            "maxItems": 2,
-                            "items": {"type": "number", "minimum": 0, "maximum": 4},
-                        },
-                        "s": {
-                            "type": "array",
-                            "minItems": expected_s_len,
-                            "maxItems": expected_s_len,
-                            "items": {"type": "number", "minimum": 0, "maximum": 4},
-                        },
-                        "why": {"type": "string", "maxLength": 240},
-                    },
-                    "required": ["id", "u", "s", "why"],
-                    "additionalProperties": False,
-                },
+                "type": "object",
+                "properties": {bid: verdict_schema for bid in batch_ids},
+                "required": batch_ids,
+                "additionalProperties": False,
             }
         },
         "required": ["verdicts"],
@@ -365,7 +365,7 @@ def _score_batch_typed(
     type_w = float(weights.get("type_score", 0.6))
     universals_w = float(weights.get("universals", 0.4))
     max_tokens = int(cfg.get("llm_max_tokens", 12000))
-    expected_s_len = TYPE_ITEM_COUNT.get(item_type, 0)
+    score_keys = TYPE_SCORE_KEYS.get(item_type, [])
 
     payload = json.dumps(
         [
@@ -381,7 +381,7 @@ def _score_batch_typed(
         indent=1,
     )
     prompt = _build_stage2_prompt(item_type, reader_stage, payload)
-    schema = _stage2_schema([item.uid for item in batch], expected_s_len)
+    schema = _stage2_schema([item.uid for item in batch], score_keys)
     response = client.messages.create(
         model=model,
         # Generous, not tuned to typical usage: adaptive thinking spends
@@ -395,17 +395,17 @@ def _score_batch_typed(
     text_block = _extract_text_block(response)
     verdicts = json.loads(text_block.text)["verdicts"]
 
-    # The schema guarantees exactly one verdict per batch id, each id from
-    # an enum of the batch's own ids, and u/s pinned to their expected
-    # length and 0-4 range -- so unlike the old free-text parse, nothing
-    # here needs to defend against a wrong length, a hallucinated id, or a
-    # missing entry; a response that couldn't satisfy that already raised
-    # before reaching this point.
+    # The schema guarantees exactly one verdict per batch id (verdicts is
+    # keyed by them, required, additionalProperties False) and the right
+    # fields on each -- but NOT their numeric range, since minimum/maximum
+    # aren't schema features this API supports (see _stage2_schema). u/s
+    # are clamped here for that reason, same as before schema enforcement
+    # existed.
     results: dict[str, tuple[float, str]] = {}
-    for verdict in verdicts:
-        item_id = verdict["id"]
-        u1, u2 = float(verdict["u"][0]), float(verdict["u"][1])
-        s_vals = [float(v) for v in verdict["s"]]
+    for item_id, verdict in verdicts.items():
+        u1 = max(0.0, min(4.0, float(verdict["u1"])))
+        u2 = max(0.0, min(4.0, float(verdict["u2"])))
+        s_vals = [max(0.0, min(4.0, float(verdict[k]))) for k in score_keys]
 
         universals = u1_w * u1 + u2_w * u2  # 0-4
         if s_vals:
@@ -416,11 +416,16 @@ def _score_batch_typed(
         else:
             # SECTOR / OTHER: no type scale, universals alone carry it.
             relevance = universals * 2.5
-        # Guards against scoring.yml's weights not summing to 1.0, not
-        # against the model -- the schema already bounds u/s themselves.
+        # Guards against scoring.yml's weights not summing to 1.0, on top of
+        # the u/s clamping above.
         relevance = max(0.0, min(10.0, relevance))
 
-        results[item_id] = (relevance, str(verdict["why"]).strip())
+        # maxLength isn't schema-enforceable either (see _stage2_schema) --
+        # truncated here instead. 220, not the 20-word limit's naive char
+        # estimate: 20 words averages 120-140 characters, but a few
+        # genuinely long words push past that.
+        why = str(verdict["why"]).strip()[:220]
+        results[item_id] = (relevance, why)
     return results
 
 
@@ -490,7 +495,9 @@ def rerank_new_items(
                 # only ever touches the ids from this one batch.
                 verdicts.update(_score_batch_typed(batch, item_type, client, model, reader_stage, cfg))
             except Exception as exc:  # noqa: BLE001 -- deliberately broad
-                errors.append(f"{item_type} batch {batch_n}/{total_batches}: {type(exc).__name__}")
+                # The message, not just the class name -- see the identical
+                # comment in classify.py's batch loop.
+                errors.append(f"{item_type} batch {batch_n}/{total_batches}: {type(exc).__name__}: {exc}")
 
     discard_note = f"{discarded} irrelevant, discarded" if discarded else ""
 

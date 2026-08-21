@@ -70,14 +70,23 @@ llm_classify_batch_size: 40
 # otherwise well-formed responses (no batch exceptions), not batch
 # failures. A follow-up real run STILL omitted 35/63 despite this smaller
 # size plus an explicit "return exactly N entries, none skipped" prose
-# instruction in llm.py -- prose compliance wasn't the fix. The real fix
-# (2026-08-21) is output_config's json_schema structured output on both
-# classify.py and llm.py's batch calls: minItems==maxItems==(batch size)
-# makes a short response schema-invalid rather than merely against
-# instructions, so the model cannot return fewer than every item. Batch
-# size is left at 12 rather than raised back up, since smaller batches
-# still mean less for the model to hold in one generation even with the
-# omission failure mode closed off structurally.
+# instruction in llm.py -- prose compliance wasn't the fix.
+#
+# The real fix (2026-08-21) is output_config's json_schema structured
+# output on both classify.py and llm.py's batch calls -- but the FIRST
+# version of that fix (same day) used array minItems==maxItems==(batch
+# size) to force the exact count, and that failed EVERY single request in
+# production (BadRequestError on every batch, both stages): Anthropic's
+# structured outputs only supports array minItems of 0 or 1, not an
+# arbitrary exact count, and doesn't support maxItems or minimum/maximum at
+# all. The corrected version keys "verdicts" by item id as an OBJECT
+# instead of an array, using `required` + `additionalProperties: false` --
+# which IS fully supported for objects with no such count limit -- to get
+# the same one-verdict-per-item guarantee. See _stage2_schema in llm.py and
+# _classify_schema in classify.py for the actual shape. Batch size is left
+# at 12 rather than raised back up, since smaller batches still mean less
+# for the model to hold in one generation even with the omission failure
+# mode closed off structurally.
 llm_score_batch_size: 12
 
 # Generous, not tuned to typical usage -- adaptive thinking spends part of

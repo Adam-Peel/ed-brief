@@ -135,15 +135,16 @@ def main() -> int:
 
     section("Acceptance criterion 6: whole-batch response failures fall back cleanly")
     # Two items, both classified OTHER (universals only, no type scale) so
-    # the fake response shape doesn't need a type-specific "s" array. Batch
-    # size 1, so each gets its own API call: the first call returns
-    # unparseable text, the second a truncated (incomplete) JSON body -- two
-    # different ways a whole response can fail to parse. Per-item omission
-    # within an otherwise-valid response is no longer a reachable failure
-    # mode now that output_config's json_schema pins minItems==maxItems to
-    # the batch size and enums each id to the batch's own -- see the note on
-    # llm_score_batch_size in scoring.yml -- so that scenario isn't tested
-    # here any more; a batch either satisfies the schema or it doesn't.
+    # the fake response shape doesn't need a type-specific field. Batch size
+    # 1, so each gets its own API call: the first call returns unparseable
+    # text, the second a truncated (incomplete) JSON body -- two different
+    # ways a whole response can fail to parse. Per-item omission within an
+    # otherwise-valid response is no longer a reachable failure mode now
+    # that output_config's json_schema requires "verdicts" as an object
+    # keyed by exactly the batch's own ids (required + additionalProperties
+    # false) -- see the note on llm_score_batch_size in scoring.yml -- so
+    # that scenario isn't tested here any more; a batch either satisfies
+    # the schema or it doesn't.
     item_a, item_b = item("a1"), item("b2")
     classify_ab = {
         "a1": {"type": "OTHER", "locality": 0, "confidence": "high"},
@@ -151,7 +152,7 @@ def main() -> int:
     }
     cfg = {"llm_score_batch_size": 1}
     verdicts, status = _with_fake_client(
-        ["not json at all", '{"verdicts": [{"id": "b2", "u": [4, 4'],
+        ["not json at all", '{"verdicts": {"b2": {"u1": 4, "u2": 4'],
         lambda: llm_mod.rerank_new_items([item_a, item_b], classify_ab, cfg),
     )
     check(verdicts == {}, "neither item gets a verdict: both batches failed to parse",
@@ -169,7 +170,7 @@ def main() -> int:
     classify_c = {"c3": {"type": "OTHER", "locality": 0, "confidence": "high"}}
     cfg = {"llm_score_batch_size": 1}
     verdicts, status = _with_fake_client(
-        ['{"verdicts": [{"id": "c3", "u": [4, 4], "s": [], "why": "directly relevant"}]}'],
+        ['{"verdicts": {"c3": {"u1": 4, "u2": 4, "why": "directly relevant"}}}'],
         lambda: llm_mod.rerank_new_items([item_c], classify_c, cfg),
         prefix_thinking_block=True,
     )
@@ -206,7 +207,7 @@ def main() -> int:
     item_z = item("z1")
     classify_z = {"z1": {"type": "SECTOR", "locality": 0, "confidence": "high"}}
     verdicts, status = _with_fake_client(
-        ['{"verdicts": [{"id": "z1", "u": [4, 2], "s": [], "why": "test"}]}'],
+        ['{"verdicts": {"z1": {"u1": 4, "u2": 2, "why": "test"}}}'],
         lambda: llm_mod.rerank_new_items([item_z], classify_z, {"llm_score_batch_size": 10}),
     )
     # universals = 0.6*4 + 0.4*2 = 3.2; relevance = 3.2 * 2.5 = 8.0
@@ -223,7 +224,7 @@ def main() -> int:
     verdicts, status = _with_fake_client(
         [
             "not json at all",  # CURRICULUM's one batch (grouped/sent first)
-            '{"verdicts": [{"id": "hist1", "u": [4, 4], "s": [4, 4, 4, 4], "why": "ok"}]}',  # HISTORY's
+            '{"verdicts": {"hist1": {"u1": 4, "u2": 4, "h1": 4, "h2": 4, "h3": 4, "h4": 4, "why": "ok"}}}',  # HISTORY's
         ],
         lambda: llm_mod.rerank_new_items([item_cur, item_hist], classify_ch, {"llm_score_batch_size": 10}),
     )
@@ -238,34 +239,59 @@ def main() -> int:
     }
     verdicts, status = _with_fake_client(
         [
-            '{"verdicts": [{"id": "p1", "u": [4, 4',  # truncated, no closing bracket
-            '{"verdicts": [{"id": "q1", "u": [2, 2], "s": [], "why": "ok"}]}',
+            '{"verdicts": {"p1": {"u1": 4, "u2": 4',  # truncated, no closing bracket
+            '{"verdicts": {"q1": {"u1": 2, "u2": 2, "why": "ok"}}}',
         ],
         lambda: llm_mod.rerank_new_items([item_p, item_q], classify_pq, {"llm_score_batch_size": 1}),
     )
     check("p1" not in verdicts and "q1" in verdicts,
           "the truncated batch's item falls back; the other batch is unaffected", str(verdicts))
 
-    section("Two-stage pipeline: the stage-2 schema pins exact verdict count, ids and s-length")
-    # Hallucinated ids, omitted items, wrong-length arrays and out-of-range
-    # scores used to be defended against by per-item validation after
-    # parsing; that code is gone now that output_config's json_schema makes
-    # all four schema-invalid rather than merely against instructions (see
-    # the note on llm_score_batch_size in scoring.yml) -- a fake test client
-    # can't exercise real schema enforcement (it returns canned text
-    # directly, bypassing the API), so what's checkable offline is that the
-    # schema this code actually SENDS enforces them.
-    schema = llm_mod._stage2_schema(["hist1", "hist2"], llm_mod.TYPE_ITEM_COUNT["HISTORY"])
+    section("Two-stage pipeline: the stage-2 schema pins exact verdict coverage via object keys")
+    # Omitted or hallucinated ids used to be defended against by per-item
+    # validation after parsing; that's gone now that output_config's
+    # json_schema requires "verdicts" as an OBJECT keyed by exactly the
+    # batch's own ids (required + additionalProperties: false) -- see the
+    # note on llm_score_batch_size in scoring.yml. NOT an array with
+    # minItems/maxItems: the first version of this schema used that and
+    # failed every single request in production, since Anthropic's
+    # structured outputs only supports array minItems of 0 or 1, and
+    # doesn't support maxItems or minimum/maximum at all. A fake test
+    # client can't exercise real schema enforcement (it returns canned
+    # text directly, bypassing the API), so what's checkable offline is
+    # that the schema this code actually SENDS is built the corrected way,
+    # and doesn't regress back to the keywords that broke production.
+    schema = llm_mod._stage2_schema(["hist1", "hist2"], llm_mod.TYPE_SCORE_KEYS["HISTORY"])
     verdicts_schema = schema["properties"]["verdicts"]
-    check(verdicts_schema["minItems"] == 2 and verdicts_schema["maxItems"] == 2,
-          "the verdicts array is pinned to exactly one entry per batch item")
-    item_schema = verdicts_schema["items"]["properties"]
-    check(item_schema["id"]["enum"] == ["hist1", "hist2"],
-          "each id must come from an enum of this batch's own ids -- a hallucinated id is schema-invalid")
-    check(item_schema["s"]["minItems"] == item_schema["s"]["maxItems"] == 4,
-          "HISTORY's s array is pinned to its scale's exact item count (4)")
-    check(item_schema["u"]["items"]["minimum"] == 0 and item_schema["u"]["items"]["maximum"] == 4,
-          "u values are bounded 0-4 by the schema itself, not by post-hoc clamping")
+    check(verdicts_schema["type"] == "object" and set(verdicts_schema["required"]) == {"hist1", "hist2"},
+          "verdicts is an object requiring exactly the batch's own ids as keys")
+    check(verdicts_schema["additionalProperties"] is False,
+          "no key beyond the batch's own ids is allowed")
+    check(set(verdicts_schema["properties"]["hist1"]["required"]) == {"u1", "u2", "h1", "h2", "h3", "h4", "why"},
+          "HISTORY's per-item schema requires u1/u2, all four H-scale fields, and why")
+
+    def _contains_key(obj, key) -> bool:
+        if isinstance(obj, dict):
+            return key in obj or any(_contains_key(v, key) for v in obj.values())
+        if isinstance(obj, list):
+            return any(_contains_key(v, key) for v in obj)
+        return False
+
+    unsupported = [k for k in ("minItems", "maxItems", "minimum", "maximum", "maxLength") if _contains_key(schema, k)]
+    check(unsupported == [],
+          "the schema uses none of the array/numeric-bound keywords that caused the "
+          "2026-08-22 production BadRequestError incident", str(unsupported))
+
+    classify_schema = classify_mod._classify_schema(["a1", "b2"])
+    classify_verdicts_schema = classify_schema["properties"]["verdicts"]
+    check(classify_verdicts_schema["type"] == "object" and set(classify_verdicts_schema["required"]) == {"a1", "b2"},
+          "classify's schema is the same object-keyed-by-id shape as stage 2's")
+    classify_unsupported = [
+        k for k in ("minItems", "maxItems", "minimum", "maximum", "maxLength")
+        if _contains_key(classify_schema, k)
+    ]
+    check(classify_unsupported == [], "classify's schema also avoids the unsupported keywords",
+          str(classify_unsupported))
 
     section("Two-stage pipeline: the locality floor is a build-time percentile, not a fixed number")
     rank_items = [
