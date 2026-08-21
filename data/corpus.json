@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated": "2026-08-21T14:30:11Z",
+ "generated": "2026-08-21T19:08:26Z",
  "retention_days": 14,
  "items": [
   {
@@ -16,7 +16,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 7.3,
-   "rank_score": 7.3,
+   "rank_score": 7.27,
    "tier": "worth",
    "tags": [
     "pol-gcse-spec",
@@ -28,6 +28,31 @@
     "mode": "llm",
     "deterministic_raw": 15.6,
     "deterministic_norm": 6.24,
+    "llm": 8.0
+   }
+  },
+  {
+   "id": "0359b46e189fee3f",
+   "title": "Remembering Slavery: Reflections from the PASSAGE project",
+   "url": "https://www.nationalarchives.gov.uk/professional-guidance-and-services/our-research-and-academic-collaboration/our-research-projects/research-projects/remembering-slavery-reflections-from-the-passage-project/?utm_source=feed-all&utm_medium=rss",
+   "summary": "In this blog post, the PASSAGE team reflect on some of the histories of enslavement that have surfaced through their research.",
+   "source": {
+    "id": "national-archives-blog",
+    "name": "The National Archives Blog"
+   },
+   "published": "2026-08-21T09:00:00Z",
+   "first_seen": "2026-08-21T19:08:26Z",
+   "expires": "2026-09-04T19:08:26Z",
+   "relevance": 6.7,
+   "rank_score": 6.7,
+   "tier": "worth",
+   "tags": [],
+   "why": "National Archives research on slavery history, directly usable subject knowledge and source material",
+   "image_url": "https://www.nationalarchives.gov.uk/media/images/T_71_510.2e16d0ba.fill-600x400.format-jpeg.jpegquality-60.bgcolor-fff.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 3.72,
+    "deterministic_norm": 1.49,
     "llm": 8.0
    }
   },
@@ -44,7 +69,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 6.04,
-   "rank_score": 6.02,
+   "rank_score": 5.99,
    "tier": "worth",
    "tags": [
     "pol-early-career-framework",
@@ -72,7 +97,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 5.14,
-   "rank_score": 5.12,
+   "rank_score": 5.09,
    "tier": "worth",
    "tags": [
     "pol-gcse-spec"
@@ -99,7 +124,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 5.14,
-   "rank_score": 5.12,
+   "rank_score": 5.09,
    "tier": "worth",
    "tags": [
     "pol-gcse-spec"
@@ -126,7 +151,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 4.56,
-   "rank_score": 4.54,
+   "rank_score": 4.51,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -153,7 +178,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 4.55,
-   "rank_score": 4.53,
+   "rank_score": 4.5,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -180,7 +205,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 4.52,
-   "rank_score": 4.52,
+   "rank_score": 4.49,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -207,7 +232,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 4.52,
-   "rank_score": 4.52,
+   "rank_score": 4.49,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -234,7 +259,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.99,
-   "rank_score": 3.99,
+   "rank_score": 3.96,
    "tier": "rest",
    "tags": [],
    "why": "WWII Spitfire history directly useful for common GCSE/KS3 topic",
@@ -259,7 +284,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.97,
-   "rank_score": 3.97,
+   "rank_score": 3.94,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec",
@@ -287,7 +312,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.77,
-   "rank_score": 3.77,
+   "rank_score": 3.74,
    "tier": "rest",
    "tags": [],
    "why": "Cognitive science on screens directly informs classroom practice debates",
@@ -312,7 +337,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.67,
-   "rank_score": 3.67,
+   "rank_score": 3.64,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -339,7 +364,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.38,
-   "rank_score": 3.38,
+   "rank_score": 3.35,
    "tier": "rest",
    "tags": [
     "prof-behaviour"
@@ -366,7 +391,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.32,
-   "rank_score": 3.32,
+   "rank_score": 3.29,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -393,7 +418,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.32,
-   "rank_score": 3.32,
+   "rank_score": 3.29,
    "tier": "rest",
    "tags": [],
    "why": "Follow-up debate on classroom screen use, relevant pedagogy issue",
@@ -418,7 +443,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.11,
-   "rank_score": 3.11,
+   "rank_score": 3.08,
    "tier": "rest",
    "tags": [
     "prof-behaviour"
@@ -445,7 +470,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.08,
-   "rank_score": 3.08,
+   "rank_score": 3.05,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -472,7 +497,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.08,
-   "rank_score": 3.08,
+   "rank_score": 3.05,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -499,7 +524,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.07,
-   "rank_score": 3.07,
+   "rank_score": 3.04,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -526,7 +551,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.05,
-   "rank_score": 3.05,
+   "rank_score": 3.02,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -553,7 +578,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 3.0,
-   "rank_score": 3.0,
+   "rank_score": 2.97,
    "tier": "rest",
    "tags": [],
    "why": "Exhibition on historic East Midlands parish libraries, genuine regional heritage content",
@@ -578,7 +603,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.88,
-   "rank_score": 2.88,
+   "rank_score": 2.85,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -605,7 +630,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.84,
-   "rank_score": 2.84,
+   "rank_score": 2.81,
    "tier": "rest",
    "tags": [
     "pol-ofsted"
@@ -632,7 +657,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.72,
-   "rank_score": 2.72,
+   "rank_score": 2.69,
    "tier": "rest",
    "tags": [
     "context-sector"
@@ -659,7 +684,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.56,
-   "rank_score": 2.56,
+   "rank_score": 2.53,
    "tier": "rest",
    "tags": [],
    "why": "Research on English towns 1066-1911 spans taught curriculum periods",
@@ -684,7 +709,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.56,
-   "rank_score": 2.56,
+   "rank_score": 2.53,
    "tier": "rest",
    "tags": [],
    "why": "New scholarship on 19th-20th century British worldviews, useful for empire/international topics",
@@ -709,7 +734,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.5,
-   "rank_score": 2.5,
+   "rank_score": 2.47,
    "tier": "rest",
    "tags": [],
    "why": "Critique of policy asking teachers to predict NEET risk",
@@ -734,7 +759,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.47,
-   "rank_score": 2.47,
+   "rank_score": 2.44,
    "tier": "rest",
    "tags": [
     "pol-gcse-spec"
@@ -761,7 +786,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.4,
-   "rank_score": 2.4,
+   "rank_score": 2.37,
    "tier": "noise",
    "tags": [],
    "why": "British Ugandan Asian migration history relevant to modern Britain/migration topics",
@@ -786,7 +811,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.35,
-   "rank_score": 2.35,
+   "rank_score": 2.32,
    "tier": "noise",
    "tags": [],
    "why": "Georgian social history could inform social/cultural history teaching",
@@ -811,7 +836,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.27,
-   "rank_score": 2.27,
+   "rank_score": 2.24,
    "tier": "noise",
    "tags": [
     "pol-gcse-spec"
@@ -838,7 +863,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.26,
-   "rank_score": 2.26,
+   "rank_score": 2.23,
    "tier": "noise",
    "tags": [
     "prof-routes-into-teaching"
@@ -865,7 +890,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.24,
-   "rank_score": 2.24,
+   "rank_score": 2.21,
    "tier": "noise",
    "tags": [],
    "why": "PhD on brewing industry could inform modern economic/social history teaching",
@@ -890,7 +915,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.22,
-   "rank_score": 2.22,
+   "rank_score": 2.19,
    "tier": "noise",
    "tags": [
     "prof-sen"
@@ -917,7 +942,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.22,
-   "rank_score": 2.22,
+   "rank_score": 2.19,
    "tier": "noise",
    "tags": [
     "context-sector"
@@ -944,7 +969,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.12,
-   "rank_score": 2.12,
+   "rank_score": 2.09,
    "tier": "noise",
    "tags": [
     "pol-ofsted"
@@ -971,7 +996,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.1,
-   "rank_score": 2.1,
+   "rank_score": 2.07,
    "tier": "noise",
    "tags": [
     "ped-disciplinary-literacy"
@@ -998,7 +1023,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 2.01,
-   "rank_score": 2.01,
+   "rank_score": 1.98,
    "tier": "noise",
    "tags": [],
    "why": "Letters on teachers' role predicting NEET risk, tangential policy debate",
@@ -1023,7 +1048,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.96,
-   "rank_score": 1.96,
+   "rank_score": 1.93,
    "tier": "noise",
    "tags": [],
    "why": "Medieval stained glass could support Church/medieval history teaching",
@@ -1048,7 +1073,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.96,
-   "rank_score": 1.96,
+   "rank_score": 1.93,
    "tier": "noise",
    "tags": [],
    "why": "Post-war British art history, useful context for post-1945 Britain topics",
@@ -1073,7 +1098,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.93,
-   "rank_score": 1.93,
+   "rank_score": 1.9,
    "tier": "noise",
    "tags": [],
    "why": "General results-day human interest for secondary context",
@@ -1098,7 +1123,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.9,
-   "rank_score": 1.9,
+   "rank_score": 1.87,
    "tier": "noise",
    "tags": [],
    "why": "School uniform cost rules affect secondary schools generally",
@@ -1123,7 +1148,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.8,
-   "rank_score": 1.8,
+   "rank_score": 1.77,
    "tier": "noise",
    "tags": [],
    "why": "Pupil feedback research could inform general pedagogy practice",
@@ -1148,7 +1173,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.8,
-   "rank_score": 1.8,
+   "rank_score": 1.77,
    "tier": "noise",
    "tags": [],
    "why": "Podcast on empire and migration could touch history themes",
@@ -1173,7 +1198,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.8,
-   "rank_score": 1.8,
+   "rank_score": 1.77,
    "tier": "noise",
    "tags": [],
    "why": "Action-research identity study, generic teacher-education relevance only",
@@ -1198,7 +1223,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.79,
-   "rank_score": 1.79,
+   "rank_score": 1.76,
    "tier": "noise",
    "tags": [
     "prof-adaptive-teaching",
@@ -1226,7 +1251,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.71,
-   "rank_score": 1.71,
+   "rank_score": 1.68,
    "tier": "noise",
    "tags": [
     "ped-ai"
@@ -1253,7 +1278,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.67,
-   "rank_score": 1.67,
+   "rank_score": 1.64,
    "tier": "noise",
    "tags": [],
    "why": "Obituary of an educationist, general interest only",
@@ -1278,7 +1303,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.66,
-   "rank_score": 1.66,
+   "rank_score": 1.63,
    "tier": "noise",
    "tags": [
     "prof-routes-into-teaching"
@@ -1305,7 +1330,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.64,
-   "rank_score": 1.64,
+   "rank_score": 1.61,
    "tier": "noise",
    "tags": [
     "pol-ofsted"
@@ -1332,7 +1357,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.57,
-   "rank_score": 1.57,
+   "rank_score": 1.54,
    "tier": "noise",
    "tags": [],
    "why": "BTec explainer, tangential to history teaching",
@@ -1357,7 +1382,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.52,
-   "rank_score": 1.52,
+   "rank_score": 1.49,
    "tier": "noise",
    "tags": [
     "prof-sen"
@@ -1384,7 +1409,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.5,
-   "rank_score": 1.5,
+   "rank_score": 1.47,
    "tier": "noise",
    "tags": [
     "ped-disciplinary-literacy"
@@ -1411,7 +1436,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.48,
-   "rank_score": 1.48,
+   "rank_score": 1.45,
    "tier": "noise",
    "tags": [],
    "why": "T Level/A-level results stats, not history-specific",
@@ -1436,7 +1461,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.44,
-   "rank_score": 1.44,
+   "rank_score": 1.41,
    "tier": "noise",
    "tags": [],
    "why": "Further education/skills policy, not secondary history",
@@ -1461,7 +1486,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.44,
-   "rank_score": 1.44,
+   "rank_score": 1.41,
    "tier": "noise",
    "tags": [],
    "why": "Pupil health policy, mild secondary schools relevance",
@@ -1486,7 +1511,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.44,
-   "rank_score": 1.44,
+   "rank_score": 1.41,
    "tier": "noise",
    "tags": [],
    "why": "School funding via solar, general not history-specific",
@@ -1511,7 +1536,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.44,
-   "rank_score": 1.44,
+   "rank_score": 1.41,
    "tier": "noise",
    "tags": [],
    "why": "Child poverty tracking, indirect relevance to pupils' lives",
@@ -1536,7 +1561,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.4,
-   "rank_score": 1.4,
+   "rank_score": 1.37,
    "tier": "noise",
    "tags": [],
    "why": "General heritage building history, mild background value",
@@ -1561,7 +1586,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.38,
-   "rank_score": 1.38,
+   "rank_score": 1.35,
    "tier": "noise",
    "tags": [],
    "why": "Medieval political thought, tangential to GCSE/A-level content",
@@ -1586,7 +1611,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.31,
-   "rank_score": 1.31,
+   "rank_score": 1.28,
    "tier": "noise",
    "tags": [],
    "why": "Letters on NEET prediction policy, general schooling debate",
@@ -1611,7 +1636,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.3,
-   "rank_score": 1.3,
+   "rank_score": 1.27,
    "tier": "noise",
    "tags": [],
    "why": "Poverty memoir discussion, general social issue",
@@ -1636,7 +1661,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.23,
-   "rank_score": 1.23,
+   "rank_score": 1.2,
    "tier": "noise",
    "tags": [
     "context-sector"
@@ -1663,7 +1688,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.22,
-   "rank_score": 1.22,
+   "rank_score": 1.19,
    "tier": "noise",
    "tags": [],
    "why": "AI in education summer school, tangential edtech interest",
@@ -1688,7 +1713,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.2,
-   "rank_score": 1.2,
+   "rank_score": 1.17,
    "tier": "noise",
    "tags": [],
    "why": "Educational psychology symposium, tangential to teaching evidence",
@@ -1713,7 +1738,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.16,
-   "rank_score": 1.16,
+   "rank_score": 1.13,
    "tier": "noise",
    "tags": [],
    "why": "Classical world topic predates the secondary curriculum period",
@@ -1738,7 +1763,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.1,
-   "rank_score": 1.1,
+   "rank_score": 1.07,
    "tier": "noise",
    "tags": [
     "context-sector"
@@ -1765,7 +1790,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.02,
-   "rank_score": 1.02,
+   "rank_score": 0.99,
    "tier": "noise",
    "tags": [
     "context-sector"
@@ -1792,7 +1817,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.0,
-   "rank_score": 1.0,
+   "rank_score": 0.97,
    "tier": "noise",
    "tags": [
     "context-sector"
@@ -1819,7 +1844,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.0,
-   "rank_score": 1.0,
+   "rank_score": 0.97,
    "tier": "noise",
    "tags": [
     "context-sector"
@@ -1846,7 +1871,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.0,
-   "rank_score": 1.0,
+   "rank_score": 0.97,
    "tier": "noise",
    "tags": [
     "context-sector"
@@ -1873,7 +1898,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 1.0,
-   "rank_score": 1.0,
+   "rank_score": 0.97,
    "tier": "noise",
    "tags": [
     "context-sector"
@@ -1900,7 +1925,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.9,
-   "rank_score": 0.9,
+   "rank_score": 0.87,
    "tier": "noise",
    "tags": [],
    "why": "Higher-education apprenticeship trend, not secondary history",
@@ -1909,6 +1934,31 @@
     "mode": "llm",
     "deterministic_raw": 1.86,
     "deterministic_norm": 0.74,
+    "llm": 1.0
+   }
+  },
+  {
+   "id": "3a45275950b0b2f5",
+   "title": "The ancient Mesopotamians were freakishly ahead of their time – and here are 8 reasons why",
+   "url": "https://www.historyextra.com/membership/the-ancient-mesopotamians-were-freakishly-ahead-of-their-time-and-here-are-8-reasons-why/",
+   "summary": "Ideas developed by ancient peoples in the land between the Tigris and Euphrates rivers still shape our lives today. Selena Wisnom explains why we should celebrate the pivotal roles they played in the development of beer, writing, AI, horoscopes – and even credit cards",
+   "source": {
+    "id": "historyextra",
+    "name": "HistoryExtra"
+   },
+   "published": "2026-08-21T15:00:31Z",
+   "first_seen": "2026-08-21T19:08:26Z",
+   "expires": "2026-09-04T19:08:26Z",
+   "relevance": 0.83,
+   "rank_score": 0.83,
+   "tier": "noise",
+   "tags": [],
+   "why": "Disconnected ancient-world journalism with no link to England or curriculum framing",
+   "image_url": "https://images.immediate.co.uk/production/volatile/sites/7/2026/08/WHA033240-webready-cbad39f-e1787051209352.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.38,
+    "deterministic_norm": 0.15,
     "llm": 1.0
    }
   },
@@ -1925,7 +1975,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.79,
-   "rank_score": 0.79,
+   "rank_score": 0.76,
    "tier": "noise",
    "tags": [
     "cog-cognitive-load"
@@ -1952,7 +2002,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.78,
-   "rank_score": 0.78,
+   "rank_score": 0.75,
    "tier": "noise",
    "tags": [
     "prof-sen"
@@ -1964,6 +2014,31 @@
     "deterministic_raw": 4.9,
     "deterministic_norm": 1.96,
     "llm": 0.0
+   }
+  },
+  {
+   "id": "7f4234ab9589f821",
+   "title": "Jason Arday death 'tragedy on so many levels' says PM",
+   "url": "https://www.bbc.co.uk/news/articles/c9982znvyk4o?at_medium=RSS&at_campaign=rss",
+   "summary": "Andy Burnham says the former Cambridge professor's death is a \"really sad, sad and sorry state of affairs\".",
+   "source": {
+    "id": "bbc-education",
+    "name": "BBC Education"
+   },
+   "published": "2026-08-15T17:43:04Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.76,
+   "rank_score": 0.73,
+   "tier": "noise",
+   "tags": [],
+   "why": "University academic's death, HE not secondary schools",
+   "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ea6e/live/9024e850-988b-11f1-83ef-33838a09c7c1.jpg",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.99,
+    "deterministic_norm": 0.4,
+    "llm": 1.0
    }
   },
   {
@@ -1979,7 +2054,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.76,
-   "rank_score": 0.76,
+   "rank_score": 0.73,
    "tier": "noise",
    "tags": [],
    "why": "Academic honours, not curriculum-relevant",
@@ -2004,7 +2079,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.76,
-   "rank_score": 0.76,
+   "rank_score": 0.73,
    "tier": "noise",
    "tags": [],
    "why": "Staff appointment notice, no subject content",
@@ -2029,7 +2104,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.76,
-   "rank_score": 0.76,
+   "rank_score": 0.73,
    "tier": "noise",
    "tags": [],
    "why": "Colonial Latin American history, outside England curriculum scope",
@@ -2054,7 +2129,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.76,
-   "rank_score": 0.76,
+   "rank_score": 0.73,
    "tier": "noise",
    "tags": [],
    "why": "Pop culture piece using heritage sites, not history content",
@@ -2062,31 +2137,6 @@
    "scoring": {
     "mode": "llm",
     "deterministic_raw": 1.0,
-    "deterministic_norm": 0.4,
-    "llm": 1.0
-   }
-  },
-  {
-   "id": "7f4234ab9589f821",
-   "title": "Jason Arday death 'tragedy on so many levels' says PM",
-   "url": "https://www.bbc.co.uk/news/articles/c9982znvyk4o?at_medium=RSS&at_campaign=rss",
-   "summary": "Andy Burnham says the former Cambridge professor's death is a \"really sad, sad and sorry state of affairs\".",
-   "source": {
-    "id": "bbc-education",
-    "name": "BBC Education"
-   },
-   "published": "2026-08-15T17:43:04Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.76,
-   "rank_score": 0.76,
-   "tier": "noise",
-   "tags": [],
-   "why": "University academic's death, HE not secondary schools",
-   "image_url": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/ea6e/live/9024e850-988b-11f1-83ef-33838a09c7c1.jpg",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.99,
     "deterministic_norm": 0.4,
     "llm": 1.0
    }
@@ -2104,7 +2154,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.73,
-   "rank_score": 0.73,
+   "rank_score": 0.7,
    "tier": "noise",
    "tags": [],
    "why": "University admissions trend, not secondary teaching",
@@ -2129,7 +2179,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.72,
-   "rank_score": 0.72,
+   "rank_score": 0.69,
    "tier": "noise",
    "tags": [
     "prof-sen"
@@ -2156,7 +2206,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.69,
-   "rank_score": 0.69,
+   "rank_score": 0.66,
    "tier": "noise",
    "tags": [],
    "why": "University hiring process review, HE not secondary",
@@ -2181,7 +2231,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.63,
-   "rank_score": 0.63,
+   "rank_score": 0.6,
    "tier": "noise",
    "tags": [],
    "why": "HE exhibition on education futures, minimal relevance",
@@ -2190,156 +2240,6 @@
     "mode": "llm",
     "deterministic_raw": 0.2,
     "deterministic_norm": 0.08,
-    "llm": 1.0
-   }
-  },
-  {
-   "id": "8cd504dba4b886b4",
-   "title": "University, apprenticeships or entrepreneurship? What do young people really want?",
-   "url": "https://www.education.ox.ac.uk/news/university-apprenticeships-or-entrepreneurship-what-do-young-people-really-want/",
-   "summary": "",
-   "source": {
-    "id": "oxford-education",
-    "name": "Oxford Department of Education"
-   },
-   "published": "2026-08-05T09:28:53Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.6,
-   "rank_score": 0.6,
-   "tier": "noise",
-   "tags": [],
-   "why": "Careers pathways research, not history-specific",
-   "image_url": "",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.03,
-    "deterministic_norm": 0.01,
-    "llm": 1.0
-   }
-  },
-  {
-   "id": "b6f3ce071f6594ad",
-   "title": "Rees Centre evaluation helps shape national policy for care-experienced young people",
-   "url": "https://www.education.ox.ac.uk/news/rees-centre-evaluation-helps-shape-national-policy-for-care-experienced-young-people/",
-   "summary": "",
-   "source": {
-    "id": "oxford-education",
-    "name": "Oxford Department of Education"
-   },
-   "published": "2026-08-04T12:14:35Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.6,
-   "rank_score": 0.6,
-   "tier": "noise",
-   "tags": [],
-   "why": "Care-experienced youth policy, social care not schools",
-   "image_url": "",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.02,
-    "deterministic_norm": 0.01,
-    "llm": 1.0
-   }
-  },
-  {
-   "id": "ae84ec2d6c736718",
-   "title": "Professor Pamela Sammons elected Fellow of British Academy",
-   "url": "https://www.education.ox.ac.uk/news/professor-pamela-sammons-elected-fellow-of-british-academy/",
-   "summary": "",
-   "source": {
-    "id": "oxford-education",
-    "name": "Oxford Department of Education"
-   },
-   "published": "2026-07-17T12:54:13Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.6,
-   "rank_score": 0.6,
-   "tier": "noise",
-   "tags": [],
-   "why": "Academic honour announcement, minimal relevance",
-   "image_url": "",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": 1.0
-   }
-  },
-  {
-   "id": "b4b2cb70a790c3f4",
-   "title": "Action research day for Sri Lanka",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/sri-lanka.aspx",
-   "summary": "Martin Cummings leads event for the Sri Lanka Collaborative Action Research Network",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-16T12:56:00Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.6,
-   "rank_score": 0.6,
-   "tier": "noise",
-   "tags": [],
-   "why": "General teacher action-research event, no history content",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/sri-lanka.aspx",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": 1.0
-   }
-  },
-  {
-   "id": "bc72528ca43b54d9",
-   "title": "Dr Simin Ghavifekr awarded Senior Fellow status",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/ghavifekr.aspx",
-   "summary": "Higher Education Academy award",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-13T11:59:00Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.6,
-   "rank_score": 0.6,
-   "tier": "noise",
-   "tags": [],
-   "why": "HE fellowship award, no classroom relevance",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/ghavifekr.aspx",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": 1.0
-   }
-  },
-  {
-   "id": "82f26c262b77fc26",
-   "title": "Nottingham professor contributes to international HDR research conference in Sydney",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/hdr-conference.aspx",
-   "summary": "Professor Kathleen Pithouse-Morgan was a keynote speaker and workshop facilitator",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-06T15:01:00Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.6,
-   "rank_score": 0.6,
-   "tier": "noise",
-   "tags": [],
-   "why": "General HE conference contribution, no subject content",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/hdr-conference.aspx",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
     "llm": 1.0
    }
   },
@@ -2356,7 +2256,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.57,
    "tier": "noise",
    "tags": [],
    "why": "History trivia crossword, no substantive content",
@@ -2381,7 +2281,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.57,
    "tier": "noise",
    "tags": [],
    "why": "Academia and race commentary, not secondary schools",
@@ -2406,7 +2306,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.57,
    "tier": "noise",
    "tags": [],
    "why": "University hiring controversy, HE not secondary",
@@ -2415,6 +2315,56 @@
     "mode": "llm",
     "deterministic_raw": -4.29,
     "deterministic_norm": 0.0,
+    "llm": 1.0
+   }
+  },
+  {
+   "id": "8cd504dba4b886b4",
+   "title": "University, apprenticeships or entrepreneurship? What do young people really want?",
+   "url": "https://www.education.ox.ac.uk/news/university-apprenticeships-or-entrepreneurship-what-do-young-people-really-want/",
+   "summary": "",
+   "source": {
+    "id": "oxford-education",
+    "name": "Oxford Department of Education"
+   },
+   "published": "2026-08-05T09:28:53Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.6,
+   "rank_score": 0.57,
+   "tier": "noise",
+   "tags": [],
+   "why": "Careers pathways research, not history-specific",
+   "image_url": "",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.03,
+    "deterministic_norm": 0.01,
+    "llm": 1.0
+   }
+  },
+  {
+   "id": "b6f3ce071f6594ad",
+   "title": "Rees Centre evaluation helps shape national policy for care-experienced young people",
+   "url": "https://www.education.ox.ac.uk/news/rees-centre-evaluation-helps-shape-national-policy-for-care-experienced-young-people/",
+   "summary": "",
+   "source": {
+    "id": "oxford-education",
+    "name": "Oxford Department of Education"
+   },
+   "published": "2026-08-04T12:14:35Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.6,
+   "rank_score": 0.57,
+   "tier": "noise",
+   "tags": [],
+   "why": "Care-experienced youth policy, social care not schools",
+   "image_url": "",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.02,
+    "deterministic_norm": 0.01,
     "llm": 1.0
    }
   },
@@ -2431,7 +2381,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.6,
-   "rank_score": 0.6,
+   "rank_score": 0.57,
    "tier": "noise",
    "tags": [],
    "why": "General prize announcements, no subject-specific content",
@@ -2439,6 +2389,106 @@
    "scoring": {
     "mode": "llm",
     "deterministic_raw": -4.0,
+    "deterministic_norm": 0.0,
+    "llm": 1.0
+   }
+  },
+  {
+   "id": "ae84ec2d6c736718",
+   "title": "Professor Pamela Sammons elected Fellow of British Academy",
+   "url": "https://www.education.ox.ac.uk/news/professor-pamela-sammons-elected-fellow-of-british-academy/",
+   "summary": "",
+   "source": {
+    "id": "oxford-education",
+    "name": "Oxford Department of Education"
+   },
+   "published": "2026-07-17T12:54:13Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.6,
+   "rank_score": 0.57,
+   "tier": "noise",
+   "tags": [],
+   "why": "Academic honour announcement, minimal relevance",
+   "image_url": "",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": 1.0
+   }
+  },
+  {
+   "id": "b4b2cb70a790c3f4",
+   "title": "Action research day for Sri Lanka",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/sri-lanka.aspx",
+   "summary": "Martin Cummings leads event for the Sri Lanka Collaborative Action Research Network",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-16T12:56:00Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.6,
+   "rank_score": 0.57,
+   "tier": "noise",
+   "tags": [],
+   "why": "General teacher action-research event, no history content",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/sri-lanka.aspx",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": 1.0
+   }
+  },
+  {
+   "id": "bc72528ca43b54d9",
+   "title": "Dr Simin Ghavifekr awarded Senior Fellow status",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/ghavifekr.aspx",
+   "summary": "Higher Education Academy award",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-13T11:59:00Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.6,
+   "rank_score": 0.57,
+   "tier": "noise",
+   "tags": [],
+   "why": "HE fellowship award, no classroom relevance",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/ghavifekr.aspx",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": 1.0
+   }
+  },
+  {
+   "id": "82f26c262b77fc26",
+   "title": "Nottingham professor contributes to international HDR research conference in Sydney",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/hdr-conference.aspx",
+   "summary": "Professor Kathleen Pithouse-Morgan was a keynote speaker and workshop facilitator",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-06T15:01:00Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.6,
+   "rank_score": 0.57,
+   "tier": "noise",
+   "tags": [],
+   "why": "General HE conference contribution, no subject content",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/hdr-conference.aspx",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.0,
     "deterministic_norm": 0.0,
     "llm": 1.0
    }
@@ -2456,7 +2506,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.56,
-   "rank_score": 0.56,
+   "rank_score": 0.53,
    "tier": "noise",
    "tags": [
     "pol-ofsted"
@@ -2483,7 +2533,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.56,
-   "rank_score": 0.56,
+   "rank_score": 0.53,
    "tier": "noise",
    "tags": [
     "pol-ofsted"
@@ -2510,7 +2560,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.56,
-   "rank_score": 0.56,
+   "rank_score": 0.53,
    "tier": "noise",
    "tags": [
     "pol-ofsted"
@@ -2537,7 +2587,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.56,
-   "rank_score": 0.56,
+   "rank_score": 0.53,
    "tier": "noise",
    "tags": [
     "pol-ofsted"
@@ -2564,7 +2614,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.5,
-   "rank_score": 0.5,
+   "rank_score": 0.47,
    "tier": "noise",
    "tags": [
     "context-sector"
@@ -2591,7 +2641,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.5,
-   "rank_score": 0.48,
+   "rank_score": 0.45,
    "tier": "noise",
    "tags": [
     "ped-ai"
@@ -2618,7 +2668,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.47,
-   "rank_score": 0.47,
+   "rank_score": 0.44,
    "tier": "noise",
    "tags": [],
    "why": "US college listicle, irrelevant",
@@ -2643,7 +2693,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.48,
-   "rank_score": 0.46,
+   "rank_score": 0.43,
    "tier": "noise",
    "tags": [],
    "why": "Political commentary unrelated to history teaching or ITT",
@@ -2668,7 +2718,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.42,
-   "rank_score": 0.42,
+   "rank_score": 0.39,
    "tier": "noise",
    "tags": [
     "context-sector"
@@ -2695,7 +2745,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.43,
-   "rank_score": 0.41,
+   "rank_score": 0.38,
    "tier": "noise",
    "tags": [],
    "why": "Indian school infrastructure irrelevant to English secondary history ITT",
@@ -2720,7 +2770,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.39,
-   "rank_score": 0.37,
+   "rank_score": 0.34,
    "tier": "noise",
    "tags": [],
    "why": "Ancient Greek content enrichment unrelated to ITT pedagogy or curriculum",
@@ -2745,7 +2795,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.39,
-   "rank_score": 0.37,
+   "rank_score": 0.34,
    "tier": "noise",
    "tags": [],
    "why": "Social media commentary unrelated to history teaching or curriculum",
@@ -2770,7 +2820,7 @@
    "first_seen": "2026-08-21T11:46:16Z",
    "expires": "2026-09-04T11:46:16Z",
    "relevance": 0.3,
-   "rank_score": 0.28,
+   "rank_score": 0.25,
    "tier": "noise",
    "tags": [],
    "why": "Royal history content enrichment unrelated to ITT pedagogy or assessment",
@@ -2795,7 +2845,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.24,
-   "rank_score": 0.24,
+   "rank_score": 0.21,
    "tier": "noise",
    "tags": [],
    "why": "Children's services direction, unrelated to teaching",
@@ -2820,7 +2870,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.24,
-   "rank_score": 0.24,
+   "rank_score": 0.21,
    "tier": "noise",
    "tags": [],
    "why": "Unpaid carers policy, unrelated to secondary teaching",
@@ -2845,7 +2895,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.24,
-   "rank_score": 0.24,
+   "rank_score": 0.21,
    "tier": "noise",
    "tags": [],
    "why": "HE access correspondence, irrelevant to secondary",
@@ -2870,7 +2920,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.21,
-   "rank_score": 0.21,
+   "rank_score": 0.18,
    "tier": "noise",
    "tags": [],
    "why": "Personal parenting column, irrelevant",
@@ -2895,7 +2945,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.2,
-   "rank_score": 0.2,
+   "rank_score": 0.17,
    "tier": "noise",
    "tags": [],
    "why": "Child maintenance policy, unrelated to teaching",
@@ -2920,7 +2970,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.16,
-   "rank_score": 0.16,
+   "rank_score": 0.13,
    "tier": "noise",
    "tags": [],
    "why": "Higher education Africa research, irrelevant",
@@ -2945,7 +2995,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.16,
-   "rank_score": 0.16,
+   "rank_score": 0.13,
    "tier": "noise",
    "tags": [],
    "why": "Vocational security qualifications, irrelevant to secondary history",
@@ -2970,7 +3020,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.13,
-   "rank_score": 0.13,
+   "rank_score": 0.1,
    "tier": "noise",
    "tags": [],
    "why": "Hong Kong research assessment exercise, irrelevant",
@@ -2995,7 +3045,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.11,
-   "rank_score": 0.11,
+   "rank_score": 0.08,
    "tier": "noise",
    "tags": [],
    "why": "Musical theatre listing, unrelated to history",
@@ -3020,7 +3070,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.08,
-   "rank_score": 0.08,
+   "rank_score": 0.05,
    "tier": "noise",
    "tags": [
     "pol-ofsted"
@@ -3047,7 +3097,7 @@
    "first_seen": "2026-08-21T14:30:11Z",
    "expires": "2026-09-04T14:30:11Z",
    "relevance": 0.05,
-   "rank_score": 0.05,
+   "rank_score": 0.02,
    "tier": "noise",
    "tags": [],
    "why": "Internal Oxford HR announcement, irrelevant",
@@ -3056,181 +3106,6 @@
     "mode": "llm",
     "deterministic_raw": 0.34,
     "deterministic_norm": 0.14,
-    "llm": 0.0
-   }
-  },
-  {
-   "id": "e3ca2a116c736bd0",
-   "title": "Halloween Outdoor Cinema at Wollaton Park (17 Oct 2025 - 19 Oct 2025)",
-   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-wollaton-park-p802991",
-   "summary": "",
-   "source": {
-    "id": "visit-nottinghamshire",
-    "name": "Visit Nottinghamshire"
-   },
-   "published": "2026-08-10T02:10:00Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.02,
-   "rank_score": 0.02,
-   "tier": "noise",
-   "tags": [],
-   "why": "Modern cinema event at historic site, not a history story",
-   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FBeetlejuice_2025_Halloween_cover_1784354031.png&action=ProductMain",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.1,
-    "deterministic_norm": 0.04,
-    "llm": 0.0
-   }
-  },
-  {
-   "id": "8329b4374d45684c",
-   "title": "Postgraduate student engagement activities",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/student-engagement.aspx",
-   "summary": "Review of recent events held for our student community",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-28T10:18:00Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "Postgraduate student events review, irrelevant",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/student-engagement.aspx",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": 0.0
-   }
-  },
-  {
-   "id": "05127ffa54a6c016",
-   "title": "Halloween Outdoor Cinema at Newstead Abbey (26 Oct 2023 - 28 Oct 2023)",
-   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-newstead-abbey-p803011",
-   "summary": "",
-   "source": {
-    "id": "visit-nottinghamshire",
-    "name": "Visit Nottinghamshire"
-   },
-   "published": "2026-07-27T02:10:59Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "Modern cinema event at historic site, not a history story",
-   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FGhostbusters_338586242.png&action=ProductMain",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": 0.0
-   }
-  },
-  {
-   "id": "c342c1bc2bd48eb3",
-   "title": "National study to investigate future of engineering education for the defence sector",
-   "url": "https://www.education.ox.ac.uk/news/national-study-to-investigate-future-of-engineering-education-for-the-defence-sector/",
-   "summary": "",
-   "source": {
-    "id": "oxford-education",
-    "name": "Oxford Department of Education"
-   },
-   "published": "2026-07-21T13:54:56Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "Engineering education for defence sector, irrelevant",
-   "image_url": "",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": 0.0
-   }
-  },
-  {
-   "id": "b36ece32277d8c86",
-   "title": "Play and Mathematics in Early Childhood Education",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/play-and-mathematics.aspx",
-   "summary": "Research from Dr Cath Gripton included in new book",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-17T10:15:00Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "Early years maths research, not secondary history",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/play-and-mathematics.aspx",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": 0.0
-   }
-  },
-  {
-   "id": "769005185439f40f",
-   "title": "EABHAL (7 Oct 2026)",
-   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/eabhal-p1059531",
-   "summary": "Djanogly Theatre Wednesday 7 October | 7.30pm 2 hours including interval TIckets: £19 - £23 Eabhal have made a significant impact on the Scottish music scene with their vibrant and energetic folk music. The band earned a prestigious Folk Band of the Year nomination in the MG ALBA Scots Trad Music Awards 2022 amongst multiple other awards and nominations over the past 10 years. Current members are Kaitlin Ross (vocals), Megan MacDonald (accordion), Nicky Kirk (guitar), Robbie Greig (fiddle), and Ewan Duncan (pipes & whistle).",
-   "source": {
-    "id": "visit-nottinghamshire",
-    "name": "Visit Nottinghamshire"
-   },
-   "published": "2026-07-14T10:43:14Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "Folk music gig listing, unrelated to history",
-   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FEabhal_623996499.jpg&action=ProductMain",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
-    "llm": 0.0
-   }
-  },
-  {
-   "id": "5552a1b761541edb",
-   "title": "Mathematics teaching in the reception year",
-   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/maths-reception.aspx",
-   "summary": "New report from the Observatory for Mathematical Education",
-   "source": {
-    "id": "nottingham-education",
-    "name": "Nottingham School of Education"
-   },
-   "published": "2026-07-07T10:15:00Z",
-   "first_seen": "2026-08-21T14:30:11Z",
-   "expires": "2026-09-04T14:30:11Z",
-   "relevance": 0.0,
-   "rank_score": 0.0,
-   "tier": "noise",
-   "tags": [],
-   "why": "Reception-year maths report, early years not secondary",
-   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/maths-reception.aspx",
-   "scoring": {
-    "mode": "llm",
-    "deterministic_raw": 0.0,
-    "deterministic_norm": 0.0,
     "llm": 0.0
    }
   },
@@ -3360,6 +3235,106 @@
    }
   },
   {
+   "id": "e3ca2a116c736bd0",
+   "title": "Halloween Outdoor Cinema at Wollaton Park (17 Oct 2025 - 19 Oct 2025)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-wollaton-park-p802991",
+   "summary": "",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-08-10T02:10:00Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.02,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "Modern cinema event at historic site, not a history story",
+   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FBeetlejuice_2025_Halloween_cover_1784354031.png&action=ProductMain",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.1,
+    "deterministic_norm": 0.04,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "8329b4374d45684c",
+   "title": "Postgraduate student engagement activities",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/student-engagement.aspx",
+   "summary": "Review of recent events held for our student community",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-28T10:18:00Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "Postgraduate student events review, irrelevant",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/student-engagement.aspx",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "05127ffa54a6c016",
+   "title": "Halloween Outdoor Cinema at Newstead Abbey (26 Oct 2023 - 28 Oct 2023)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/halloween-outdoor-cinema-at-newstead-abbey-p803011",
+   "summary": "",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-07-27T02:10:59Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "Modern cinema event at historic site, not a history story",
+   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FGhostbusters_338586242.png&action=ProductMain",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "c342c1bc2bd48eb3",
+   "title": "National study to investigate future of engineering education for the defence sector",
+   "url": "https://www.education.ox.ac.uk/news/national-study-to-investigate-future-of-engineering-education-for-the-defence-sector/",
+   "summary": "",
+   "source": {
+    "id": "oxford-education",
+    "name": "Oxford Department of Education"
+   },
+   "published": "2026-07-21T13:54:56Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "Engineering education for defence sector, irrelevant",
+   "image_url": "",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": 0.0
+   }
+  },
+  {
    "id": "44c6ae8e0631a0f5",
    "title": "Revised direction issued to Sandwell Council: 2019",
    "url": "https://www.gov.uk/government/publications/revised-direction-issued-to-sandwell-council-2019",
@@ -3380,6 +3355,56 @@
    "scoring": {
     "mode": "llm",
     "deterministic_raw": -4.5,
+    "deterministic_norm": 0.0,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "b36ece32277d8c86",
+   "title": "Play and Mathematics in Early Childhood Education",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/play-and-mathematics.aspx",
+   "summary": "Research from Dr Cath Gripton included in new book",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-17T10:15:00Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "Early years maths research, not secondary history",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/play-and-mathematics.aspx",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.0,
+    "deterministic_norm": 0.0,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "769005185439f40f",
+   "title": "EABHAL (7 Oct 2026)",
+   "url": "https://www.visit-nottinghamshire.co.uk/whats-on/eabhal-p1059531",
+   "summary": "Djanogly Theatre Wednesday 7 October | 7.30pm 2 hours including interval TIckets: £19 - £23 Eabhal have made a significant impact on the Scottish music scene with their vibrant and energetic folk music. The band earned a prestigious Folk Band of the Year nomination in the MG ALBA Scots Trad Music Awards 2022 amongst multiple other awards and nominations over the past 10 years. Current members are Kaitlin Ross (vocals), Megan MacDonald (accordion), Nicky Kirk (guitar), Robbie Greig (fiddle), and Ewan Duncan (pipes & whistle).",
+   "source": {
+    "id": "visit-nottinghamshire",
+    "name": "Visit Nottinghamshire"
+   },
+   "published": "2026-07-14T10:43:14Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "Folk music gig listing, unrelated to history",
+   "image_url": "https://eu-assets.simpleview-europe.com/nottinghamshire2017/imageresizer/?image=%2Fdmsimgs%2FEabhal_623996499.jpg&action=ProductMain",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.0,
     "deterministic_norm": 0.0,
     "llm": 0.0
    }
@@ -3407,6 +3432,31 @@
    "scoring": {
     "mode": "llm",
     "deterministic_raw": -1.5,
+    "deterministic_norm": 0.0,
+    "llm": 0.0
+   }
+  },
+  {
+   "id": "5552a1b761541edb",
+   "title": "Mathematics teaching in the reception year",
+   "url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/maths-reception.aspx",
+   "summary": "New report from the Observatory for Mathematical Education",
+   "source": {
+    "id": "nottingham-education",
+    "name": "Nottingham School of Education"
+   },
+   "published": "2026-07-07T10:15:00Z",
+   "first_seen": "2026-08-21T14:30:11Z",
+   "expires": "2026-09-04T14:30:11Z",
+   "relevance": 0.0,
+   "rank_score": 0.0,
+   "tier": "noise",
+   "tags": [],
+   "why": "Reception-year maths report, early years not secondary",
+   "image_url": "https://www.nottingham.ac.uk/education/news/news-items/news2526/maths-reception.aspx",
+   "scoring": {
+    "mode": "llm",
+    "deterministic_raw": 0.0,
     "deterministic_norm": 0.0,
     "llm": 0.0
    }
