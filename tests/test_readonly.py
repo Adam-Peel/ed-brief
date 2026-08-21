@@ -71,17 +71,27 @@ def _run_offline_build(tmp_root: Path) -> None:
 
 
 class _FakeMessages:
-    def __init__(self, texts):
+    def __init__(self, texts, prefix_thinking_block=False):
         self._texts = iter(texts)
+        # Real Sonnet-5 responses run adaptive thinking by default and put a
+        # ThinkingBlock (type="thinking", no .text) ahead of the TextBlock --
+        # see src/llm.py's _score_batch. Reproduced here on demand so this
+        # fake actually exercises the same "find the text block" code path
+        # instead of a shape the real API never returns.
+        self._prefix_thinking_block = prefix_thinking_block
 
     def create(self, **kwargs):
         text = next(self._texts)
-        return types.SimpleNamespace(content=[types.SimpleNamespace(text=text)])
+        content = []
+        if self._prefix_thinking_block:
+            content.append(types.SimpleNamespace(type="thinking"))
+        content.append(types.SimpleNamespace(type="text", text=text))
+        return types.SimpleNamespace(content=content, stop_reason="end_turn")
 
 
 class _FakeAnthropicClient:
-    def __init__(self, texts, *a, **kw):
-        self.messages = _FakeMessages(texts)
+    def __init__(self, texts, *a, prefix_thinking_block=False, **kw):
+        self.messages = _FakeMessages(texts, prefix_thinking_block=prefix_thinking_block)
 
 
 def main() -> int:
@@ -123,6 +133,41 @@ def main() -> int:
               "the other omitted the requested id", str(verdicts))
         check("degraded" in status or "failed" in status,
               "the status message reflects the degradation", status)
+
+    section("Regression: a leading thinking block must not break text extraction")
+    with tempfile.TemporaryDirectory() as tmp:
+        # Production bug (21 Aug 2026): Sonnet 5 runs adaptive thinking by
+        # default, so response.content[0] is a ThinkingBlock with no .text --
+        # indexing [0] instead of searching for type=="text" raised
+        # AttributeError on every batch, silently dropping to deterministic
+        # scoring. This reproduces that exact response shape.
+        from src.fetch import Item
+        from datetime import datetime, timezone
+
+        item_c = Item(uid="c3", title="C", summary="", url="uc", source_id="s", source_name="S",
+                      published=datetime.now(timezone.utc))
+        cfg = {"llm_batch_size": 1}
+
+        os.environ["ANTHROPIC_API_KEY"] = "test-key-not-real"
+        try:
+            import anthropic
+
+            original_cls = anthropic.Anthropic
+            anthropic.Anthropic = lambda *a, **kw: _FakeAnthropicClient(
+                ['[{"id": "c3", "score": 8, "why": "directly relevant"}]'],
+                prefix_thinking_block=True,
+            )
+            try:
+                verdicts, status = llm_mod.rerank_new_items([item_c], cfg)
+            finally:
+                anthropic.Anthropic = original_cls
+        finally:
+            del os.environ["ANTHROPIC_API_KEY"]
+
+        check(verdicts.get("c3", (None, None))[0] == 8.0,
+              "the verdict behind a leading thinking block is still extracted", str(verdicts))
+        check("failed" not in status and "AttributeError" not in status,
+              "no AttributeError surfaces in the status message", status)
 
     section("Full offline build")
     with tempfile.TemporaryDirectory() as tmp:

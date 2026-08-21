@@ -160,7 +160,17 @@ def _score_batch(batch: list[Item], client, model: str) -> dict[str, tuple[float
         max_tokens=4000,
         messages=[{"role": "user", "content": RUBRIC.format(payload=payload)}],
     )
-    verdicts = _extract_json(response.content[0].text)
+    # NOT response.content[0] -- current-generation models (Sonnet 5 among
+    # them) run adaptive thinking by default even with no `thinking` param
+    # set at all, which puts a thinking block ahead of the text block, so
+    # content[0] is a ThinkingBlock with no .text attribute. Explicitly
+    # disabling thinking is a documented pitfall on this model family
+    # (occasional tool-call-in-visible-text / thinking-tag leakage), so this
+    # finds the actual text block instead of fighting the default off.
+    text_block = next((b for b in response.content if getattr(b, "type", None) == "text"), None)
+    if text_block is None:
+        raise ValueError(f"no text block in response (stop_reason={response.stop_reason!r})")
+    verdicts = _extract_json(text_block.text)
     valid_ids = {item.uid for item in batch}
 
     results: dict[str, tuple[float, str]] = {}
