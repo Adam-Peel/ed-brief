@@ -1,10 +1,29 @@
-"""Once-per-build daily digest: a short flowing prose summary of today's
-new items (build.py's `today_items`), written for LISTENING rather than
-reading -- the intended eventual use is a script for a daily audio
-briefing (see README), so it's prose, not a card list or a bullet
-summary. That's also why every item gets at least brief coverage rather
-than just the top few: a script that only mentioned "Read these" items
-would miss the point of a daily *briefing*.
+"""Weekly digest: a flowing prose round-up of the last 7 days' items,
+written for LISTENING rather than reading -- the intended eventual use is
+a script for a weekly audio briefing (see README), so it's prose, not a
+card list. Fires once a week (Sunday, London time), not on every run.
+
+Started life daily, scoped to `today_items` -- real data killed that: a
+quiet day (a Saturday, as it happened) had six new items, the best of
+which scored 4.64, below this project's own "worth a look" bar. Not
+enough material, and not good enough material either. Weekly fixes both
+at once, and incidentally fixes a second problem for free: `today_items`
+never covered anything not first_seen on the exact calendar day a digest
+ran, so anything ingested on a thin day was silently uncoverable forever.
+A weekly window covers everything that arrived in the last 7 days
+regardless of which specific day, with no separate rolling-window-or-
+tracking mechanism needed, since the coverage window and the episode
+cadence are now the same period.
+
+Content is deliberately gated, not "everything new" -- owner request:
+full coverage for anything that cleared scoring.yml's `worth` tier cut
+(read from config, not hardcoded, so it can't drift out of sync with the
+site's own bar), plus a brief mention for any HISTORY-typed item that
+didn't clear that bar, since history content matters to this reader even
+when the general relevance rubric doesn't rate it highly. Everything else
+-- a low-scoring CAREER or SECTOR item, say -- is left out entirely,
+not grouped into a passing mention the way the daily version tried to
+cover everything.
 
 Deliberately unlisted, not unauthenticated -- there's no login here, just
 no path TO it: not linked from docs/index.html, archive.html, or the API
@@ -14,18 +33,22 @@ URL, per an explicit "hidden, not on the main page or linked from it"
 request.
 
 Dormant unless ANTHROPIC_API_KEY is set, same contract as classify.py/
-llm.py -- a missing key (or any failure) just means no digest.html gets
-written this run, never a broken build.
+llm.py -- a missing key (or any failure, or simply not being Sunday) just
+means no digest.html gets written this run, never a broken build.
 """
 
 from __future__ import annotations
 
 import html
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from . import llm
 from .corpus import CorpusItem
+
+LONDON = ZoneInfo("Europe/London")
+WINDOW_DAYS = 7
 
 PAGE_TEMPLATE = """<!doctype html>
 <html lang="en">
@@ -60,46 +83,90 @@ footer { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--border
 <h1>__HEADING__</h1>
 <p class="sub">__SUBTITLE__</p>
 <div class="script">__BODY__</div>
-<footer><p>Not linked from the main site -- generated fresh each run from that day's new items.</p></footer>
+<footer><p>Not linked from the main site -- generated once a week from the last 7 days' items.</p></footer>
 </div>
 </body>
 </html>
 """
 
 
-def _build_prompt(items: list[CorpusItem], reader_stage: str) -> str:
-    ranked = sorted(items, key=lambda i: -i.relevance)
-    listing = "\n".join(
+def _is_weekly_run(now: datetime) -> bool:
+    """True on Sunday, London time -- checked in local time rather than
+    UTC to match the same "what day does this feel like to the reader"
+    logic the workflow's own 07:00/19:00 guard already uses, not because
+    any of this project's actual run times (06:07/07:07/18:07/19:07 UTC)
+    are ever close enough to midnight for the two to disagree in
+    practice."""
+    return now.astimezone(LONDON).weekday() == 6  # Monday=0 .. Sunday=6
+
+
+def _select(items: list[CorpusItem], cfg: dict) -> tuple[list[CorpusItem], list[CorpusItem]]:
+    """Splits the week's items into (main, history_mentions) per the
+    owner's selection rule. `main` is full-coverage material: anything
+    that cleared the site's own `worth` tier cut, any type. Everything
+    else is dropped UNLESS it's a HISTORY item, in which case it still
+    gets a brief mention -- see the module docstring for why this is a
+    real gate, not "everything, grouped" the way the daily version was."""
+    worth_cut = float(cfg.get("tiers", {}).get("worth", 4.95))
+    main = sorted(
+        (item for item in items if item.relevance >= worth_cut),
+        key=lambda i: -i.relevance,
+    )
+    history_mentions = sorted(
+        (item for item in items if item.relevance < worth_cut and item.item_type == "HISTORY"),
+        key=lambda i: -i.relevance,
+    )
+    return main, history_mentions
+
+
+def _build_prompt(main: list[CorpusItem], history_mentions: list[CorpusItem], reader_stage: str) -> str:
+    main_listing = "\n".join(
         f"- [{item.relevance:.1f}/10, {item.tier}] {item.title} ({item.source_name}): "
         f"{item.why or item.summary[:150]}"
-        for item in ranked
+        for item in main
     )
-    return f"""Write a spoken-word script for a short daily audio briefing \
-for a career-changer in England entering secondary HISTORY teaching, \
+    history_block = ""
+    history_instruction = ""
+    if history_mentions:
+        history_titles = "\n".join(
+            f"- {item.title} ({item.source_name}): {item.why or item.summary[:150]}"
+            for item in history_mentions
+        )
+        history_block = f"\n\nHistory items that didn't clear the bar above, but are still worth a brief mention:\n\n{history_titles}"
+        history_instruction = (
+            " After the main stories, briefly mention the history items listed "
+            "separately above too -- one short clause each, grouped into a "
+            "sentence or two, not full individual treatment."
+        )
+
+    return f"""Write a spoken-word script for a weekly audio round-up for \
+a career-changer in England entering secondary HISTORY teaching, \
 {reader_stage}. This will be read aloud, so write flowing prose in \
 complete sentences -- no bullet points, no headings, no markdown, nothing \
 that only makes sense on a page.
 
-Today's ranked items, most relevant first:
+This week's main stories, most relevant first -- each one already \
+cleared this project's own "worth a look" bar:
 
-{listing}
+{main_listing}{history_block}
 
-Cover every item above at least briefly, in descending order of \
-relevance -- the top few get a proper sentence or two each; minor or \
-low-relevance ones can be grouped into a single closing sentence ("a few \
-smaller items today: X, Y and Z") rather than skipped, since the point is \
-a complete picture of the day, not just the highlights. Aim for about \
-700-800 words, roughly five minutes spoken aloud. Open with a \
-one-sentence overview of the day, close with a brief, natural sign-off. \
-Write the finished script itself -- no preamble, no "Here's your \
-briefing", just the words to be spoken."""
+Give the strongest few stories a proper sentence or two each, in \
+descending order of relevance; every other main story above still gets \
+at least one clear sentence of its own, none skipped, since all of them \
+already cleared a real quality bar to be here.{history_instruction} Open \
+with a one-sentence overview of the week, close with a brief, natural \
+sign-off. Let the length follow how much is actually here -- a quiet \
+week might run four or five minutes, a busy one nearer ten; don't pad a \
+thin week out or cut a strong one short to hit a fixed target. Write the \
+finished script itself -- no preamble, no "Here's your round-up", just \
+the words to be spoken."""
 
 
-def _generate(items: list[CorpusItem], cfg: dict) -> tuple[str, str]:
+def _generate(main: list[CorpusItem], history_mentions: list[CorpusItem], cfg: dict) -> tuple[str, str]:
     """Returns (script_text, status). Empty script means nothing gets
     written this run -- see write_digest."""
-    if not items:
-        return "", "no items today"
+    if not main and not history_mentions:
+        return "", "no items cleared the weekly digest's selection this week"
     if not llm.available():
         return "", "deterministic only (no API key set)"
 
@@ -118,7 +185,7 @@ def _generate(items: list[CorpusItem], cfg: dict) -> tuple[str, str]:
         response = client.messages.create(
             model=model,
             max_tokens=max_tokens,
-            messages=[{"role": "user", "content": _build_prompt(items, reader_stage)}],
+            messages=[{"role": "user", "content": _build_prompt(main, history_mentions, reader_stage)}],
         )
         text_block = llm._extract_text_block(response)
     except Exception as exc:  # noqa: BLE001 -- deliberately broad, see module docstring
@@ -127,24 +194,37 @@ def _generate(items: list[CorpusItem], cfg: dict) -> tuple[str, str]:
     return text_block.text.strip(), f"generated with {model}"
 
 
-def write_digest(items: list[CorpusItem], cfg: dict, now: datetime, docs_dir: Path) -> str:
-    """Writes docs/digest.html from today's items if a script was
-    generated; leaves any existing digest.html untouched otherwise (a
-    failed or key-less run shouldn't erase yesterday's, since this isn't
-    dated/archived -- it's a single always-current page). Returns the
-    status string for the caller to log, same shape as classify/llm's own
-    status strings."""
-    script, status = _generate(items, cfg)
+def write_digest(published: list[CorpusItem], cfg: dict, now: datetime, docs_dir: Path) -> str:
+    """Writes docs/digest.html from the last WINDOW_DAYS' items if a
+    script was generated; leaves any existing digest.html untouched
+    otherwise (a failed, key-less, or non-Sunday run shouldn't erase last
+    week's, since this isn't dated/archived -- it's a single always-
+    current page). `published` is the full live/publishable list, not
+    pre-windowed -- windowing and the worth-cut/HISTORY split both happen
+    in here. Returns the status string for the caller to log, same shape
+    as classify/llm's own status strings."""
+    if not _is_weekly_run(now):
+        return "not the weekly run (Sunday, London time)"
+
+    window_start = now - timedelta(days=WINDOW_DAYS)
+    recent = [item for item in published if item.first_seen >= window_start]
+    main, history_mentions = _select(recent, cfg)
+
+    script, status = _generate(main, history_mentions, cfg)
     if not script:
         return status
 
     date_label = now.strftime("%A %-d %B %Y")
     paragraphs = "".join(f"<p>{html.escape(p.strip())}</p>" for p in script.split("\n\n") if p.strip())
+    covered = len(main) + len(history_mentions)
     page = PAGE_TEMPLATE
     for token, value in {
-        "__TITLE__": f"Daily digest — {date_label}",
-        "__HEADING__": "Daily digest",
-        "__SUBTITLE__": html.escape(f"{date_label} · {len(items)} items · not linked from the site"),
+        "__TITLE__": f"Weekly digest — {date_label}",
+        "__HEADING__": "Weekly digest",
+        "__SUBTITLE__": html.escape(
+            f"Week ending {date_label} · {covered} items ({len(main)} main, "
+            f"{len(history_mentions)} history mentions) · not linked from the site"
+        ),
         "__BODY__": paragraphs,
     }.items():
         page = page.replace(token, value)

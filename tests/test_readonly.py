@@ -306,34 +306,76 @@ def main() -> int:
     check(classify_unsupported == [], "classify's schema also avoids the unsupported keywords",
           str(classify_unsupported))
 
-    section("Daily digest: dormant without a key, generates and writes with one, never linked")
+    section("Weekly digest: Sunday-gated, worth-cut + HISTORY-mention selection, never linked")
     from src import digest as digest_mod
 
-    digest_items = [
-        CorpusItem(id="d1", title="Big story", url="u1", summary="", source_id="s",
-                   source_name="S", published=now, first_seen=now, expires=now + timedelta(days=14),
-                   relevance=8.0, why="Big story matters"),
-        CorpusItem(id="d2", title="Small story", url="u2", summary="", source_id="s",
-                   source_name="S", published=now, first_seen=now, expires=now + timedelta(days=14),
-                   relevance=1.5, why="Small story barely matters"),
+    sunday = datetime(2026, 8, 23, 19, 0, tzinfo=timezone.utc)  # a real Sunday, London time too
+    saturday = datetime(2026, 8, 22, 19, 0, tzinfo=timezone.utc)
+    digest_cfg = {"tiers": {"worth": 4.95}}
+
+    def _di(id_, title, relevance, item_type, days_ago, why=""):
+        seen = sunday - timedelta(days=days_ago)
+        return CorpusItem(id=id_, title=title, url=f"u{id_}", summary="", source_id="s",
+                           source_name="S", published=seen, first_seen=seen,
+                           expires=seen + timedelta(days=14), relevance=relevance,
+                           item_type=item_type, why=why)
+
+    week_items = [
+        _di("main1", "Big worth-a-look story", 8.0, "PUPILS", 2, "Big story matters"),
+        _di("hist1", "Weak but still History", 3.0, "HISTORY", 3, "Minor history item"),
+        _di("weak1", "Weak non-history, should be dropped entirely", 2.0, "CAREER", 1, "Barely matters"),
+        _di("stale1", "Older than the 7-day window, must be excluded", 9.0, "PUPILS", 8, "Too old"),
     ]
+
     with tempfile.TemporaryDirectory() as tmp:
         digest_docs = Path(tmp) / "docs"
-        status_no_key = digest_mod.write_digest(digest_items, {}, now, digest_docs)
-        check("no API key" in status_no_key, "no key -> a clear status, no exception", status_no_key)
-        check(not (digest_docs / "digest.html").exists(),
-              "no key -> nothing written, not even an empty file")
+
+        status_not_sunday = digest_mod.write_digest(week_items, digest_cfg, saturday, digest_docs)
+        check("not the weekly run" in status_not_sunday,
+              "a non-Sunday run is skipped with a clear status, regardless of key or items",
+              status_not_sunday)
+        check(not (digest_docs / "digest.html").exists(), "non-Sunday -> nothing written")
+
+        status_no_key = digest_mod.write_digest(week_items, digest_cfg, sunday, digest_docs)
+        check("no API key" in status_no_key, "Sunday, no key -> a clear status, no exception", status_no_key)
+        check(not (digest_docs / "digest.html").exists(), "no key -> nothing written, not even an empty file")
 
         status_ok = _with_fake_client(
-            ["Today's overview: a big story leads, plus a small story worth a mention.\n\n"
-             "The big story matters a great deal. The small story barely matters."],
-            lambda: digest_mod.write_digest(digest_items, {}, now, digest_docs),
+            ["This week's overview: one big story leads.\n\n"
+             "The big worth-a-look story matters a great deal. Also worth a quick mention: "
+             "the weak history item, briefly."],
+            lambda: digest_mod.write_digest(week_items, digest_cfg, sunday, digest_docs),
         )
-        check("generated with" in status_ok, "a fake response -> a clear success status", status_ok)
+        check("generated with" in status_ok, "Sunday + key + items -> a clear success status", status_ok)
         digest_html = (digest_docs / "digest.html").read_text("utf-8")
         check("noindex" in digest_html, "the page is marked noindex -- unlisted, not just unlinked")
-        check("big story leads" in digest_html and "barely matters" in digest_html,
-              "the generated script text reaches the page")
+        check("Weekly digest" in digest_html, "the page identifies itself as the weekly digest, not daily")
+        check("1 main, 1 history mentions" in digest_html,
+              "the subtitle reports exactly one main item and one history mention -- "
+              "the weak non-history item and the stale item are both excluded",
+              digest_html)
+
+    # _select and _build_prompt as pure functions, isolated from the
+    # Sunday gate / API plumbing above -- direct proof the selection rule
+    # itself (worth-cut for everything, a HISTORY exception below it) is
+    # what's actually implemented, not just what the docstring claims.
+    select_items = [
+        _di("s-main", "Clears the bar", 6.0, "SECTOR", 1),
+        _di("s-hist", "History, below the bar", 2.0, "HISTORY", 1),
+        _di("s-drop", "Below the bar, not history", 2.0, "SECTOR", 1),
+    ]
+    sel_main, sel_history = digest_mod._select(select_items, digest_cfg)
+    check([i.id for i in sel_main] == ["s-main"], "only the item clearing the worth cut lands in main")
+    check([i.id for i in sel_history] == ["s-hist"],
+          "the below-cut HISTORY item lands in history_mentions, not main and not dropped")
+    check(not any(i.id == "s-drop" for i in sel_main + sel_history),
+          "the below-cut non-HISTORY item is dropped entirely, not grouped in either list")
+
+    prompt = digest_mod._build_prompt(sel_main, sel_history, "at ITT")
+    check("Clears the bar" in prompt and "History, below the bar" in prompt,
+          "the prompt includes both the main item and the history mention")
+    check("Below the bar, not history" not in prompt,
+          "the prompt never mentions the dropped item at all")
 
     section("Two-stage pipeline: the locality floor is a build-time percentile, not a fixed number")
     rank_items = [

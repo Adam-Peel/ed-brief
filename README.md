@@ -224,21 +224,38 @@ not just the general RIS spec — see `src/ris.py`'s module docstring.
 
 ---
 
-## Daily digest (unlisted)
+## Weekly digest (unlisted)
 
-Each run that has an `ANTHROPIC_API_KEY` writes `docs/digest.html`: a short
-flowing prose summary of that day's new items — written for *listening*,
-not reading, since the eventual point is a script for a daily audio
-briefing. Every item gets at least brief coverage, not just the top-scored
-ones, in descending order of relevance.
+The Sunday run (London time) that has an `ANTHROPIC_API_KEY` writes
+`docs/digest.html`: a flowing prose round-up of the last 7 days — written
+for *listening*, not reading, since the eventual point is a script for a
+weekly audio briefing. Started out daily and scoped to just that day's new
+items; real data killed that design in one afternoon — a quiet Saturday
+had six new items, the best scoring below this project's own "worth a
+look" bar. Not enough material, and not good enough material either.
+Weekly fixes both, and incidentally fixes a second problem for free:
+today-scoped digests never covered anything not first-seen on the exact
+day they ran, so a slow trickle of arrivals could sit uncovered forever.
+A 7-day window covers everything from the last week regardless of which
+specific day it arrived, with no separate tracking needed, since the
+coverage window and the episode cadence are the same period.
+
+Content is deliberately gated, not "everything new": full coverage for
+anything that cleared `scoring.yml`'s `worth` tier cut (read from config,
+so it can't drift out of sync with the site's own bar), plus a brief
+mention for any HISTORY-typed item that didn't clear that bar — history
+content matters to this reader even when the general rubric doesn't rate
+it highly. Everything else below the bar is left out entirely, not
+grouped into a passing mention.
 
 Deliberately **not linked from anywhere on the published site** —
 `index.html`, `archive.html`, the API endpoint index all omit it entirely
 — and marked `noindex` so it won't turn up in search results either.
 Reachable only if you already have the URL:
 `https://YOUR-USERNAME.github.io/ed-brief/digest.html`. It's a single
-always-current page, not a dated archive (yet) — regenerated fresh on
-every run that has new items and a key, silently skipped otherwise.
+always-current page, not a dated archive (yet) — regenerated each Sunday
+that has qualifying items and a key, silently skipped otherwise (including
+every non-Sunday run, by design).
 
 Text-to-speech isn't wired up yet — Claude doesn't do TTS natively (even
 Anthropic's own consumer Voice Mode uses ElevenLabs under the hood, per
@@ -401,7 +418,7 @@ src/site.py              docs/index.html, docs/archive.html, dated snapshots
 src/ris.py               docs/ris/{id}.ris writer -- one per item, for Add to Zotero
 src/rss.py               docs/feed.xml writer (lead/worth tiers only)
 src/brief.py             briefs/YYYY-MM-DD.md writer
-src/digest.py            docs/digest.html writer -- unlisted daily prose summary
+src/digest.py            docs/digest.html writer -- unlisted weekly prose round-up
 src/build.py             entry point: fetch, dedupe, score, rank, publish
 src/validate.py          feed health check
 data/corpus.json         the single source of truth (committed)

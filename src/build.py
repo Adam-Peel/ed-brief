@@ -258,7 +258,10 @@ def main(argv: list[str] | None = None, *, output_root: Path | None = None) -> i
     site.write_site(published, today_items, meta, out_root, now, cfg)
     brief.write_brief(today_items, feed_problems, llm_status, out_root, now)
     rss.write_feed(published, cfg, out_root, now)
-    digest_status = digest.write_digest(today_items, cfg, now, out_root / "docs")
+    # The full live/publishable list, not today_items -- digest.py does its
+    # own 7-day windowing internally now (see its module docstring for why
+    # a daily/today-scoped digest turned out to be the wrong shape).
+    digest_status = digest.write_digest(published, cfg, now, out_root / "docs")
     print(f"  digest: {digest_status}", file=sys.stderr)
 
     print(
