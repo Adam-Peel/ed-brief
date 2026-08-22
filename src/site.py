@@ -191,6 +191,34 @@ h1 {
 .filter-group summary .group-count { font-weight: 400; opacity: .75; }
 .filter-group .row { margin-top: 8px; }
 
+/* Tier sections (Read these / Worth a look / ...) collapse the same way
+   the tag/source filter groups above do -- native <details>/<summary>
+   again, for the same free keyboard/screen-reader support. Unlike those,
+   default OPEN: this is the page's primary content, not an auxiliary
+   control, so collapsing is something the reader opts into per section,
+   not the default. Only the arrow/cursor/layout live here -- the h2
+   inside keeps its own existing rules (size, tier colour, margin,
+   underline) completely untouched, nested one level deeper now. */
+.tier-group summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tier-group summary::-webkit-details-marker { display: none; }
+.tier-group summary::before {
+  content: "▾";
+  display: inline-block;
+  font-size: .65rem;
+  color: var(--muted);
+  transition: transform .12s;
+  flex: none;
+}
+.tier-group:not([open]) summary::before { transform: rotate(-90deg); }
+.tier-group summary:hover h2 { color: var(--accent); }
+
 h2 {
   font-size: .78rem; text-transform: uppercase; letter-spacing: .1em;
   color: var(--muted); font-weight: 600;
@@ -526,12 +554,29 @@ function render() {
     : `${visible.length} of ${ITEMS.length} items`;
   readToggle.textContent = state.showRead ? "Hide read" : `Show read (${hiddenRead})`;
 
+  // Read each tier section's current open/closed state directly off the
+  // DOM before it's torn down and rebuilt below, so a reader's manual
+  // collapse survives render() rebuilding #list's innerHTML on every
+  // filter change (a keystroke in search, a chip click, ...). Reading a
+  // live DOM property synchronously here, rather than tracking state via
+  // a "toggle" event listener, sidesteps that event's dispatch timing
+  // entirely -- there's no window where a change right after a toggle
+  // could be missed. Defaults to open: on the very first call #list is
+  // still empty, so nothing here overrides the default.
+  const openTiers = new Set(TIER_ORDER);
+  list.querySelectorAll(".tier-group").forEach(details => {
+    if (!details.open) openTiers.delete(details.dataset.tier);
+  });
+
   let out = "";
   for (const tier of TIER_ORDER) {
     const group = visible.filter(i => i.tier === tier);
     if (!group.length) continue;
-    out += `<h2 data-tier="${tier}">${TIER_LABELS[tier]} <span style="font-weight:400;opacity:.6">(${group.length})</span></h2>`;
+    const openAttr = openTiers.has(tier) ? " open" : "";
+    out += `<details class="tier-group" data-tier="${tier}"${openAttr}>`;
+    out += `<summary><h2 data-tier="${tier}">${TIER_LABELS[tier]} <span style="font-weight:400;opacity:.6">(${group.length})</span></h2></summary>`;
     out += group.map(card).join("");
+    out += `</details>`;
   }
   list.innerHTML = out;
   empty.hidden = visible.length > 0;
