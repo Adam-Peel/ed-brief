@@ -199,6 +199,31 @@ just because you're reading it somewhere else.
 
 ---
 
+## Saving to Zotero
+
+Every card has an **Add to Zotero** link. If you have the [Zotero
+Connector](https://www.zotero.org/download/) browser extension installed,
+clicking it opens the item's `docs/ris/{id}.ris` file, which the Connector
+intercepts and offers to import directly — carrying the item's Tag Index
+tags (`scoring.yml`'s `topics:` vocabulary, the same strings used in
+`tags.html`) onto the saved item as real Zotero tags, not just the bare
+article link a normal "save this page" would give you. Without the
+Connector, the link still downloads a plain, valid RIS file.
+
+This is what turns the feed into something you can actually keep: items
+here disappear after `retention_days` (14 by default) or once you mark
+them read, so anything worth citing later needs saving somewhere durable —
+Zotero already IS that somewhere, if you use it, and this skips retyping
+the tags by hand.
+
+Field mappings (which RIS tag becomes which Zotero field, `TY` as `ELEC`
+for Zotero's own "Web Page" type, `KW` per tag rather than comma-separated)
+are verified against
+[Zotero's own RIS translator source](https://github.com/zotero/translators/blob/master/RIS.js),
+not just the general RIS spec — see `src/ris.py`'s module docstring.
+
+---
+
 ## The read-only guarantee
 
 The published page and API are load-bearing on being **strictly read-only**:
@@ -347,6 +372,7 @@ src/llm.py               stage 2: typed Likert scoring, batched, dormant without
 src/corpus.py            the rolling corpus: load/save/expire/rank/locality floor
 src/api.py               docs/api/v1/*.json writer
 src/site.py              docs/index.html, docs/archive.html, dated snapshots
+src/ris.py               docs/ris/{id}.ris writer -- one per item, for Add to Zotero
 src/rss.py               docs/feed.xml writer (lead/worth tiers only)
 src/brief.py             briefs/YYYY-MM-DD.md writer
 src/build.py             entry point: fetch, dedupe, score, rank, publish

@@ -24,6 +24,14 @@ from src.score import Scorer, blend_relevance  # noqa: E402
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
+# The fixtures carry fixed calendar dates (~2026-08-19 to 21), not dates
+# relative to whenever the suite happens to run -- a hardcoded 96h window
+# already went stale once this session (see the identical note in
+# test_readonly.py) once real wall-clock time carried far enough past
+# these fixed dates. Wide enough to never trip on these fixtures again;
+# this file isn't testing window-filtering logic itself.
+FIXTURE_WINDOW_HOURS = 24 * 365 * 10
+
 failures: list[str] = []
 
 
@@ -42,7 +50,7 @@ def build_fixture_items():
     for path in sorted(FIXTURES.glob("*.xml")):
         cfg = by_id.get(path.stem)
         assert cfg, f"fixture {path.stem} has no matching feed config"
-        parsed, error = parse_feed(path.read_bytes(), cfg, window_hours=96)
+        parsed, error = parse_feed(path.read_bytes(), cfg, window_hours=FIXTURE_WINDOW_HOURS)
         assert not error, f"{path.stem}: {error}"
         items.extend(parsed)
     return items, scoring_cfg
@@ -137,11 +145,11 @@ def main() -> int:
     check(len(seen_uids) == len(items), "fixture uids are unique")
     dup_a = parse_feed(
         (FIXTURES / "bbc-education.xml").read_bytes(),
-        {"id": "a", "name": "A", "weight": 0}, 96,
+        {"id": "a", "name": "A", "weight": 0}, FIXTURE_WINDOW_HOURS,
     )[0]
     dup_b = parse_feed(
         (FIXTURES / "bbc-education.xml").read_bytes(),
-        {"id": "b", "name": "B", "weight": 0}, 96,
+        {"id": "b", "name": "B", "weight": 0}, FIXTURE_WINDOW_HOURS,
     )[0]
     check({i.uid for i in dup_a} == {i.uid for i in dup_b},
           "the same story from two sources gets the same uid")

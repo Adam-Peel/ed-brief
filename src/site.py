@@ -20,6 +20,7 @@ from datetime import datetime
 from pathlib import Path
 
 from .corpus import CorpusItem
+from .ris import write_ris_files
 
 TIER_LABELS = {
     "lead": "Read these",
@@ -291,7 +292,8 @@ article h3 a:hover { color: var(--accent); text-decoration: underline; }
   border: 1px solid var(--border); border-radius: 4px;
   padding: 1px 6px;
 }
-.read-btn {
+.card-actions { display: flex; align-items: center; gap: 6px; flex: none; }
+.read-btn, .zotero-link {
   font: inherit; font-size: .72rem;
   padding: 3px 9px;
   border: 1px solid var(--border);
@@ -301,6 +303,8 @@ article h3 a:hover { color: var(--accent); text-decoration: underline; }
   cursor: pointer;
   white-space: nowrap;
 }
+.zotero-link { text-decoration: none; }
+.zotero-link:hover { border-color: var(--accent); color: var(--accent); }
 .read-btn:hover { border-color: var(--accent); color: var(--accent); }
 .empty { color: var(--muted); font-style: italic; padding: 32px 0; text-align: center; }
 footer {
@@ -535,7 +539,10 @@ function card(item) {
     ${item.summary ? `<p class="summary">${esc(item.summary)}</p>` : ""}
     <div class="row-bottom">
       <div class="tags">${tags}</div>
-      <button class="read-btn" data-toggle-read="${esc(item.id)}">${read ? "Mark unread" : "Mark read"}</button>
+      <div class="card-actions">
+        <a class="zotero-link" href="./ris/${esc(item.id)}.ris" title="Save to Zotero, with this item's tags -- requires the Zotero Connector browser extension">Add to Zotero</a>
+        <button class="read-btn" data-toggle-read="${esc(item.id)}">${read ? "Mark unread" : "Mark read"}</button>
+      </div>
     </div>
   </article>`;
 }
@@ -825,6 +832,7 @@ def write_site(
 
     _write_archive_index(root, docs_dir)
     _write_tags_page(live, cfg.get("topics", []), docs_dir)
+    write_ris_files(live, docs_dir)
 
 
 def _write_archive_index(root: Path, docs_dir: Path) -> None:

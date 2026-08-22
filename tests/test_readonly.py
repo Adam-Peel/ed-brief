@@ -38,6 +38,19 @@ def section(title: str) -> None:
     print(f"\n{title}")
 
 
+# The fixtures carry fixed calendar dates (~2026-08-19 to 21), not dates
+# relative to whenever the suite happens to run -- real wall-clock time
+# has already once carried them outside build.py's real 24h default
+# window mid-session, silently zeroing every fixture item and cascading
+# into failures with no exception anywhere to explain why. This isn't
+# testing window-filtering logic (test_pipeline.py's AC1 does that
+# precisely, with synthetic timestamps built at test-run time) -- it's
+# testing the rest of the pipeline, so the offline fetch stand-ins below
+# ignore whatever window build.py actually passes and use a window wide
+# enough to never go stale on these fixtures again.
+FIXTURE_WINDOW_HOURS = 24 * 365 * 10
+
+
 def _offline_fetch_all(feeds, window_hours):
     """Stand-in for src.fetch.fetch_all: parses local fixtures instead of
     hitting the network, so the full build pipeline can run offline."""
@@ -48,7 +61,7 @@ def _offline_fetch_all(feeds, window_hours):
         cfg = by_id.get(path.stem)
         if not cfg:
             continue
-        parsed, error = parse_feed(path.read_bytes(), cfg, window_hours)
+        parsed, error = parse_feed(path.read_bytes(), cfg, FIXTURE_WINDOW_HOURS)
         if error:
             problems.append(f"{cfg['name']}: {error}")
             continue
@@ -337,7 +350,8 @@ def main() -> int:
         CorpusItem(id="g-notts", title="Notts history story", url="un", summary="", source_id="s",
                    source_name="S", published=golden_now, first_seen=golden_now,
                    expires=golden_now + timedelta(days=14), relevance=6.0, rank_score=6.0,
-                   tier="worth", item_type="HISTORY", locality=4),
+                   tier="worth", item_type="HISTORY", locality=4,
+                   tags=["sub-local-nottinghamshire", "sub-history"]),
         CorpusItem(id="g-sector", title="Sector story", url="us", summary="", source_id="s",
                    source_name="S", published=golden_now, first_seen=golden_now,
                    expires=golden_now + timedelta(days=14), relevance=3.0, rank_score=3.0,
@@ -361,6 +375,23 @@ def main() -> int:
         meta_stub = {"scoring": {"status": "test"}, "retention_days": 14, "sources": []}
         site_mod.write_site(golden_items, [], meta_stub, golden_root, golden_now, {})
         golden_html = (golden_root / "docs" / "index.html").read_text("utf-8")
+
+        section("RIS export: one file per live item, correct for Zotero's own RIS translator")
+        # Verified against zotero/translators' RIS.js (not just the general
+        # RIS spec) -- see src/ris.py's module docstring for why that
+        # distinction matters here.
+        ris_dir = golden_root / "docs" / "ris"
+        ris_files = {p.stem: p for p in ris_dir.glob("*.ris")} if ris_dir.exists() else {}
+        check(set(ris_files) == {i.id for i in golden_items},
+              "exactly one .ris file per live item, no more, no less", sorted(ris_files))
+        raw = (ris_dir / "g-notts.ris").read_bytes()
+        check(b"\r\n" in raw and b"\n" not in raw.replace(b"\r\n", b""), "the file uses CRLF line endings, no bare LF")
+        rec = raw.decode("utf-8")
+        check(rec.startswith("TY  - ELEC\r\n"), "TY is first and is ELEC (Zotero's own webpage export type)")
+        check(rec.rstrip("\r\n").endswith("ER  - "), "ER is the last line")
+        check("KW  - sub-local-nottinghamshire\r\n" in rec and "KW  - sub-history\r\n" in rec,
+              "every tag gets its own KW line (Zotero maps KW to its own tags on import)")
+        check("UR  - un\r\n" in rec, "UR carries the item's own url, not ed-brief's")
     check(
         '"CURRICULUM": "Curriculum"' in golden_html and '"OTHER": "Other"' in golden_html,
         "TYPE_LABELS (the pill text for every type, including OTHER) reaches the rendered page",
@@ -369,6 +400,14 @@ def main() -> int:
           "the card template emits both the type pill and the Notts pill")
     check('"type": "HISTORY", "locality": 4' in golden_html,
           "the Nottinghamshire-eligible item's type and locality both reach the rendered page")
+    # Pill/card rendering runs client-side in JS -- see the section comment
+    # above on why this test can only check the TEMPLATE (literal source
+    # text embedded in the page, un-interpolated) rather than a rendered
+    # DOM, same honest limit as the type-pill/Notts-pill checks above.
+    check('class="zotero-link" href="./ris/${esc(item.id)}.ris"' in golden_html,
+          "the card template links each item to its own .ris file by id")
+    check('download' not in golden_html.split('zotero-link"')[1][:80],
+          "the Zotero link has no download attribute -- that would bypass the Connector's interception")
 
     section("Full offline build")
     with tempfile.TemporaryDirectory() as tmp:
@@ -512,7 +551,7 @@ def main() -> int:
                     cfg = by_id.get(path.stem)
                     if not cfg:
                         continue
-                    parsed, error = parse_feed(path.read_bytes(), cfg, window_hours)
+                    parsed, error = parse_feed(path.read_bytes(), cfg, FIXTURE_WINDOW_HOURS)
                     if error:
                         problems.append(f"{cfg['name']}: {error}")
                         continue
