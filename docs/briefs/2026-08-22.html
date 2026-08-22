@@ -134,6 +134,34 @@ h1 {
 .filter-group summary .group-count { font-weight: 400; opacity: .75; }
 .filter-group .row { margin-top: 8px; }
 
+/* Tier sections (Read these / Worth a look / ...) collapse the same way
+   the tag/source filter groups above do -- native <details>/<summary>
+   again, for the same free keyboard/screen-reader support. Unlike those,
+   default OPEN: this is the page's primary content, not an auxiliary
+   control, so collapsing is something the reader opts into per section,
+   not the default. Only the arrow/cursor/layout live here -- the h2
+   inside keeps its own existing rules (size, tier colour, margin,
+   underline) completely untouched, nested one level deeper now. */
+.tier-group summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tier-group summary::-webkit-details-marker { display: none; }
+.tier-group summary::before {
+  content: "▾";
+  display: inline-block;
+  font-size: .65rem;
+  color: var(--muted);
+  transition: transform .12s;
+  flex: none;
+}
+.tier-group:not([open]) summary::before { transform: rotate(-90deg); }
+.tier-group summary:hover h2 { color: var(--accent); }
+
 h2 {
   font-size: .78rem; text-transform: uppercase; letter-spacing: .1em;
   color: var(--muted); font-weight: 600;
@@ -236,7 +264,7 @@ details summary { cursor: pointer; }
 <div class="wrap">
 <header>
   <h1>Education brief<br>Saturday 22 August 2026</h1>
-  <p class="sub">1 items first seen today, ranked the same way as the live list.</p>
+  <p class="sub">4 items first seen today, ranked the same way as the live list.</p>
 </header>
 
 <div class="filters">
@@ -260,8 +288,8 @@ details summary { cursor: pointer; }
     <div class="row" id="tag-row"><button class="chip" data-tag="prof-routes-into-teaching" aria-pressed="false">prof-routes-into-teaching</button></div>
   </details>
   <details class="filter-group" id="source-group">
-    <summary>Filter by source <span class="group-count">(1)</span></summary>
-    <div class="row" id="source-row"><button class="chip" data-source="UCET Blog" aria-pressed="false">UCET Blog</button></div>
+    <summary>Filter by source <span class="group-count">(4)</span></summary>
+    <div class="row" id="source-row"><button class="chip" data-source="Guardian Schools" aria-pressed="false">Guardian Schools</button><button class="chip" data-source="Heritage Calling (Historic England)" aria-pressed="false">Heritage Calling (Historic England)</button><button class="chip" data-source="The National Archives Blog" aria-pressed="false">The National Archives Blog</button><button class="chip" data-source="UCET Blog" aria-pressed="false">UCET Blog</button></div>
   </details>
 </div>
 
@@ -269,7 +297,7 @@ details summary { cursor: pointer; }
 <p class="empty" id="empty" hidden>Nothing matches these filters.</p>
 
 <footer>
-  <p>Ranking: LLM re-ranked with claude-sonnet-5. Generated 22 Aug 2026 at 00:08 UTC. Items stay listed for
+  <p>Ranking: LLM re-ranked with claude-sonnet-5. Generated 22 Aug 2026 at 00:28 UTC. Items stay listed for
   14 days from when they're first seen, or until you mark
   them read.</p>
   <p>Read state is stored in this browser only. It will not follow you to
@@ -286,7 +314,7 @@ details summary { cursor: pointer; }
 </div>
 
 <script>
-const ITEMS = [{"id": "a9ca41b193328b2c", "title": "What's Your Story?: Storytelling as a Tool for Growing Confident, Reflective Teachers", "url": "https://www.ucet.ac.uk/blog/17660/whats-your-story-storytelling-as-a-tool-for-growing-confident-reflective-teachers", "summary": "When we think about storytelling in education, we often picture early years classrooms but storytelling isn't just for children. Our recent research with trainee teachers in the Further Education (FE) sector suggests it may be one of the most powerful tools for professional development. We began with a simple question: What happens when trainee teachers are invited to tell the story of becoming a teacher? The answer was powerful.", "source_name": "UCET Blog", "when": "31 Jul, 08:24", "tier": "noise", "type": "CAREER", "locality": 0, "tags": ["prof-routes-into-teaching"], "why": "FE sector reflective practice research, not secondary history teaching or policy change", "mode": "llm", "score": 2.7}];
+const ITEMS = [{"id": "a9ca41b193328b2c", "title": "What's Your Story?: Storytelling as a Tool for Growing Confident, Reflective Teachers", "url": "https://www.ucet.ac.uk/blog/17660/whats-your-story-storytelling-as-a-tool-for-growing-confident-reflective-teachers", "summary": "When we think about storytelling in education, we often picture early years classrooms but storytelling isn't just for children. Our recent research with trainee teachers in the Further Education (FE) sector suggests it may be one of the most powerful tools for professional development. We began with a simple question: What happens when trainee teachers are invited to tell the story of becoming a teacher? The answer was powerful.", "source_name": "UCET Blog", "when": "31 Jul, 08:24", "tier": "rest", "type": "PEDAGOGY", "locality": 0, "tags": ["prof-routes-into-teaching"], "why": "FE storytelling research on trainee identity, not classroom history teaching practice", "mode": "llm", "score": 4.6}, {"id": "3aa6c96b2896c2f8", "title": "Screens can play a key role in the classroom | Letters", "url": "https://www.theguardian.com/education/2026/aug/19/screens-can-play-a-key-role-in-the-classroom", "summary": "Dismissing screen use entirely fails to recognise the crucial role modern technology plays in equity, accessibility and basic school operations, says Charlotte Bleakley Your article buries the real story beneath the headline ( 'Our children are less cognitively capable,' says neuroscientist who wants to cut screen use in schools, 16 August ). Even Jared Cooney Horvath's own data, cited mid-article, shows that moderate school device use is associated with better outcomes than no device use at all – it is only the heaviest use daily that drags results down. That is a case for sensible…", "source_name": "Guardian Schools", "when": "19 Aug, 16:46", "tier": "rest", "type": "OTHER", "locality": 0, "tags": [], "why": "Letter debate on screens in classrooms, tangential to history teaching practice", "mode": "llm", "score": 4.2}, {"id": "ba233b256e6edbd1", "title": "Follow the acorn: Designing a symbol for long distance national trails", "url": "https://www.nationalarchives.gov.uk/explore-the-collection/the-collection-blog/follow-the-acorn-designing-a-symbol-for-long-distance-national-trails/?utm_source=feed-all&utm_medium=rss", "summary": "In this blog post, Lucy Razzall and Giorgia Tolfo investigate some of the administrative history behind marking rights of way.", "source_name": "The National Archives Blog", "when": "14 Aug, 10:00", "tier": "rest", "type": "HISTORY", "locality": 0, "tags": [], "why": "Niche archival tale of trail-marking symbol, mild insight into administrative record-keeping", "mode": "llm", "score": 4.0}, {"id": "145d88d564ac3de6", "title": "An Introduction to Thatched Buildings and Thatching in England", "url": "https://heritagecalling.com/2026/08/13/an-introduction-to-thatched-buildings-and-thatching-in-england/", "summary": "Exploring one of England's oldest and most characterful building materials.", "source_name": "Heritage Calling (Historic England)", "when": "13 Aug, 06:00", "tier": "rest", "type": "HISTORY", "locality": 0, "tags": [], "why": "General vernacular architecture piece, loosely linked to local history study but no real teaching hook", "mode": "llm", "score": 4.0}];
 const TIER_LABELS = {"lead": "Read these", "worth": "Worth a look", "rest": "Everything else", "noise": "Low relevance"};
 const TIER_ORDER = ["lead", "worth", "rest", "noise"];
 // Type (src/classify.py) is a pill on each card now, not a page section --
@@ -469,12 +497,29 @@ function render() {
     : `${visible.length} of ${ITEMS.length} items`;
   readToggle.textContent = state.showRead ? "Hide read" : `Show read (${hiddenRead})`;
 
+  // Read each tier section's current open/closed state directly off the
+  // DOM before it's torn down and rebuilt below, so a reader's manual
+  // collapse survives render() rebuilding #list's innerHTML on every
+  // filter change (a keystroke in search, a chip click, ...). Reading a
+  // live DOM property synchronously here, rather than tracking state via
+  // a "toggle" event listener, sidesteps that event's dispatch timing
+  // entirely -- there's no window where a change right after a toggle
+  // could be missed. Defaults to open: on the very first call #list is
+  // still empty, so nothing here overrides the default.
+  const openTiers = new Set(TIER_ORDER);
+  list.querySelectorAll(".tier-group").forEach(details => {
+    if (!details.open) openTiers.delete(details.dataset.tier);
+  });
+
   let out = "";
   for (const tier of TIER_ORDER) {
     const group = visible.filter(i => i.tier === tier);
     if (!group.length) continue;
-    out += `<h2 data-tier="${tier}">${TIER_LABELS[tier]} <span style="font-weight:400;opacity:.6">(${group.length})</span></h2>`;
+    const openAttr = openTiers.has(tier) ? " open" : "";
+    out += `<details class="tier-group" data-tier="${tier}"${openAttr}>`;
+    out += `<summary><h2 data-tier="${tier}">${TIER_LABELS[tier]} <span style="font-weight:400;opacity:.6">(${group.length})</span></h2></summary>`;
     out += group.map(card).join("");
+    out += `</details>`;
   }
   list.innerHTML = out;
   empty.hidden = visible.length > 0;
