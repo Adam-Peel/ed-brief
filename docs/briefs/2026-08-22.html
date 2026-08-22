@@ -234,7 +234,8 @@ article h3 a:hover { color: var(--accent); text-decoration: underline; }
   border: 1px solid var(--border); border-radius: 4px;
   padding: 1px 6px;
 }
-.read-btn {
+.card-actions { display: flex; align-items: center; gap: 6px; flex: none; }
+.read-btn, .zotero-link {
   font: inherit; font-size: .72rem;
   padding: 3px 9px;
   border: 1px solid var(--border);
@@ -244,6 +245,8 @@ article h3 a:hover { color: var(--accent); text-decoration: underline; }
   cursor: pointer;
   white-space: nowrap;
 }
+.zotero-link { text-decoration: none; }
+.zotero-link:hover { border-color: var(--accent); color: var(--accent); }
 .read-btn:hover { border-color: var(--accent); color: var(--accent); }
 .empty { color: var(--muted); font-style: italic; padding: 32px 0; text-align: center; }
 footer {
@@ -264,7 +267,7 @@ details summary { cursor: pointer; }
 <div class="wrap">
 <header>
   <h1>Education brief<br>Saturday 22 August 2026</h1>
-  <p class="sub">4 items first seen today, ranked the same way as the live list.</p>
+  <p class="sub">6 items first seen today, ranked the same way as the live list.</p>
 </header>
 
 <div class="filters">
@@ -288,8 +291,8 @@ details summary { cursor: pointer; }
     <div class="row" id="tag-row"><button class="chip" data-tag="prof-routes-into-teaching" aria-pressed="false">prof-routes-into-teaching</button></div>
   </details>
   <details class="filter-group" id="source-group">
-    <summary>Filter by source <span class="group-count">(4)</span></summary>
-    <div class="row" id="source-row"><button class="chip" data-source="Guardian Schools" aria-pressed="false">Guardian Schools</button><button class="chip" data-source="Heritage Calling (Historic England)" aria-pressed="false">Heritage Calling (Historic England)</button><button class="chip" data-source="The National Archives Blog" aria-pressed="false">The National Archives Blog</button><button class="chip" data-source="UCET Blog" aria-pressed="false">UCET Blog</button></div>
+    <summary>Filter by source <span class="group-count">(5)</span></summary>
+    <div class="row" id="source-row"><button class="chip" data-source="Ben Newmark" aria-pressed="false">Ben Newmark</button><button class="chip" data-source="Guardian Schools" aria-pressed="false">Guardian Schools</button><button class="chip" data-source="Heritage Calling (Historic England)" aria-pressed="false">Heritage Calling (Historic England)</button><button class="chip" data-source="The National Archives Blog" aria-pressed="false">The National Archives Blog</button><button class="chip" data-source="UCET Blog" aria-pressed="false">UCET Blog</button></div>
   </details>
 </div>
 
@@ -297,7 +300,7 @@ details summary { cursor: pointer; }
 <p class="empty" id="empty" hidden>Nothing matches these filters.</p>
 
 <footer>
-  <p>Ranking: no new items. Generated 22 Aug 2026 at 06:54 UTC. Items stay listed for
+  <p>Ranking: LLM re-ranked with claude-sonnet-5 (1 irrelevant, discarded). Generated 22 Aug 2026 at 18:44 UTC. Items stay listed for
   14 days from when they're first seen, or until you mark
   them read.</p>
   <p>Read state is stored in this browser only. It will not follow you to
@@ -314,7 +317,7 @@ details summary { cursor: pointer; }
 </div>
 
 <script>
-const ITEMS = [{"id": "a9ca41b193328b2c", "title": "What's Your Story?: Storytelling as a Tool for Growing Confident, Reflective Teachers", "url": "https://www.ucet.ac.uk/blog/17660/whats-your-story-storytelling-as-a-tool-for-growing-confident-reflective-teachers", "summary": "When we think about storytelling in education, we often picture early years classrooms but storytelling isn't just for children. Our recent research with trainee teachers in the Further Education (FE) sector suggests it may be one of the most powerful tools for professional development. We began with a simple question: What happens when trainee teachers are invited to tell the story of becoming a teacher? The answer was powerful.", "source_name": "UCET Blog", "when": "31 Jul, 08:24", "tier": "rest", "type": "PEDAGOGY", "locality": 0, "tags": ["prof-routes-into-teaching"], "why": "FE storytelling research on trainee identity, not classroom history teaching practice", "mode": "llm", "score": 4.6}, {"id": "3aa6c96b2896c2f8", "title": "Screens can play a key role in the classroom | Letters", "url": "https://www.theguardian.com/education/2026/aug/19/screens-can-play-a-key-role-in-the-classroom", "summary": "Dismissing screen use entirely fails to recognise the crucial role modern technology plays in equity, accessibility and basic school operations, says Charlotte Bleakley Your article buries the real story beneath the headline ( 'Our children are less cognitively capable,' says neuroscientist who wants to cut screen use in schools, 16 August ). Even Jared Cooney Horvath's own data, cited mid-article, shows that moderate school device use is associated with better outcomes than no device use at all – it is only the heaviest use daily that drags results down. That is a case for sensible…", "source_name": "Guardian Schools", "when": "19 Aug, 16:46", "tier": "rest", "type": "OTHER", "locality": 0, "tags": [], "why": "Letter debate on screens in classrooms, tangential to history teaching practice", "mode": "llm", "score": 4.1}, {"id": "ba233b256e6edbd1", "title": "Follow the acorn: Designing a symbol for long distance national trails", "url": "https://www.nationalarchives.gov.uk/explore-the-collection/the-collection-blog/follow-the-acorn-designing-a-symbol-for-long-distance-national-trails/?utm_source=feed-all&utm_medium=rss", "summary": "In this blog post, Lucy Razzall and Giorgia Tolfo investigate some of the administrative history behind marking rights of way.", "source_name": "The National Archives Blog", "when": "14 Aug, 10:00", "tier": "rest", "type": "HISTORY", "locality": 0, "tags": [], "why": "Niche archival tale of trail-marking symbol, mild insight into administrative record-keeping", "mode": "llm", "score": 4.0}, {"id": "145d88d564ac3de6", "title": "An Introduction to Thatched Buildings and Thatching in England", "url": "https://heritagecalling.com/2026/08/13/an-introduction-to-thatched-buildings-and-thatching-in-england/", "summary": "Exploring one of England's oldest and most characterful building materials.", "source_name": "Heritage Calling (Historic England)", "when": "13 Aug, 06:00", "tier": "rest", "type": "HISTORY", "locality": 0, "tags": [], "why": "General vernacular architecture piece, loosely linked to local history study but no real teaching hook", "mode": "llm", "score": 4.0}];
+const ITEMS = [{"id": "a9ca41b193328b2c", "title": "What's Your Story?: Storytelling as a Tool for Growing Confident, Reflective Teachers", "url": "https://www.ucet.ac.uk/blog/17660/whats-your-story-storytelling-as-a-tool-for-growing-confident-reflective-teachers", "summary": "When we think about storytelling in education, we often picture early years classrooms but storytelling isn't just for children. Our recent research with trainee teachers in the Further Education (FE) sector suggests it may be one of the most powerful tools for professional development. We began with a simple question: What happens when trainee teachers are invited to tell the story of becoming a teacher? The answer was powerful.", "source_name": "UCET Blog", "when": "31 Jul, 08:24", "tier": "rest", "type": "PEDAGOGY", "locality": 0, "tags": ["prof-routes-into-teaching"], "why": "FE storytelling research on trainee identity, not classroom history teaching practice", "mode": "llm", "score": 4.5}, {"id": "3aa6c96b2896c2f8", "title": "Screens can play a key role in the classroom | Letters", "url": "https://www.theguardian.com/education/2026/aug/19/screens-can-play-a-key-role-in-the-classroom", "summary": "Dismissing screen use entirely fails to recognise the crucial role modern technology plays in equity, accessibility and basic school operations, says Charlotte Bleakley Your article buries the real story beneath the headline ( 'Our children are less cognitively capable,' says neuroscientist who wants to cut screen use in schools, 16 August ). Even Jared Cooney Horvath's own data, cited mid-article, shows that moderate school device use is associated with better outcomes than no device use at all – it is only the heaviest use daily that drags results down. That is a case for sensible…", "source_name": "Guardian Schools", "when": "19 Aug, 16:46", "tier": "rest", "type": "OTHER", "locality": 0, "tags": [], "why": "Letter debate on screens in classrooms, tangential to history teaching practice", "mode": "llm", "score": 4.0}, {"id": "ba233b256e6edbd1", "title": "Follow the acorn: Designing a symbol for long distance national trails", "url": "https://www.nationalarchives.gov.uk/explore-the-collection/the-collection-blog/follow-the-acorn-designing-a-symbol-for-long-distance-national-trails/?utm_source=feed-all&utm_medium=rss", "summary": "In this blog post, Lucy Razzall and Giorgia Tolfo investigate some of the administrative history behind marking rights of way.", "source_name": "The National Archives Blog", "when": "14 Aug, 10:00", "tier": "rest", "type": "HISTORY", "locality": 0, "tags": [], "why": "Niche archival tale of trail-marking symbol, mild insight into administrative record-keeping", "mode": "llm", "score": 3.9}, {"id": "145d88d564ac3de6", "title": "An Introduction to Thatched Buildings and Thatching in England", "url": "https://heritagecalling.com/2026/08/13/an-introduction-to-thatched-buildings-and-thatching-in-england/", "summary": "Exploring one of England's oldest and most characterful building materials.", "source_name": "Heritage Calling (Historic England)", "when": "13 Aug, 06:00", "tier": "rest", "type": "HISTORY", "locality": 0, "tags": [], "why": "General vernacular architecture piece, loosely linked to local history study but no real teaching hook", "mode": "llm", "score": 3.9}, {"id": "9dfd0b40cefca8b2", "title": "Some news. Welcome to Willerby", "url": "https://bennewmark.wordpress.com/2026/08/22/some-news-welcome-to-willerby/", "summary": "Last year at a conference someone said to me they'd noticed I'd stopped writing as much. I understand why they said this. Over the last few years – like most education bloggers – my output has dropped for all sorts of reasons. They had no way of knowing how wrong they were. Over the last […]", "source_name": "Ben Newmark", "when": "22 Aug, 10:15", "tier": "noise", "type": "OTHER", "locality": 0, "tags": [], "why": "Personal blogger update irrelevant to history ITT preparation or teaching practice", "mode": "llm", "score": 3.4}, {"id": "a0a2171262e790dc", "title": "Nebraska school district asks police to stop using shock gloves on students", "url": "https://www.theguardian.com/us-news/2026/aug/22/omaha-nebraska-school-district-shock-gloves-police", "summary": "Omaha police agreed to stop carrying electric shock gloves in the halls of state's largest public school district Omaha police recently agreed to stop carrying gloves that can deliver electric shocks to students in the halls of Nebraska 's largest public school district. The decision affecting most Omaha middle and high schools came after the Associated Press first revealed Immigration and Customs Enforcement ( ICE )'s plan to give officers the \"Gloves\" – or \"generated low output voltage emitters\". The devices have also been used in recent years by some jails. Continue reading...", "source_name": "Guardian Schools", "when": "22 Aug, 14:00", "tier": "noise", "type": "IRRELEVANT", "locality": 0, "tags": [], "why": "", "mode": "deterministic", "score": 1.1}];
 const TIER_LABELS = {"lead": "Read these", "worth": "Worth a look", "rest": "Everything else", "noise": "Low relevance"};
 const TIER_ORDER = ["lead", "worth", "rest", "noise"];
 // Type (src/classify.py) is a pill on each card now, not a page section --
@@ -478,7 +481,10 @@ function card(item) {
     ${item.summary ? `<p class="summary">${esc(item.summary)}</p>` : ""}
     <div class="row-bottom">
       <div class="tags">${tags}</div>
-      <button class="read-btn" data-toggle-read="${esc(item.id)}">${read ? "Mark unread" : "Mark read"}</button>
+      <div class="card-actions">
+        <a class="zotero-link" href="./ris/${esc(item.id)}.ris" title="Save to Zotero, with this item's tags -- requires the Zotero Connector browser extension">Add to Zotero</a>
+        <button class="read-btn" data-toggle-read="${esc(item.id)}">${read ? "Mark unread" : "Mark read"}</button>
+      </div>
     </div>
   </article>`;
 }
