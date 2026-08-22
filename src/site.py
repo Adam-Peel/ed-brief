@@ -164,6 +164,30 @@ h1 {
 #search:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
 .count { color: var(--muted); font-size: .78rem; margin-left: auto; }
 
+/* Score vs date is a MUTUALLY EXCLUSIVE choice (pick one), not an
+   independent multi-select filter like the tier/tag/source chips --
+   styled as a segmented control rather than reusing .chip, so it reads
+   as "one of these two", not "toggle each on or off". */
+.sort-label { font-size: .78rem; color: var(--muted); }
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.seg-btn {
+  font: inherit; font-size: .78rem;
+  padding: 4px 11px;
+  border: none;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: .12s;
+}
+.seg-btn + .seg-btn { border-left: 1px solid var(--border); }
+.seg-btn[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.seg-btn:hover { color: var(--text); }
+
 /* Tag/source chip lists are collapsed behind these by default -- as the
    feed and tag lists grow, a flat wall of buttons stops being a filter
    and starts being a scroll obstacle. Native <details> rather than
@@ -335,6 +359,13 @@ details summary { cursor: pointer; }
       <input id="search" type="search" placeholder="Search titles and summaries…" aria-label="Search">
     </div>
   </div>
+  <div class="row" id="sort-row">
+    <span class="sort-label">Sort:</span>
+    <div class="segmented" role="group" aria-label="Sort order">
+      <button class="seg-btn" id="sort-score" data-sort="score" aria-pressed="true">Score</button>
+      <button class="seg-btn" id="sort-date" data-sort="date" aria-pressed="false">Newest first</button>
+    </div>
+  </div>
   <div class="row" id="tier-row">
     <button class="chip" data-tier="lead" aria-pressed="true">Read these</button>
     <button class="chip" data-tier="worth" aria-pressed="true">Worth a look</button>
@@ -427,6 +458,10 @@ function readFilterState() {
     sources: new Set((p.get("source") || "").split(",").filter(Boolean)),
     q: p.get("q") || "",
     showRead: p.get("read") === "1",
+    // Sort mode is orthogonal to the tier/tag/source filters above -- it
+    // only changes ORDERING and (in score mode) grouping of whatever the
+    // filters already include, never which items are included.
+    sort: p.get("sort") === "date" ? "date" : "score",
   };
 }
 
@@ -440,6 +475,7 @@ function writeFilterState(state) {
   if (state.sources.size) p.set("source", [...state.sources].join(","));
   if (state.q) p.set("q", state.q);
   if (state.showRead) p.set("read", "1");
+  if (state.sort !== "score") p.set("sort", state.sort);
   const qs = p.toString();
   history.replaceState(null, "", qs ? ("?" + qs) : location.pathname);
 }
@@ -468,6 +504,21 @@ function initChips(rowId, key) {
 initChips("tier-row", "tier");
 initChips("tag-row", "tag");
 initChips("source-row", "source");
+
+const sortButtons = [document.getElementById("sort-score"), document.getElementById("sort-date")];
+function setSort(sort) {
+  state.sort = sort;
+  for (const btn of sortButtons) btn.setAttribute("aria-pressed", String(btn.dataset.sort === sort));
+}
+setSort(state.sort);
+for (const btn of sortButtons) {
+  btn.addEventListener("click", () => {
+    if (btn.dataset.sort === state.sort) return;
+    setSort(btn.dataset.sort);
+    writeFilterState(state);
+    render();
+  });
+}
 
 // A tag/source filter arriving active (bookmarked or shared URL) opens its
 // group automatically -- an active filter should never be silently hidden
@@ -549,11 +600,9 @@ function card(item) {
 
 function render() {
   // ITEMS arrives already sorted by rank_score at build time; this only
-  // ever filters, never sorts -- ranking stays a build-time concern.
-  // Grouped by TIER (score strength), same as always -- type had a turn as
-  // the grouping axis and buried high-scoring items inside whichever
-  // category happened to render lower on the page; it's a per-card pill
-  // now (see card()), not something the list sorts or sections by.
+  // ever filters (and, in date mode, re-sorts client-side by a value
+  // that's already on each item), never re-ranks -- scoring stays a
+  // build-time concern either way.
   const visible = ITEMS.filter(matches);
   const hiddenRead = state.showRead ? 0 : ITEMS.filter(i => ReadStore.isRead(i.id)).length;
   countEl.textContent = visible.length === ITEMS.length
@@ -561,29 +610,43 @@ function render() {
     : `${visible.length} of ${ITEMS.length} items`;
   readToggle.textContent = state.showRead ? "Hide read" : `Show read (${hiddenRead})`;
 
-  // Read each tier section's current open/closed state directly off the
-  // DOM before it's torn down and rebuilt below, so a reader's manual
-  // collapse survives render() rebuilding #list's innerHTML on every
-  // filter change (a keystroke in search, a chip click, ...). Reading a
-  // live DOM property synchronously here, rather than tracking state via
-  // a "toggle" event listener, sidesteps that event's dispatch timing
-  // entirely -- there's no window where a change right after a toggle
-  // could be missed. Defaults to open: on the very first call #list is
-  // still empty, so nothing here overrides the default.
-  const openTiers = new Set(TIER_ORDER);
-  list.querySelectorAll(".tier-group").forEach(details => {
-    if (!details.open) openTiers.delete(details.dataset.tier);
-  });
-
   let out = "";
-  for (const tier of TIER_ORDER) {
-    const group = visible.filter(i => i.tier === tier);
-    if (!group.length) continue;
-    const openAttr = openTiers.has(tier) ? " open" : "";
-    out += `<details class="tier-group" data-tier="${tier}"${openAttr}>`;
-    out += `<summary><h2 data-tier="${tier}">${TIER_LABELS[tier]} <span style="font-weight:400;opacity:.6">(${group.length})</span></h2></summary>`;
-    out += group.map(card).join("");
-    out += `</details>`;
+  if (state.sort === "date") {
+    // Flat, newest-first, no tier grouping -- the whole point of this
+    // mode is "what's new regardless of score", so bucketing it back by
+    // tier would defeat that. The tier chips above still control which
+    // items are INCLUDED (that's filtering, orthogonal to sort mode);
+    // this only changes their order and presentation.
+    out = [...visible].sort((a, b) => b.published_ts - a.published_ts).map(card).join("");
+  } else {
+    // Grouped by TIER (score strength), same as always -- type had a turn
+    // as the grouping axis and buried high-scoring items inside whichever
+    // category happened to render lower on the page; it's a per-card pill
+    // now (see card()), not something the list sorts or sections by.
+    //
+    // Read each tier section's current open/closed state directly off the
+    // DOM before it's torn down and rebuilt below, so a reader's manual
+    // collapse survives render() rebuilding #list's innerHTML on every
+    // filter change (a keystroke in search, a chip click, ...). Reading a
+    // live DOM property synchronously here, rather than tracking state via
+    // a "toggle" event listener, sidesteps that event's dispatch timing
+    // entirely -- there's no window where a change right after a toggle
+    // could be missed. Defaults to open: on the very first call #list is
+    // still empty (and switching sort modes tears the tier-groups down
+    // entirely), so nothing here overrides the default in either case.
+    const openTiers = new Set(TIER_ORDER);
+    list.querySelectorAll(".tier-group").forEach(details => {
+      if (!details.open) openTiers.delete(details.dataset.tier);
+    });
+    for (const tier of TIER_ORDER) {
+      const group = visible.filter(i => i.tier === tier);
+      if (!group.length) continue;
+      const openAttr = openTiers.has(tier) ? " open" : "";
+      out += `<details class="tier-group" data-tier="${tier}"${openAttr}>`;
+      out += `<summary><h2 data-tier="${tier}">${TIER_LABELS[tier]} <span style="font-weight:400;opacity:.6">(${group.length})</span></h2></summary>`;
+      out += group.map(card).join("");
+      out += `</details>`;
+    }
   }
   list.innerHTML = out;
   empty.hidden = visible.length > 0;
@@ -699,6 +762,11 @@ def _payload(items: list[CorpusItem]) -> list[dict]:
             "summary": item.summary,
             "source_name": item.source_name,
             "when": item.published.strftime("%-d %b, %H:%M"),
+            # A raw, numerically-sortable value for the "newest first" sort
+            # mode -- `when` is a display string ("19 Aug, 18:34") that
+            # sorts wrong alphabetically (month names aren't in calendar
+            # order), so this is what the client actually sorts by.
+            "published_ts": item.published.timestamp(),
             "tier": item.tier,
             "type": item.item_type,
             "locality": item.locality,

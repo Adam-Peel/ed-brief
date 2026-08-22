@@ -399,6 +399,11 @@ def main() -> int:
     )
     check(by_id_payload["g-notts"]["locality"] == 4,
           "locality survives into the payload unchanged")
+    check(
+        by_id_payload["g-notts"]["published_ts"] == golden_now.timestamp(),
+        "published_ts is a real numeric timestamp, not the display string -- "
+        "what the date-sort mode actually sorts by",
+    )
     with tempfile.TemporaryDirectory() as tmp:
         golden_root = Path(tmp)
         meta_stub = {"scoring": {"status": "test"}, "retention_days": 14, "sources": []}
@@ -440,6 +445,10 @@ def main() -> int:
           "the card template links each item to its own .ris file by id")
     check('download' not in golden_html.split('zotero-link"')[1][:80],
           "the Zotero link has no download attribute -- that would bypass the Connector's interception")
+    check('id="sort-score"' in golden_html and 'id="sort-date"' in golden_html,
+          "the score/date sort control reaches the rendered page")
+    check('state.sort === "date"' in golden_html,
+          "the render template branches on sort mode (flat date order vs tier-grouped score order)")
 
     section("Full offline build")
     with tempfile.TemporaryDirectory() as tmp:
