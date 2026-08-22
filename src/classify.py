@@ -61,17 +61,23 @@ HISTORY      Historical scholarship and material. New research, discoveries, \
 reinterpretations, books, archives, collections, digitisations, \
 heritage, exhibitions, anniversary material - anything that is \
 about the past itself or makes the past usable.
-PEDAGOGY     How to teach. Classroom practice, learning evidence, cognitive \
-science, behaviour management, assessment and feedback practice, \
-professional conduct in the classroom.
+PEDAGOGY     How to teach, and how teachers develop their practice. Classroom \
+practice, learning evidence, cognitive science, behaviour \
+management, assessment and feedback practice, professional conduct \
+in the classroom, and genuine CPD -- reflective practice, mentoring \
+or coaching TECHNIQUE, anything about getting better at the job \
+itself rather than the structure the job sits inside.
 PUPILS       Who they will teach. Adolescent development, pupil wellbeing and \
 mental health, motivation, behaviour, attendance, disadvantage \
 and the attainment gap - what the 11-18s are like and what school \
 does to them.
-CAREER       Routes in and working life. ITT, PGCE and SCITT, bursaries, QTS, \
-provider accreditation, recruitment and teacher supply, workload, \
-pay, pensions, retention, induction and mentoring, school \
-inspection, accountability measures and statutory duties.
+CAREER       Career structure and working life -- NOT genuine CPD, which is \
+PEDAGOGY (see above). Routes in (ITT, PGCE and SCITT, bursaries, \
+QTS, provider accreditation, recruitment and teacher supply), and \
+the terms and structure of the job: workload, pay, pensions, \
+retention, the statutory structure of induction and mentoring \
+(entitlement, funding, who provides it -- not the technique of it), \
+school inspection, accountability measures and statutory duties.
 SECTOR       General education news they skim but do not act on, including all \
 exam results and attainment statistics.
 OTHER        Plainly relevant to a secondary teacher in England but fits none \
@@ -101,6 +107,13 @@ history's timetable share and uptake.
 - A staff profile, a personal travelogue, or a conference listing is not \
 scholarship. If nothing about the past is actually conveyed, it is \
 IRRELEVANT.
+- CPD content is PEDAGOGY, not CAREER, whenever the finding or technique is \
+about developing SKILL or PRACTICE -- reflective practice, mentoring or \
+coaching technique, how to get better at teaching or at supporting someone \
+else's teaching. CAREER is for the STRUCTURE around that: who gets a \
+mentor, funding for mentoring, statutory entitlement to induction. A story \
+about HOW to mentor well is PEDAGOGY; a story about WHO gets mentored, or \
+whether mentoring is funded, is CAREER.
 - The FE/HE exclusion is for stories ABOUT the FE or HE sector itself \
 (funding, provision, apprenticeship policy, university admissions) -- not \
 for teacher-training or pedagogy content that happens to draw on FE or HE \
