@@ -16,7 +16,7 @@ from pathlib import Path
 
 import yaml
 
-from . import api, brief, classify, llm, rss, site
+from . import api, brief, classify, digest, llm, rss, site
 from .corpus import (
     SCHEMA,
     CorpusItem,
@@ -258,6 +258,8 @@ def main(argv: list[str] | None = None, *, output_root: Path | None = None) -> i
     site.write_site(published, today_items, meta, out_root, now, cfg)
     brief.write_brief(today_items, feed_problems, llm_status, out_root, now)
     rss.write_feed(published, cfg, out_root, now)
+    digest_status = digest.write_digest(today_items, cfg, now, out_root / "docs")
+    print(f"  digest: {digest_status}", file=sys.stderr)
 
     print(
         f"\nWrote {len(published)} published items ({len(live) - len(published)} below "

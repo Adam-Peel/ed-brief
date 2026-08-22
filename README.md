@@ -224,6 +224,32 @@ not just the general RIS spec — see `src/ris.py`'s module docstring.
 
 ---
 
+## Daily digest (unlisted)
+
+Each run that has an `ANTHROPIC_API_KEY` writes `docs/digest.html`: a short
+flowing prose summary of that day's new items — written for *listening*,
+not reading, since the eventual point is a script for a daily audio
+briefing. Every item gets at least brief coverage, not just the top-scored
+ones, in descending order of relevance.
+
+Deliberately **not linked from anywhere on the published site** —
+`index.html`, `archive.html`, the API endpoint index all omit it entirely
+— and marked `noindex` so it won't turn up in search results either.
+Reachable only if you already have the URL:
+`https://YOUR-USERNAME.github.io/ed-brief/digest.html`. It's a single
+always-current page, not a dated archive (yet) — regenerated fresh on
+every run that has new items and a key, silently skipped otherwise.
+
+Text-to-speech isn't wired up yet — Claude doesn't do TTS natively (even
+Anthropic's own consumer Voice Mode uses ElevenLabs under the hood, per
+their own terms of service), so that would mean a separate vendor
+(Google Cloud, Amazon Polly, OpenAI, or ElevenLabs, roughly $0.50–$14/month
+at this volume depending on voice quality) and a podcast RSS feed on top
+of this. The prose digest here is the first step toward that, usable on
+its own in the meantime.
+
+---
+
 ## The read-only guarantee
 
 The published page and API are load-bearing on being **strictly read-only**:
@@ -375,6 +401,7 @@ src/site.py              docs/index.html, docs/archive.html, dated snapshots
 src/ris.py               docs/ris/{id}.ris writer -- one per item, for Add to Zotero
 src/rss.py               docs/feed.xml writer (lead/worth tiers only)
 src/brief.py             briefs/YYYY-MM-DD.md writer
+src/digest.py            docs/digest.html writer -- unlisted daily prose summary
 src/build.py             entry point: fetch, dedupe, score, rank, publish
 src/validate.py          feed health check
 data/corpus.json         the single source of truth (committed)

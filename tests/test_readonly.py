@@ -306,6 +306,35 @@ def main() -> int:
     check(classify_unsupported == [], "classify's schema also avoids the unsupported keywords",
           str(classify_unsupported))
 
+    section("Daily digest: dormant without a key, generates and writes with one, never linked")
+    from src import digest as digest_mod
+
+    digest_items = [
+        CorpusItem(id="d1", title="Big story", url="u1", summary="", source_id="s",
+                   source_name="S", published=now, first_seen=now, expires=now + timedelta(days=14),
+                   relevance=8.0, why="Big story matters"),
+        CorpusItem(id="d2", title="Small story", url="u2", summary="", source_id="s",
+                   source_name="S", published=now, first_seen=now, expires=now + timedelta(days=14),
+                   relevance=1.5, why="Small story barely matters"),
+    ]
+    with tempfile.TemporaryDirectory() as tmp:
+        digest_docs = Path(tmp) / "docs"
+        status_no_key = digest_mod.write_digest(digest_items, {}, now, digest_docs)
+        check("no API key" in status_no_key, "no key -> a clear status, no exception", status_no_key)
+        check(not (digest_docs / "digest.html").exists(),
+              "no key -> nothing written, not even an empty file")
+
+        status_ok = _with_fake_client(
+            ["Today's overview: a big story leads, plus a small story worth a mention.\n\n"
+             "The big story matters a great deal. The small story barely matters."],
+            lambda: digest_mod.write_digest(digest_items, {}, now, digest_docs),
+        )
+        check("generated with" in status_ok, "a fake response -> a clear success status", status_ok)
+        digest_html = (digest_docs / "digest.html").read_text("utf-8")
+        check("noindex" in digest_html, "the page is marked noindex -- unlisted, not just unlinked")
+        check("big story leads" in digest_html and "barely matters" in digest_html,
+              "the generated script text reaches the page")
+
     section("Two-stage pipeline: the locality floor is a build-time percentile, not a fixed number")
     rank_items = [
         CorpusItem(id=f"loc{k}", title="t", url="u", summary="", source_id="s", source_name="S",
@@ -392,6 +421,9 @@ def main() -> int:
         check("KW  - sub-local-nottinghamshire\r\n" in rec and "KW  - sub-history\r\n" in rec,
               "every tag gets its own KW line (Zotero maps KW to its own tags on import)")
         check("UR  - un\r\n" in rec, "UR carries the item's own url, not ed-brief's")
+
+        check("digest.html" not in golden_html,
+              "index.html never references digest.html -- it's unlisted, not just unlinked in prose")
     check(
         '"CURRICULUM": "Curriculum"' in golden_html and '"OTHER": "Other"' in golden_html,
         "TYPE_LABELS (the pill text for every type, including OTHER) reaches the rendered page",
