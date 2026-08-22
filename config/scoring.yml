@@ -203,7 +203,13 @@ tiers:
   # 1dp, rather than the other way around.
   lead: 7.95     # "Read these"
   worth: 4.95    # "Worth a look"
-  rest: 2.45     # "Everything else" -- below this, "Low relevance"
+  rest: 3.45     # "Everything else" -- below this, "Low relevance"
+  # Raised 2.45 -> 3.45, 2026-08-22, owner request: once the two-stage
+  # pipeline's classify/score fixes (structured outputs, H1/H4 refinement,
+  # type_floors) proved out on a clean real run, "Low relevance" could
+  # afford to catch more of the genuinely weak tail without also catching
+  # material worth a glance -- same 0.05-below-the-round-number convention
+  # as the other two cuts (see above).
   # anything below `rest` → "Low relevance", collapsed behind its own
   # separate toggle on the site (not bundled with "Everything else"), so
   # browsing the rest of the corpus still doesn't mean wading through
