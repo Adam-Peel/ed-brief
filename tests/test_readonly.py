@@ -309,8 +309,9 @@ def main() -> int:
     section("Weekly digest: Sunday-gated, worth-cut + HISTORY-mention selection, never linked")
     from src import digest as digest_mod
 
-    sunday = datetime(2026, 8, 23, 19, 0, tzinfo=timezone.utc)  # a real Sunday, London time too
-    saturday = datetime(2026, 8, 22, 19, 0, tzinfo=timezone.utc)
+    sunday = datetime(2026, 8, 23, 7, 0, tzinfo=timezone.utc)  # a real Sunday AM, London time too
+    sunday_evening = datetime(2026, 8, 23, 19, 0, tzinfo=timezone.utc)  # same day, wrong run
+    saturday = datetime(2026, 8, 22, 7, 0, tzinfo=timezone.utc)
     digest_cfg = {"tiers": {"worth": 4.95}}
 
     def _di(id_, title, relevance, item_type, days_ago, why=""):
@@ -335,6 +336,12 @@ def main() -> int:
               "a non-Sunday run is skipped with a clear status, regardless of key or items",
               status_not_sunday)
         check(not (digest_docs / "digest.html").exists(), "non-Sunday -> nothing written")
+
+        status_wrong_run = digest_mod.write_digest(week_items, digest_cfg, sunday_evening, digest_docs)
+        check("not the weekly run" in status_wrong_run,
+              "Sunday EVENING is skipped too -- only the Sunday morning run fires",
+              status_wrong_run)
+        check(not (digest_docs / "digest.html").exists(), "Sunday evening -> nothing written")
 
         status_no_key = digest_mod.write_digest(week_items, digest_cfg, sunday, digest_docs)
         check("no API key" in status_no_key, "Sunday, no key -> a clear status, no exception", status_no_key)

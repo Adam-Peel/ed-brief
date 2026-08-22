@@ -1,7 +1,10 @@
 """Weekly digest: a flowing prose round-up of the last 7 days' items,
 written for LISTENING rather than reading -- the intended eventual use is
 a script for a weekly audio briefing (see README), so it's prose, not a
-card list. Fires once a week (Sunday, London time), not on every run.
+card list. Fires once a week (Sunday morning, London time), not on every
+run -- morning rather than evening so little enough has published
+overnight that the episode is ready in time for a lazy Sunday afternoon
+listen, not held back to Sunday evening.
 
 Started life daily, scoped to `today_items` -- real data killed that: a
 quiet day (a Saturday, as it happened) had six new items, the best of
@@ -33,8 +36,9 @@ URL, per an explicit "hidden, not on the main page or linked from it"
 request.
 
 Dormant unless ANTHROPIC_API_KEY is set, same contract as classify.py/
-llm.py -- a missing key (or any failure, or simply not being Sunday) just
-means no digest.html gets written this run, never a broken build.
+llm.py -- a missing key (or any failure, or simply not being Sunday
+morning) just means no digest.html gets written this run, never a broken
+build.
 """
 
 from __future__ import annotations
@@ -91,13 +95,22 @@ footer { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--border
 
 
 def _is_weekly_run(now: datetime) -> bool:
-    """True on Sunday, London time -- checked in local time rather than
-    UTC to match the same "what day does this feel like to the reader"
-    logic the workflow's own 07:00/19:00 guard already uses, not because
-    any of this project's actual run times (06:07/07:07/18:07/19:07 UTC)
-    are ever close enough to midnight for the two to disagree in
-    practice."""
-    return now.astimezone(LONDON).weekday() == 6  # Monday=0 .. Sunday=6
+    """True on the Sunday MORNING run specifically (London time) -- owner
+    request: little enough gets published overnight Saturday-Sunday that
+    the morning run's episode is effectively ready for the same day, to
+    listen to that afternoon, rather than making it wait for Sunday
+    evening. `hour < 12` rather than an exact "07" match: the workflow's
+    own shell guard already restricts every run that reaches this code to
+    London hour 07 or 19 (nothing else gets this far), so this only ever
+    needs to tell those two apart, robust to the run landing later than
+    07:00 sharp under scheduling delay (a real, observed thing -- see
+    scoring.yml's llm_classify_batch_size note on GitHub's own documented
+    congestion) without hardcoding the literal hour twice in two places.
+    Checked in local time rather than UTC to match the same "what day/
+    run does this feel like to the reader" logic the workflow's guard
+    already uses."""
+    london_now = now.astimezone(LONDON)
+    return london_now.weekday() == 6 and london_now.hour < 12  # Sunday, Monday=0..Sunday=6
 
 
 def _select(items: list[CorpusItem], cfg: dict) -> tuple[list[CorpusItem], list[CorpusItem]]:
@@ -204,7 +217,7 @@ def write_digest(published: list[CorpusItem], cfg: dict, now: datetime, docs_dir
     in here. Returns the status string for the caller to log, same shape
     as classify/llm's own status strings."""
     if not _is_weekly_run(now):
-        return "not the weekly run (Sunday, London time)"
+        return "not the weekly run (Sunday morning, London time)"
 
     window_start = now - timedelta(days=WINDOW_DAYS)
     recent = [item for item in published if item.first_seen >= window_start]
