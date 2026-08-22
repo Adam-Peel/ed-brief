@@ -251,7 +251,15 @@ teacher is held accountable for
 K3 EXPOSURE
   4  hits history teachers, or East Midlands schools, specifically
   2  hits secondary teachers in England generally
-  0  another phase, sector or nation"""
+  0  another phase, sector or nation
+Judge what the finding or technique is ABOUT and who it transfers to, not \
+which phase or sector its research population or setting happened to be \
+drawn from -- a reflective-practice or mentoring technique studied with FE \
+trainees that plainly generalises to teacher training generally is exposure \
+2, not 0, the same way a study of secondary pupils doesn't need to specify \
+"history pupils" to count. Score 0 only when the finding itself is specific \
+to that other phase or sector (FE funding, FE curriculum, primary-only \
+practice) and wouldn't transfer."""
 
 TYPE_NAMES = {
     "CURRICULUM": "curriculum and qualifications news",
